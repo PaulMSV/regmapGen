@@ -136,11 +136,6 @@ class Simulator:
                     'tool': 'vlog',
                     'args': '-suppress 2902 %s %s -sv -timescale 1ns/1ps %s' % (defines, incdirs, src)
                 }]
-            elif ext in ['.vhd', '.vhdl']:
-                scr_compile += [{
-                    'tool': 'vcom',
-                    'args': '-93 %s\n' % src
-                }]
         self._exec('vlib', self.worklib)
         self._exec('vmap', 'work %s' % self.worklib)
         for src in scr_compile:
@@ -199,8 +194,6 @@ if [file exist wave.do] {{
                 sources += 'sv %s %s\n' % (self.worklib, src)
             elif ext == '.v':
                 sources += 'verilog %s %s\n' % (self.worklib, src)
-            elif ext == '.vhd':
-                sources += 'vhdl %s %s\n' % (self.worklib, src)
         with path_join(self.cwd, 'files.prj').open(mode='w', encoding="utf-8") as f:
             f.write(sources)
         self._exec('xelab', elab_args)

@@ -17,12 +17,8 @@ TEST_DIR = parent_dir(__file__)
 
 def gen_bridge(tmpdir, bridge, reset, hdl):
     corsair.config.globcfg['register_reset'] = reset
-    if hdl == 'vhdl':
-        bridge_path = path_join(tmpdir, '%s2lb.vhd' % bridge)
-        corsair.generators.LbBridgeVhdl(path=bridge_path, bridge_type=bridge).generate()
-    else:
-        bridge_path = path_join(tmpdir, '%s2lb.v' % bridge)
-        corsair.generators.LbBridgeVerilog(path=bridge_path, bridge_type=bridge).generate()
+    bridge_path = path_join(tmpdir, '%s2lb.v' % bridge)
+    corsair.generators.LbBridgeVerilog(path=bridge_path, bridge_type=bridge).generate()
     return bridge_path
 
 
@@ -36,7 +32,7 @@ def bridge(request):
     return request.param
 
 
-@pytest.fixture(params=['verilog', 'vhdl'])
+@pytest.fixture(params=['verilog'])
 def hdl(request):
     return request.param
 

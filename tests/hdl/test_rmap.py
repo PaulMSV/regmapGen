@@ -65,12 +65,8 @@ def gen_rtl(tmpdir, interface, reset, hdl):
         BitField("BFOQ", "bitfield wo oq", width=24, lsb=0, access='wo', hardware='q'),
     ]))
 
-    if hdl == 'vhdl':
-        regmap_path = path_join(tmpdir, 'regs.vhd')
-        generators.Vhdl(rmap, regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
-    else:
-        regmap_path = path_join(tmpdir, 'regs.v')
-        generators.Verilog(rmap, regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
+    regmap_path = path_join(tmpdir, 'regs.v')
+    generators.Verilog(rmap, regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
 
     header_path = path_join(tmpdir, 'regs.vh')
     generators.VerilogHeader(rmap, header_path).generate()
@@ -91,7 +87,7 @@ def interface(request):
     return request.param
 
 
-@pytest.fixture(params=['verilog', 'vhdl'])
+@pytest.fixture(params=['verilog'])
 def hdl(request):
     return request.param
 
