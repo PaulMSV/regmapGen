@@ -11,7 +11,8 @@
 {% set tmp = namespace() %}
 
 {#- TEMPLATE #}
-// Created with Corsair v{{ corsair_ver }}
+// Created with regmapGen v{{ regmapGen_ver }}
+
 package {{ file_name }};
 
 parameter {{ module_prefix()|upper }}BASE_ADDR = {{ config['base_address'] }};

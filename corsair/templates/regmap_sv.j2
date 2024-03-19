@@ -168,7 +168,7 @@ csr_{{ reg.name.lower() }}_wen
 {% from "apb2lb_verilog.j2" import apb_core with context %}
 
 {#- TEMPLATE #}
-// Created with Corsair v{{ corsair_ver }}
+// Created with regmapGen v{{ regmapGen_ver }}
 
 module {{ module_name }} #(
     parameter ADDR_W = {{ config['address_width'] }},
