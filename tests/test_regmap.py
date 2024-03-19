@@ -5,7 +5,7 @@
 """
 
 import pytest
-from corsair import config, Register, BitField, RegisterMap
+from regmapGen import config, Register, BitField, RegisterMap
 import copy
 
 

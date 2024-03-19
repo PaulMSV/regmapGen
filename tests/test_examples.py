@@ -15,7 +15,7 @@ def test_examples(tmpdir):
     res = subprocess.run(["cp", "-R", "examples", str(tmpdir)])
     assert res.returncode == 0
 
-    # prepare environment - to make sure Makefile will find corsair repo
+    # prepare environment - to make sure Makefile will find regmapGen repo
     my_env = os.environ.copy()
     if 'PYTHONPATH' not in my_env.keys():
         my_env['PYTHONPATH'] = ""

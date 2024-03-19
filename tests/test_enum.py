@@ -5,7 +5,7 @@
 """
 
 import pytest
-from corsair import EnumValue
+from regmapGen import EnumValue
 import copy
 
 

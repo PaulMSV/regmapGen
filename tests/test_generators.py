@@ -5,7 +5,7 @@
 """
 
 import pytest
-from corsair import RegisterMap, generators, config, utils
+from regmapGen import RegisterMap, generators, config, utils
 
 
 class TestJson:
@@ -64,17 +64,17 @@ class TestTxt:
         assert rmap_test == rmap
 
 
-class TestVerilog:
-    """Class 'generators.Verilog' testing."""
+class TestSystemVerilog:
+    """Class 'generators.SystemVerilog' testing."""
 
-    def test_verilog_write(self, tmpdir):
-        """Test of creating regmap module in Verilog."""
-        output_file = str(tmpdir.join('regs.v'))
+    def test_sv_write(self, tmpdir):
+        """Test of creating regmap module in SystemVerilog."""
+        output_file = str(tmpdir.join('regs.sv'))
         print('output_file:', output_file)
         # create regmap
         rmap = utils.create_template()
         # write output file
-        generators.Verilog(rmap, output_file).generate()
+        generators.SystemVerilog(rmap, output_file).generate()
         # read file and verify
         with open(output_file, 'r') as f:
             raw_str = ''.join(f.readlines())
@@ -82,91 +82,48 @@ class TestVerilog:
         assert 'endmodule' in raw_str
 
 
-class TestVhdl:
-    """Class 'generators.Vhdl' testing."""
 
-    def test_vhdl_write(self, tmpdir):
-        """Test of creating regmap module in VHDL."""
-        output_file = str(tmpdir.join('regs.vhd'))
+class TestSystemVerilogHeader:
+    """Class 'generators.SystemVerilogHeader' testing."""
+
+    def test_svh_write(self, tmpdir):
+        """Test of creating SystemVerilog header."""
+        output_file = str(tmpdir.join('regs.svh'))
         print('output_file:', output_file)
         # create regmap
         rmap = utils.create_template()
         # write output file
-        generators.Vhdl(rmap, output_file).generate()
-        # read file and verify
-        with open(output_file, 'r') as f:
-            raw_str = ''.join(f.readlines())
-        assert "if raddr =" in raw_str
-        assert 'end architecture;' in raw_str
-
-
-class TestVerilogHeader:
-    """Class 'generators.VerilogHeader' testing."""
-
-    def test_vheader_write(self, tmpdir):
-        """Test of creating Verilog header."""
-        output_file = str(tmpdir.join('regs.vh'))
-        print('output_file:', output_file)
-        # create regmap
-        rmap = utils.create_template()
-        # write output file
-        generators.VerilogHeader(rmap, output_file).generate()
+        generators.SystemVerilogHeader(rmap, output_file).generate()
         # read file and verify
         with open(output_file, 'r') as f:
             raw_str = ''.join(f.readlines())
         assert '`define CSR_' in raw_str
 
 
-class TestLbBridgeVerilog:
-    """Class 'generators.LbBridgeVerilog' testing."""
+class TestLbBridgeSystemVerilog:
+    """Class 'generators.LbBridgeSystemVerilog' testing."""
 
     def _test(self, tmpdir, filename, bridge_type, assert_str):
         output_file = str(tmpdir.join(filename))
         print('output_file:', output_file)
         # write output file
-        generators.LbBridgeVerilog(path=output_file, bridge_type=bridge_type).generate()
+        generators.LbBridgeSystemVerilog(path=output_file, bridge_type=bridge_type).generate()
         # read file and verify
         with open(output_file, 'r') as f:
             raw_str = ''.join(f.readlines())
         assert assert_str in raw_str
 
     def test_apb(self, tmpdir):
-        """Test of creating APB to LocalBus module in Verilog"""
-        self._test(tmpdir, 'apb2lb.v', 'apb', 'APB to Local Bus bridge')
+        """Test of creating APB to LocalBus module in SystemVerilog"""
+        self._test(tmpdir, 'apb2lb.sv', 'apb', 'APB to Local Bus bridge')
 
     def test_amm(self, tmpdir):
-        """Test of creating Avalon-MM to LocalBus module in Verilog"""
-        self._test(tmpdir, 'amm2lb.v', 'amm', 'Avalon-MM to Local Bus bridge')
+        """Test of creating Avalon-MM to LocalBus module in SystemVerilog"""
+        self._test(tmpdir, 'amm2lb.sv', 'amm', 'Avalon-MM to Local Bus bridge')
 
     def test_axil(self, tmpdir):
-        """Test of creating AXI-Lite to LocalBus module in Verilog"""
-        self._test(tmpdir, 'axil2lb.v', 'axil', 'AXI-Lite to Local Bus bridge')
-
-
-class TestLbBridgeVhdl:
-    """Class 'generators.LbBridgeVhdl' testing."""
-
-    def _test(self, tmpdir, filename, bridge_type, assert_str):
-        output_file = str(tmpdir.join(filename))
-        print('output_file:', output_file)
-        # write output file
-        generators.LbBridgeVhdl(path=output_file, bridge_type=bridge_type).generate()
-        # read file and verify
-        with open(output_file, 'r') as f:
-            raw_str = ''.join(f.readlines())
-        assert assert_str in raw_str
-
-    def test_apb(self, tmpdir):
-        """Test of creating APB to LocalBus module in VHDL"""
-        self._test(tmpdir, 'apb2lb.vhd', 'apb', 'APB to Local Bus bridge')
-
-    def test_amm(self, tmpdir):
-        """Test of creating Avalon-MM to LocalBus module in VHDL"""
-        self._test(tmpdir, 'amm2lb.vhd', 'amm', 'Avalon-MM to Local Bus bridge')
-
-    def test_axil(self, tmpdir):
-        """Test of creating AXI-Lite to LocalBus module in VHDL"""
-        self._test(tmpdir, 'axil2lb.vhd', 'axil', 'AXI-Lite to Local Bus bridge')
+        """Test of creating AXI-Lite to LocalBus module in SystemVerilog"""
+        self._test(tmpdir, 'axil2lb.sv', 'axil', 'AXI-Lite to Local Bus bridge')
 
 
 class TestMarkdown:

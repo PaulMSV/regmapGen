@@ -4,9 +4,9 @@
 """Bit field module tests
 """
 
-from corsair.enum import EnumValue
+from regmapGen.enum import EnumValue
 import pytest
-from corsair import BitField
+from regmapGen import BitField
 import copy
 
 

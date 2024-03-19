@@ -5,7 +5,7 @@
 """
 
 import pytest
-from corsair import Register, BitField
+from regmapGen import Register, BitField
 import copy
 
 

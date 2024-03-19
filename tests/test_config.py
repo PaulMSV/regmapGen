@@ -5,11 +5,11 @@
 """
 
 import pytest
-from corsair import config
+from regmapGen import config
 
 
-def test_csrconfig(tmpdir):
-    cfg_path = str(tmpdir.join('csrconfig'))
+def test_config(tmpdir):
+    cfg_path = str(tmpdir.join('config'))
     globcfg = {
         "base_address": 0,
         "regmap_path": 'regs.json',
@@ -29,7 +29,7 @@ def test_csrconfig(tmpdir):
             "generator": "a",
         },
     }
-    config.write_csrconfig(cfg_path, globcfg, targets)
-    test_globcfg, test_targets = config.read_csrconfig(cfg_path)
+    config.write_config(cfg_path, globcfg, targets)
+    test_globcfg, test_targets = config.read_config(cfg_path)
     assert test_targets == targets
     assert test_globcfg == globcfg
