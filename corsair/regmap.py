@@ -14,7 +14,7 @@ import yaml
 
 
 class RegisterMap():
-    """CSR map"""
+    """Register map"""
 
     def __init__(self):
         self._regs = []

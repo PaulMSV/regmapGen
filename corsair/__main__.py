@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Run Corsair from command line with arguments.
+"""Run regmapGen from command line with arguments.
 """
 
 import sys
 import os
 import argparse
 from pathlib import Path
-import corsair
+import regmapGen
 from . import utils
 from contextlib import contextmanager
 import importlib.util
@@ -36,11 +36,11 @@ class ArgumentParser(argparse.ArgumentParser):
 
 def parse_arguments():
     """Parse and validate arguments."""
-    parser = ArgumentParser(prog=corsair.__title__,
-                            description=corsair.__description__)
+    parser = ArgumentParser(prog=regmapGen.__title__,
+                            description=regmapGen.__description__)
     parser.add_argument('-v', '--version',
                         action='version',
-                        version='%(prog)s v' + corsair.__version__)
+                        version='%(prog)s v' + regmapGen.__version__)
     parser.add_argument(metavar='WORKDIR',
                         nargs='?',
                         dest='workdir_path',
@@ -66,45 +66,44 @@ def parse_arguments():
 def generate_templates(format):
     print("... templates format: '%s'" % format)
     # global configuration
-    globcfg = corsair.config.default_globcfg()
+    globcfg = regmapGen.config.default_globcfg()
     globcfg['data_width'] = 32
     globcfg['address_width'] = 16
     globcfg['register_reset'] = 'sync_pos'
-    corsair.config.set_globcfg(globcfg)
+    regmapGen.config.set_globcfg(globcfg)
 
     # targets
     targets = {}
-    targets.update(corsair.generators.Verilog(path="hw/regs.v").make_target('v_module'))
-    targets.update(corsair.generators.Vhdl(path="hw/regs.vhd").make_target('vhdl_module'))
-    targets.update(corsair.generators.VerilogHeader(path="hw/regs.vh").make_target('v_header'))
-    targets.update(corsair.generators.SystemVerilogPackage(path="hw/regs_pkg.sv").make_target('sv_pkg'))
-    targets.update(corsair.generators.Python(path="sw/regs.py").make_target('py'))
-    targets.update(corsair.generators.CHeader(path="sw/regs.h").make_target('c_header'))
-    targets.update(corsair.generators.Markdown(path="doc/regs.md", image_dir="md_img").make_target('md_doc'))
-    targets.update(corsair.generators.Asciidoc(path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
+    targets.update(regmapGen.generators.SystemVerilog(path="hw/regs.sv").make_target('sv_module'))
+    targets.update(regmapGen.generators.SystemVerilogHeader(path="hw/regs.vh").make_target('sv_header'))
+    targets.update(regmapGen.generators.SystemVerilogPackage(path="hw/regs_pkg.sv").make_target('sv_pkg'))
+    targets.update(regmapGen.generators.Python(path="sw/regs.py").make_target('py'))
+    targets.update(regmapGen.generators.CHeader(path="sw/regs.h").make_target('c_header'))
+    targets.update(regmapGen.generators.Markdown(path="doc/regs.md", image_dir="md_img").make_target('md_doc'))
+    targets.update(regmapGen.generators.Asciidoc(path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
 
     # create templates
     if format == 'txt':
-        rmap = corsair.utils.create_template_simple()
+        rmap = regmapGen.utils.create_template_simple()
     else:
-        rmap = corsair.utils.create_template()
+        rmap = regmapGen.utils.create_template()
     # register map template
     if format == 'json':
-        gen = corsair.generators.Json(rmap)
+        gen = regmapGen.generators.Json(rmap)
         regmap_path = 'regs.json'
     elif format == 'yaml':
-        gen = corsair.generators.Yaml(rmap)
+        gen = regmapGen.generators.Yaml(rmap)
         regmap_path = 'regs.yaml'
     elif format == 'txt':
-        gen = corsair.generators.Txt(rmap)
+        gen = regmapGen.generators.Txt(rmap)
         regmap_path = 'regs.txt'
     print("... generate register map file '%s'" % regmap_path)
     gen.generate()
     # configuration file template
-    config_path = 'csrconfig'
+    config_path = 'config'
     globcfg['regmap_path'] = regmap_path
     print("... generate configuration file '%s'" % config_path)
-    corsair.config.write_csrconfig(config_path, globcfg, targets)
+    regmapGen.config.write_config(config_path, globcfg, targets)
 
 
 def die(msg):
@@ -135,7 +134,7 @@ def app(args):
         die("Can't find configuration file '%s'!" % config_path)
     # try to read it
     print("... read configuration file '%s'" % config_path)
-    globcfg, targets = corsair.config.read_csrconfig(config_path)
+    globcfg, targets = regmapGen.config.read_config(config_path)
 
     # check if regiter map file path was provided
     if args.regmap_path:
@@ -146,7 +145,7 @@ def app(args):
     else:
         regmap_path = None
         print("Warning: No register map file was specified!")
-    corsair.config.set_globcfg(globcfg)
+    regmapGen.config.set_globcfg(globcfg)
 
     if regmap_path:
         # check it existance
@@ -154,7 +153,7 @@ def app(args):
             die("Can't find register map file '%s'!" % regmap_path)
         # try to read it
         print("... read register map file '%s'" % regmap_path)
-        rmap = corsair.RegisterMap()
+        rmap = regmapGen.RegisterMap()
         rmap.read_file(regmap_path)
         print("... validate register map")
         rmap.validate()
@@ -183,7 +182,7 @@ def app(args):
         else:
             gen_name = targets[t]['generator']
             try:
-                gen_obj = getattr(corsair.generators, gen_name)
+                gen_obj = getattr(regmapGen.generators, gen_name)
             except AttributeError:
                 die("Generator '%s' does not exist!" % gen_name)
 

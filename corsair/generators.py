@@ -8,7 +8,7 @@ import os
 import json
 import yaml
 import jinja2
-from corsair import __version__
+from regmapGen import __version__
 from . import utils
 from . import config
 from .regmap import RegisterMap
@@ -20,7 +20,7 @@ class Generator():
     """Base generator class.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     """
 
     def __init__(self, rmap, **args):
@@ -126,7 +126,7 @@ class Json(Generator):
     """Dump register map to a JSON file.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     """
@@ -150,7 +150,7 @@ class Yaml(Generator):
     """Dump register map to a YAML file.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     """
@@ -177,7 +177,7 @@ class Txt(Generator):
     Note: only registers with single bitfield are allowed.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     """
@@ -230,11 +230,11 @@ class Txt(Generator):
             f.writelines(out_lines)
 
 
-class Verilog(Generator, Jinja2):
-    """Create Verilog file with register map.
+class SystemVerilog(Generator, Jinja2):
+    """Create SystemVerilog file with register map.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param read_filler: Numeric value to return if wrong address was read
@@ -243,7 +243,7 @@ class Verilog(Generator, Jinja2):
     :type interface: str
     """
 
-    def __init__(self, rmap=None, path='regs.v', read_filler=0, interface='axil', **args):
+    def __init__(self, rmap=None, path='regs.sv', read_filler=0, interface='axil', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.read_filler = read_filler
@@ -258,9 +258,9 @@ class Verilog(Generator, Jinja2):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = 'regmap_verilog.j2'
+        j2_template = 'regmap_sv.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['module_name'] = utils.get_file_name(self.path)
         j2_vars['read_filler'] = utils.str2int(self.read_filler)
@@ -270,58 +270,18 @@ class Verilog(Generator, Jinja2):
         self.render_to_file(j2_template, j2_vars, self.path)
 
 
-class Vhdl(Generator, Jinja2):
-    """Create VHDL file with register map.
+class SystemVerilogHeader(Generator, Jinja2):
+    """Create SystemVerilog header file with register map defines.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
-    :param path: Path to the output file
-    :type path: str
-    :param read_filler: Numeric value to return if wrong address was read
-    :type read_filler: int
-    :param interface: Register map bus protocol. Use one of: `axil`, `apb`, `amm`, `lb`
-    :type interface: str
-    """
-
-    def __init__(self, rmap=None, path='regs.vhd', read_filler=0, interface='axil', **args):
-        super().__init__(rmap, **args)
-        self.path = path
-        self.read_filler = read_filler
-        self.interface = interface
-
-    def validate(self):
-        super().validate()
-        assert self.interface in ['axil', 'apb', 'amm', 'lb'], \
-            "Unknown '%s' interface!" % (self.interface)
-
-    def generate(self):
-        # validate parameters
-        self.validate()
-        # prepare jinja2
-        j2_template = 'regmap_vhdl.j2'
-        j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
-        j2_vars['rmap'] = self.rmap
-        j2_vars['module_name'] = utils.get_file_name(self.path)
-        j2_vars['read_filler'] = utils.str2int(self.read_filler)
-        j2_vars['interface'] = self.interface
-        j2_vars['config'] = config.globcfg
-        # render
-        self.render_to_file(j2_template, j2_vars, self.path)
-
-
-class VerilogHeader(Generator, Jinja2):
-    """Create Verilog header file with register map defines.
-
-    :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param prefix: Prefix for the all defines. If empty output file name will be used.
     :type prefix: str
     """
 
-    def __init__(self, rmap=None, path='regs.vh', prefix="CSR", **args):
+    def __init__(self, rmap=None, path='regs.svh', prefix="CSR", **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
@@ -330,9 +290,9 @@ class VerilogHeader(Generator, Jinja2):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = 'verilog_header.j2'
+        j2_template = 'sv_header.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['prefix'] = self.prefix.upper()
         j2_vars['file_name'] = utils.get_file_name(self.path)
@@ -345,7 +305,7 @@ class CHeader(Generator, Jinja2):
     """Create C header file with register map defines.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param prefix: Prefix for the all defines and types. If empty output file name will be used.
@@ -370,7 +330,7 @@ class CHeader(Generator, Jinja2):
         # prepare jinja2
         j2_template = 'c_header.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['prefix'] = self.prefix.upper()
         j2_vars['file_name'] = utils.get_file_name(self.path)
@@ -383,7 +343,7 @@ class SystemVerilogPackage(Generator, Jinja2):
     """Create SystemVerilog package with register map parameters.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param prefix: Prefix for the all parameters and types. If empty output file name will be used.
@@ -401,7 +361,7 @@ class SystemVerilogPackage(Generator, Jinja2):
         # prepare jinja2
         j2_template = 'sv_package.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['prefix'] = self.prefix.upper()
         j2_vars['file_name'] = utils.get_file_name(self.path)
@@ -410,18 +370,18 @@ class SystemVerilogPackage(Generator, Jinja2):
         self.render_to_file(j2_template, j2_vars, self.path)
 
 
-class LbBridgeVerilog(Generator, Jinja2):
-    """Create Verilog file with bridge to Local Bus.
+class LbBridgeSystemVerilog(Generator, Jinja2):
+    """Create SystemVerilog file with bridge to Local Bus.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param bridge_type: Bridge protocol. Use one of `axil`, `apb`, `amm`.
     :type bridge_type: str
     """
 
-    def __init__(self, rmap=None, path='axil2lb.v', bridge_type='axil', **args):
+    def __init__(self, rmap=None, path='axil2lb.sv', bridge_type='axil', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.bridge_type = bridge_type
@@ -435,51 +395,13 @@ class LbBridgeVerilog(Generator, Jinja2):
         self.validate()
         # prepare jinja2
         if self.bridge_type == 'axil':
-            j2_template = 'axil2lb_verilog.j2'
+            j2_template = 'axil2lb_sv.j2'
         elif self.bridge_type == 'apb':
-            j2_template = 'apb2lb_verilog.j2'
+            j2_template = 'apb2lb_sv.j2'
         elif self.bridge_type == 'amm':
-            j2_template = 'amm2lb_verilog.j2'
+            j2_template = 'amm2lb_sv.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
-        j2_vars['module_name'] = utils.get_file_name(self.path)
-        j2_vars['config'] = config.globcfg
-        # render
-        self.render_to_file(j2_template, j2_vars, self.path)
-
-
-class LbBridgeVhdl(Generator, Jinja2):
-    """Create VHDL file with bridge to Local Bus.
-
-    :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
-    :param path: Path to the output file
-    :type path: str
-    :param bridge_type: Bridge protocol. Use one of `axil`, `apb`, `amm`.
-    :type bridge_type: str
-    """
-
-    def __init__(self, rmap=None, path='axil2lb.v', bridge_type='axil', **args):
-        super().__init__(rmap, **args)
-        self.path = path
-        self.bridge_type = bridge_type
-
-    def validate(self):
-        assert self.bridge_type in ['axil', 'apb', 'amm'], \
-            "Unknown '%s' bridge type!" % (self.bridge_type)
-
-    def generate(self):
-        # validate parameters
-        self.validate()
-        # prepare jinja2
-        if self.bridge_type == 'axil':
-            j2_template = 'axil2lb_vhdl.j2'
-        elif self.bridge_type == 'apb':
-            j2_template = 'apb2lb_vhdl.j2'
-        elif self.bridge_type == 'amm':
-            j2_template = 'amm2lb_vhdl.j2'
-        j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['module_name'] = utils.get_file_name(self.path)
         j2_vars['config'] = config.globcfg
         # render
@@ -490,7 +412,7 @@ class Markdown(Generator, Jinja2, Wavedrom):
     """Create documentation for a register map in Markdown.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param title: Document title
@@ -519,7 +441,7 @@ class Markdown(Generator, Jinja2, Wavedrom):
         # prepare jinja2
         j2_template = 'regmap_md.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['print_images'] = utils.str2bool(self.print_images)
         j2_vars['print_conventions'] = utils.str2bool(self.print_conventions)
@@ -538,7 +460,7 @@ class Asciidoc(Generator, Jinja2, Wavedrom):
     """Create documentation for a register map in AsciiDoc.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     :param title: Document title
@@ -567,7 +489,7 @@ class Asciidoc(Generator, Jinja2, Wavedrom):
         # prepare jinja2
         j2_template = 'regmap_asciidoc.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['print_images'] = utils.str2bool(self.print_images)
         j2_vars['print_conventions'] = utils.str2bool(self.print_conventions)
@@ -586,7 +508,7 @@ class Python(Generator, Jinja2):
     """Create Python file to access register map via some interface.
 
     :param rmap: Register map object
-    :type rmap: :class:`corsair.RegisterMap`
+    :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
     """
@@ -601,7 +523,7 @@ class Python(Generator, Jinja2):
         # prepare jinja2
         j2_template = 'regmap_py.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['config'] = config.globcfg
         # render

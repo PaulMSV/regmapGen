@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Corsair is a control and status register (CSR) map generator for HDL projects.
-It generates HDL code, documentation and other artifacts from CSR map description file.
+"""regmapGen это Генератор Регистровой Карты.
+Он позволяет автоматически создавать пригодный для синтеза SystemVerilog код и документацию.
 """
 
-__title__ = "corsair"
-__description__ = "Control and status register (CSR) map generator for HDL projects."
+__title__ = "regmapGen"
+__description__ = "Генератор Регистровой Карты."
 
 try:
     from ._version import version as __version__

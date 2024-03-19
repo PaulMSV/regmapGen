@@ -9,7 +9,7 @@ from . import config
 
 
 class Register():
-    """Control and status register.
+    """Register.
 
     :param name: Bit field name
     :type name: str

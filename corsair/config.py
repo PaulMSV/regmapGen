@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Module to operate with Corsair configuration files
+"""Module to operate with regmapGen configuration files
 """
 
 from . import utils
@@ -21,8 +21,8 @@ def default_globcfg():
     }
 
 
-def read_csrconfig(cfgpath):
-    """Parse Corsair configuration file. Return two dictionaries: global configuration and targets."""
+def read_config(cfgpath):
+    """Parse regmapGen configuration file. Return two dictionaries: global configuration and targets."""
     # open config file
     cfg = configparser.ConfigParser()
     cfg.read_file(open(cfgpath, 'r'))
@@ -53,8 +53,8 @@ def read_csrconfig(cfgpath):
     return globcfg, targets
 
 
-def write_csrconfig(cfgpath, globcfg, targets):
-    """Save Corsair configuration file."""
+def write_config(cfgpath, globcfg, targets):
+    """Save regmapGen configuration file."""
     cfg = configparser.ConfigParser()
     data = {'globcfg': globcfg}
     data.update(targets)
