@@ -128,7 +128,7 @@ def app(args):
     if args.config_path:
         config_path = Path(args.config_path)
     else:
-        config_path = Path('csrconfig')
+        config_path = Path('config')
     # check it existance
     if not config_path.is_file():
         die("Can't find configuration file '%s'!" % config_path)

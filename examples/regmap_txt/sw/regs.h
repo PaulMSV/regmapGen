@@ -1,4 +1,5 @@
-// Created with Corsair vgit-latest
+// Created with regmapGen vgit-latest
+
 #ifndef __REGS_H
 #define __REGS_H
 

@@ -1,4 +1,5 @@
-// Created with Corsair vgit-latest
+// Created with regmapGen vgit-latest
+
 package regs_pkg;
 
 parameter CSR_BASE_ADDR = 0;

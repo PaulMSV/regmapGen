@@ -3,7 +3,7 @@
 
 """ Create custom generator
 """
-from corsair import RegisterMap, generators
+from regmapGen import RegisterMap, generators
 
 
 class CsvGenerator(generators.Generator, generators.Jinja2):

@@ -5,10 +5,10 @@ export PYTHONPATH := ../../.:$(PYTHONPATH)
 all: generate
 
 generate:
-	python3 -m corsair -t txt
-	python3 -m corsair
+	python3 -m regmapGen -t txt
+	python3 -m regmapGen
 
 clean:
-	@rm -rf csrconfig *.txt hw doc sw
+	@rm -rf config *.txt hw doc sw
 
 .PHONY: all generate clean

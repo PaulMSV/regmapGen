@@ -1,4 +1,4 @@
-// Created with Corsair vgit-latest
+// Created with regmapGen vgit-latest
 
 module regs #(
     parameter ADDR_W = 16,
@@ -178,7 +178,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_data_val_ff <= 32'h0;
     end else  begin
-    if (csr_data_wen) begin
+     if (csr_data_wen) begin
             if (wstrb[0]) begin
                 csr_data_val_ff[7:0] <= wdata[7:0];
             end
@@ -233,7 +233,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_ctrl_val_ff <= 16'h100;
     end else  begin
-    if (csr_ctrl_wen) begin
+     if (csr_ctrl_wen) begin
             if (wstrb[0]) begin
                 csr_ctrl_val_ff[7:0] <= wdata[7:0];
             end
@@ -279,7 +279,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_status_val_ff <= 8'h0;
     end else  begin
-     begin            csr_status_val_ff <= csr_status_val_in;
+              begin            csr_status_val_ff <= csr_status_val_in;
         end
     end
 end
@@ -310,7 +310,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_start_val_ff <= 1'b0;
     end else  begin
-    if (csr_start_wen) begin
+     if (csr_start_wen) begin
             if (wstrb[0]) begin
                 csr_start_val_ff <= wdata[0];
             end

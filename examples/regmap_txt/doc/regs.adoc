@@ -1,6 +1,6 @@
 == Register map
 
-Created with https://github.com/esynr3z/corsair[Corsair] vgit-latest.
+Created with regmapGen vgit-latest.
 
 === Conventions
 

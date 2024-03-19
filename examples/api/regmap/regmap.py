@@ -5,7 +5,7 @@
 """
 
 import copy
-from corsair import BitField, Register, RegisterMap
+from regmapGen import BitField, Register, RegisterMap
 
 # create
 # register map

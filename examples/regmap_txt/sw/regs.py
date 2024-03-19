@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""" Created with Corsair vgit-latest
+""" Created with regmapGen vgit-latest
 
 Control/status register map.
 """

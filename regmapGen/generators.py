@@ -45,7 +45,7 @@ class Generator():
         self.rmap.validate()
 
     def make_target(self, name):
-        """Dump class attributes to dictionary that can be used as target for `csrconfig` generation.
+        """Dump class attributes to dictionary that can be used as target for `config` generation.
 
         :param name: Name of the target
         :return: Target dictionary

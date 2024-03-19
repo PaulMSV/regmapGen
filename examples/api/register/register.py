@@ -5,7 +5,7 @@
 """
 
 import copy
-from corsair import BitField, Register, config
+from regmapGen import BitField, Register, config
 
 # create
 csr_cnt = Register('CNT', 'Counter for some events', 0x10)

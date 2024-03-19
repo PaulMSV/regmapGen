@@ -1,4 +1,4 @@
-// Created with Corsair vgit-latest
+// Created with regmapGen vgit-latest
 
 module regs #(
     parameter ADDR_W = 16,
@@ -213,7 +213,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_data_fifo_ff <= 8'h0;
     end else  begin
-    if (csr_data_wen) begin
+     if (csr_data_wen) begin
             if (wstrb[0]) begin
                 csr_data_fifo_ff[7:0] <= wdata[7:0];
             end
@@ -246,7 +246,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_data_ferr_ff <= 1'b0;
     end else  begin
-  if (csr_data_ren) begin
+           if (csr_data_ren && !csr_data_ren_ff && (csr_data_ferr_ff != 1'b0)) begin
             csr_data_ferr_ff <= 1'b0;
         end else   if (csr_data_ferr_in == 1'b1) begin
             csr_data_ferr_ff <= csr_data_ferr_in;
@@ -269,7 +269,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_data_perr_ff <= 1'b0;
     end else  begin
-  if (csr_data_ren) begin
+           if (csr_data_ren && !csr_data_ren_ff && (csr_data_perr_ff != 1'b0)) begin
             csr_data_perr_ff <= 1'b0;
         end else   if (csr_data_perr_in == 1'b1) begin
             csr_data_perr_ff <= csr_data_perr_in;
@@ -313,7 +313,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_stat_busy_ff <= 1'b0;
     end else  begin
-     if (csr_stat_busy_en) begin
+      if (csr_stat_busy_en) begin
             csr_stat_busy_ff <= csr_stat_busy_in;
         end
     end
@@ -334,7 +334,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_stat_rxe_ff <= 1'b0;
     end else  begin
-     begin            csr_stat_rxe_ff <= csr_stat_rxe_in;
+              begin            csr_stat_rxe_ff <= csr_stat_rxe_in;
         end
     end
 end
@@ -354,7 +354,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_stat_txf_ff <= 1'b0;
     end else  begin
-     begin            csr_stat_txf_ff <= csr_stat_txf_in;
+              begin            csr_stat_txf_ff <= csr_stat_txf_in;
         end
     end
 end
@@ -396,7 +396,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_ctrl_baud_ff <= 2'h0;
     end else  begin
-    if (csr_ctrl_wen) begin
+     if (csr_ctrl_wen) begin
             if (wstrb[0]) begin
                 csr_ctrl_baud_ff[1:0] <= wdata[1:0];
             end
@@ -422,7 +422,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_ctrl_txen_ff <= 1'b0;
     end else  begin
-    if (csr_ctrl_wen) begin
+     if (csr_ctrl_wen) begin
             if (wstrb[0]) begin
                 csr_ctrl_txen_ff <= wdata[4];
             end
@@ -448,7 +448,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_ctrl_rxen_ff <= 1'b0;
     end else  begin
-    if (csr_ctrl_wen) begin
+     if (csr_ctrl_wen) begin
             if (wstrb[0]) begin
                 csr_ctrl_rxen_ff <= wdata[5];
             end
@@ -474,7 +474,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_ctrl_txst_ff <= 1'b0;
     end else  begin
-    if (csr_ctrl_wen) begin
+     if (csr_ctrl_wen) begin
             if (wstrb[0]) begin
                 csr_ctrl_txst_ff <= wdata[6];
             end
@@ -520,7 +520,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_lpmode_div_ff <= 8'h0;
     end else  begin
-    if (csr_lpmode_wen) begin
+     if (csr_lpmode_wen) begin
             if (wstrb[0]) begin
                 csr_lpmode_div_ff[7:0] <= wdata[7:0];
             end
@@ -546,7 +546,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_lpmode_en_ff <= 1'b0;
     end else  begin
-    if (csr_lpmode_wen) begin
+     if (csr_lpmode_wen) begin
             if (wstrb[3]) begin
                 csr_lpmode_en_ff <= wdata[31];
             end
@@ -593,7 +593,7 @@ always @(posedge clk) begin
     end else  begin
         if (csr_intstat_tx_set) begin
             csr_intstat_tx_ff <= 1'b1;
-        end else    if (csr_intstat_wen) begin
+        end else     if (csr_intstat_wen) begin
             if (wstrb[0] && wdata[0]) begin
                 csr_intstat_tx_ff <= 1'b0;
             end
@@ -620,7 +620,7 @@ always @(posedge clk) begin
     end else  begin
         if (csr_intstat_rx_set) begin
             csr_intstat_rx_ff <= 1'b1;
-        end else    if (csr_intstat_wen) begin
+        end else     if (csr_intstat_wen) begin
             if (wstrb[0] && wdata[1]) begin
                 csr_intstat_rx_ff <= 1'b0;
             end
@@ -662,7 +662,7 @@ always @(posedge clk) begin
     if (rst) begin
         csr_id_uid_ff <= 32'hcafe0666;
     end else  begin
-     begin
+      begin
             csr_id_uid_ff <= csr_id_uid_ff;
         end
     end
@@ -722,7 +722,7 @@ end
 
 reg rvalid_drv;
 always @(*) begin
-    if (csr_data_ren)
+    if (csr_data_ren_ff)
         rvalid_drv = csr_data_fifo_rvalid_ff;
     else
         rvalid_drv = rvalid_ff;

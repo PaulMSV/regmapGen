@@ -5,7 +5,7 @@
 """
 
 import copy
-from corsair import BitField, EnumValue
+from regmapGen import BitField, EnumValue
 
 # create bitfield
 bf_cnt = BitField('CNT', 'Counter value', lsb=8, width=32, reset=0xFFFF, access='rw', hardware='o')

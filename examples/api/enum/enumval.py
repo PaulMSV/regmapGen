@@ -5,7 +5,7 @@
 """
 
 import copy
-from corsair import EnumValue
+from regmapGen import EnumValue
 
 # create enum
 enum_a = EnumValue('A', 1, 'A description')

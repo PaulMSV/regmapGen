@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""" Create register map and generate outputs with Corsair library
+""" Create register map and generate outputs with regmapGen library
 """
-from corsair import BitField, Register, RegisterMap, EnumValue, generators, config
+from regmapGen import BitField, Register, RegisterMap, EnumValue, generators, config
 
 # global configuration
 globcfg = config.default_globcfg()
@@ -57,5 +57,5 @@ rmap.add_registers(Register('ID', 'IP-core ID register', 0xFFC).add_bitfields([
 ]))
 
 # outputs
-generators.Verilog(rmap, 'regs.v', interface='apb').generate()
+generators.SystemVerilog(rmap, 'regs.sv', interface='apb').generate()
 generators.Markdown(rmap, 'regs.md', print_images=False).generate()

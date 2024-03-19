@@ -5,9 +5,9 @@ export PYTHONPATH := ../../../.:$(PYTHONPATH)
 all: run
 
 run:
-	python3 csrconfig.py
+	python3 config.py
 
 clean:
-	@rm -rf new.csrconfig
+	@rm -rf new.config
 
 .PHONY: all run clean

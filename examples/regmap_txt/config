@@ -8,22 +8,16 @@ address_alignment = data_width
 force_name_case = none
 regmap_path = regs.txt
 
-[v_module]
-path = hw/regs.v
+[sv_module]
+path = hw/regs.sv
 read_filler = 0
 interface = axil
-generator = Verilog
+generator = SystemVerilog
 
-[vhdl_module]
-path = hw/regs.vhd
-read_filler = 0
-interface = axil
-generator = Vhdl
-
-[v_header]
-path = hw/regs.vh
+[sv_header]
+path = hw/regs.svh
 prefix = CSR
-generator = VerilogHeader
+generator = SystemVerilogHeader
 
 [sv_pkg]
 path = hw/regs_pkg.sv
