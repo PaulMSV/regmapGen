@@ -1,97 +1,96 @@
 .. _introduction:
 
-============
-Introduction
-============
+========
+Введение
+========
 
-Corsair is a tool that makes it easy to create and maintain control and status register (CSR) map for any HDL project.
-It allows you to describe your register map in a single file and then generate HDL code, headers, documentation and other things.
-This effectively eliminates any mismatches between hardware, software and documentation of your IP-core.
+regmapGen - это инструмент, который упрощает создание и поддержку Регистровой Карты для любого проекта на языке описания аппаратуры (HDL). Он позволяет описать карту регистров в одном файле, а затем генерировать код HDL, Header файлы, документацию и другие элементы. Это эффективно устраняет несоответствия между различными аспектами разработки ИС - hardware, software и документацией.
 
-.. image:: img/corsair_flow.png
-    :alt: Corsair flow
+.. image:: img/regmapGen_flow.png
+    :alt: regmapGen flow
     :align: center
 
-Features
-========
+Особенности
+===========
 
-* Various human-readable input formats: JSON, YAML or plain text table
-* HDL code generation: Verilog or VHDL module with register map, Verilog header or SystemVerilog package with parameters and definitions
-* Multi-protocol support: APB, AXI-Lite, Avalon-MM
-* Documentation generation: Markdown, AsciiDoc
-* Generation of software-related files: C header, Python module
-* Extensibility: support of external file generators
-* API: creation of custom workflow with corsair API
+* Человеко-читаемые форматов ввода: JSON, YAML или простая текстовая таблица
+* Генерация HDL кода: SystemVerilog модуль с картой регистров, SystemVerilog header или SystemVerilog package с define-макросами или параметрами, соответственно
+* Поддержка нескольких протоколов: APB, AXI-Lite, Avalon-MM
+* Генерация документации: Markdown, AsciiDoc
+* Генерация  файлов, относящихся к software-части: C header, Python модуль
+* Расширяемость: поддержка внешних генераторов
+* API: cоздание пользовательского рабочего процесса с помощью API regmapGen
 
+Установка
+=========
 
-Installing
-==========
-
-Install the latest stable version from pypi:
+Установите последнюю стабильную версию из PyPI:
 
 ::
 
-    python3 -m pip install -U corsair
+    python3 -m pip install -U regmapGen
 
-Using the CLI
-=============
+Использование CLI
+=================
 
-Corsair workflow is clean and straight-forward:
+CLI (Command Line Interface) - интерфейс командной строки.
 
-* describe your register map in one of the supported formats (check this :ref:`page <regmap>` to get more details)
-* create configuration file ``csrconfig`` (configuration file is explained :ref:`here <config>`)
-* run ``corsair`` to generate all needed artifacts
+Маршрут использования regmapGen:
 
-Good point for start is to generate templates. For example, to generate YAML register map template just run:
+* опишите вашу Регистровую карту в одном из поддерживаемых форматов (см. :ref:`тут <regmap>`)
+* создайте Конфигурационный файл ``config`` (см. :ref:`тут <config>`)
+* запустите ``regmapGen`` для генерации всех необходимых файлов
+
+Хорошая отправная точка - сгенерировать шаблоны. Например, для создания шаблона карты регистров в формате YAML просто запустите:
 
 .. code-block:: bash
 
-    corsair -t yaml
+    regmapGen -t yaml
 
-You will have the following catalog structure:
+Вы получите следующую структуру каталогов:
 
 ::
 
-    ./csrconfig
+    ./config
     ./regs.yaml
 
-To get all the generation artifacts simply run corsair:
+Для получения всех сгенерированных файлов просто запустите regmapGen:
 
 .. code-block:: bash
 
-    corsair
+    regmapGen
 
-You can run corsair from other directory. For example, if your configuration file is under ``project/ip-core/csrconfig``:
-
-.. code-block:: bash
-
-    corsair project/ip-core
-
-If your ``csrconfig`` has other name you can try this:
+Вы можете запустить regmapGen из другой директории. Например, если ваш Конфигурационный файл находится в ``project/ip-core/config``:
 
 .. code-block:: bash
 
-    corsair -c my.csrconfig
+    regmapGen project/ip-core
 
-If your ``csrconfig`` has no definition for the register map path you can specify it explicitly:
+Если ваш ``config`` имеет другое имя, используйте:
 
 .. code-block:: bash
 
-    corsair -r uart.txt
+    regmapGen -c my.config
 
-Using the API
-=============
+Если ваш ``config`` не содержит определения для пути к Регистровой карте, вы можете указать его явно:
 
-You can use corsair classes to build your own workflow inside a Python script.
-Demonstration of this can be found `here <https://github.com/esynr3z/corsair/tree/master/examples/api/demo>`_.
+.. code-block:: bash
 
-More information about internal classes can be found in the API section:
+    regmapGen -r uart.txt
 
-* :ref:`Configuration <config-api>`
-* :ref:`Generators <generators-api>`
-* :ref:`Register map <regmap-api>`
+Использование API
+=================
 
-Examples
-========
+Вы можете использовать классы regmapGen для создания собственного рабочего процесса внутри скрипта на Python.
+Демонстрация есть на GitHub в `demo <https://github.com/paulmsv/regmapGen/tree/master/examples/api/demo>`_.
 
-Check the `examples <https://github.com/esynr3z/corsair/tree/master/examples>`_ directory to see how corsair works.
+Более подробную информацию о внутренних классах можно найти в разделе API:
+
+* :ref:`Конфигурация <config-api>`
+* :ref:`Генераторы <generators-api>`
+* :ref:`Регистровая карта <regmap-api>`
+
+Примеры
+=======
+
+Примеры доступны на GitHub в `examples <https://github.com/paulmsv/regmapGen/tree/master/examples>`_ .

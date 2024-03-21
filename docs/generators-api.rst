@@ -1,12 +1,12 @@
 .. _generators-api:
 
 ==========
-Generators
+Генераторы
 ==========
 
 Generator
 =========
-.. autoclass:: corsair.generators.Generator
+.. autoclass:: regmapGen.generators.Generator
    :members:
    :undoc-members:
    :inherited-members:
@@ -14,7 +14,7 @@ Generator
 
 Jinja2
 ======
-.. autoclass:: corsair.generators.Jinja2
+.. autoclass:: regmapGen.generators.Jinja2
    :members:
    :undoc-members:
    :inherited-members:
@@ -22,7 +22,7 @@ Jinja2
 
 Wavedrom
 ========
-.. autoclass:: corsair.generators.Wavedrom
+.. autoclass:: regmapGen.generators.Wavedrom
    :members:
    :undoc-members:
    :inherited-members:
@@ -30,7 +30,7 @@ Wavedrom
 
 Json
 ====
-.. autoclass:: corsair.generators.Json
+.. autoclass:: regmapGen.generators.Json
    :members:
    :undoc-members:
    :inherited-members:
@@ -38,7 +38,7 @@ Json
 
 Yaml
 ====
-.. autoclass:: corsair.generators.Yaml
+.. autoclass:: regmapGen.generators.Yaml
    :members:
    :undoc-members:
    :inherited-members:
@@ -46,39 +46,23 @@ Yaml
 
 Txt
 ===
-.. autoclass:: corsair.generators.Txt
+.. autoclass:: regmapGen.generators.Txt
    :members:
    :undoc-members:
    :inherited-members:
    :show-inheritance:
 
-Verilog
-=======
-.. autoclass:: corsair.generators.Verilog
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :show-inheritance:
-
-Vhdl
-=======
-.. autoclass:: corsair.generators.Vhdl
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :show-inheritance:
-
-VerilogHeader
+SystemVerilog
 =============
-.. autoclass:: corsair.generators.VerilogHeader
+.. autoclass:: regmapGen.generators.SystemVerilog
    :members:
    :undoc-members:
    :inherited-members:
    :show-inheritance:
 
-CHeader
-=======
-.. autoclass:: corsair.generators.CHeader
+SystemVerilogHeader
+===================
+.. autoclass:: regmapGen.generators.SystemVerilogHeader
    :members:
    :undoc-members:
    :inherited-members:
@@ -86,7 +70,15 @@ CHeader
 
 SystemVerilogPackage
 ====================
-.. autoclass:: corsair.generators.SystemVerilogPackage
+.. autoclass:: regmapGen.generators.SystemVerilogPackage
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+CHeader
+=======
+.. autoclass:: regmapGen.generators.CHeader
    :members:
    :undoc-members:
    :inherited-members:
@@ -94,7 +86,7 @@ SystemVerilogPackage
 
 Markdown
 ========
-.. autoclass:: corsair.generators.Markdown
+.. autoclass:: regmapGen.generators.Markdown
    :members:
    :undoc-members:
    :inherited-members:
@@ -102,7 +94,7 @@ Markdown
 
 Asciidoc
 ========
-.. autoclass:: corsair.generators.Asciidoc
+.. autoclass:: regmapGen.generators.Asciidoc
    :members:
    :undoc-members:
    :inherited-members:
@@ -110,23 +102,15 @@ Asciidoc
 
 Python
 ======
-.. autoclass:: corsair.generators.Python
+.. autoclass:: regmapGen.generators.Python
    :members:
    :undoc-members:
    :inherited-members:
    :show-inheritance:
 
-LbBridgeVerilog
-===============
-.. autoclass:: corsair.generators.LbBridgeVerilog
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :show-inheritance:
-
-LbBridgeVhdl
-============
-.. autoclass:: corsair.generators.LbBridgeVhdl
+LbBridgeSystemVerilog
+=====================
+.. autoclass:: regmapGen.generators.LbBridgeSystemVerilog
    :members:
    :undoc-members:
    :inherited-members:

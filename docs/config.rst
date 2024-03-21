@@ -1,15 +1,15 @@
 .. _config:
 
-==================
-Configuration file
-==================
+=====================
+Конфигурационный файл
+=====================
 
-Corsair uses simple flat INI configuration file called ``csrconfig``. It is used for the two things:
+regmapGen использует простой плоский ini-файл конфигурации с именем  ``config``. Он используется с целью:
 
-- to pass global parameters to corsair
-- to specify all generation targets with their attributes
+- передать глобальные параметры в regmapGen
+- указать все цели генерации со всеми их атрибутами
 
-Example of csrconfig is below:
+Пример config файла:
 
 .. code-block:: ini
 
@@ -18,24 +18,24 @@ Example of csrconfig is below:
     address_width = 16
     register_reset = sync_pos
 
-    [v_module]
-    path = regs.v
+    [sv_module]
+    path = regs.sv
     interface = axil
-    generator = Verilog
+    generator = SystemVerilog
 
     [c_header]
     path = regs.h
     generator = CHeader
 
-It has one special section ``globcfg`` for global parameters, and one or many sections for generation targets.
+У него есть один специальный раздел ``globcfg`` для глобальных параметров и один или несколько Target разделов для целей генерации.
 
-globcfg section
-===============
+Раздел globcfg
+==============
 
-Global parameters available:
+Доступные глобальные параметры:
 
 +-----------------------+----------------+-----------------------------------------------------------------------------------------------------+
-| Parameter             | Default value  | Description                                                                                         |
+| Параметр              | По умолчанию   | Описание                                                                                            |
 +=======================+================+=====================================================================================================+
 | ``base_address``      | 0              | Register map base address in global address map                                                     |
 +-----------------------+----------------+-----------------------------------------------------------------------------------------------------+
@@ -78,9 +78,9 @@ Global parameters available:
 |                       |                | ``upper`` | Force names to have uppercase                                                           |
 +-----------------------+----------------+-----------+-----------------------------------------------------------------------------------------+
 
-You can omit any of this in your ``csrconfig`` file - default value will be used.
+Вы можете опустить любой из этих параметров в вашем ``config`` файле - будет использовано значение по умолчанию.
 
-You also can add your own parameters and access them inside your custom flow the same way as standart ones. This is valid config:
+Вы также можете добавлять свои собственные параметры и обращаться к ним так же, как и к стандартным. Валидный конфигурационный файл в этом случае:
 
 .. code-block:: ini
 
@@ -90,195 +90,173 @@ You also can add your own parameters and access them inside your custom flow the
     register_reset = sync_pos
     foo = bar
 
-Target sections
-===============
+Раздел Target
+=============
 
-Target section defines file generator and specify its parameters.
-Generator is a Python class that produces some output based on input arguments.
-Usually, one target section - one output file.
+Раздел Target определяет генератор файлов и указывает его параметры.
+Генератор - это класс Python, который производит некоторый вывод на основе входных аргументов.
+Обычно, один раздел Target соответствует одному выходному файлу.
 
-Few simple rules to remember:
+Несколько простых правил, которые стоит запомнить:
 
-* target name should be unique
-* targets without ``generator`` parameter is ignored
+* Имя Target должно быть уникальным
+* Target без параметра ``generator`` игнорируется
 
-Parameter ``generator`` can be defined in the two ways. To use built-in generator:
+Параметр ``generator`` может быть определен двумя способами. С использованием встроенного генератора:
 
 .. code-block:: ini
 
     [target]
-    generator = Verilog
+    generator = SystemVerilog
 
-Or to use custom created one:
+Или с использованием пользовательского генератора:
 
 .. code-block:: ini
 
     [target]
     generator = custom_generator.py::MyCustomGenerator
 
-If you are interesting in expanding corsair functionality, there is the `example <https://github.com/esynr3z/corsair/tree/master/examples/custom_generator>`_ of how to build your own
-generator and use it with corsair CLI.
+Если вас интересует расширение функциональности regmapGen, то `тут <https://github.com/paulmsv/regmapGen/tree/master/examples/custom_generator>`_ есть пример, как создать свой собственный генератор и использовать его с CLI regmapGen.
 
-Generators
+Генераторы
 ==========
 
-Corsair provides many built-in generators:
+regmapGen предоставляет следующие встроенные генераторы:
 
 ======================== ================================================================
-Generator                Description
+Генератор                Описание
 ======================== ================================================================
-``Json``                 Dump register map to a JSON file
-``Yaml``                 Dump register map to a YAML file
-``Txt``                  Dump register map to a text file
-``Verilog``              Create Verilog file with register map
-``Vhdl``                 Create VHDL file with register map
-``VerilogHeader``        Create Verilog header file with register map defines
-``CHeader``              Create C header file with register map define
-``SystemVerilogPackage`` Create SystemVerilog package with register map parameters
-``Markdown``             Create documentation for a register map in Markdown
-``Asciidoc``             Create documentation for a register map in AsciiDoc
-``Python``               Create Python file with register map
+``Json``                 Выгрузить Регистровую Карту в JSON файл
+``Yaml``                 Выгрузить Регистровую Карту в YAML файл
+``Txt``                  Выгрузить Регистровую Карту в текстовый файл
+``SystemVerilog``        Создать SystemVerilog файл с Регистровой Картой
+``SystemVerilogHeader``  Создать SystemVerilog header с define-макросов Регистровой Карты
+``SystemVerilogPackage`` Создать SystemVerilog package с набором параметров Регистровой Карты
+``CHeader``              Создать C header файл с набором define-макросов Регистровой карты
+``Markdown``             Создать документацию для Регистровой Карты в Markdown формате
+``Asciidoc``             Создать документацию для Регистровой Карты в AsciiDoc формате
+``Python``               Создать Python файл с Регистровой Картой
 ======================== ================================================================
 
-There are even more generators but these ones are normally don't used in ``csrconfig`` file -
-they are helpfull for creating custom generators or other development tasks:
+Есть еще несколько генераторов, но обычно они не используются в файле ``config`` - они 
+полезны для создания пользовательских генераторов или других задач разработки.
 
-======================== ================================================================
-Generator                Description
-======================== ================================================================
-``Generator``            Base generator class
-``Jinja2``               Basic class for rendering Jinja2 templates
-``Wavedrom``             Basic class for rendering register images with wavedrom
-``LbBridgeVerilog``      Create Verilog file with bridge to Local Bus
-``LbBridgeVhdl``         Create Vhdl file with bridge to Local Bus
-======================== ================================================================
+========================= ================================================================
+Генератор                 Описание
+========================= ================================================================
+``Generator``             Базовый класс генератора
+``Jinja2``                Базовый класс для рендеринга шаблонов Jinja2
+``Wavedrom``              Базовый класс для рендеринга изображений регистров с помощью Wavedrom
+``LbBridgeSystemVerilog`` Создать SystemVerilog файл с bridge для Local Bus
+========================= ================================================================
 
 .. note::
 
-    These parameters in ``csrconfig`` file are nothing but arguments for the class constructor.
-    If parameter is not provided - default value will be used.
-    Please note that the tables below were created mannualy, while data in :ref:`Generators API <generators-api>` page was collected automaticaly.
-    As these things are exactrly the same information just in different forms, please refer to API if you have any doubts.
+    Следующие параметры в ``config`` файле представляют собой аргументы для конструктора класса.
+    Если параметр не указан, будет использовано значение по умолчанию.
+    Обратите внимание, что таблицы ниже были созданы вручную, в то время как данные на странице 
+    :ref:`Генераторы API <generators-api>` были собраны автоматически.
+    Поскольку это одна и та же информация, представленная в разных формах, обратитесь к API, если у вас возникнут сомнения.
 
 Json
 ----
-========== ============= ================================================================
-Parameter  Default       Description
-========== ============= ================================================================
-``path``   ``regs.json`` Path to the output file
-========== ============= ================================================================
+========= ============= ================================================================
+Параметр  По умолчанию  Описание
+========= ============= ================================================================
+``path``  ``regs.json`` Путь к выходному файлу
+========= ============= ================================================================
 
 Yaml
 ----
-========== ============= ================================================================
-Parameter  Default       Description
-========== ============= ================================================================
-``path``   ``regs.yaml`` Path to the output file
-========== ============= ================================================================
+========= ============= ================================================================
+Параметр  По умолчанию  Описание
+========= ============= ================================================================
+``path``  ``regs.yaml`` Путь к выходному файлу
+========= ============= ================================================================
 
 Txt
 ---
-========== ============= ================================================================
-Parameter  Default       Description
-========== ============= ================================================================
-``path``   ``regs.txt``  Path to the output file
-========== ============= ================================================================
+========= ============= ================================================================
+Параметр  По умолчанию  Описание
+========= ============= ================================================================
+``path``  ``regs.txt``  Путь к выходному файлу
+========= ============= ================================================================
 
-Verilog
--------
-+-----------------+------------+-----------------------------------------------------+
-| Parameter       | Default    | Description                                         |
-+=================+============+=====================================================+
-| ``path``        | ``regs.v`` | Path to the output file                             |
-+-----------------+------------+-----------------------------------------------------+
-| ``read_filler`` | 0          | Numeric value to return if wrong address was read   |
-+-----------------+------------+-----------------------------------------------------+
-| ``interface``   | ``axil``   | Register map bus protocol                           |
-|                 |            +-----------+-----------------------------------------+
-|                 |            | ``axil``  | AXI4-Lite                               |
-|                 |            +-----------+-----------------------------------------+
-|                 |            | ``amm``   | Avalon-MM                               |
-|                 |            +-----------+-----------------------------------------+
-|                 |            | ``apb``   | APB4                                    |
-|                 |            +-----------+-----------------------------------------+
-|                 |            | ``lb``    | Custom LocalBus interface               |
-+-----------------+------------+-----------+-----------------------------------------+
-
-Vhdl
-----
-+-----------------+---------------+-----------------------------------------------------+
-| Parameter       | Default       | Description                                         |
-+=================+===============+=====================================================+
-| ``path``        | ``regs.vhd``  | Path to the output file                             |
-+-----------------+---------------+-----------------------------------------------------+
-| ``read_filler`` | 0             | Numeric value to return if wrong address was read   |
-+-----------------+---------------+-----------------------------------------------------+
-| ``interface``   | ``axil``      | Register map bus protocol                           |
-|                 |               +-----------+-----------------------------------------+
-|                 |               | ``axil``  | AXI4-Lite                               |
-|                 |               +-----------+-----------------------------------------+
-|                 |               | ``amm``   | Avalon-MM                               |
-|                 |               +-----------+-----------------------------------------+
-|                 |               | ``apb``   | APB4                                    |
-|                 |               +-----------+-----------------------------------------+
-|                 |               | ``lb``    | Custom LocalBus interface               |
-+-----------------+---------------+-----------+-----------------------------------------+
-
-VerilogHeader
+SystemVerilog
 -------------
-========== ============= ================================================================
-Parameter  Default       Description
-========== ============= ================================================================
-``path``   ``regs.vh``   Path to the output file
-``preifx`` ``CSR``       Prefix for all defines. If empty, output file name will be used.
-========== ============= ================================================================
++-----------------+--------------+----------------------------------------------------------------------+
+| Параметр        | По умолчанию | Описание                                                             |
++=================+==============+======================================================================+
+| ``path``        | ``regs.sv``  | Путь к выходному файлу                                               |
++-----------------+--------------+----------------------------------------------------------------------+
+| ``read_filler`` | 0            | Числовое значение, которое вернется при обращению к неверному адресу |
++-----------------+--------------+----------------------------------------------------------------------+
+| ``interface``   | ``axil``     | Протокол шины Регистровой Карты                                      |
+|                 |              +-----------+----------------------------------------------------------+
+|                 |              | ``axil``  | AXI4-Lite                                                |
+|                 |              +-----------+----------------------------------------------------------+
+|                 |              | ``amm``   | Avalon-MM                                                |
+|                 |              +-----------+----------------------------------------------------------+
+|                 |              | ``apb``   | APB4                                                     |
+|                 |              +-----------+----------------------------------------------------------+
+|                 |              | ``lb``    | Пользовательский LocalBus интерфейс                      |
++-----------------+--------------+-----------+----------------------------------------------------------+
 
-CHeader
--------
-========== ============= ================================================================
-Parameter  Default       Description
-========== ============= ================================================================
-``path``   ``regs.h``    Path to the output file
-``preifx`` ``CSR``       Prefix for all defines. If empty, output file name will be used.
-========== ============= ================================================================
+SystemVerilogHeader
+-------------------
+========== ============ ================================================================
+Параметр   По умолчанию Описание
+========== ============ ================================================================
+``path``   ``regs.svh`` Путь к выходному файлу
+``preifx`` ``CSR``      Префикс для всех define. Если пусто, будет использовано имя выходного файла.
+========== ============ ================================================================
 
 SystemVerilogPackage
 --------------------
 ========== =============== ================================================================
-Parameter  Default         Description
+Параметр   По умолчанию    Описание
 ========== =============== ================================================================
-``path``   ``regs_pkg.sv`` Path to the output file
-``preifx`` ``CSR``         Prefix for the all parameters. If empty, output file name will be used.
+``path``   ``regs_pkg.sv`` Путь к выходному файлу
+``preifx`` ``CSR``         Префикс для всех define. Если пусто, будет использовано имя выходного файла.
 ========== =============== ================================================================
+
+CHeader
+-------
+========== ============ ================================================================
+Параметр   По умолчанию Описание
+========== ============ ================================================================
+``path``   ``regs.h``   Путь к выходному файлу
+``preifx`` ``CSR``      Префикс для всех define. Если пусто, будет использовано имя выходного файла.
+========== ============ ================================================================
 
 Markdown
 --------
 ===================== ================ ================================================================
-Parameter             Default          Description
+Параметр              По умолчанию     Описание
 ===================== ================ ================================================================
-``path``              ``regs.md``      Path to the output file
-``title``             ``Register map`` Document title
-``print_images``      ``True``         Enable generating images for bit fields of a register
-``image_dir``         ``regs_img``     Path to directory where all images will be saved
-``print_conventions`` ``True``         Enable generating table with register access modes explained
+``path``              ``regs.md``      Путь к выходному файлу
+``title``             ``Register map`` Заголовок документа
+``print_images``      ``True``         Включить генерацию изображений для битовых полей регистра
+``image_dir``         ``regs_img``     Путь к директории, где будут сохранены все изображения
+``print_conventions`` ``True``         Включить генерацию таблицы с объяснением режимов доступа к регистру
 ===================== ================ ================================================================
 
 Asciidoc
 --------
 ===================== ================ ================================================================
-Parameter             Default          Description
+Параметр              По умолчанию     Описание
 ===================== ================ ================================================================
-``path``              ``regs.md``      Path to the output file
-``title``             ``Register map`` Document title
-``print_images``      ``True``         Enable generating images for bit fields of a register
-``image_dir``         ``regs_img``     Path to directory where all images will be saved
-``print_conventions`` ``True``         Enable generating table with register access modes explained
+``path``              ``regs.md``      Путь к выходному файлу
+``title``             ``Register map`` Заголовок документа
+``print_images``      ``True``         Включить генерацию изображений для битовых полей регистра
+``image_dir``         ``regs_img``     Путь к директории, где будут сохранены все изображения
+``print_conventions`` ``True``         Включить генерацию таблицы с объяснением режимов доступа к регистру
 ===================== ================ ================================================================
 
 Python
 ------
-========== ============= ================================================================
-Parameter  Default       Description
-========== ============= ================================================================
-``path``   ``regs.py``   Path to the output file
-========== ============= ================================================================
+========== ============ ================================================================
+Параметр   По умолчанию Описание
+========== ============ ================================================================
+``path``   ``regs.py``  Путь к выходному файлу
+========== ============ ================================================================

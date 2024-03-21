@@ -1,82 +1,83 @@
-=================
-Developer's guide
-=================
+==============
+Для разработки
+==============
 
-Installation
-============
+Установка
+=========
 
 .. note::
-    Depending on your system, Python executable might be ``python`` or ``python3``.
-    If there any permissions issues, add ``--user`` key to the installation scripts.
 
-Install dependencies first:
+    В зависимости от вашей системы исполняемый файл Python может быть ``python`` или ``python3``.
+    Если возникают проблемы с разрешениями, добавьте ключ ``--user`` к скриптам установки.
+
+Сначала установите зависимости:
 
 ::
 
     python3 -m pip install gitpython pyyaml jinja2 wavedrom
 
-Then clone GitHub repository and you'll be able to run application from the project root:
+Затем скачайте GitHub репозиторий и вы сможете запустить приложение из корневой директории проекта:
 
 ::
 
-    git clone https://github.com/esynr3z/corsair.git
-    cd corsair
-    python3 -m corsair --help
+    git clone https://github.com/paulmsv/regmapGen.git
+    cd regmapGen
+    python3 -m regmapGen --help
 
-Or install it:
+Или установите через:
 
 ::
 
     python3 setup.py install
 
 
-Code style
-==========
+Стилистика кодирования
+======================
 
-`PEP 8 Speaks <https://github.com/OrkoHunter/pep8speaks/>`_ is added to automatically review Python code style over Pull Requests.
+`PEP 8 Speaks <https://github.com/OrkoHunter/pep8speaks/>`_ будет добавлен для автоматической проверки стилистики кодирования Python в Pull Requests.
 
-Linter settings:
+Настройки Linter:
 
 * Linter: pycodestyle
-* Max line length: 120
-* Errors and warnings to ignore: W504, E402, E731, C406, E741
+* Максимальная длина строки: 120
+* Игнорируемые ошибки и предупреждения: W504, E402, E731, C406, E741
 
-You can also install `PEP8 Git Commit Hook <https://gist.github.com/esynr3z/206e164023a794eb0c96d827de31bd49>`_ and code style will be checked before any commit.
+Вы также можете установить `PEP8 Git Commit Hook <https://gist.github.com/esynr3z/206e164023a794eb0c96d827de31bd49>`_ и стилистика кодирования будет проверяться перед любым коммитом.
 
-Testing
-=======
+Тестирование
+============
 
-Install PyTest:
+Установите PyTest:
 
 ::
 
     python3 -m pip install -U pytest pytest-xdist
 
-HDL tests use Modelsim, so make sure that Modelsim is installed and visible in PATH.
+HDL тесты используют Modelsim, поэтому убедитесь, что Modelsim установлен и виден в переменной PATH.
 
 
-Run tests from the root folder on all available cores:
+Запустите тесты из корневой директории на всех доступных ядрах:
 
 ::
 
     pytest -v -n auto
 
-Run tests for docstrings:
+Запустите тесты для docstrings:
 
 ::
 
-    pytest --doctest-modules corsair
+    pytest --doctest-modules regmapGen
 
-Documentation
-=============
+Документация
+============
 
-Install Sphinx and extensions:
+Установите Sphinx и расширения:
 
 ::
 
     python3 -m pip install -r docs/requirements.txt
 
-Run from ``docs`` folder to build the documentation:
+Запустите из директории ``docs``, чтобы собрать документацию:
 
 ::
 

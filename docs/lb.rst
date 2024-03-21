@@ -4,44 +4,43 @@
 LocalBus
 ========
 
-LocalBus is a custom bus interface. You can use it for your register map, hovewer, it was designed specially
-to simplify integrating more common bus interfaces to register map. It acts as internal "virtual" interface.
+LocalBus это пользовательский интерфейс шины. Вы можете использовать его для вашей Регистровой карты,
+одна он был специально разработан для упрощения интеграции более распространенных интерфейсов шин. Он действует как внутренний "виртуальный" интерфейс.
 
-In fact, all other supported buses (APB, AXI-Lite and etc.) in corsair are nothing more than just bridges to LocalBus interface
-under the hood.
+Фактически, все остальные поддерживаемые шины (APB, AXI-Lite и т.д.) в regmapGen представляют собой всего лишь мосты (Bridge) к интерфейсу LocalBus, встроенному в Регистровую карту.
 
-Signals
+Сигналы
 =======
 
-====== ===== ========= =========================================================
-Signal Width Direction Description
-====== ===== ========= =========================================================
-waddr  >1    input     Write address bus
-wdata  >1    input     Write data bus
-wen    1     input     Write request enable signal
-wstrb  >1    input     Write byte strobe bus (one bit for every write data byte)
-wready 1     output    Write request ready signal
-raddr  >1    input     Read address bus
-ren    1     input     Read request enable signal
-rdata  >1    output    Read data bus
-rvalid 1     output    Read data valid signal
-====== ===== ========= =========================================================
+====== ====== =========== =========================================================
+Сигнал Ширина Направление Описание
+====== ====== =========== =========================================================
+waddr  >1     input       Write address bus
+wdata  >1     input       Write data bus
+wen    1      input       Write request enable signal
+wstrb  >1     input       Write byte strobe bus (one bit for every write data byte)
+wready 1      output      Write request ready signal
+raddr  >1     input       Read address bus
+ren    1      input       Read request enable signal
+rdata  >1     output      Read data bus
+rvalid 1      output      Read data valid signal
+====== ====== =========== =========================================================
 
 .. note::
 
-    Specific bit widths for buses are defined in ``globcfg`` section of a ``csrconfig`` file.
+    Конкретные ширины битов для шин определяются в разделе ``globcfg`` в файле ``config``.
 
-Transfers
-=========
+Передача
+========
 
-Only simple single transfers are supported. No bursts or stream accesses. Every transfer can be extended with special signals.
+Поддерживаются только простые одиночные передачи. Нет поддержки потоковых передач (burst) или передач блоками (stream). Каждая передача может быть расширена специальными сигналами.
 
-Just for example, data bus is 32 bits wide for all the waveforms below.
+Для примеров ниже ширина шины данных для всех сигналов ниже составляет 32 бита.
 
-Simple write
-------------
+Запись
+------
 
-Write data ``D0`` to address ``A0``.
+Запись данных ``D0`` по адресу ``A0``.
 
 .. wavedrom::
 
@@ -54,10 +53,10 @@ Write data ``D0`` to address ``A0``.
       {"name": "wready", "wave": "1...."}
     ]}
 
-Write with bytes strobes
-------------------------
+Запись с byte strobes
+---------------------
 
-Byte strobe signalling to write only bytes 1 and 2 (``wstrb = 0x6 = 0b0110``) of ``D0`` word.
+Байт-строб сигнализирует о записи только байтов 1 и 2 (``wstrb = 0x6 = 0b0110``) данных ``D0``.
 
 .. wavedrom::
 
@@ -70,10 +69,11 @@ Byte strobe signalling to write only bytes 1 and 2 (``wstrb = 0x6 = 0b0110``) of
       {"name": "wready", "wave": "1...."}
     ]}
 
-Write with wait states
-----------------------
+Запись с wait states
+--------------------
 
-Write data ``D0`` to address ``A0``, then write ``D1`` to ``A1`` ends (``wen`` goes low) as soon as ``wready`` become high.
+Запись данных ``D0`` в адрес ``A0``, затем запись данных ``D1`` в ``A1``. Операция 
+завершится (``wen`` переключится в 0), как только ``wready`` переключится в 1.
 
 .. wavedrom::
 
@@ -86,11 +86,11 @@ Write data ``D0`` to address ``A0``, then write ``D1`` to ``A1`` ends (``wen`` g
       {"name": "wready", "wave": "1.0..10."}
     ]}
 
-Simple read
------------
+Чтение
+------
 
-Read data ``D0`` from address ``A0``. Minimum response time - 1 tick. "Combinatoral" (in the same tick) read is not supported.
-Read ends (``ren`` goes low) after ``rvalid`` is asserted.
+Чтение данных ``D0`` по адресу ``A0``. Минимальное время ответа - 1 такт. "Комбинационное" (в том же такте) чтение не поддерживается. 
+Чтение завершится (``ren`` переключит в 0) после того, как установится ``rvalid``.
 
 .. wavedrom::
 
@@ -102,10 +102,10 @@ Read ends (``ren`` goes low) after ``rvalid`` is asserted.
       {"name": "rvalid", "wave": "0.10.."}
     ]}
 
-Read with wait states
----------------------
+Чтение с wait states
+--------------------
 
-Read data ``D0`` from address ``A0`` with 2 wait states.
+Чтение данных ``D0`` по адресу ``A0`` с двумя wait states.
 
 .. wavedrom::
 

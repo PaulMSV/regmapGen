@@ -17,9 +17,9 @@ sys.path.insert(0, os.path.abspath('./..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Corsair'
-copyright = '2021, esynr3z'
-author = 'esynr3z'
+project = 'regmapGen'
+copyright = '2024, PaulMSV'
+author = 'PaulMSV'
 
 
 # -- General configuration ---------------------------------------------------

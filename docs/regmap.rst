@@ -1,147 +1,144 @@
 .. _regmap:
 
-============
-Register map
-============
+=================
+Регистровая карта
+=================
 
-Register map is a special memory area that consists of named addresses called registers aka Control and Status Registers (CSR).
-These registers, in turn, are made up of bit fields - group of bits with special properties.
-When any register is accessed, collection of bit fields is read or written.
+Регистровая карта - это специальная область памяти, которая состоит из именованных адресов, называемых регистрами, также известных как Регистры Управления и Состояния (Control and Status Registers, CSR).
+Эти регистры, в свою очередь, состоят из битовых полей - группы битов с особыми свойствами. При доступе к любому регистру происходит чтение или запись коллекции битовых полей.
 
-Register map usually is a part of an IP-core like timer, UART, SPI, USB, Ethernet and plenty of others.
-It is used by software to rule the core.
+Регистровая карта обычно является частью IP-ядра, такого как таймер, UART, SPI, USB, Ethernet и многих других. Ее использует программное обеспечение для управления ядром.
 
-From the hardware perspective, typical register map has bus interface (APB, AXI-Lite, Avalon-MM or other) on the one end,
-and group of signals that integrates the map to HDL logic on the other end.
+С аппаратной точки зрения типичная карта регистров имеет интерфейс шины (APB, AXI-Lite, Avalon-MM или другой) с одного конца и группу сигналов, которые интегрируют карту с логикой HDL с другого конца.
 
 .. image:: img/regmap.png
     :alt: Register map
     :align: center
 
-Register
+Регистр
 ========
 
-As it said before, register map is nothing but collection of registers. Register have 4 main attributes:
+Как уже упоминалось, Регистровая карта представляет собой просто набор регистров. 
+Регистр имеет 4 основных атрибута:
 
-================== =============================================================
-Parameter          Description
-================== =============================================================
-``name``           Register name
-``description``    Register description
-``address``        Register address (offset from register map base address)
-``bitfields``      List of register bit fields
-================== =============================================================
+================== ==============================================================
+Параметр           Описание
+================== ==============================================================
+``name``           Имя регистра
+``description``    Описание регистра
+``address``        Адрес регистра (смещение от базового адреса Регистровой карты)
+``bitfields``      Список битовых полей
+================== ==============================================================
 
-Bit field
-=========
+Битовое поле
+============
 
 .. image:: img/bitfield.svg
     :alt: Bit field
     :align: center
 
-One level down register consists of one or more bitfields. Attributes of a bitfield:
+На более низком уровне регистр состоит из одного или нескольких битовых полей. Атрибуты битового поля:
 
 =============== ================================================================
-Parameter       Description
+Параметр        Описание
 =============== ================================================================
-``name``        Field name
-``description`` Field description
-``reset``       Reset value of the field
-``width``       Field width (bits)
-``lsb``         Field least significant bit (LSB) position
-``access``      Access mode. One of the options below.
-``hardware``    Hardware options. Options are below.
-``enums``       Enumerated values for the field
+``name``        Имя битового поля
+``description`` Описания битового поля
+``reset``       Значения сброса поля
+``width``       Шириня поля (в битах)
+``lsb``         Позиция младшего значащего бита (LSB) поля
+``access``      Тип доступа. Один из вариантов ниже.
+``hardware``    Hardware опция. Опции представлены ниже.
+``enums``       Перечисляемые (enumerated) значения поля
 =============== ================================================================
 
-Access mode for the field is related to the bus accesses from software (or from one who drives the bus interface).  Use one of:
+Тип доступа для поля связан с доступами к шине из программного обеспечения (software) или от того, кто управляет интерфейсом шины (master). Используйте один из следующих Типов доступа:
 
-============ ================================================================================================================================
-Access modes Description
-============ ================================================================================================================================
-``rw``       Read and Write. The field can be read or written.
-``rw1c``     Read and Write 1 to Clear. The field can be read, and when 1 is written field is cleared.
-``rw1s``     Read and Write 1 to Set The field can be read, and when 1 is written field is set.
-``ro``       Read Only. Write has no effect.
-``roc``      Read Only to Clear. The field is cleared after every read.
-``roll``     Read Only / Latch Low. The field capture hardware active low pulse signal and stuck in 0. The field is set after every read.
-``rolh``     Read Only / Latch High. The field capture hardware active high pulse signal and stuck in 1. Read the field to clear it.
-``wo``       Write only. Zeros are always read.
-``wosc``     Write Only / Self Clear. The field is cleared on the next clock tick after write.
-============ ================================================================================================================================
+=========== =============================================================================================================================
+Тип доступа Описание
+=========== =============================================================================================================================
+``rw``      Read and Write. The field can be read or written.
+``rw1c``    Read and Write 1 to Clear. The field can be read, and when 1 is written field is cleared.
+``rw1s``    Read and Write 1 to Set The field can be read, and when 1 is written field is set.
+``ro``      Read Only. Write has no effect.
+``roc``     Read Only to Clear. The field is cleared after every read.
+``roll``    Read Only / Latch Low. The field capture hardware active low pulse signal and stuck in 0. The field is set after every read.
+``rolh``    Read Only / Latch High. The field capture hardware active high pulse signal and stuck in 1. Read the field to clear it.
+``wo``      Write only. Zeros are always read.
+``wosc``    Write Only / Self Clear. The field is cleared on the next clock tick after write.
+=========== =============================================================================================================================
 
-Hardware options is used to define how bit field will interact with HDL logic. All the options are below.
+Hardware опция используется для определения того, как битовое поле будет взаимодействовать с логикой HDL. Используйте одну из следующих Hardware опций:
 
-================ =======================================================================================================
-Hardware options Description
-================ =======================================================================================================
-``i``            Input. Use input value from hardware to update the field.
-``o``            Output. Enable output value from the field to be accessed by hardware.
-``c``            Clear. Add signal to clear the field (fill with all zeros).
-``s``            Set. Add signal to set the field (fill with all ones).
-``e``            Enable. Add signal to enable the field to capture input value (must be used with i).
-``l``            Lock. Add signal to lock the field (to prevent any changes).
-``a``            Access. Add signals to notify when bus access to the field is performed
-``q``            Queue. Enable queue (LIFO, FIFO) access
-``f``            Fixed. Enable fixed mode (field is a constant)
-``n``            None. No hardware access to the field.
-================ =======================================================================================================
+============== =======================================================================================================
+Hardware опция Описание
+============== =======================================================================================================
+``i``          Input. Use input value from hardware to update the field.
+``o``          Output. Enable output value from the field to be accessed by hardware.
+``c``          Clear. Add signal to clear the field (fill with all zeros).
+``s``          Set. Add signal to set the field (fill with all ones).
+``e``          Enable. Add signal to enable the field to capture input value (must be used with i).
+``l``          Lock. Add signal to lock the field (to prevent any changes).
+``a``          Access. Add signals to notify when bus access to the field is performed
+``q``          Queue. Enable queue (LIFO, FIFO) access
+``f``          Fixed. Enable fixed mode (field is a constant)
+``n``          None. No hardware access to the field.
+============== =======================================================================================================
 
-Set of hardware options is just a string like ``q``, ``ioel``. There are few rules:
+Набор hardware опций представляет собой строку типа ``q``, ``ioel``. Несколько правил для работы с ними:
 
-* Options ``n``, ``f``, ``q`` can be used only alone
-* Any combination of ``i``, ``o``, ``u``, ``c``, ``s``, ``l``, ``a`` is allowed
+* Опции ``n``, ``f``, ``q`` можно использовать только отдельно
+* Любые комбинации ``i``, ``o``, ``u``, ``c``, ``s``, ``l``, ``a`` разрешение
 
-These are just some ideas of how bit field access mode and hardware options can be combined with each other.
-Of course, full list of possible combinations is quite bigger, but these ones cover most of the cases.
+Вот всего лишь несколько идей о том, как режим доступа к битовому полю и hardware-опции могут быть комбинированы друг с другом. Конечно, полный список возможных комбинаций гораздо больше, но эти варианты охватывают большинство случаев.
 
 ======== ======== ==================================================================================================================================================================
-Access   Hardware Description
+Доступ   Опция    Описание
 ======== ======== ==================================================================================================================================================================
-``rw``   ``o``    Values can be read and written from software. Hardware can only access the current value.
-``rw``   ``ol``   Value that can be always read, but writing is done only when lock signal is inactive. Hardware can only access the current value.
-``rw``   ``ioe``  Values that can be read and written from software. Hardware either can access the current value or update it.
-``rw``   ``ioea`` Same as above, but hardware can also track when value was read or written by software.
-``rw``   ``oc``   Values that can be read and written from software. Hardware can clean the value.
-``rw``   ``os``   Values that can be read and written from software. Hardware can set the value.
-``rw``   ``q``    Software can read and write data. Hardware transforms these accesses to the queue read/write operations.
-``rw``   ``n``    Software can read and write data. But hardware has no access to the field.
-``rw1c`` ``s``    Software can read current state and write 1 to clear the field. Hardware can set the value.
-``rw1s`` ``c``    Software can read current state and write 1 to set the field. Hardware can clear the value.
-``ro``   ``i``    Software can only read the field. Hardware assign current state to some internal variable.
-``ro``   ``f``    Software can only read the constatnt value from the field. Hardware has no access to the field.
-``ro``   ``ie``   Software can only read the field. Hardware can update the value when enable signal is active.
-``ro``   ``q``    Software can only read data from the field. Hardware transform this to the queue read operation.
-``roc``  ``ie``   Software can only read data from the field, field is cleared after read. Hardware can update the value when enable signal is active.
-``roll`` ``i``    Value of the field will stuck at 0 when assigned hardware variable becomes 0. Software can only read data from the field, field is set after read.
-``rolh`` ``i``    Value of the field will stuck at 1 when assigned hardware variable becomes 1. Software can only read data from the field, field is cleared after read.
-``wo``   ``o``    Software can only write the field. Hardware can access the current value.
-``wo``   ``q``    Software can only write data to the field. Hardware transform this to the queue write operation.
-``wosc`` ``o``    Software can only write the field, the value will be cleared on the next tick. Hardware can access the field.
+``rw``   ``o``          Values can be read and written from software. Hardware can only access the current value.
+``rw``   ``ol``         Value that can be always read, but writing is done only when lock signal is inactive. Hardware can only access the current value.
+``rw``   ``ioe``        Values that can be read and written from software. Hardware either can access the current value or update it.
+``rw``   ``ioea``       Same as above, but hardware can also track when value was read or written by software.
+``rw``   ``oc``         Values that can be read and written from software. Hardware can clean the value.
+``rw``   ``os``         Values that can be read and written from software. Hardware can set the value.
+``rw``   ``q``          Software can read and write data. Hardware transforms these accesses to the queue read/write operations.
+``rw``   ``n``          Software can read and write data. But hardware has no access to the field.
+``rw1c`` ``s``          Software can read current state and write 1 to clear the field. Hardware can set the value.
+``rw1s`` ``c``          Software can read current state and write 1 to set the field. Hardware can clear the value.
+``ro``   ``i``          Software can only read the field. Hardware assign current state to some internal variable.
+``ro``   ``f``          Software can only read the constatnt value from the field. Hardware has no access to the field.
+``ro``   ``ie``         Software can only read the field. Hardware can update the value when enable signal is active.
+``ro``   ``q``          Software can only read data from the field. Hardware transform this to the queue read operation.
+``roc``  ``ie``         Software can only read data from the field, field is cleared after read. Hardware can update the value when enable signal is active.
+``roll`` ``i``          Value of the field will stuck at 0 when assigned hardware variable becomes 0. Software can only read data from the field, field is set after read.
+``rolh`` ``i``          Value of the field will stuck at 1 when assigned hardware variable becomes 1. Software can only read data from the field, field is cleared after read.
+``wo``   ``o``          Software can only write the field. Hardware can access the current value.
+``wo``   ``q``          Software can only write data to the field. Hardware transform this to the queue write operation.
+``wosc`` ``o``          Software can only write the field, the value will be cleared on the next tick. Hardware can access the field.
 ======== ======== ==================================================================================================================================================================
 
-Enumerated value
-=================
+Перечисляемые значения
+======================
 
-A bit field may have one or more special named values aka enumerated values aka enums.
-In fact, they are just mnemonics assigned to specific values being read or written to the field.
-Every enumerated value has 3 properties:
+Битовое поле может иметь одно или несколько специальных именованных значений, также известных как перечисляемые значения или перечисления (enum).
+Фактически, они представляют собой просто мнемоники, присвоенные определенным значениям, которые считываются или записываются в поле.
+У каждого перечисляемого значения есть 3 свойства:
 
 =============== ==================
-Parameter       Description
+Параметр        Описание
 =============== ==================
-``name``        Enum name
-``description`` Enum description
-``value``       Enum value
+``name``        Enum имя
+``description`` Enum описание
+``value``       Enum значения
 =============== ==================
 
-Input formats
-=============
+Входные форматы
+===============
 
 YAML
 ---------
 
-YAML example:
+Пример YAML:
 
 .. code-block:: yaml
 
@@ -180,12 +177,12 @@ YAML example:
             hardware: f
             enums: []
 
-More detailed example can be found in the `repository <https://github.com/esynr3z/corsair/tree/master/examples/regmap_yaml>`__.
+Больше деталей из примера можно найти в `тут <https://github.com/paulmsv/regmapGen/tree/master/examples/regmap_yaml>`__.
 
 JSON
 ----
 
-JSON example is bit more verbose than YAML, but it is still the same register map:
+Пример JSON немного более развернут, чем YAML, но это все еще та же карта регистров:
 
 .. code-block:: json
 
@@ -244,12 +241,12 @@ JSON example is bit more verbose than YAML, but it is still the same register ma
         ]
     }
 
-More detailed example can be found in the `repository <https://github.com/esynr3z/corsair/tree/master/examples/regmap_json>`__.
+Больше деталей из примера можно найти в `тут <https://github.com/paulmsv/regmapGen/tree/master/examples/regmap_json>`__.
 
 TXT
 ---
 
-Simple plain text format. Looks like Markdown table. The example below
+Простой текстовый формат, похожий на таблицу Markdown. Пример ниже:
 
 .. code-block:: markdown
 
@@ -260,9 +257,9 @@ Simple plain text format. Looks like Markdown table. The example below
     | 0x0008  | STATUS | 8     | ro     | i        | 0x00000000 | Status register  |
     | 0x0100  | START  | 1     | wosc   | o        | 0x00000000 | Start register   |
 
-It is much simpler than JSON/YAML formats, but it is just enough for many applications. However, you have to pay for this simplicity:
+Этот формат намного проще, чем форматы JSON/YAML, но для многих приложений этого вполне достаточно. Однако за эту простоту приходится платить:
 
-* Only one bit field per register is allowed. Columns Address, Name, Description store CSR attributes. Columns Width, Access, Hardware, Reset - bit field ones. LSB for this single bit field is always 0.
-* No enums
+* Разрешено только одно битовое поле на регистр. Колонки Address, Name, Description относятся к аттрибутам регистра. Колонки Width, Access, Hardware, Reset - к битовым полям. Младший значащий бит (LSB) для этого единственного битового поля всегда равен 0.
+* Enum не поддерживаются
 
-More detailed example can be found in the `repository <https://github.com/esynr3z/corsair/tree/master/examples/regmap_txt>`__.
+Больше деталей из примера можно найти в `тут <https://github.com/paulmsv/regmapGen/tree/master/examples/regmap_txt>`__.

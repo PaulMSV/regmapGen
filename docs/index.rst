@@ -1,10 +1,10 @@
-==============
-Corsair manual
-==============
+========================
+Руководство по regmapGen
+========================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Basics
+   :caption: Основное
 
    introduction.rst
    regmap.rst
@@ -12,7 +12,7 @@ Corsair manual
 
 .. toctree::
    :maxdepth: 2
-   :caption: Protocols
+   :caption: Протоколы
 
    apb.rst
    axil.rst
@@ -29,7 +29,7 @@ Corsair manual
 
 .. toctree::
    :maxdepth: 2
-   :caption: Miscellaneous
+   :caption: Прочее
 
    contributing.rst
    changelog.rst

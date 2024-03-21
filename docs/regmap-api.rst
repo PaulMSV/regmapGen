@@ -1,29 +1,29 @@
 .. _regmap-api:
 
-============
-Register map
-============
+=================
+Регистровая карта
+=================
 
 EnumValue
 =========
-.. autoclass:: corsair.EnumValue
+.. autoclass:: regmapGen.EnumValue
    :members:
    :undoc-members:
 
 BitField
 ========
-.. autoclass:: corsair.BitField
+.. autoclass:: regmapGen.BitField
    :members:
    :undoc-members:
 
 Register
 ========
-.. autoclass:: corsair.Register
+.. autoclass:: regmapGen.Register
    :members:
    :undoc-members:
 
 RegisterMap
 ===========
-.. autoclass:: corsair.RegisterMap
+.. autoclass:: regmapGen.RegisterMap
    :members:
    :undoc-members:

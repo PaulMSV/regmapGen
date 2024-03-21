@@ -1,9 +1,9 @@
 .. _config-api:
 
-=============
-Configuration
-=============
+============
+Конфигурация
+============
 
-.. automodule:: corsair.config
+.. automodule:: regmapGen.config
    :members:
    :undoc-members:
