@@ -8,7 +8,7 @@ import sys
 sys.path.insert(0, '../..')
 import pytest
 from sim import Simulator, CliArgs, path_join, parent_dir
-from corsair import config, generators, RegisterMap, Register, BitField
+from regmapGen import config, generators, RegisterMap, Register, BitField
 
 
 TEST_DIR = parent_dir(__file__)
@@ -65,11 +65,11 @@ def gen_rtl(tmpdir, interface, reset, hdl):
         BitField("BFOQ", "bitfield wo oq", width=24, lsb=0, access='wo', hardware='q'),
     ]))
 
-    regmap_path = path_join(tmpdir, 'regs.v')
-    generators.Verilog(rmap, regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
+    regmap_path = path_join(tmpdir, 'regs.sv')
+    generators.SystemVerilog(rmap, regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
 
-    header_path = path_join(tmpdir, 'regs.vh')
-    generators.VerilogHeader(rmap, header_path).generate()
+    header_path = path_join(tmpdir, 'regs.svh')
+    generators.SystemVerilogHeader(rmap, header_path).generate()
 
     package_path = path_join(tmpdir, 'regs_pkg.sv')
     generators.SystemVerilogPackage(rmap, package_path).generate()
@@ -82,7 +82,7 @@ def simtool():
     return 'modelsim'
 
 
-@pytest.fixture(params=['apb', 'axil', 'amm'])
+@pytest.fixture(params=['apb', 'axil', 'amm', 'spi'])
 def interface(request):
     return request.param
 

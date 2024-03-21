@@ -1,4 +1,4 @@
-`include "regs.vh"
+`include "regs.svh"
 import regs_pkg::*;
 
 // Clock and reset

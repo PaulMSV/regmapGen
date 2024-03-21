@@ -219,6 +219,19 @@ amm #(
   .clk(clk),
   .reset(reset)
 );
+`elsif INTERFACE_SPI
+    // SPI
+    .spi_miso   (mst.miso),
+    .spi_mosi   (mst.mosi),
+    .spi_sck    (mst.sck),
+    .spi_cs_n   (mst.cs_n)
+);
+// SPI master
+spi #(
+  .SCK_FREQ (10e6),
+  .ADDR_W(ADDR_W),
+  .DATA_W(DATA_W)
+) mst ();
 `else
     $error("Unknown interface to register map!");
 `endif

@@ -9,16 +9,16 @@ from attr.setters import convert
 sys.path.insert(0, '../..')
 import pytest
 from sim import Simulator, CliArgs, path_join, parent_dir
-import corsair
+import regmapGen
 
 
 TEST_DIR = parent_dir(__file__)
 
 
 def gen_bridge(tmpdir, bridge, reset, hdl):
-    corsair.config.globcfg['register_reset'] = reset
-    bridge_path = path_join(tmpdir, '%s2lb.v' % bridge)
-    corsair.generators.LbBridgeVerilog(path=bridge_path, bridge_type=bridge).generate()
+    regmapGen.config.globcfg['register_reset'] = reset
+    bridge_path = path_join(tmpdir, '%s2lb.sv' % bridge)
+    regmapGen.generators.LbBridgeSystemVerilog(path=bridge_path, bridge_type=bridge).generate()
     return bridge_path
 
 
@@ -27,7 +27,7 @@ def simtool():
     return 'modelsim'
 
 
-@pytest.fixture(params=['apb', 'axil', 'amm'])
+@pytest.fixture(params=['apb', 'axil', 'amm', 'spi'])
 def bridge(request):
     return request.param
 
@@ -57,8 +57,8 @@ def test(tmpdir, bridge, reset, hdl, simtool, defines=[], gui=False, pytest_run=
     dut_src = gen_bridge(tmpdir, bridge, reset, hdl)
     sim.sources += [dut_src]
     sim.defines += [
-        'DUT_DATA_W=%s' % corsair.config.globcfg['data_width'],
-        'DUT_ADDR_W=%s' % corsair.config.globcfg['address_width'],
+        'DUT_DATA_W=%s' % regmapGen.config.globcfg['data_width'],
+        'DUT_ADDR_W=%s' % regmapGen.config.globcfg['address_width'],
         'DUT_%s' % bridge.upper(),
         'RESET_ACTIVE=%d' % ('pos' in reset),
     ]

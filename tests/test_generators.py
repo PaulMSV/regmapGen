@@ -125,6 +125,9 @@ class TestLbBridgeSystemVerilog:
         """Test of creating AXI-Lite to LocalBus module in SystemVerilog"""
         self._test(tmpdir, 'axil2lb.sv', 'axil', 'AXI-Lite to Local Bus bridge')
 
+    def test_spi(self, tmpdir):
+        """Test of creating SPI to LocalBus module in SystemVerilog"""
+        self._test(tmpdir, 'spi2lb.sv', 'spi', 'SPI to Local Bus bridge')
 
 class TestMarkdown:
     """Class 'generators.Markdown' testing."""

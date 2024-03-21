@@ -166,6 +166,7 @@ csr_{{ reg.name.lower() }}_wen
 {% from "amm2lb_sv.j2" import amm_core with context %}
 {% from "axil2lb_sv.j2" import axil_core with context %}
 {% from "apb2lb_sv.j2" import apb_core with context %}
+{% from "spi2lb_sv.j2" import spi_core with context %}
 
 {#- TEMPLATE #}
 // Created with regmapGen v{{ regmapGen_ver }}
@@ -226,6 +227,8 @@ module {{ module_name }} #(
 {{ axil_core(regmap_embed=True) }}
 {% elif interface == 'amm' %}
 {{ amm_core(regmap_embed=True) }}
+{% elif interface == 'spi' %}
+{{ spi_core(regmap_embed=True) }}
 {% else %}
     // Local Bus
     input  [ADDR_W-1:0] waddr,
