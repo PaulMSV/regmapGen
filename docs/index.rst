@@ -9,6 +9,7 @@
    introduction.rst
    regmap.rst
    config.rst
+   examples.rst
 
 .. toctree::
    :maxdepth: 2
@@ -17,6 +18,7 @@
    apb.rst
    axil.rst
    amm.rst
+   spi.rst
    lb.rst
 
 .. toctree::

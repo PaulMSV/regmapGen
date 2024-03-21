@@ -1,7 +1,7 @@
 .. _generators-api:
 
 ==========
-Генераторы
+Generators
 ==========
 
 Generator

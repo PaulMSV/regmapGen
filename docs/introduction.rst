@@ -86,11 +86,6 @@ CLI (Command Line Interface) - интерфейс командной строк�
 
 Более подробную информацию о внутренних классах можно найти в разделе API:
 
-* :ref:`Конфигурация <config-api>`
-* :ref:`Генераторы <generators-api>`
-* :ref:`Регистровая карта <regmap-api>`
-
-Примеры
-=======
-
-Примеры доступны на GitHub в `examples <https://github.com/paulmsv/regmapGen/tree/master/examples>`_ .
+* :ref:`Configuration <config-api>`
+* :ref:`Generators <generators-api>`
+* :ref:`Register map <regmap-api>`

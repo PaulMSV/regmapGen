@@ -1,8 +1,8 @@
 .. _config-api:
 
-============
-Конфигурация
-============
+=============
+Configuration
+=============
 
 .. automodule:: regmapGen.config
    :members:
