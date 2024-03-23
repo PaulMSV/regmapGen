@@ -97,7 +97,7 @@ class TestSystemVerilogHeader:
         # read file and verify
         with open(output_file, 'r') as f:
             raw_str = ''.join(f.readlines())
-        assert '`define CSR_' in raw_str
+        assert '`define ' in raw_str
 
 
 class TestLbBridgeSystemVerilog:

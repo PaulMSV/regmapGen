@@ -12,8 +12,8 @@ initial begin
 end
 
 // DUT
-localparam ADDR_W = CSR_ADDR_WIDTH;
-localparam DATA_W = CSR_DATA_WIDTH;
+localparam ADDR_W = ADDR_WIDTH;
+localparam DATA_W = DATA_WIDTH;
 localparam STRB_W = DATA_W / 8;
 
 logic              wready;
