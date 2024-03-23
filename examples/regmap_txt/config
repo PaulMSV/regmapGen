@@ -16,12 +16,12 @@ generator = SystemVerilog
 
 [sv_header]
 path = hw/regs.svh
-prefix = CSR
+prefix = 
 generator = SystemVerilogHeader
 
 [sv_pkg]
 path = hw/regs_pkg.sv
-prefix = CSR
+prefix = 
 generator = SystemVerilogPackage
 
 [py]
@@ -30,7 +30,7 @@ generator = Python
 
 [c_header]
 path = sw/regs.h
-prefix = CSR
+prefix = 
 generator = CHeader
 
 [md_doc]

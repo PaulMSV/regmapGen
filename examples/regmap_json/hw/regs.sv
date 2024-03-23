@@ -8,48 +8,49 @@ module regs #(
     // System
     input clk,
     input rst,
+
     // DATA.FIFO
-    input csr_data_fifo_rvalid,
-    output csr_data_fifo_ren,
-    input [7:0] csr_data_fifo_in,
-    output [7:0] csr_data_fifo_out,
-    input csr_data_fifo_wready,
-    output csr_data_fifo_wen,
+    input data_fifo_rvalid,
+    output data_fifo_ren,
+    input [7:0] data_fifo_in,
+    output [7:0] data_fifo_out,
+    input data_fifo_wready,
+    output data_fifo_wen,
     // DATA.FERR
-    input  csr_data_ferr_in,
+    input  data_ferr_in,
     // DATA.PERR
-    input  csr_data_perr_in,
+    input  data_perr_in,
 
     // STAT.BUSY
-    input csr_stat_busy_en,
-    input  csr_stat_busy_in,
+    input stat_busy_en,
+    input  stat_busy_in,
     // STAT.RXE
-    input  csr_stat_rxe_in,
+    input  stat_rxe_in,
     // STAT.TXF
-    input  csr_stat_txf_in,
+    input  stat_txf_in,
 
     // CTRL.BAUD
-    output [1:0] csr_ctrl_baud_out,
+    output [1:0] ctrl_baud_out,
     // CTRL.TXEN
-    input csr_ctrl_txen_en,
-    input  csr_ctrl_txen_in,
-    output  csr_ctrl_txen_out,
+    input ctrl_txen_en,
+    input  ctrl_txen_in,
+    output  ctrl_txen_out,
     // CTRL.RXEN
-    input csr_ctrl_rxen_en,
-    input  csr_ctrl_rxen_in,
-    output  csr_ctrl_rxen_out,
+    input ctrl_rxen_en,
+    input  ctrl_rxen_in,
+    output  ctrl_rxen_out,
     // CTRL.TXST
-    output  csr_ctrl_txst_out,
+    output  ctrl_txst_out,
 
     // LPMODE.DIV
-    output [7:0] csr_lpmode_div_out,
+    output [7:0] lpmode_div_out,
     // LPMODE.EN
-    output  csr_lpmode_en_out,
+    output  lpmode_en_out,
 
     // INTSTAT.TX
-    input csr_intstat_tx_set,
+    input intstat_tx_set,
     // INTSTAT.RX
-    input csr_intstat_rx_set,
+    input intstat_rx_set,
 
     // ID.UID
 
@@ -75,6 +76,7 @@ module regs #(
     output              axil_rvalid,
     input               axil_rready
 );
+
 wire              wready;
 wire [ADDR_W-1:0] waddr;
 wire [DATA_W-1:0] wdata;
@@ -84,116 +86,117 @@ wire [DATA_W-1:0] rdata;
 wire              rvalid;
 wire [ADDR_W-1:0] raddr;
 wire              ren;
-    reg [ADDR_W-1:0] waddr_int;
-    reg [ADDR_W-1:0] raddr_int;
-    reg [DATA_W-1:0] wdata_int;
-    reg [STRB_W-1:0] strb_int;
-    reg              awflag;
-    reg              wflag;
-    reg              arflag;
-    reg              rflag;
 
-    reg              axil_bvalid_int;
-    reg [DATA_W-1:0] axil_rdata_int;
-    reg              axil_rvalid_int;
+reg [ADDR_W-1:0] waddr_int;
+reg [ADDR_W-1:0] raddr_int;
+reg [DATA_W-1:0] wdata_int;
+reg [STRB_W-1:0] strb_int;
+reg              awflag;
+reg              wflag;
+reg              arflag;
+reg              rflag;
 
-    assign axil_awready = ~awflag;
-    assign axil_wready  = ~wflag;
-    assign axil_bvalid  = axil_bvalid_int;
-    assign waddr        = waddr_int;
-    assign wdata        = wdata_int;
-    assign wstrb        = strb_int;
-    assign wen          = awflag && wflag;
-    assign axil_bresp   = 'd0; // always okay
+reg              axil_bvalid_int;
+reg [DATA_W-1:0] axil_rdata_int;
+reg              axil_rvalid_int;
 
-    always @(posedge clk) begin
-        if (rst == 1'b1) begin
-            waddr_int       <= 'd0;
-            wdata_int       <= 'd0;
-            strb_int        <= 'd0;
-            awflag          <= 1'b0;
-            wflag           <= 1'b0;
+assign axil_awready = ~awflag;
+assign axil_wready  = ~wflag;
+assign axil_bvalid  = axil_bvalid_int;
+assign waddr        = waddr_int;
+assign wdata        = wdata_int;
+assign wstrb        = strb_int;
+assign wen          = awflag && wflag;
+assign axil_bresp   = 'd0; // always okay
+
+always @(posedge clk) begin
+    if (rst == 1'b1) begin
+        waddr_int       <= 'd0;
+        wdata_int       <= 'd0;
+        strb_int        <= 'd0;
+        awflag          <= 1'b0;
+        wflag           <= 1'b0;
+        axil_bvalid_int <= 1'b0;
+    end else begin
+        if (axil_awvalid == 1'b1 && awflag == 1'b0) begin
+            awflag    <= 1'b1;
+            waddr_int <= axil_awaddr;
+        end else if (wen == 1'b1 && wready == 1'b1) begin
+            awflag    <= 1'b0;
+        end
+
+        if (axil_wvalid == 1'b1 && wflag == 1'b0) begin
+            wflag     <= 1'b1;
+            wdata_int <= axil_wdata;
+            strb_int  <= axil_wstrb;
+        end else if (wen == 1'b1 && wready == 1'b1) begin
+            wflag     <= 1'b0;
+        end
+
+        if (axil_bvalid_int == 1'b1 && axil_bready == 1'b1) begin
             axil_bvalid_int <= 1'b0;
-        end else begin
-            if (axil_awvalid == 1'b1 && awflag == 1'b0) begin
-                awflag    <= 1'b1;
-                waddr_int <= axil_awaddr;
-            end else if (wen == 1'b1 && wready == 1'b1) begin
-                awflag    <= 1'b0;
-            end
-
-            if (axil_wvalid == 1'b1 && wflag == 1'b0) begin
-                wflag     <= 1'b1;
-                wdata_int <= axil_wdata;
-                strb_int  <= axil_wstrb;
-            end else if (wen == 1'b1 && wready == 1'b1) begin
-                wflag     <= 1'b0;
-            end
-
-            if (axil_bvalid_int == 1'b1 && axil_bready == 1'b1) begin
-                axil_bvalid_int <= 1'b0;
-            end else if ((axil_wvalid == 1'b1 && awflag == 1'b1) || (axil_awvalid == 1'b1 && wflag == 1'b1) || (wflag == 1'b1 && awflag == 1'b1)) begin
-                axil_bvalid_int <= wready;
-            end
+        end else if ((axil_wvalid == 1'b1 && awflag == 1'b1) || (axil_awvalid == 1'b1 && wflag == 1'b1) || (wflag == 1'b1 && awflag == 1'b1)) begin
+            axil_bvalid_int <= wready;
         end
     end
+end
 
-    assign axil_arready = ~arflag;
-    assign axil_rdata   = axil_rdata_int;
-    assign axil_rvalid  = axil_rvalid_int;
-    assign raddr        = raddr_int;
-    assign ren          = arflag && ~rflag;
-    assign axil_rresp   = 'd0; // always okay
+assign axil_arready = ~arflag;
+assign axil_rdata   = axil_rdata_int;
+assign axil_rvalid  = axil_rvalid_int;
+assign raddr        = raddr_int;
+assign ren          = arflag && ~rflag;
+assign axil_rresp   = 'd0; // always okay
 
-    always @(posedge clk) begin
-        if (rst == 1'b1) begin
-            raddr_int       <= 'd0;
-            arflag          <= 1'b0;
-            rflag           <= 1'b0;
-            axil_rdata_int  <= 'd0;
+always @(posedge clk) begin
+    if (rst == 1'b1) begin
+        raddr_int       <= 'd0;
+        arflag          <= 1'b0;
+        rflag           <= 1'b0;
+        axil_rdata_int  <= 'd0;
+        axil_rvalid_int <= 1'b0;
+    end else begin
+        if (axil_arvalid == 1'b1 && arflag == 1'b0) begin
+            arflag    <= 1'b1;
+            raddr_int <= axil_araddr;
+        end else if (axil_rvalid_int == 1'b1 && axil_rready == 1'b1) begin
+            arflag    <= 1'b0;
+        end
+
+        if (rvalid == 1'b1 && ren == 1'b1 && rflag == 1'b0) begin
+            rflag <= 1'b1;
+        end else if (axil_rvalid_int == 1'b1 && axil_rready == 1'b1) begin
+            rflag <= 1'b0;
+        end
+
+        if (rvalid == 1'b1 && axil_rvalid_int == 1'b0) begin
+            axil_rdata_int  <= rdata;
+            axil_rvalid_int <= 1'b1;
+        end else if (axil_rvalid_int == 1'b1 && axil_rready == 1'b1) begin
             axil_rvalid_int <= 1'b0;
-        end else begin
-            if (axil_arvalid == 1'b1 && arflag == 1'b0) begin
-                arflag    <= 1'b1;
-                raddr_int <= axil_araddr;
-            end else if (axil_rvalid_int == 1'b1 && axil_rready == 1'b1) begin
-                arflag    <= 1'b0;
-            end
-
-            if (rvalid == 1'b1 && ren == 1'b1 && rflag == 1'b0) begin
-                rflag <= 1'b1;
-            end else if (axil_rvalid_int == 1'b1 && axil_rready == 1'b1) begin
-                rflag <= 1'b0;
-            end
-
-            if (rvalid == 1'b1 && axil_rvalid_int == 1'b0) begin
-                axil_rdata_int  <= rdata;
-                axil_rvalid_int <= 1'b1;
-            end else if (axil_rvalid_int == 1'b1 && axil_rready == 1'b1) begin
-                axil_rvalid_int <= 1'b0;
-            end
         end
     end
+end
 
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [0x4] - DATA - Data register
 //------------------------------------------------------------------------------
-wire [31:0] csr_data_rdata;
-assign csr_data_rdata[15:8] = 8'h0;
-assign csr_data_rdata[31:18] = 14'h0;
+wire [31:0] data_rdata;
+assign data_rdata[15:8] = 8'h0;
+assign data_rdata[31:18] = 14'h0;
 
-wire csr_data_wen;
-assign csr_data_wen = wen && (waddr == 16'h4);
+wire data_wen;
+assign data_wen = wen && (waddr == 16'h4);
 
-wire csr_data_ren;
-assign csr_data_ren = ren && (raddr == 16'h4);
-reg csr_data_ren_ff;
+wire data_ren;
+assign data_ren = ren && (raddr == 16'h4);
+reg data_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_data_ren_ff <= 1'b0;
+        data_ren_ff <= 1'b0;
     end else begin
-        csr_data_ren_ff <= csr_data_ren;
+        data_ren_ff <= data_ren;
     end
 end
 //---------------------
@@ -201,34 +204,34 @@ end
 // DATA[7:0] - FIFO - Write to push value to TX FIFO, read to get data from RX FIFO
 // access: rw, hardware: q
 //---------------------
-reg [7:0] csr_data_fifo_ff;
+reg [7:0] data_fifo_ff;
 
-assign csr_data_rdata[7:0] = csr_data_fifo_in;
+assign data_rdata[7:0] = data_fifo_in;
 
-assign csr_data_fifo_out = wdata[7:0];
-assign csr_data_fifo_ren = csr_data_ren & (~csr_data_ren_ff);
-assign csr_data_fifo_wen = csr_data_wen;
+assign data_fifo_out = wdata[7:0];
+assign data_fifo_ren = data_ren & (~data_ren_ff);
+assign data_fifo_wen = data_wen;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_data_fifo_ff <= 8'h0;
+        data_fifo_ff <= 8'h0;
     end else  begin
-     if (csr_data_wen) begin
+     if (data_wen) begin
             if (wstrb[0]) begin
-                csr_data_fifo_ff[7:0] <= wdata[7:0];
+                data_fifo_ff[7:0] <= wdata[7:0];
             end
         end else begin
-            csr_data_fifo_ff <= csr_data_fifo_ff;
+            data_fifo_ff <= data_fifo_ff;
         end
     end
 end
 
-reg csr_data_fifo_rvalid_ff;
+reg data_fifo_rvalid_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_data_fifo_rvalid_ff <= 1'b0;
+        data_fifo_rvalid_ff <= 1'b0;
     end else begin
-        csr_data_fifo_rvalid_ff <= csr_data_fifo_rvalid;
+        data_fifo_rvalid_ff <= data_fifo_rvalid;
     end
 end
 
@@ -237,19 +240,19 @@ end
 // DATA[16] - FERR - Frame error flag. Read to clear.
 // access: rolh, hardware: i
 //---------------------
-reg  csr_data_ferr_ff;
+reg  data_ferr_ff;
 
-assign csr_data_rdata[16] = csr_data_ferr_ff;
+assign data_rdata[16] = data_ferr_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_data_ferr_ff <= 1'b0;
+        data_ferr_ff <= 1'b0;
     end else  begin
-           if (csr_data_ren && !csr_data_ren_ff && (csr_data_ferr_ff != 1'b0)) begin
-            csr_data_ferr_ff <= 1'b0;
-        end else   if (csr_data_ferr_in == 1'b1) begin
-            csr_data_ferr_ff <= csr_data_ferr_in;
+           if (data_ren && !data_ren_ff && (data_ferr_ff != 1'b0)) begin
+            data_ferr_ff <= 1'b0;
+        end else   if (data_ferr_in == 1'b1) begin
+            data_ferr_ff <= data_ferr_in;
         end
     end
 end
@@ -260,43 +263,43 @@ end
 // DATA[17] - PERR - Parity error flag. Read to clear.
 // access: rolh, hardware: i
 //---------------------
-reg  csr_data_perr_ff;
+reg  data_perr_ff;
 
-assign csr_data_rdata[17] = csr_data_perr_ff;
+assign data_rdata[17] = data_perr_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_data_perr_ff <= 1'b0;
+        data_perr_ff <= 1'b0;
     end else  begin
-           if (csr_data_ren && !csr_data_ren_ff && (csr_data_perr_ff != 1'b0)) begin
-            csr_data_perr_ff <= 1'b0;
-        end else   if (csr_data_perr_in == 1'b1) begin
-            csr_data_perr_ff <= csr_data_perr_in;
+           if (data_ren && !data_ren_ff && (data_perr_ff != 1'b0)) begin
+            data_perr_ff <= 1'b0;
+        end else   if (data_perr_in == 1'b1) begin
+            data_perr_ff <= data_perr_in;
         end
     end
 end
 
 
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [0xc] - STAT - Status register
 //------------------------------------------------------------------------------
-wire [31:0] csr_stat_rdata;
-assign csr_stat_rdata[1:0] = 2'h0;
-assign csr_stat_rdata[3] = 1'b0;
-assign csr_stat_rdata[7:5] = 3'h0;
-assign csr_stat_rdata[31:9] = 23'h0;
+wire [31:0] stat_rdata;
+assign stat_rdata[1:0] = 2'h0;
+assign stat_rdata[3] = 1'b0;
+assign stat_rdata[7:5] = 3'h0;
+assign stat_rdata[31:9] = 23'h0;
 
 
-wire csr_stat_ren;
-assign csr_stat_ren = ren && (raddr == 16'hc);
-reg csr_stat_ren_ff;
+wire stat_ren;
+assign stat_ren = ren && (raddr == 16'hc);
+reg stat_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_stat_ren_ff <= 1'b0;
+        stat_ren_ff <= 1'b0;
     end else begin
-        csr_stat_ren_ff <= csr_stat_ren;
+        stat_ren_ff <= stat_ren;
     end
 end
 //---------------------
@@ -304,17 +307,17 @@ end
 // STAT[2] - BUSY - Transciever is busy
 // access: ro, hardware: ie
 //---------------------
-reg  csr_stat_busy_ff;
+reg  stat_busy_ff;
 
-assign csr_stat_rdata[2] = csr_stat_busy_ff;
+assign stat_rdata[2] = stat_busy_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_stat_busy_ff <= 1'b0;
+        stat_busy_ff <= 1'b0;
     end else  begin
-      if (csr_stat_busy_en) begin
-            csr_stat_busy_ff <= csr_stat_busy_in;
+      if (stat_busy_en) begin
+            stat_busy_ff <= stat_busy_in;
         end
     end
 end
@@ -325,16 +328,16 @@ end
 // STAT[4] - RXE - RX FIFO is empty
 // access: ro, hardware: i
 //---------------------
-reg  csr_stat_rxe_ff;
+reg  stat_rxe_ff;
 
-assign csr_stat_rdata[4] = csr_stat_rxe_ff;
+assign stat_rdata[4] = stat_rxe_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_stat_rxe_ff <= 1'b0;
+        stat_rxe_ff <= 1'b0;
     end else  begin
-              begin            csr_stat_rxe_ff <= csr_stat_rxe_in;
+              begin            stat_rxe_ff <= stat_rxe_in;
         end
     end
 end
@@ -345,40 +348,40 @@ end
 // STAT[8] - TXF - TX FIFO is full
 // access: ro, hardware: i
 //---------------------
-reg  csr_stat_txf_ff;
+reg  stat_txf_ff;
 
-assign csr_stat_rdata[8] = csr_stat_txf_ff;
+assign stat_rdata[8] = stat_txf_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_stat_txf_ff <= 1'b0;
+        stat_txf_ff <= 1'b0;
     end else  begin
-              begin            csr_stat_txf_ff <= csr_stat_txf_in;
+              begin            stat_txf_ff <= stat_txf_in;
         end
     end
 end
 
 
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [0x10] - CTRL - Control register
 //------------------------------------------------------------------------------
-wire [31:0] csr_ctrl_rdata;
-assign csr_ctrl_rdata[3:2] = 2'h0;
-assign csr_ctrl_rdata[31:7] = 25'h0;
+wire [31:0] ctrl_rdata;
+assign ctrl_rdata[3:2] = 2'h0;
+assign ctrl_rdata[31:7] = 25'h0;
 
-wire csr_ctrl_wen;
-assign csr_ctrl_wen = wen && (waddr == 16'h10);
+wire ctrl_wen;
+assign ctrl_wen = wen && (waddr == 16'h10);
 
-wire csr_ctrl_ren;
-assign csr_ctrl_ren = ren && (raddr == 16'h10);
-reg csr_ctrl_ren_ff;
+wire ctrl_ren;
+assign ctrl_ren = ren && (raddr == 16'h10);
+reg ctrl_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_ctrl_ren_ff <= 1'b0;
+        ctrl_ren_ff <= 1'b0;
     end else begin
-        csr_ctrl_ren_ff <= csr_ctrl_ren;
+        ctrl_ren_ff <= ctrl_ren;
     end
 end
 //---------------------
@@ -386,22 +389,22 @@ end
 // CTRL[1:0] - BAUD - Baudrate value
 // access: rw, hardware: o
 //---------------------
-reg [1:0] csr_ctrl_baud_ff;
+reg [1:0] ctrl_baud_ff;
 
-assign csr_ctrl_rdata[1:0] = csr_ctrl_baud_ff;
+assign ctrl_rdata[1:0] = ctrl_baud_ff;
 
-assign csr_ctrl_baud_out = csr_ctrl_baud_ff;
+assign ctrl_baud_out = ctrl_baud_ff;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_ctrl_baud_ff <= 2'h0;
+        ctrl_baud_ff <= 2'h0;
     end else  begin
-     if (csr_ctrl_wen) begin
+     if (ctrl_wen) begin
             if (wstrb[0]) begin
-                csr_ctrl_baud_ff[1:0] <= wdata[1:0];
+                ctrl_baud_ff[1:0] <= wdata[1:0];
             end
         end else begin
-            csr_ctrl_baud_ff <= csr_ctrl_baud_ff;
+            ctrl_baud_ff <= ctrl_baud_ff;
         end
     end
 end
@@ -412,22 +415,22 @@ end
 // CTRL[4] - TXEN - Transmitter enable. Can be disabled by hardware on error.
 // access: rw, hardware: oie
 //---------------------
-reg  csr_ctrl_txen_ff;
+reg  ctrl_txen_ff;
 
-assign csr_ctrl_rdata[4] = csr_ctrl_txen_ff;
+assign ctrl_rdata[4] = ctrl_txen_ff;
 
-assign csr_ctrl_txen_out = csr_ctrl_txen_ff;
+assign ctrl_txen_out = ctrl_txen_ff;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_ctrl_txen_ff <= 1'b0;
+        ctrl_txen_ff <= 1'b0;
     end else  begin
-     if (csr_ctrl_wen) begin
+     if (ctrl_wen) begin
             if (wstrb[0]) begin
-                csr_ctrl_txen_ff <= wdata[4];
+                ctrl_txen_ff <= wdata[4];
             end
-        end else if (csr_ctrl_txen_en) begin
-            csr_ctrl_txen_ff <= csr_ctrl_txen_in;
+        end else if (ctrl_txen_en) begin
+            ctrl_txen_ff <= ctrl_txen_in;
         end
     end
 end
@@ -438,22 +441,22 @@ end
 // CTRL[5] - RXEN - Receiver enable. Can be disabled by hardware on error.
 // access: rw, hardware: oie
 //---------------------
-reg  csr_ctrl_rxen_ff;
+reg  ctrl_rxen_ff;
 
-assign csr_ctrl_rdata[5] = csr_ctrl_rxen_ff;
+assign ctrl_rdata[5] = ctrl_rxen_ff;
 
-assign csr_ctrl_rxen_out = csr_ctrl_rxen_ff;
+assign ctrl_rxen_out = ctrl_rxen_ff;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_ctrl_rxen_ff <= 1'b0;
+        ctrl_rxen_ff <= 1'b0;
     end else  begin
-     if (csr_ctrl_wen) begin
+     if (ctrl_wen) begin
             if (wstrb[0]) begin
-                csr_ctrl_rxen_ff <= wdata[5];
+                ctrl_rxen_ff <= wdata[5];
             end
-        end else if (csr_ctrl_rxen_en) begin
-            csr_ctrl_rxen_ff <= csr_ctrl_rxen_in;
+        end else if (ctrl_rxen_en) begin
+            ctrl_rxen_ff <= ctrl_rxen_in;
         end
     end
 end
@@ -464,45 +467,45 @@ end
 // CTRL[6] - TXST - Force transmission start
 // access: wosc, hardware: o
 //---------------------
-reg  csr_ctrl_txst_ff;
+reg  ctrl_txst_ff;
 
-assign csr_ctrl_rdata[6] = 1'b0;
+assign ctrl_rdata[6] = 1'b0;
 
-assign csr_ctrl_txst_out = csr_ctrl_txst_ff;
+assign ctrl_txst_out = ctrl_txst_ff;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_ctrl_txst_ff <= 1'b0;
+        ctrl_txst_ff <= 1'b0;
     end else  begin
-     if (csr_ctrl_wen) begin
+     if (ctrl_wen) begin
             if (wstrb[0]) begin
-                csr_ctrl_txst_ff <= wdata[6];
+                ctrl_txst_ff <= wdata[6];
             end
         end else begin
-            csr_ctrl_txst_ff <= 1'b0;
+            ctrl_txst_ff <= 1'b0;
         end
     end
 end
 
 
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [0x14] - LPMODE - Low power mode control
 //------------------------------------------------------------------------------
-wire [31:0] csr_lpmode_rdata;
-assign csr_lpmode_rdata[30:8] = 23'h0;
+wire [31:0] lpmode_rdata;
+assign lpmode_rdata[30:8] = 23'h0;
 
-wire csr_lpmode_wen;
-assign csr_lpmode_wen = wen && (waddr == 16'h14);
+wire lpmode_wen;
+assign lpmode_wen = wen && (waddr == 16'h14);
 
-wire csr_lpmode_ren;
-assign csr_lpmode_ren = ren && (raddr == 16'h14);
-reg csr_lpmode_ren_ff;
+wire lpmode_ren;
+assign lpmode_ren = ren && (raddr == 16'h14);
+reg lpmode_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_lpmode_ren_ff <= 1'b0;
+        lpmode_ren_ff <= 1'b0;
     end else begin
-        csr_lpmode_ren_ff <= csr_lpmode_ren;
+        lpmode_ren_ff <= lpmode_ren;
     end
 end
 //---------------------
@@ -510,22 +513,22 @@ end
 // LPMODE[7:0] - DIV - Clock divider in low power mode
 // access: rw, hardware: o
 //---------------------
-reg [7:0] csr_lpmode_div_ff;
+reg [7:0] lpmode_div_ff;
 
-assign csr_lpmode_rdata[7:0] = csr_lpmode_div_ff;
+assign lpmode_rdata[7:0] = lpmode_div_ff;
 
-assign csr_lpmode_div_out = csr_lpmode_div_ff;
+assign lpmode_div_out = lpmode_div_ff;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_lpmode_div_ff <= 8'h0;
+        lpmode_div_ff <= 8'h0;
     end else  begin
-     if (csr_lpmode_wen) begin
+     if (lpmode_wen) begin
             if (wstrb[0]) begin
-                csr_lpmode_div_ff[7:0] <= wdata[7:0];
+                lpmode_div_ff[7:0] <= wdata[7:0];
             end
         end else begin
-            csr_lpmode_div_ff <= csr_lpmode_div_ff;
+            lpmode_div_ff <= lpmode_div_ff;
         end
     end
 end
@@ -536,45 +539,45 @@ end
 // LPMODE[31] - EN - Low power mode enable
 // access: rw, hardware: o
 //---------------------
-reg  csr_lpmode_en_ff;
+reg  lpmode_en_ff;
 
-assign csr_lpmode_rdata[31] = csr_lpmode_en_ff;
+assign lpmode_rdata[31] = lpmode_en_ff;
 
-assign csr_lpmode_en_out = csr_lpmode_en_ff;
+assign lpmode_en_out = lpmode_en_ff;
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_lpmode_en_ff <= 1'b0;
+        lpmode_en_ff <= 1'b0;
     end else  begin
-     if (csr_lpmode_wen) begin
+     if (lpmode_wen) begin
             if (wstrb[3]) begin
-                csr_lpmode_en_ff <= wdata[31];
+                lpmode_en_ff <= wdata[31];
             end
         end else begin
-            csr_lpmode_en_ff <= csr_lpmode_en_ff;
+            lpmode_en_ff <= lpmode_en_ff;
         end
     end
 end
 
 
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [0x20] - INTSTAT - Interrupt status register
 //------------------------------------------------------------------------------
-wire [31:0] csr_intstat_rdata;
-assign csr_intstat_rdata[31:2] = 30'h0;
+wire [31:0] intstat_rdata;
+assign intstat_rdata[31:2] = 30'h0;
 
-wire csr_intstat_wen;
-assign csr_intstat_wen = wen && (waddr == 16'h20);
+wire intstat_wen;
+assign intstat_wen = wen && (waddr == 16'h20);
 
-wire csr_intstat_ren;
-assign csr_intstat_ren = ren && (raddr == 16'h20);
-reg csr_intstat_ren_ff;
+wire intstat_ren;
+assign intstat_ren = ren && (raddr == 16'h20);
+reg intstat_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_intstat_ren_ff <= 1'b0;
+        intstat_ren_ff <= 1'b0;
     end else begin
-        csr_intstat_ren_ff <= csr_intstat_ren;
+        intstat_ren_ff <= intstat_ren;
     end
 end
 //---------------------
@@ -582,23 +585,23 @@ end
 // INTSTAT[0] - TX - Transmitter interrupt flag. Write 1 to clear.
 // access: rw1c, hardware: s
 //---------------------
-reg  csr_intstat_tx_ff;
+reg  intstat_tx_ff;
 
-assign csr_intstat_rdata[0] = csr_intstat_tx_ff;
+assign intstat_rdata[0] = intstat_tx_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_intstat_tx_ff <= 1'b0;
+        intstat_tx_ff <= 1'b0;
     end else  begin
-        if (csr_intstat_tx_set) begin
-            csr_intstat_tx_ff <= 1'b1;
-        end else     if (csr_intstat_wen) begin
+        if (intstat_tx_set) begin
+            intstat_tx_ff <= 1'b1;
+        end else     if (intstat_wen) begin
             if (wstrb[0] && wdata[0]) begin
-                csr_intstat_tx_ff <= 1'b0;
+                intstat_tx_ff <= 1'b0;
             end
         end else begin
-            csr_intstat_tx_ff <= csr_intstat_tx_ff;
+            intstat_tx_ff <= intstat_tx_ff;
         end
     end
 end
@@ -609,43 +612,43 @@ end
 // INTSTAT[1] - RX - Receiver interrupt. Write 1 to clear.
 // access: rw1c, hardware: s
 //---------------------
-reg  csr_intstat_rx_ff;
+reg  intstat_rx_ff;
 
-assign csr_intstat_rdata[1] = csr_intstat_rx_ff;
+assign intstat_rdata[1] = intstat_rx_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_intstat_rx_ff <= 1'b0;
+        intstat_rx_ff <= 1'b0;
     end else  begin
-        if (csr_intstat_rx_set) begin
-            csr_intstat_rx_ff <= 1'b1;
-        end else     if (csr_intstat_wen) begin
+        if (intstat_rx_set) begin
+            intstat_rx_ff <= 1'b1;
+        end else     if (intstat_wen) begin
             if (wstrb[0] && wdata[1]) begin
-                csr_intstat_rx_ff <= 1'b0;
+                intstat_rx_ff <= 1'b0;
             end
         end else begin
-            csr_intstat_rx_ff <= csr_intstat_rx_ff;
+            intstat_rx_ff <= intstat_rx_ff;
         end
     end
 end
 
 
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [0x40] - ID - IP-core ID register
 //------------------------------------------------------------------------------
-wire [31:0] csr_id_rdata;
+wire [31:0] id_rdata;
 
 
-wire csr_id_ren;
-assign csr_id_ren = ren && (raddr == 16'h40);
-reg csr_id_ren_ff;
+wire id_ren;
+assign id_ren = ren && (raddr == 16'h40);
+reg id_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        csr_id_ren_ff <= 1'b0;
+        id_ren_ff <= 1'b0;
     end else begin
-        csr_id_ren_ff <= csr_id_ren;
+        id_ren_ff <= id_ren;
     end
 end
 //---------------------
@@ -653,17 +656,17 @@ end
 // ID[31:0] - UID - Unique ID
 // access: ro, hardware: f
 //---------------------
-reg [31:0] csr_id_uid_ff;
+reg [31:0] id_uid_ff;
 
-assign csr_id_rdata[31:0] = csr_id_uid_ff;
+assign id_rdata[31:0] = id_uid_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        csr_id_uid_ff <= 32'hcafe0666;
+        id_uid_ff <= 32'hcafe0666;
     end else  begin
       begin
-            csr_id_uid_ff <= csr_id_uid_ff;
+            id_uid_ff <= id_uid_ff;
         end
     end
 end
@@ -675,8 +678,8 @@ end
 reg wready_drv;
 
 always @(*) begin
-    if (csr_data_wen)
-        wready_drv = csr_data_fifo_wready;
+    if (data_wen)
+        wready_drv = data_fifo_wready;
     else
         wready_drv = 1'b1;
 end
@@ -692,12 +695,12 @@ always @(posedge clk) begin
         rdata_ff <= 32'h0;
     end else if (ren) begin
         case (raddr)
-            16'h4: rdata_ff <= csr_data_rdata;
-            16'hc: rdata_ff <= csr_stat_rdata;
-            16'h10: rdata_ff <= csr_ctrl_rdata;
-            16'h14: rdata_ff <= csr_lpmode_rdata;
-            16'h20: rdata_ff <= csr_intstat_rdata;
-            16'h40: rdata_ff <= csr_id_rdata;
+            16'h4: rdata_ff <= data_rdata;
+            16'hc: rdata_ff <= stat_rdata;
+            16'h10: rdata_ff <= ctrl_rdata;
+            16'h14: rdata_ff <= lpmode_rdata;
+            16'h20: rdata_ff <= intstat_rdata;
+            16'h40: rdata_ff <= id_rdata;
             default: rdata_ff <= 32'h0;
         endcase
     end else begin
@@ -722,8 +725,8 @@ end
 
 reg rvalid_drv;
 always @(*) begin
-    if (csr_data_ren_ff)
-        rvalid_drv = csr_data_fifo_rvalid_ff;
+    if (data_ren_ff)
+        rvalid_drv = data_fifo_rvalid_ff;
     else
         rvalid_drv = rvalid_ff;
 end
