@@ -277,11 +277,11 @@ class SystemVerilogHeader(Generator, Jinja2):
     :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
-    :param prefix: Prefix for the all defines. If empty output file name will be used.
+    :param prefix: Prefix for the all defines. Empty is allowed.
     :type prefix: str
     """
 
-    def __init__(self, rmap=None, path='regs.svh', prefix="CSR", **args):
+    def __init__(self, rmap=None, path='regs.svh', prefix="", **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
@@ -308,11 +308,11 @@ class CHeader(Generator, Jinja2):
     :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
-    :param prefix: Prefix for the all defines and types. If empty output file name will be used.
+    :param prefix: Prefix for the all defines and types. Empty is allowed.
     :type prefix: str
     """
 
-    def __init__(self, rmap=None, path='regs.h', prefix="CSR", **args):
+    def __init__(self, rmap=None, path='regs.h', prefix="", **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
@@ -346,11 +346,11 @@ class SystemVerilogPackage(Generator, Jinja2):
     :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
-    :param prefix: Prefix for the all parameters and types. If empty output file name will be used.
+    :param prefix: Prefix for the all parameters and types. Empty is allowed.
     :type prefix: str
     """
 
-    def __init__(self, rmap=None, path='regs_pkg.sv', prefix="CSR", **args):
+    def __init__(self, rmap=None, path='regs_pkg.sv', prefix="", **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
