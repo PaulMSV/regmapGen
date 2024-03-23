@@ -31,6 +31,7 @@ module {{ module_name }} #(
     input  [DATA_W-1:0]  writedata,
     output               waitrequest
 );
+
 {% if regmap_embed %}
 wire              wready;
 wire [ADDR_W-1:0] waddr;
@@ -43,42 +44,42 @@ wire [ADDR_W-1:0] raddr;
 wire              ren;
 {% endif %}
 
-  assign waddr = address,
-         raddr = address;
+assign waddr = address,
+       raddr = address;
 
-  assign waitrequest   = ~wready;
-  assign readdatavalid = rvalid;
+assign waitrequest   = ~wready;
+assign readdatavalid = rvalid;
 
-  assign wdata    = writedata,
-         readdata = rdata;
+assign wdata    = writedata,
+       readdata = rdata;
 
-  assign wen = write;
+assign wen = write;
 
-  assign wstrb = byteenable;
-  reg ren_int;
-  {% set rst_type = config['register_reset']%}
-  {%- if rst_type == 'async_pos' or rst_type == 'sync_pos' %}
-      {% set rst_active = 1%}
-  {%- elif rst_type == 'async_neg' or rst_type == 'sync_neg' %}
-      {% set rst_active = 0%}
-  {%- endif %}
-  always @(posedge clk
-  {%- if rst_type == 'async_pos' %} or posedge rst)
-  {%- elif rst_type == 'async_neg' %} or negedge rst)
-  {%- else -%} ) {%- endif %} begin
-    if (rst == 1'b{{ rst_active }})
-      ren_int <= 1'b0;
-    else
-    begin
-      if (read)
+assign wstrb = byteenable;
+reg ren_int;
+{% set rst_type = config['register_reset']%}
+{%- if rst_type == 'async_pos' or rst_type == 'sync_pos' %}
+    {% set rst_active = 1%}
+{%- elif rst_type == 'async_neg' or rst_type == 'sync_neg' %}
+    {% set rst_active = 0%}
+{%- endif %}
+always @(posedge clk
+{%- if rst_type == 'async_pos' %} or posedge rst)
+{%- elif rst_type == 'async_neg' %} or negedge rst)
+{%- else -%} ) {%- endif %} begin
+if (rst == 1'b{{ rst_active }})
+    ren_int <= 1'b0;
+else
+begin
+    if (read)
         ren_int <= 1'b1;
-      else
-        if (rvalid)
-          ren_int <= 1'b0;
-    end
-  end
+    else
+    if (rvalid)
+        ren_int <= 1'b0;
+end
+end
 
-  assign ren = ren_int;
+assign ren = ren_int;
 {% endmacro %}
 {{ amm_core() }}
 endmodule

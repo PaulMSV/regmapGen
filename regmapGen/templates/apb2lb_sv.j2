@@ -30,6 +30,7 @@ module {{ module_name }} #(
     output              pready,
     output              pslverr
 );
+
 {% if regmap_embed %}
 wire              wready;
 wire [ADDR_W-1:0] waddr;
@@ -41,6 +42,7 @@ wire              rvalid;
 wire [ADDR_W-1:0] raddr;
 wire              ren;
 {% endif %}
+
 // APB interface
 assign prdata  = rdata;
 assign pslverr = 1'b0; // always OKAY

@@ -23,9 +23,10 @@ __IO
     {%- endif %}
 {%- endmacro %}
 
-{#- module prefix #}
 {% macro module_prefix() %}
-{{ module_name() }}_
+    {%- if prefix %}
+{{ prefix }}_
+    {%- endif %}
 {%- endmacro %}
 
 {#- register data type #}

@@ -72,93 +72,93 @@ always @(posedge clk or negedge rst) begin
 {%- endmacro %}
 
 {#- signal: csr for rdata bus #}
-{% macro sig_csr_rdata(reg) %}
-csr_{{ reg.name.lower() }}_rdata
+{% macro sig_rdata(reg) %}
+{{ reg.name.lower() }}_rdata
 {%- endmacro %}
 
 {#- port: bitfield output #}
 {% macro port_bf_out(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_out
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_out
 {%- endmacro %}
 
 {#- port: bitfield input  #}
 {% macro port_bf_in(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_in
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_in
 {%- endmacro %}
 
 {#- port: bitfield input enable #}
 {% macro port_bf_en(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_en
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_en
 {%- endmacro %}
 
 {#- port: bitfield clear enable #}
 {% macro port_bf_clr(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_clr
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_clr
 {%- endmacro %}
 
 {#- port: bitfield set enable #}
 {% macro port_bf_set(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_set
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_set
 {%- endmacro %}
 
 {#- port: bitfield read enable #}
 {% macro port_bf_ren(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_ren
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_ren
 {%- endmacro %}
 
 {#- port: bitfield read valid #}
 {% macro port_bf_rvalid(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_rvalid
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_rvalid
 {%- endmacro %}
 
 {#- port: bitfield write enable #}
 {% macro port_bf_wen(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_wen
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_wen
 {%- endmacro %}
 
 {#- port: bitfield write ready #}
 {% macro port_bf_wready(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_wready
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_wready
 {%- endmacro %}
 
 {#- signal: bitfield registered read valid #}
 {% macro sig_bf_rvalid_ff(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_rvalid_ff
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_rvalid_ff
 {%- endmacro %}
 
 {#- signal: bitfield flip-flops #}
 {% macro sig_bf_ff(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_ff
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_ff
 {%- endmacro %}
 
 {#- port: bitfield read access strobe #}
 {% macro port_bf_raccess(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_raccess
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_raccess
 {%- endmacro %}
 
 {#- port: bitfield write access strobe #}
 {% macro port_bf_waccess(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_waccess
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_waccess
 {%- endmacro %}
 
 {#- port: bitfield lock signal #}
 {% macro port_bf_lock(reg, bf) %}
-csr_{{ reg.name.lower() }}_{{ bf.name.lower() }}_lock
+{{ reg.name.lower() }}_{{ bf.name.lower() }}_lock
 {%- endmacro %}
 
 {#- signal: register read enable #}
-{% macro sig_csr_ren(reg) %}
-csr_{{ reg.name.lower() }}_ren
+{% macro sig_ren(reg) %}
+{{ reg.name.lower() }}_ren
 {%- endmacro %}
 
 {#- signal: register read enable registered #}
-{% macro sig_csr_ren_ff(reg) %}
-csr_{{ reg.name.lower() }}_ren_ff
+{% macro sig_ren_ff(reg) %}
+{{ reg.name.lower() }}_ren_ff
 {%- endmacro %}
 
 {#- signal: register write enable #}
-{% macro sig_csr_wen(reg) %}
-csr_{{ reg.name.lower() }}_wen
+{% macro sig_wen(reg) %}
+{{ reg.name.lower() }}_wen
 {%- endmacro %}
 
 {#- TEMPLATE NAMESPACE #}
@@ -179,6 +179,7 @@ module {{ module_name }} #(
     // System
     input clk,
     input rst,
+
 {% for reg in rmap %}
     {% for bf in reg %}
     // {{ reg.name }}.{{ bf.name }}
@@ -244,34 +245,34 @@ module {{ module_name }} #(
 {% endif %}
 {% for reg in rmap %}
 //------------------------------------------------------------------------------
-// CSR:
+// Register implementation:
 // [{{ '0x%x' % reg.address }}] - {{ reg.name }} - {{ reg.description }}
 //------------------------------------------------------------------------------
-wire {{ range_decl(config['data_width'] - 1) }} {{ sig_csr_rdata(reg) }};
+wire {{ range_decl(config['data_width'] - 1) }} {{ sig_rdata(reg) }};
 {# fill unused bits with zeros #}
     {% set tmp.last_bit = 0 %}
     {% for bf in reg %}
         {% if bf.lsb > tmp.last_bit %}
-assign {{ sig_csr_rdata(reg) }}{{ range(bf.lsb - 1, tmp.last_bit) }} = {{ zeros(bf.lsb - tmp.last_bit) }};
+assign {{ sig_rdata(reg) }}{{ range(bf.lsb - 1, tmp.last_bit) }} = {{ zeros(bf.lsb - tmp.last_bit) }};
         {% endif %}
         {% set tmp.last_bit = bf.msb + 1 %}
     {% endfor %}
     {% if config['data_width'] > tmp.last_bit %}
-assign {{ sig_csr_rdata(reg) }}{{ range(config['data_width'] - 1, tmp.last_bit) }} = {{ zeros(config['data_width'] - tmp.last_bit) }};
+assign {{ sig_rdata(reg) }}{{ range(config['data_width'] - 1, tmp.last_bit) }} = {{ zeros(config['data_width'] - tmp.last_bit) }};
     {% endif %}
 
     {% if 'w' in reg.access %}
-wire {{ sig_csr_wen(reg) }};
-assign {{ sig_csr_wen(reg) }} = wen && (waddr == {{ literal(reg.address, config['address_width']) }});
+wire {{ sig_wen(reg) }};
+assign {{ sig_wen(reg) }} = wen && (waddr == {{ literal(reg.address, config['address_width']) }});
     {% endif %}
 
     {% if 'r' in reg.access %}
-wire {{ sig_csr_ren(reg) }};
-assign {{ sig_csr_ren(reg) }} = ren && (raddr == {{ literal(reg.address, config['address_width']) }});
-reg {{ sig_csr_ren_ff(reg) }};
-{{ always_begin(sig=sig_csr_ren_ff(reg)
+wire {{ sig_ren(reg) }};
+assign {{ sig_ren(reg) }} = ren && (raddr == {{ literal(reg.address, config['address_width']) }});
+reg {{ sig_ren_ff(reg) }};
+{{ always_begin(sig=sig_ren_ff(reg)
 )}} begin
-        {{ sig_csr_ren_ff(reg) }} <= {{ sig_csr_ren(reg) }};
+        {{ sig_ren_ff(reg) }} <= {{ sig_ren(reg) }};
     end
 end
     {% endif %}
@@ -283,20 +284,20 @@ end
 //---------------------
         {% if 'a' in bf.hardware %}
             {% if 'o' in bf.hardware %}
-assign {{ port_bf_waccess(reg, bf) }} = wready && {{ sig_csr_wen(reg) }};
+assign {{ port_bf_waccess(reg, bf) }} = wready && {{ sig_wen(reg) }};
             {% endif %}
             {% if 'i' in bf.hardware %}
-assign {{ port_bf_raccess(reg, bf) }} = rvalid && {{ sig_csr_ren(reg) }};
+assign {{ port_bf_raccess(reg, bf) }} = rvalid && {{ sig_ren(reg) }};
             {% endif %}
         {% endif %}
 reg {{ range_decl(bf.width - 1, bf.is_vector()) }} {{ sig_bf_ff(reg, bf) }};
 
         {% if 'wo' in bf.access %}
-assign {{ sig_csr_rdata(reg) }}{{ range(bf.msb, bf.lsb) }} = {{ zeros(bf.width) }};
+assign {{ sig_rdata(reg) }}{{ range(bf.msb, bf.lsb) }} = {{ zeros(bf.width) }};
         {% elif 'r' in bf.access and 'q' in bf.hardware %}
-assign {{ sig_csr_rdata(reg) }}{{ range(bf.msb, bf.lsb) }} = {{ port_bf_in(reg, bf) }};
+assign {{ sig_rdata(reg) }}{{ range(bf.msb, bf.lsb) }} = {{ port_bf_in(reg, bf) }};
         {% else %}
-assign {{ sig_csr_rdata(reg) }}{{ range(bf.msb, bf.lsb) }} = {{ sig_bf_ff(reg, bf) }};
+assign {{ sig_rdata(reg) }}{{ range(bf.msb, bf.lsb) }} = {{ sig_bf_ff(reg, bf) }};
         {% endif %}
 
         {% if 'w' in bf.access and 'q' in bf.hardware %}
@@ -305,10 +306,10 @@ assign {{ port_bf_out(reg, bf) }} = wdata{{ range(bf.msb, bf.lsb) }};
 assign {{ port_bf_out(reg, bf) }} = {{ sig_bf_ff(reg, bf) }};
         {% endif %}
         {% if 'r' in bf.access and 'q' in bf.hardware %}
-assign {{ port_bf_ren(reg, bf) }} = {{ sig_csr_ren(reg) }} & (~{{ sig_csr_ren_ff(reg) }});
+assign {{ port_bf_ren(reg, bf) }} = {{ sig_ren(reg) }} & (~{{ sig_ren_ff(reg) }});
         {% endif %}
         {% if 'w' in bf.access and 'q' in bf.hardware %}
-assign {{ port_bf_wen(reg, bf) }} = {{ sig_csr_wen(reg) }};
+assign {{ port_bf_wen(reg, bf) }} = {{ sig_wen(reg) }};
         {% endif %}
 
 {{ always_begin(sig=sig_bf_ff(reg, bf), width=bf.width, init=bf.reset)
@@ -322,19 +323,19 @@ assign {{ port_bf_wen(reg, bf) }} = {{ sig_csr_wen(reg) }};
             {{ sig_bf_ff(reg, bf) }} <= {{ zeros(bf.width) }};
         end else
         {%- endif %} {% if bf.access == 'roc' %}
-        if ({{ sig_csr_ren(reg) }} && !{{ sig_csr_ren_ff(reg) }}) begin
+        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }}) begin
             {{ sig_bf_ff(reg, bf) }} <= {{ zeros(bf.width) }};
         end else
         {%- endif %} {% if bf.access == 'rolh' %}
-        if ({{ sig_csr_ren(reg) }} && !{{ sig_csr_ren_ff(reg) }} && ({{ sig_bf_ff(reg, bf) }} != {{ zeros(bf.width) }})) begin
+        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }} && ({{ sig_bf_ff(reg, bf) }} != {{ zeros(bf.width) }})) begin
             {{ sig_bf_ff(reg, bf) }} <= {{ zeros(bf.width) }};
         end else
         {%- endif %} {% if bf.access == 'roll' -%}
-        if ({{ sig_csr_ren(reg) }} && !{{ sig_csr_ren_ff(reg) }} && ({{ sig_bf_ff(reg, bf) }} != {{ ones(bf.width) }})) begin
+        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }} && ({{ sig_bf_ff(reg, bf) }} != {{ ones(bf.width) }})) begin
             {{ sig_bf_ff(reg, bf) }} <= {{ ones(bf.width) }};
         end else
         {%- endif %} {% if 'w' in bf.access -%}
-        if ({{ sig_csr_wen(reg) }}) begin
+        if ({{ sig_wen(reg) }}) begin
             {% for num, val in bf.byte_strobes.items() %}
                 {% if 'w1c' in bf.access %}
             if (wstrb[{{ num }}] && wdata{{ range(val['wdata_msb'], val['wdata_lsb']) }}) begin
@@ -399,10 +400,10 @@ end
 reg wready_drv;
 
 always @(*) begin
-    if ({{ sig_csr_wen(reg) }})
+    if ({{ sig_wen(reg) }})
         wready_drv = {{ port_bf_wready(reg, bf) }};
             {% else %}
-    else if ({{ sig_csr_wen(reg) }})
+    else if ({{ sig_wen(reg) }})
         wready_drv = {{ port_bf_wready(reg, bf) }};
             {% endif %}
             {% set tmp.fifo_cnt = tmp.fifo_cnt + 1 %}
@@ -427,7 +428,7 @@ reg {{ range_decl(config['data_width'] - 1) }} rdata_ff;
 )}} if (ren) begin
         case (raddr)
 {% for reg in rmap %}
-            {{ literal(reg.address, config['address_width']) }}: rdata_ff <= {{ sig_csr_rdata(reg) }};
+            {{ literal(reg.address, config['address_width']) }}: rdata_ff <= {{ sig_rdata(reg) }};
 {% endfor %}
             default: rdata_ff <= {{ literal(read_filler, config['data_width']) }};
         endcase
@@ -456,10 +457,10 @@ end
             {% if tmp.fifo_cnt == 0 %}
 reg rvalid_drv;
 always @(*) begin
-    if ({{ sig_csr_ren_ff(reg) }})
+    if ({{ sig_ren_ff(reg) }})
         rvalid_drv = {{ sig_bf_rvalid_ff(reg, bf) }};
             {% else %}
-    else if ({{ sig_csr_ren_ff(reg) }})
+    else if ({{ sig_ren_ff(reg) }})
         rvalid_drv = {{ sig_bf_rvalid_ff(reg, bf) }};
             {% endif %}
             {% set tmp.fifo_cnt = tmp.fifo_cnt + 1 %}

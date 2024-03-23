@@ -13,8 +13,8 @@
 {#- TEMPLATE #}
 // Created with regmapGen v{{ regmapGen_ver }}
 
-`ifndef __{{ file_name.upper() }}_VH
-`define __{{ file_name.upper() }}_VH
+`ifndef __{{ file_name.upper() }}_SVH
+`define __{{ file_name.upper() }}_SVH
 
 `define {{ module_prefix()|upper }}BASE_ADDR {{ config['base_address'] }}
 `define {{ module_prefix()|upper }}DATA_WIDTH {{ config['data_width'] }}
