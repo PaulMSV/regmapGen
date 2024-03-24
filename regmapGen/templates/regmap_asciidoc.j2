@@ -22,16 +22,14 @@
 {% set tmp = namespace() %}
 
 {#- TEMPLATE #}
-== {{ title }}
+= {{ title }}
 
-Created with regmapGen v{{ regmapGen_ver }}.
+Автоматически сгенерировано с помощью программы regmapGen.
 
 {% if print_conventions %}
-=== Conventions
-
 [#table-Register_access_modes,cols="1,1", options="header"]
 |==========================
-| Access mode | Description
+| Тип доступа | Описание
 | rw          | Read and Write
 | rw1c        | Read and Write 1 to Clear
 | rw1s        | Read and Write 1 to Set
@@ -45,37 +43,46 @@ Created with regmapGen v{{ regmapGen_ver }}.
 {% endif %}
 
 [[register_map_summary]]
-=== Register map summary
+== Регистры и команды
 
-Base address: {{ "0x%08x" % config['base_address'] }}
+**Базовый адрес**
+
+{{ "0x%08x" % config['base_address'] }}
 
 [#table-Register_map,cols="1,1,1", options="header"]
 |==========================
-| Name | Address | Description
+| Имя регистра | Адрес | Описание
 {% for reg in rmap %}
 {{ "| %-24s | %-10s | %s" % ("<<%s>>" % (reg.name), literal(reg.address, config['address_width']), reg.description) }}
 {% endfor %}
 |==========================
 
-
 {% for reg in rmap %}
+
+\newpage
 
 [[{{ reg.name }}]]
 === {{ reg.name }}
 
+**Описание**
+
 {{ reg.description }}
 
-Address offset: {{ literal(reg.address, config['address_width']) }}
+**Смещение адреса**
 
-Reset value: {{ literal(reg.reset, config['data_width']) }}
+{{ literal(reg.address, config['address_width']) }}
+
+**Значение при сбросе**
+
+{{ literal(reg.reset, config['data_width']) }}
 
 {% if print_images %}
-image::{{ image_dir }}/{{ reg.name.lower()}}.svg[{{ reg.name.lower()}}]
+image::{{ image_dir }}/{{ reg.name.lower() }}.svg[]
 {% endif %}
 
 [#table-{{ reg.name }},cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 {% for bf in reg.bitfields[::-1] %}
 {{ "| %-16s | %-6s | %-15s | %-10s | %s" % (bf.name, range(bf), mode(bf), literal(bf.reset, bf.width), bf.description) }}
 {% endfor %}
@@ -84,17 +91,17 @@ image::{{ image_dir }}/{{ reg.name.lower()}}.svg[{{ reg.name.lower()}}]
 {% for bf in reg %}
     {% if bf.enums %}
 
-Enumerated values for {{ reg.name }}.{{ bf.name }}.
+Enumerated значения для {{ reg.name }}.{{ bf.name }}.
 
 [#table-{{ reg.name }}_{{ bf.name }}_enums,cols="1,1,1", options="header"]
 |==========================
-| Name | Bits | Description
+| Имя enum | Биты | Описание
             {% for enum in bf %}
 {{ "| %-16s | %-6s | %s" % (enum.name, literal(enum.value, bf.width), enum.description) }}
             {% endfor %}
 |==========================
     {% endif %}
 {% endfor %}
+: *Таблица {{ loop.index }}* - Описание полей регистра {{ reg.name }}
 
-Back to  <<register_map_summary>>
 {% endfor %}

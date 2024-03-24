@@ -24,12 +24,10 @@
 {#- TEMPLATE #}
 # {{ title }}
 
-Created with regmapGen v{{ regmapGen_ver }}.
+Автоматически сгенерировано с помощью программы regmapGen.
 
 {% if print_conventions %}
-## Conventions
-
-| Access mode | Description               |
+| Тип доступа | Описание                  |
 | :---------- | :------------------------ |
 | rw          | Read and Write            |
 | rw1c        | Read and Write 1 to Clear |
@@ -42,30 +40,41 @@ Created with regmapGen v{{ regmapGen_ver }}.
 | wosc        | Write Only / Self Clear   |
 {% endif %}
 
-## Register map summary
+## **Регистры и команды**
 
-Base address: {{ "0x%08x" % config['base_address'] }}
+**Базовый адрес**
 
-| Name                     | Address    | Description |
+{{ "0x%08x" % config['base_address'] }}
+
+| Имя регистра             | Адрес      | Описание    |
 | :---                     | :---       | :---        |
 {% for reg in rmap %}
 {{ "| %-24s | %-10s | %s" % ("[%s](#%s)" % (reg.name, reg.name.lower()), literal(reg.address, config['address_width']), reg.description) }} |
 {% endfor %}
+
 {% for reg in rmap %}
 
-## {{ reg.name }}
+\newpage
+
+### **{{ reg.name }}**
+
+**Описание**
 
 {{ reg.description }}
 
-Address offset: {{ literal(reg.address, config['address_width']) }}
+**Смещение адреса**
 
-Reset value: {{ literal(reg.reset, config['data_width']) }}
+{{ literal(reg.address, config['address_width']) }}
+
+**Значение при сбросе**
+
+{{ literal(reg.reset, config['data_width']) }}
 
 {% if print_images %}
-![{{ reg.name.lower()}}]({{ image_dir }}/{{ reg.name.lower()}}.svg)
+![]({{ image_dir }}/{{ reg.name.lower()}}.svg)
 {% endif %}
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
     {% set tmp.reserved_msb = config['data_width'] - 1 %}
     {% for bf in reg.bitfields[::-1] %}
@@ -80,15 +89,15 @@ Reset value: {{ literal(reg.reset, config['data_width']) }}
     {% for bf in reg %}
         {% if bf.enums %}
 
-Enumerated values for {{ reg.name }}.{{ bf.name }}.
+Enumerated значения для {{ reg.name }}.{{ bf.name }}.
 
-| Name             | Value   | Description |
-| :---             | :---    | :---        |
+| Имя enum         | Значение | Описание    |
+| :---             | :---     | :---        |
             {% for enum in bf %}
 {{ "| %-16s | %-6s | %s |" % (enum.name, literal(enum.value, bf.width), enum.description) }}
             {% endfor %}
         {% endif %}
     {% endfor %}
+: *Таблица {{ loop.index }}* - Описание полей регистра {{ reg.name }}
 
-Back to [Register map](#register-map-summary).
 {% endfor %}
