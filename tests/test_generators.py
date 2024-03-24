@@ -6,7 +6,7 @@
 
 import pytest
 from regmapGen import RegisterMap, generators, config, utils
-
+from docx import Document
 
 class TestJson:
     """Class 'generators.Json' testing."""
@@ -82,7 +82,6 @@ class TestSystemVerilog:
         assert 'endmodule' in raw_str
 
 
-
 class TestSystemVerilogHeader:
     """Class 'generators.SystemVerilogHeader' testing."""
 
@@ -129,6 +128,7 @@ class TestLbBridgeSystemVerilog:
         """Test of creating SPI to LocalBus module in SystemVerilog"""
         self._test(tmpdir, 'spi2lb.sv', 'spi', 'SPI to Local Bus bridge')
 
+
 class TestMarkdown:
     """Class 'generators.Markdown' testing."""
 
@@ -161,6 +161,26 @@ class TestAsciidoc:
         with open(adoc_path, 'r') as f:
             raw_str = ''.join(f.readlines())
         assert '== Регистры и команды' in raw_str
+
+
+class TestDocx:
+    """Class 'generators.Docx' testing."""
+
+    def test_docx(self, tmpdir):
+        """Test of creating markdown regmap file."""
+        md_path = str(tmpdir.join('regs.md'))
+        print('md_path:', md_path)
+        docx_path = str(tmpdir.join('regs.docx'))
+        print('docx_path:', docx_path)
+        # create regmap
+        rmap = utils.create_template()
+        # write output file
+        generators.Markdown(rmap, md_path).generate()
+        generators.Docx(rmap, docx_path, md_path).generate()
+        # read file and verify
+        doc = Document(docx_path)
+        text = '\n'.join([paragraph.text for paragraph in doc.paragraphs])
+        assert 'Регистры и команды' in text
 
 
 class TestPython:
