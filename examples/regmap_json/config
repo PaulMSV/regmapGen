@@ -51,7 +51,7 @@ generator = Asciidoc
 
 [docx_doc]
 path = doc/regs.docx
-name_md = regs.md
+input_md = regs.md
 pandoc_args = 
 generator = Docx
 
