@@ -1,12 +1,10 @@
-== Register map
+= Register map
 
-Created with regmapGen vgit-latest.
-
-=== Conventions
+Автоматически сгенерировано с помощью программы regmapGen.
 
 [#table-Register_access_modes,cols="1,1", options="header"]
 |==========================
-| Access mode | Description
+| Тип доступа | Описание
 | rw          | Read and Write
 | rw1c        | Read and Write 1 to Clear
 | rw1s        | Read and Write 1 to Set
@@ -19,13 +17,15 @@ Created with regmapGen vgit-latest.
 |==========================
 
 [[register_map_summary]]
-=== Register map summary
+== Регистры и команды
 
-Base address: 0x00000000
+**Базовый адрес**
+
+0x00000000
 
 [#table-Register_map,cols="1,1,1", options="header"]
 |==========================
-| Name | Address | Description
+| Имя регистра | Адрес | Описание
 | <<DATA>>                 | 0x0000     | Data register
 | <<CTRL>>                 | 0x0004     | Control register
 | <<STATUS>>               | 0x0008     | Status register
@@ -33,83 +33,114 @@ Base address: 0x00000000
 |==========================
 
 
+\newpage
 
 [[DATA]]
 === DATA
 
+**Описание**
+
 Data register
 
-Address offset: 0x0000
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0000
 
-image::adoc_img/data.svg[data]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/data.svg[]
 
 [#table-DATA,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | val              | 31:0   | rw              | 0x00000000 | Value of the register
 |==========================
 
+: *Таблица 1* - Описание полей регистра DATA
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[CTRL]]
 === CTRL
 
+**Описание**
+
 Control register
 
-Address offset: 0x0004
+**Смещение адреса**
 
-Reset value: 0x00000100
+0x0004
 
-image::adoc_img/ctrl.svg[ctrl]
+**Значение при сбросе**
+
+0x00000100
+
+image::adoc_img/ctrl.svg[]
 
 [#table-CTRL,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | val              | 15:0   | rw              | 0x0100     | Value of the register
 |==========================
 
+: *Таблица 2* - Описание полей регистра CTRL
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[STATUS]]
 === STATUS
 
+**Описание**
+
 Status register
 
-Address offset: 0x0008
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0008
 
-image::adoc_img/status.svg[status]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/status.svg[]
 
 [#table-STATUS,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | val              | 7:0    | ro              | 0x00       | Value of the register
 |==========================
 
+: *Таблица 3* - Описание полей регистра STATUS
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[START]]
 === START
 
+**Описание**
+
 Start register
 
-Address offset: 0x0100
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0100
 
-image::adoc_img/start.svg[start]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/start.svg[]
 
 [#table-START,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | val              | 0      | wosc            | 0x0        | Value of the register
 |==========================
 
+: *Таблица 4* - Описание полей регистра START
 
-Back to  <<register_map_summary>>

@@ -1,10 +1,8 @@
 # Register map
 
-Created with regmapGen vgit-latest.
+Автоматически сгенерировано с помощью программы regmapGen.
 
-## Conventions
-
-| Access mode | Description               |
+| Тип доступа | Описание                  |
 | :---------- | :------------------------ |
 | rw          | Read and Write            |
 | rw1c        | Read and Write 1 to Clear |
@@ -16,11 +14,13 @@ Created with regmapGen vgit-latest.
 | wo          | Write only                |
 | wosc        | Write Only / Self Clear   |
 
-## Register map summary
+## **Регистры и команды**
 
-Base address: 0x00000000
+**Базовый адрес**
 
-| Name                     | Address    | Description |
+0x00000000
+
+| Имя регистра             | Адрес      | Описание    |
 | :---                     | :---       | :---        |
 | [DATA](#data)            | 0x0000     | Data register |
 | [STAT](#stat)            | 0x0004     | Status register |
@@ -29,54 +29,79 @@ Base address: 0x00000000
 | [INTSTAT](#intstat)      | 0x0010     | Interrupt status register |
 | [ID](#id)                | 0x0ffc     | IP-core ID register |
 
-## DATA
+
+\newpage
+
+### **DATA**
+
+**Описание**
 
 Data register
 
-Address offset: 0x0000
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0000
+
+**Значение при сбросе**
+
+0x00000000
 
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:18  | -               | 0x000      | Reserved |
 | PERR             | 17     | rolh            | 0x0        | Parity error flag. Read to clear. |
 | FERR             | 16     | rolh            | 0x0        | Frame error flag. Read to clear. |
 | -                | 15:8   | -               | 0x00       | Reserved |
 | FIFO             | 7:0    | rw              | 0x00       | Write to push value to TX FIFO, read to get data from RX FIFO |
+: *Таблица 1* - Описание полей регистра DATA
 
-Back to [Register map](#register-map-summary).
 
-## STAT
+\newpage
+
+### **STAT**
+
+**Описание**
 
 Status register
 
-Address offset: 0x0004
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0004
+
+**Значение при сбросе**
+
+0x00000000
 
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:6   | -               | 0x000000   | Reserved |
 | TXF              | 5      | ro              | 0x0        | TX FIFO is full |
 | RXE              | 4      | ro              | 0x0        | RX FIFO is empty |
 | -                | 3:1    | -               | 0x0        | Reserved |
 | BUSY             | 0      | ro              | 0x0        | Transciever is busy |
+: *Таблица 2* - Описание полей регистра STAT
 
-Back to [Register map](#register-map-summary).
 
-## CTRL
+\newpage
+
+### **CTRL**
+
+**Описание**
 
 Control register
 
-Address offset: 0x0008
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0008
+
+**Значение при сбросе**
+
+0x00000000
 
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:7   | -               | 0x000000   | Reserved |
 | TXST             | 6      | wosc            | 0x0        | Force transmission start |
@@ -85,61 +110,85 @@ Reset value: 0x00000000
 | -                | 3:2    | -               | 0x0        | Reserved |
 | BAUD             | 1:0    | rw              | 0x0        | Baudrate value |
 
-Enumerated values for CTRL.BAUD.
+Enumerated значения для CTRL.BAUD.
 
-| Name             | Value   | Description |
-| :---             | :---    | :---        |
+| Имя enum         | Значение | Описание    |
+| :---             | :---     | :---        |
 | B9600            | 0x0    | 9600 baud |
 | B38400           | 0x1    | 38400 baud |
 | B115200          | 0x2    | 115200 baud |
+: *Таблица 3* - Описание полей регистра CTRL
 
-Back to [Register map](#register-map-summary).
 
-## LPMODE
+\newpage
+
+### **LPMODE**
+
+**Описание**
 
 Low power mode control
 
-Address offset: 0x000c
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x000c
+
+**Значение при сбросе**
+
+0x00000000
 
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | EN               | 31     | rw              | 0x0        | Low power mode enable |
 | -                | 30:8   | -               | 0x00000    | Reserved |
 | DIV              | 7:0    | rw              | 0x00       | Clock divider in low power mode |
+: *Таблица 4* - Описание полей регистра LPMODE
 
-Back to [Register map](#register-map-summary).
 
-## INTSTAT
+\newpage
+
+### **INTSTAT**
+
+**Описание**
 
 Interrupt status register
 
-Address offset: 0x0010
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0010
+
+**Значение при сбросе**
+
+0x00000000
 
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:2   | -               | 0x0000000  | Reserved |
 | RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear. |
 | TX               | 0      | rw1c            | 0x0        | Transmitter interrupt flag. Write 1 to clear. |
+: *Таблица 5* - Описание полей регистра INTSTAT
 
-Back to [Register map](#register-map-summary).
 
-## ID
+\newpage
+
+### **ID**
+
+**Описание**
 
 IP-core ID register
 
-Address offset: 0x0ffc
+**Смещение адреса**
 
-Reset value: 0xcafe0666
+0x0ffc
+
+**Значение при сбросе**
+
+0xcafe0666
 
 
-| Name             | Bits   | Mode            | Reset      | Description |
+| Имя поля         | Биты   | Тип             | Reset      | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | UID              | 31:0   | ro              | 0xcafe0666 | Unique ID |
+: *Таблица 6* - Описание полей регистра ID
 
-Back to [Register map](#register-map-summary).

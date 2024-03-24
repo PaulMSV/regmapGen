@@ -49,3 +49,9 @@ image_dir = adoc_img
 print_conventions = True
 generator = Asciidoc
 
+[docx_doc]
+path = doc/regs.docx
+name_md = regs.md
+pandoc_args = 
+generator = Docx
+

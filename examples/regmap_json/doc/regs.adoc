@@ -1,12 +1,10 @@
-== Register map
+= Register map
 
-Created with regmapGen vgit-latest.
-
-=== Conventions
+Автоматически сгенерировано с помощью программы regmapGen.
 
 [#table-Register_access_modes,cols="1,1", options="header"]
 |==========================
-| Access mode | Description
+| Тип доступа | Описание
 | rw          | Read and Write
 | rw1c        | Read and Write 1 to Clear
 | rw1s        | Read and Write 1 to Set
@@ -19,13 +17,15 @@ Created with regmapGen vgit-latest.
 |==========================
 
 [[register_map_summary]]
-=== Register map summary
+== Регистры и команды
 
-Base address: 0x00000000
+**Базовый адрес**
+
+0x00000000
 
 [#table-Register_map,cols="1,1,1", options="header"]
 |==========================
-| Name | Address | Description
+| Имя регистра | Адрес | Описание
 | <<DATA>>                 | 0x0004     | Data register
 | <<STAT>>                 | 0x000c     | Status register
 | <<CTRL>>                 | 0x0010     | Control register
@@ -35,65 +35,88 @@ Base address: 0x00000000
 |==========================
 
 
+\newpage
 
 [[DATA]]
 === DATA
 
+**Описание**
+
 Data register
 
-Address offset: 0x0004
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0004
 
-image::adoc_img/data.svg[data]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/data.svg[]
 
 [#table-DATA,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | PERR             | 17     | rolh            | 0x0        | Parity error flag. Read to clear.
 | FERR             | 16     | rolh            | 0x0        | Frame error flag. Read to clear.
 | FIFO             | 7:0    | rw              | 0x00       | Write to push value to TX FIFO, read to get data from RX FIFO
 |==========================
 
+: *Таблица 1* - Описание полей регистра DATA
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[STAT]]
 === STAT
 
+**Описание**
+
 Status register
 
-Address offset: 0x000c
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x000c
 
-image::adoc_img/stat.svg[stat]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/stat.svg[]
 
 [#table-STAT,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | TXF              | 8      | ro              | 0x0        | TX FIFO is full
 | RXE              | 4      | ro              | 0x0        | RX FIFO is empty
 | BUSY             | 2      | ro              | 0x0        | Transciever is busy
 |==========================
 
+: *Таблица 2* - Описание полей регистра STAT
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[CTRL]]
 === CTRL
 
+**Описание**
+
 Control register
 
-Address offset: 0x0010
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0010
 
-image::adoc_img/ctrl.svg[ctrl]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/ctrl.svg[]
 
 [#table-CTRL,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | TXST             | 6      | wosc            | 0x0        | Force transmission start
 | RXEN             | 5      | rw              | 0x0        | Receiver enable. Can be disabled by hardware on error.
 | TXEN             | 4      | rw              | 0x0        | Transmitter enable. Can be disabled by hardware on error.
@@ -101,76 +124,100 @@ image::adoc_img/ctrl.svg[ctrl]
 |==========================
 
 
-Enumerated values for CTRL.BAUD.
+Enumerated значения для CTRL.BAUD.
 
 [#table-CTRL_BAUD_enums,cols="1,1,1", options="header"]
 |==========================
-| Name | Bits | Description
+| Имя enum | Биты | Описание
 | B9600            | 0x0    | 9600 baud
 | B38400           | 0x1    | 38400 baud
 | B115200          | 0x2    | 115200 baud
 |==========================
+: *Таблица 3* - Описание полей регистра CTRL
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[LPMODE]]
 === LPMODE
 
+**Описание**
+
 Low power mode control
 
-Address offset: 0x0014
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0014
 
-image::adoc_img/lpmode.svg[lpmode]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/lpmode.svg[]
 
 [#table-LPMODE,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | EN               | 31     | rw              | 0x0        | Low power mode enable
 | DIV              | 7:0    | rw              | 0x00       | Clock divider in low power mode
 |==========================
 
+: *Таблица 4* - Описание полей регистра LPMODE
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[INTSTAT]]
 === INTSTAT
 
+**Описание**
+
 Interrupt status register
 
-Address offset: 0x0020
+**Смещение адреса**
 
-Reset value: 0x00000000
+0x0020
 
-image::adoc_img/intstat.svg[intstat]
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/intstat.svg[]
 
 [#table-INTSTAT,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear.
 | TX               | 0      | rw1c            | 0x0        | Transmitter interrupt flag. Write 1 to clear.
 |==========================
 
+: *Таблица 5* - Описание полей регистра INTSTAT
 
-Back to  <<register_map_summary>>
+
+\newpage
 
 [[ID]]
 === ID
 
+**Описание**
+
 IP-core ID register
 
-Address offset: 0x0040
+**Смещение адреса**
 
-Reset value: 0xcafe0666
+0x0040
 
-image::adoc_img/id.svg[id]
+**Значение при сбросе**
+
+0xcafe0666
+
+image::adoc_img/id.svg[]
 
 [#table-ID,cols="1,1,1,1,1", options="header"]
 |==========================
-| Name | Bits | Mode | Reset | Description
+| Имя поля | Биты | Тип | Значение | Описание
 | UID              | 31:0   | ro              | 0xcafe0666 | Unique ID
 |==========================
 
+: *Таблица 6* - Описание полей регистра ID
 
-Back to  <<register_map_summary>>
