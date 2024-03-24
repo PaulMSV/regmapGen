@@ -15,6 +15,8 @@ from .regmap import RegisterMap
 from pathlib import Path
 import wavedrom
 import subprocess
+import pandas as pd
+from ruamel.yaml import YAML
 
 class Generator():
     """Base generator class.
@@ -511,18 +513,18 @@ class Docx(Generator):
 
     :param rmap: Register map object
     :type rmap: :class:`regmapGen.RegisterMap`
-    :param name_md: Path to the input Markdown file
-    :type name_md: str
+    :param input_md: Path to the input Markdown file
+    :type input_md: str
     :param path: Path to the output DOCX file
     :type path: str
     :param pandoc_args: Additional arguments for Pandoc command-line tool
     :type pandoc_args: str or list
     """
 
-    def __init__(self, rmap=None, name_md='regs.md', path='regs.docx', pandoc_args=None, **args):
+    def __init__(self, rmap=None, path='regs.docx', input_md='regs.md', pandoc_args=None, **args):
         super().__init__(rmap, **args)
         self.path = path
-        self.name_md = name_md
+        self.input_md = input_md
         self.pandoc_args = pandoc_args if pandoc_args else ''
 
     def generate(self):
@@ -537,7 +539,7 @@ class Docx(Generator):
             os.chdir(os.path.dirname(self.path))
             
             # Convert Markdown to Docx using Pandoc
-            command = ['pandoc', '-s', '-o', os.path.basename(self.path), self.name_md]
+            command = ['pandoc', '-s', '-o', os.path.basename(self.path), self.input_md]
             if self.pandoc_args:
                 if isinstance(self.pandoc_args, str):
                     command.extend(self.pandoc_args.split())  # If pandoc_args is a string, split it by spaces
@@ -550,6 +552,89 @@ class Docx(Generator):
         finally:
             # Change back to the original directory
             os.chdir(current_dir)
+
+
+class Xls2Yaml(Generator):
+    """Convert Excel table to YAML format.
+
+    :param rmap: Register map object
+    :type rmap: :class:`regmapGen.RegisterMap`
+    :param input_xls: Path to the input Excel file
+    :type input_xls: str
+    :param path: Path to the output YAML file
+    :type path: str
+    """
+
+    def __init__(self, rmap=None, path='regs.yaml', input_xls="regs.xls", **args):
+        super().__init__(rmap, **args)
+        self.path = path
+        self.input_xls = input_xls
+        self.regmap = []
+
+    def load_excel_data(self):
+        """Load data from the input Excel file."""
+        self.df = pd.read_excel(self.input_xls)
+
+    def process_excel_data(self):
+        """Process the loaded Excel data and convert it to YAML format."""
+        current_register = None
+        for index, row in self.df.iterrows():
+            register_name = str(row["Register Name"]).lower() if pd.notnull(row["Register Name"]) else None
+            field_name = str(row["Field Name"]).lower() if pd.notnull(row["Field Name"]) else None
+
+            if register_name and any(keyword in register_name for keyword in ["-", "reserved", "unused", "not_used"]) or \
+                    field_name and any(keyword in field_name for keyword in ["-", "reserved", "unused", "not_used"]):
+                continue
+
+            if pd.notnull(row["Register Name"]):
+                if current_register:
+                    self.regmap.append(current_register)
+                current_register = {
+                    "name": row["Register Name"],
+                    "description": row["Description"],
+                    "address": int(row["Offset"], 16),
+                    "bitfields": []
+                }
+            elif pd.notnull(row["Field Name"]):
+                current_bitfield = {
+                    "name": row["Field Name"],
+                    "description": row["Description"],
+                    "reset": int(row["Value"], 16) if isinstance(row["Value"], str) and row["Value"].startswith("0x") else row["Value"],
+                    "width": int(row["Width"]),
+                    "lsb": int(str(row["Offset"]), 16),
+                    "access": row["Access"],
+                    "hardware": row["_hwAccess_"] if "_hwAccess_" in row else None,
+                    "enums": [] if pd.isnull(row["Enum Name"]) else [{
+                        "name": row["Enum Name"],
+                        "description": row["Description"],
+                        "value": row["Value"]
+                    }]
+                }
+                current_register["bitfields"].append(current_bitfield)
+            elif pd.isnull(row["Field Name"]):
+                if pd.notnull(row["Enum Name"]):
+                    current_bitfield["enums"].append({
+                        "name": row["Enum Name"],
+                        "description": row["Description"],
+                        "value": row["Value"]
+                    })
+        if current_register:
+            self.regmap.append(current_register)
+
+    def write_to_yaml(self):
+        """Write the processed data to the output YAML file."""
+        yaml = YAML()
+        yaml.explicit_start = False
+        with open(self.path, "w", encoding="utf-8") as f:
+            yaml.dump({"regmap": self.regmap}, f)
+        print("... yaml generation from Excel table completed!")
+
+    def generate(self):
+        """Generate YAML file from the Excel input."""
+        self.load_excel_data()
+        self.process_excel_data()
+        self.write_to_yaml()
+
 
 class Python(Generator, Jinja2):
     """Create Python file to access register map via some interface.
