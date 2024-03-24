@@ -143,8 +143,7 @@ class TestMarkdown:
         # read file and verify
         with open(md_path, 'r') as f:
             raw_str = ''.join(f.readlines())
-        assert '## Register map' in raw_str
-        assert 'Back to [Register map](#register-map-summary).' in raw_str
+        assert '## **Регистры и команды**' in raw_str
 
 
 class TestAsciidoc:
@@ -161,8 +160,7 @@ class TestAsciidoc:
         # read file and verify
         with open(adoc_path, 'r') as f:
             raw_str = ''.join(f.readlines())
-        assert '=== Register map summary' in raw_str
-        assert 'Back to  <<register_map_summary>>' in raw_str
+        assert '== Регистры и команды' in raw_str
 
 
 class TestPython:

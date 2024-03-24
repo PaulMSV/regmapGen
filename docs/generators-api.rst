@@ -100,6 +100,14 @@ Asciidoc
    :inherited-members:
    :show-inheritance:
 
+Docx
+========
+.. autoclass:: regmapGen.generators.Docx
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
 Python
 ======
 .. autoclass:: regmapGen.generators.Python

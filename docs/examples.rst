@@ -75,7 +75,9 @@
 Генерация документации
 ----------------------
 
-В примере ниже в таргетах ``[md_doc]`` и ``[asciidoc_doc]`` из YAML-файла сгенерируется документации в Markdown и AsciiDoc форматах, соответственно.
+В примере ниже в таргетах ``[md_doc]`` и ``[asciidoc_doc]`` из YAML-файла сгенерируется документации в Markdown и AsciiDoc форматах, соответственно. 
+
+Таргет ``[docx_doc]`` из сгенерированного Markdown файла сгенерирует Microsoft Word Docx документ. При этом в его опциях указаны LUA-фильтр (для того, чтобы описание каждого регистра начиналось с новой страницы) и Reference-документ (для того, чтобы применить к документу стили, разметку, форматирование и так далее из шаблона ``ref.docx``). Возможны также любые другие аргументы командной строки, поддерживаемые Pandoc.
 
 .. code-block:: ini
 
@@ -105,10 +107,22 @@
     print_conventions = True
     generator = Asciidoc
 
-Для конвертации документов в любой другой формат можно использовать Pandoc. 
+    [docx_doc]
+    path = doc/regs.docx
+    name_md = regs.md
+    pandoc_args = --lua-filter=pagebreak.lua --reference-doc=ref.docx
+    generator = Docx
 
-Для получения docx документа в терминале необходимо выполнить:
+Для конвертации документов в любой другой формат можно использовать `Pandoc <https://pandoc.org/>`_.
 
 .. code-block:: bash
 
-    pandoc -s -o regs.docx regs.md
+    pandoc -s regs.md -o regs.pdf
+
+Для конвертации Asciidoc в MS docx формат необходимо сначала использовать утилиту asciidoctor а затем Pandoc:
+
+.. code-block:: bash
+
+    asciidoctor -b docbook -o regs.xml regs.adoc
+    pandoc -f docbook -t markdown -o regs.md regs.xml
+    pandoc -s regs.md -o regs.docx

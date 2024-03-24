@@ -14,7 +14,7 @@ from . import config
 from .regmap import RegisterMap
 from pathlib import Path
 import wavedrom
-
+import subprocess
 
 class Generator():
     """Base generator class.
@@ -101,10 +101,10 @@ class Wavedrom():
         imgdir.mkdir(exist_ok=True)
 
         bits = config.globcfg['data_width']
-        lanes = bits // 16 if bits > 16 else 1
+        lanes = bits // 8 if bits > 8 else 1
         for reg in rmap:
             reg_wd = {"reg": [],
-                      "config": {"bits": bits, "lanes": lanes, "fontsize": 10}}
+                      "config": {"bits": bits, "lanes": lanes, "fontsize": 14, "vspace": 100, "fontfamily": 'Arial'}}
             bit_pos = -1
             for bf in reg:
                 if bit_pos == -1 and bf.lsb > 0:
@@ -112,9 +112,9 @@ class Wavedrom():
                 elif bf.lsb - bit_pos > 1:
                     reg_wd["reg"].append({"bits": bf.lsb - bit_pos - 1})
                 name = bf.name
-                name_max_len = 5 * bf.width
-                if len(bf.name) > name_max_len:  # to prevent labels overlapping
-                    name = bf.name[:name_max_len - 1] + '..'
+                #name_max_len = 5 * bf.width
+                #if len(bf.name) > name_max_len:  # to prevent labels overlapping
+                #    name = bf.name[:name_max_len - 1] + '..'
                 reg_wd["reg"].append({"name": name, "attr": bf.access, "bits": bf.width})
                 bit_pos = bf.msb
             if (bits - 1) > bit_pos:
@@ -505,6 +505,51 @@ class Asciidoc(Generator, Jinja2, Wavedrom):
         if self.print_images:
             self.draw_regs(Path(self.path).parent / self.image_dir, self.rmap)
 
+
+class Docx(Generator):
+    """Create documentation in Docx from Markdown using Pandoc.
+
+    :param rmap: Register map object
+    :type rmap: :class:`regmapGen.RegisterMap`
+    :param name_md: Path to the input Markdown file
+    :type name_md: str
+    :param path: Path to the output DOCX file
+    :type path: str
+    :param pandoc_args: Additional arguments for Pandoc command-line tool
+    :type pandoc_args: str or list
+    """
+
+    def __init__(self, rmap=None, name_md='regs.md', path='regs.docx', pandoc_args=None, **args):
+        super().__init__(rmap, **args)
+        self.path = path
+        self.name_md = name_md
+        self.pandoc_args = pandoc_args if pandoc_args else ''
+
+    def generate(self):
+        # Validate parameters
+        self.validate()
+
+        # Save current directory
+        current_dir = os.getcwd()
+        
+        try:
+            # Change directory to the specified path
+            os.chdir(os.path.dirname(self.path))
+            
+            # Convert Markdown to Docx using Pandoc
+            command = ['pandoc', '-s', '-o', os.path.basename(self.path), self.name_md]
+            if self.pandoc_args:
+                if isinstance(self.pandoc_args, str):
+                    command.extend(self.pandoc_args.split())  # If pandoc_args is a string, split it by spaces
+                else:
+                    command.extend(self.pandoc_args)  # Otherwise, add the arguments as they are
+            subprocess.run(command, check=True)
+            print("... docx document generated successfully!")
+        except subprocess.CalledProcessError as e:
+            print(f"... docx document error generating: {e}")
+        finally:
+            # Change back to the original directory
+            os.chdir(current_dir)
 
 class Python(Generator, Jinja2):
     """Create Python file to access register map via some interface.
