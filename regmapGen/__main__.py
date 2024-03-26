@@ -137,6 +137,16 @@ def app(args):
     print("... read configuration file '%s'" % config_path)
     globcfg, targets = regmapGen.config.read_config(config_path)
 
+    # Execute Xls2Yaml target if present, before anything else
+    pre_target = next((target for target in targets.values() if target.get('generator') == 'Xls2Yaml'), None)
+    pre_target_name = next((key for key, value in targets.items() if value.get('generator') == 'Xls2Yaml'), None)
+    if pre_target:
+        # Generate YAML from Excel before reading regmap
+        print("... make '%s': Xls2Yaml -> '%s':" % (pre_target_name, pre_target.get('path')))
+        regmapGen.generators.Xls2Yaml(path=pre_target.get('path'), input_xls=pre_target.get('input_xls')).generate()
+        # Remove Xls2Yaml target from targets to avoid its re-execution in make targets section
+        targets.pop(pre_target_name, None)
+
     # check if regiter map file path was provided
     if args.regmap_path:
         regmap_path = Path(args.regmap_path)
@@ -152,6 +162,7 @@ def app(args):
         # check it existance
         if not regmap_path.is_file():
             die("Can't find register map file '%s'!" % regmap_path)
+
         # try to read it
         print("... read register map file '%s'" % regmap_path)
         rmap = regmapGen.RegisterMap()
