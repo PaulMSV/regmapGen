@@ -3,4 +3,8 @@ sphinx_rtd_theme
 m2r2
 sphinxcontrib-wavedrom
 pyyaml>=5.1
+ruamel.yaml
 jinja2
+python-docx
+pandas
+numpy
