@@ -16,7 +16,9 @@ from pathlib import Path
 import wavedrom
 import subprocess
 import pandas as pd
+from ruamel.yaml.scalarstring import PreservedScalarString as pss
 from ruamel.yaml import YAML
+import numpy as np
 
 class Generator():
     """Base generator class.
@@ -571,6 +573,39 @@ class Xls2Yaml(Generator):
         self.input_xls = input_xls
         self.regmap = []
 
+    def replace_nan_to_empty(self, value):
+        """Replace .NaN to empty field rows recursivly."""
+        if isinstance(value, dict):
+            return {k: self.replace_nan_to_empty(v) for k, v in value.items()}
+        elif isinstance(value, list):
+            return [self.replace_nan_to_empty(v) for v in value]
+        elif isinstance(value, float) and np.isnan(value):
+            return ''
+        else:
+            return value
+
+    def preserve_multiline_strings(self, data):
+        """Turn multiline strings into PreservedScalarString objects recursivly."""
+        if isinstance(data, dict):
+            return {k: self.preserve_multiline_strings(v) for k, v in data.items()}
+        elif isinstance(data, list):
+            return [self.preserve_multiline_strings(v) for v in data]
+        elif isinstance(data, str) and '\n' in data:
+            return pss(data)
+        else:
+            return data
+
+    def flatten_multiline_strings(self, data):
+        """Convert multiline strings into single line strings recursively."""
+        if isinstance(data, dict):
+            return {k: self.flatten_multiline_strings(v) for k, v in data.items()}
+        elif isinstance(data, list):
+            return [self.flatten_multiline_strings(v) for v in data]
+        elif isinstance(data, str) and '\n' in data:
+            return data.replace('\n', ' ')
+        else:
+            return data
+
     def load_excel_data(self):
         """Load data from the input Excel file."""
         self.df = pd.read_excel(self.input_xls)
@@ -625,9 +660,10 @@ class Xls2Yaml(Generator):
         """Write the processed data to the output YAML file."""
         yaml = YAML()
         yaml.explicit_start = False
+        regmap_cleaned = self.flatten_multiline_strings(self.replace_nan_to_empty(self.regmap))
         with open(self.path, "w", encoding="utf-8") as f:
-            yaml.dump({"regmap": self.regmap}, f)
-        print("... yaml generation from Excel table completed!")
+            yaml.dump({"regmap": regmap_cleaned}, f)
+        print("... yaml file from Excel table generated successfully!")
 
     def generate(self):
         """Generate YAML file from the Excel input."""
