@@ -46,7 +46,7 @@
 
 {{ "0x%08x" % config['base_address'] }}
 
-| Имя регистра             | Адрес      | Описание    |
+| Регистр                  | Адрес      | Описание    |
 | :---                     | :---       | :---        |
 {% for reg in rmap %}
 {{ "| %-24s | %-10s | %s" % ("[%s](#%s)" % (reg.name, reg.name.lower()), literal(reg.address, config['address_width']), reg.description) }} |
@@ -74,7 +74,7 @@
 ![]({{ image_dir }}/{{ reg.name.lower()}}.svg)
 {% endif %}
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
     {% set tmp.reserved_msb = config['data_width'] - 1 %}
     {% for bf in reg.bitfields[::-1] %}
@@ -91,7 +91,7 @@
 
 Enumerated значения для {{ reg.name }}.{{ bf.name }}.
 
-| Имя enum         | Значение | Описание    |
+| Enum             | Значение | Описание    |
 | :---             | :---     | :---        |
             {% for enum in bf %}
 {{ "| %-16s | %-6s | %s |" % (enum.name, literal(enum.value, bf.width), enum.description) }}

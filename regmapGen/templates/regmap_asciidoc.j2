@@ -51,7 +51,7 @@
 
 [#table-Register_map,cols="1,1,1", options="header"]
 |==========================
-| Имя регистра | Адрес | Описание
+| Регистр | Адрес | Описание
 {% for reg in rmap %}
 {{ "| %-24s | %-10s | %s" % ("<<%s>>" % (reg.name), literal(reg.address, config['address_width']), reg.description) }}
 {% endfor %}
@@ -82,7 +82,7 @@ image::{{ image_dir }}/{{ reg.name.lower() }}.svg[]
 
 [#table-{{ reg.name }},cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 {% for bf in reg.bitfields[::-1] %}
 {{ "| %-16s | %-6s | %-15s | %-10s | %s" % (bf.name, range(bf), mode(bf), literal(bf.reset, bf.width), bf.description) }}
 {% endfor %}
@@ -95,7 +95,7 @@ Enumerated значения для {{ reg.name }}.{{ bf.name }}.
 
 [#table-{{ reg.name }}_{{ bf.name }}_enums,cols="1,1,1", options="header"]
 |==========================
-| Имя enum | Биты | Описание
+| Enum | Биты | Описание
             {% for enum in bf %}
 {{ "| %-16s | %-6s | %s" % (enum.name, literal(enum.value, bf.width), enum.description) }}
             {% endfor %}

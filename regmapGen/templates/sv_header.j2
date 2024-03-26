@@ -2,8 +2,6 @@
 {% macro module_prefix() %}
     {%- if prefix %}
 {{ prefix }}_
-    {%- else %}
-{{ file_name }}_
     {%- endif %}
 {%- endmacro %}
 
