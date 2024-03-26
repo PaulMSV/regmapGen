@@ -1,7 +1,7 @@
 import setuptools
 from pkg_resources import parse_version
 
-VERSION = "1.0.4"
+VERSION = "1.0.0"
 
 
 # Based on https://github.com/tulip-control/dd/blob/885a716a56e82bfee54b0178d0ce38298b85eb6a/setup.py#L68
@@ -35,8 +35,11 @@ def git_version(version):
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+with open("docs/requirements.txt", "r") as f:
+    requirements = f.read().splitlines()
+
 # Get version
-VERSION_FILE = 'corsair/_version.py'
+VERSION_FILE = 'regmapGen/_version.py'
 try:
     version = git_version(VERSION)
 except AssertionError:
@@ -47,29 +50,25 @@ with open(VERSION_FILE, 'w') as f:
 
 # Install package
 setuptools.setup(
-    name="corsair",
+    name="regmapGen",
     version=version,
-    author="esynr3z",
-    author_email="esynr3z@gmail.com",
-    description="Control and Status Register map generator for FPGA/ASIC projects",
+    author="paulmsv",
+    author_email="bobkovpg@gmail.com",
+    description="Генератор Регистровой Карты",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/esynr3z/corsair",
+    url="https://github.com/paulmsv/regmapGen",
     project_urls={
-        'Documentation': 'https://corsair.readthedocs.io'
+        'Documentation': 'https://regmapGen.readthedocs.io'
     },
     packages=setuptools.find_packages(exclude='tests'),
-    package_data={'corsair': ['templates/*.j2']},
+    package_data={'regmapGen': ['templates/*.j2']},
     entry_points={
         'console_scripts': [
-            'corsair = corsair.__main__:main',
+            'regmapGen = regmapGen.__main__:main',
         ],
     },
-    install_requires=[
-        'pyyaml>=5.1',
-        'jinja2',
-        'wavedrom',
-    ],
+    install_requires=requirements,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
