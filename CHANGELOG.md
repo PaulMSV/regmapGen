@@ -1,69 +1,48 @@
-## 1.0.4 (2023-03-17)
+## 0.8.0 (26-03-2024) 
+* Добавлена возможность запускать Xls2Yaml генератора до выполнения всех таргетов
+* Исправлен баг с многострочными описаниями в Xls2Yaml генераторе
+* Исправлены Jinja2 шаблоны
 
-* Fix rolh/roll missing latch bug
-* Fix constants comparison on address in vhdl
-* Fix C/C++ header generation
+## 0.7.0 (25-03-2024) 
+* Добавлен генератор YAML файла из Excel таблицы
+* Добавлен тест для генератора Docx
 
-## 1.0.3 (2023-03-06)
+## 0.6.0 (24-03-2024) 
+* Добавлен генератор DOCX документа
+* Изменены параметры Wavedrom генератора (шрифт - Arial, vspace увеличен, разбиение на 8 полей вместо 16)
 
-* Various bug fixes
+## 0.5.0 (23-03-2024) 
+* По умолчанию CSR префикс убран из тестов, документации, примеров, скриптов
+* Шаблоны j2 для Markdown и Asciidoc переведены на русский и улучшены
+* Добавлен LUA-фильтр для имплементации \newpage в Markdown документ
 
-## 1.0.2 (2021-09-26)
+## 0.4.0 (22-03-2024)
 
-* Fix overlapping of bitfiled names in rendered images for registers
+* Имплементирован мост (Bridge) из SPI в LocalBus на SystemVerilog
+* Исправлены некоторые баги
+* Обновлена документация
 
-## 1.0.1 (2021-09-08)
+## 0.3.0 (21-03-2024)
 
-* Fix an issue where the input globconfig file was not being applied to generators
+* Добавлена поддержка enums
+* Добавлен генератор C header generator
+* Добавлен генератор SystemVerilog header
+* Добавлен генератор SystemVerilog package
+* Добавлена возможность встраивать интерфейсы  шин (AXI-Lite, APB, Avalon-MM) в карту регистров
 
-## 1.0.0 (2021-09-03)
+## 0.2.0 (20-03-2024)
 
-**Reworking the entire project almost from scratch. Lots of breaking changes.**
+* Добавлены генераторы документации
+* Установлено и настроено окружение для HDL тестов
+* Имплементирован мост (Bridge) из APB в LocalBus на SystemVerilog
+* Имплементирован мост (Bridge) из AXI-Lite в LocalBus на SystemVerilog
+* Имплементирован мост (Bridge) из Avalon-MM в LocalBus на SystemVerilog
 
-* New configuration file format (INI)
-* New file generation flow (more clear)
-* Do refactoring of all core modules
-* Add enums
-* Add C header generator
-* Add Verilog header generator
-* Add SystemVerilog package generator
-* Embed bus interface (AXI-Lite, APB, Avalon-MM) into a register map
-* Add VHDL register map generator
-* Add plenty of examples
-* Rework of documentation
-* Update the tests
-* Many minor tweaks and fixes
+## 0.1.0 (19-03-2024)
 
-
-## 0.3.0 (2021-02-21)
-
-* Fix Markdown table row endings.
-* Add 'Reserved' bitfields to Markdown.
-* Fix installation guides.
-* Implement access_strobes attribute for register.
-* Implement complementary registers.
-* Implement write_lock attribute for register.
-* Implement FIFO bitfield modifier.
-* Implement AXI-Lite to Local Bus bridge on Verilog.
-* Implement Avalon-MM to Local Bus bridge on Verilog.
-
-## 0.2.0 (2021-01-08)
-
-* Rework CLI keys
-* Fix entry point for CLI
-* Add Verilog and Markdown writers for a register map
-* Add Local Bus bridge writer
-* Implement APB to Local Bus bridge on Verilog
-* Setup HDL testing environment
-* Setup CI/CD via Github Actions
-* Documentation fixes, code prettifying and etc.
-
-## 0.1.0 (2020-12-16)
-
-* Setup repository
-* Setup documentation
-* Setup testing
-* Implementation of core classes
-* Add support of running from a command line
-* Add JSON and YAML readers
-* Add JSON and YAML writers
+* Установлен и настроен репозиторий
+* Установлена и настроена документация
+* Установлены и настроены тесты
+* Имплементированы основные классы
+* Добавлена поддержка запуска из командной строки
+* Добавлена поддержка JSON и YAML

@@ -1,50 +1,53 @@
-# Corsair
+# regmapGen
 
-![corsair_logo](docs/img/logo.png)
+![regmapGen_logo](docs/img/logo.png)
 
-[![Documentation Status](https://readthedocs.org/projects/corsair/badge/?version=latest)](https://corsair.readthedocs.io/en/latest/?badge=latest)
-![PyTest Status](https://github.com/esynr3z/corsair/workflows/pytest/badge.svg)
-[![PyPI version](https://badge.fury.io/py/corsair.svg)](https://badge.fury.io/py/corsair)
+[![Статус документации](https://readthedocs.org/projects/regmapGen/badge/?version=latest)](https://regmapGen.readthedocs.io/en/latest/?badge=latest)
+![PyTest статус](https://github.com/PaulMSV/regmapGen/workflows/pytest/badge.svg)
+[![PyPI версия](https://badge.fury.io/py/regmapGen.svg)](https://badge.fury.io/py/regmapGen)
 
 
-Corsair is a tool that makes it easy to create and maintain control and status register (CSR) map for any HDL project. It allows you to describe your register map in a single file and then generate HDL code, headers, documentation and other things. This effectively eliminates any mismatches between hardware, software and documentation of your IP-core.
+**regmapGen** - это инструмент, который упрощает создание и поддержку Регистровой Карты для любого проекта на языке описания аппаратуры (HDL). Он позволяет описать карту регистров в одном файле, а затем сгенерировать HDL код, Header файлы, документацию и другие элементы. Это позволяет эффективно устранять расхождения между различными аспектами разработки ИС - hardware, software и документацией, а также автоматизировать процесс разработки, верификации и переиспользования кода IP-блока.
 
-![corsair_flow](docs/img/corsair_flow.png)
+![regmapGen_flow](docs/img/regmapGen_flow.png)
 
-## Features
+## Особенности
 
-- Various human-readable input formats: JSON, YAML or plain text table
-- HDL code generation: Verilog or VHDL module with register map, Verilog header or SystemVerilog package with parameters and definitions
-- Multi-protocol support: APB, AXI-Lite, Avalon-MM
-- Documentation generation: Markdown, AsciiDoc
-- Generation of software-related files: C header, Python module
-- Extensibility: support of external file generators
-- API: creation of custom workflow with corsair API
+- Человеко-читаемые форматы ввода: JSON, YAML или простая текстовая таблица
+- Генерация YAML файл с описанием регистров из Excel таблицы
+- Генерация IP-XACT XML описания регистров из Excel таблицы
+- Генерация HDL кода: SystemVerilog модуль с картой регистров, SystemVerilog header или SystemVerilog package с define-макросами или параметрами, соответственно
+- Генерация UVM регистровой модели и окружения для верификации
+- Поддержка нескольких протоколов: APB, AXI-Lite, Avalon-MM, SPI
+- Генерация документации: Markdown, AsciiDoc, Docx
+- Генерация  файлов, относящихся к software-части: C header, Python модуль
+- Расширяемость: поддержка внешних генераторов
+- API: cоздание пользовательского рабочего процесса с помощью API regmapGen
 
-Corsair documentation is on the [ReadTheDocs.io](https://corsair.readthedocs.io).
+regmapGen документация доступна в [ReadTheDocs.io](https://regmapGen.readthedocs.io).
 
-## Install
+## Установка
 
-Depending on your system, Python 3 executable might be `python` or `python3`.
-If there any permissions issues, add `--user` key to the installation scripts.
+В зависимости от вашей систем, исполняемый файл Python 3 может быть `python` или `python3`.
+Если имеются ограничения с правами, можно использовать ключ `--user` при установке.
 
-To install the latest stable release:
-
-```sh
-python3 -m pip install -U corsair
-```
-
-## Quick start
-
-The best way to start is to create templates. You can create one for a register map in a format you like (choose onе from `json`, `yaml`, `txt`) :
+Для установки последней версии:
 
 ```sh
-corsair -t yaml
+python3 -m pip install -U regmapGen
 ```
 
-This generates two files: one for register map in the format specified `regs.yaml`, and other for configuration - `csrconfig`.
+## Быстрый старт
 
-Register map consists of a collection of memory mapped registers (also referred as CSRs), and registers are made up of bit fields. For example, register map of one register looks like this in YAML:
+Лучший способ быстро начать — создать шаблоны. Вы можете создать карту регистров в удобном для вас формате (выберите один из `json`, `yaml`, `txt`) :
+
+```sh
+regmapGen -t yaml
+```
+
+Сгенерируется два файла: один файл с описанием регистров в выбранном формате `regs.yaml`, и второй файл конфигурации - `config`.
+
+Карта регистров состоит из набора регистров, отображенных в память (также называемых как Control and Status Regiser - CSR), а регистры в свою очередь состоят из битовых полей. Например, карта регистров одного регистра в YAML выглядит так:
 
 ```yaml
 regmap:
@@ -71,9 +74,12 @@ regmap:
             value: 2
 ```
 
-To know more about registers, bit fields and their attributes please check the [Register map](https://corsair.readthedocs.io/en/latest/regmap.html) documentation page.
+YAML файл также может быть сгенерирован из Excel таблица. Детали доступны в [примере](https://github.com/PaulMSV/regmapGen/example/excel).
 
-Corsair is configuration-file-oriented tool. By default, it uses INI configuration file `csrconfig`. It specifies all the things needed for generation - input register map file, global parameters and output files (also called targets). It may looks like this:
+Чтобы узнать больше о регистрах, битовых полях и их атрибутах, пожалуйста, ознакомьтесь с документацией на странице [Регистровая карта](https://regmapGen.readthedocs.io/en/latest/regmap.html).
+
+
+regmapGen - это инструмент, ориентированный на файлы конфигурации. По умолчанию он использует ini-файл конфигурации под названием config. В этом файле указываются все необходимые параметры для генерации: входной файл карты регистров, глобальные параметры и выходной файл (таргет). Вот пример:
 
 ```ini
 [globcfg]
@@ -81,38 +87,38 @@ data_width = 32
 address_width = 16
 register_reset = sync_pos
 
-[v_module]
-path = regs.v
+[sv_module]
+path = regs.sv
 interface = axil
-generator = Verilog
+generator = SystemVerilog
 
 [c_header]
 path = regs.h
 generator = CHeader
 ```
 
-Check the [Configuration file](https://corsair.readthedocs.io/en/latest/config.html) page to get more details about `csrconfig` and the [Introduction](https://corsair.readthedocs.io/en/latest/introduction.html) page to get general information about workflow.
+Для получения более подробной информации о файле `config`, посмотрите страницу [Конфигурационный файл](https://regmapGen.readthedocs.io/en/latest/config.html), а для более общей информации о процессе ознакомтесь с разделом [Введение](https://regmapGen.readthedocs.io/en/latest/introduction.html).
 
-`csrconfig` also acts like a build script for corsair, so just run in the directory with `csrconfig` file:
-
-```sh
-corsair
-```
-
-And then all the magic happens.
-
-There are some additional options for overriding working directory, register map or configuration file - to get help simply run
+`config` также действует как сценарий сборки для regmapGen, поэтому просто запустите его в директории с файлом `config`:
 
 ```sh
-corsair -h
+regmapGen
 ```
 
-If you looking for some more examples please check `examples` folder.
+И далее произойдет "магия".
 
-## Development
+Есть дополнительные опции для замены рабочей директории, карты регистров или файла конфигурации - для получения справки просто запустите:
 
-Please follow the [Developer's Guide](https://corsair.readthedocs.io/en/latest/contributing.html).
+```sh
+regmapGen -h
+```
 
-## License
+Если вы ищете дополнительные примеры, пожалуйста, проверьте директорию `examples`.
 
-Corsair is licensed under [MIT License](LICENSE.txt).
+## Разработка
+
+Пожалуйста, ознакомьтесь с [Руководством разработчика](https://regmapGen.readthedocs.io/en/latest/contributing.html).
+
+## Лицензия
+
+regmapGen лицензирован под [Лицензией MIT](LICENSE).
