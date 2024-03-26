@@ -20,7 +20,7 @@
 
 0x00000000
 
-| Имя регистра             | Адрес      | Описание    |
+| Регистр                  | Адрес      | Описание    |
 | :---                     | :---       | :---        |
 | [DATA](#data)            | 0x0004     | Data register |
 | [STAT](#stat)            | 0x000c     | Status register |
@@ -48,7 +48,7 @@ Data register
 
 ![](md_img/data.svg)
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:18  | -               | 0x000      | Reserved |
 | PERR             | 17     | rolh            | 0x0        | Parity error flag. Read to clear. |
@@ -76,7 +76,7 @@ Status register
 
 ![](md_img/stat.svg)
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:9   | -               | 0x00000    | Reserved |
 | TXF              | 8      | ro              | 0x0        | TX FIFO is full |
@@ -105,7 +105,7 @@ Control register
 
 ![](md_img/ctrl.svg)
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:7   | -               | 0x000000   | Reserved |
 | TXST             | 6      | wosc            | 0x0        | Force transmission start |
@@ -116,7 +116,7 @@ Control register
 
 Enumerated значения для CTRL.BAUD.
 
-| Имя enum         | Значение | Описание    |
+| Enum             | Значение | Описание    |
 | :---             | :---     | :---        |
 | B9600            | 0x0    | 9600 baud |
 | B38400           | 0x1    | 38400 baud |
@@ -142,7 +142,7 @@ Low power mode control
 
 ![](md_img/lpmode.svg)
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | EN               | 31     | rw              | 0x0        | Low power mode enable |
 | -                | 30:8   | -               | 0x00000    | Reserved |
@@ -168,7 +168,7 @@ Interrupt status register
 
 ![](md_img/intstat.svg)
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:2   | -               | 0x0000000  | Reserved |
 | RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear. |
@@ -194,7 +194,7 @@ IP-core ID register
 
 ![](md_img/id.svg)
 
-| Имя поля         | Биты   | Тип             | Reset      | Описание    |
+| Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | UID              | 31:0   | ro              | 0xcafe0666 | Unique ID |
 : *Таблица 6* - Описание полей регистра ID

@@ -25,7 +25,7 @@
 
 [#table-Register_map,cols="1,1,1", options="header"]
 |==========================
-| Имя регистра | Адрес | Описание
+| Регистр | Адрес | Описание
 | <<DATA>>                 | 0x0004     | Data register
 | <<STAT>>                 | 0x000c     | Status register
 | <<CTRL>>                 | 0x0010     | Control register
@@ -56,7 +56,7 @@ image::adoc_img/data.svg[]
 
 [#table-DATA,cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 | PERR             | 17     | rolh            | 0x0        | Parity error flag. Read to clear.
 | FERR             | 16     | rolh            | 0x0        | Frame error flag. Read to clear.
 | FIFO             | 7:0    | rw              | 0x00       | Write to push value to TX FIFO, read to get data from RX FIFO
@@ -86,7 +86,7 @@ image::adoc_img/stat.svg[]
 
 [#table-STAT,cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 | TXF              | 8      | ro              | 0x0        | TX FIFO is full
 | RXE              | 4      | ro              | 0x0        | RX FIFO is empty
 | BUSY             | 2      | ro              | 0x0        | Transciever is busy
@@ -116,7 +116,7 @@ image::adoc_img/ctrl.svg[]
 
 [#table-CTRL,cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 | TXST             | 6      | wosc            | 0x0        | Force transmission start
 | RXEN             | 5      | rw              | 0x0        | Receiver enable. Can be disabled by hardware on error.
 | TXEN             | 4      | rw              | 0x0        | Transmitter enable. Can be disabled by hardware on error.
@@ -128,7 +128,7 @@ Enumerated значения для CTRL.BAUD.
 
 [#table-CTRL_BAUD_enums,cols="1,1,1", options="header"]
 |==========================
-| Имя enum | Биты | Описание
+| Enum | Биты | Описание
 | B9600            | 0x0    | 9600 baud
 | B38400           | 0x1    | 38400 baud
 | B115200          | 0x2    | 115200 baud
@@ -157,7 +157,7 @@ image::adoc_img/lpmode.svg[]
 
 [#table-LPMODE,cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 | EN               | 31     | rw              | 0x0        | Low power mode enable
 | DIV              | 7:0    | rw              | 0x00       | Clock divider in low power mode
 |==========================
@@ -186,7 +186,7 @@ image::adoc_img/intstat.svg[]
 
 [#table-INTSTAT,cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 | RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear.
 | TX               | 0      | rw1c            | 0x0        | Transmitter interrupt flag. Write 1 to clear.
 |==========================
@@ -215,7 +215,7 @@ image::adoc_img/id.svg[]
 
 [#table-ID,cols="1,1,1,1,1", options="header"]
 |==========================
-| Имя поля | Биты | Тип | Значение | Описание
+| Поле | Биты | Тип | Значение | Описание
 | UID              | 31:0   | ro              | 0xcafe0666 | Unique ID
 |==========================
 

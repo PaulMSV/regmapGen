@@ -1,0 +1,66 @@
+[globcfg]
+base_address = 0
+data_width = 8
+address_width = 8
+register_reset = sync_pos
+address_increment = none
+address_alignment = data_width
+force_name_case = none
+regmap_path = Uchip_regmap0.yaml
+
+[sv_module]
+path = hw/Uchip_regmap0.sv
+read_filler = 0
+interface = lb
+generator = SystemVerilog
+
+[spi2lb_module]
+path = hw/spi2lb_bridge.sv
+bridge_type = spi
+generator = LbBridgeSystemVerilog
+
+[sv_header]
+path = hw/Uchip_regmap0.svh
+prefix = 
+generator = SystemVerilogHeader
+
+[sv_pkg]
+path = hw/Uchip_regmap0_pkg.sv
+prefix = 
+generator = SystemVerilogPackage
+
+[py]
+path = sw/Uchip_regmap0.py
+generator = Python
+
+[c_header]
+path = sw/Uchip_regmap0.h
+prefix = 
+generator = CHeader
+
+[md_doc]
+path = doc/Uchip_regmap0.md
+title = Register map
+print_images = True
+image_dir = md_img
+print_conventions = True
+generator = Markdown
+
+[asciidoc_doc]
+path = doc/Uchip_regmap0.adoc
+title = Register map
+print_images = True
+image_dir = adoc_img
+print_conventions = True
+generator = Asciidoc
+
+[docx_doc]
+path = doc/Uchip_regmap0.docx
+input_md = Uchip_regmap0.md
+pandoc_args = --lua-filter=pagebreak.lua --reference-doc=ref.docx
+generator = Docx
+
+[xls_yaml]
+path = Uchip_regmap0.yaml
+input_xls = Uchip_regmap0.xlsx
+generator = Xls2Yaml
