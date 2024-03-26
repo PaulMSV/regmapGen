@@ -2,7 +2,7 @@
 
 ![regmapGen_logo](docs/img/logo.png)
 
-[![Статус документации](https://readthedocs.org/projects/regmapGen/badge/?version=latest)](https://regmapGen.readthedocs.io/en/latest/?badge=latest)
+[![Статус документации](https://readthedocs.org/projects/regmapGen/badge/?version=latest)](https://regmapGen.readthedocs.io/ru/latest/?badge=latest)
 ![PyTest статус](https://github.com/PaulMSV/regmapGen/workflows/pytest/badge.svg)
 [![PyPI версия](https://badge.fury.io/py/regmapGen.svg)](https://badge.fury.io/py/regmapGen)
 
