@@ -39,7 +39,7 @@ extensions = [
 source_suffix = ['.rst', '.md']
 
 doctest_global_setup = '''
-from corsair import *
+from regmapGen import *
 '''
 
 # to inline SVG with wafeforms (JS script enabled by default)
