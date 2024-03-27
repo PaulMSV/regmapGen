@@ -45,8 +45,8 @@ wire      sck_rise, sck_fall;
 
 // MOSI syncronization chain
 
-always @(posedge clk) begin
-    if (rst == 1'b1) begin
+always @(posedge clk or negedge rst) begin
+    if (rst == 1'b0) begin
         mosi_ff <= 0;
     end else begin
         mosi_ff <= {mosi_ff[0], spi_mosi};
@@ -56,8 +56,8 @@ end
 assign mo = mosi_ff[1];
 
 // CSn syncronization chain
-always @(posedge clk) begin
-    if (rst == 1'b1) begin
+always @(posedge clk or negedge rst) begin
+    if (rst == 1'b0) begin
         cs_n_ff <= 0;
     end else begin
         cs_n_ff <= {cs_n_ff[0], spi_cs_n};
@@ -67,8 +67,8 @@ end
 assign cs = ~cs_n_ff[1];
 
 // SCK syncronization and edge extraction
-always @(posedge clk) begin
-    if (rst == 1'b1) begin
+always @(posedge clk or negedge rst) begin
+    if (rst == 1'b0) begin
         sck_ff <= 0;
     end else begin
         sck_ff <= {sck_ff[1:0], spi_sck};
@@ -110,8 +110,8 @@ reg                mode_wr, mode_wr_next;
 reg [BIT_CNT_W:0]  bit_cnt, bit_cnt_next;
 reg                force_tran, force_tran_next;
 
-always @(posedge clk) begin
-    if (rst == 1'b1) begin
+always @(posedge clk or negedge rst) begin
+    if (rst == 1'b0) begin
         fsm_state <= IDLE_S;
     end else begin
         fsm_state <= fsm_next;
@@ -239,8 +239,8 @@ always @(*) begin
     endcase
 end
 
-always @(posedge clk) begin
-    if (rst == 1'b1) begin
+always @(posedge clk or negedge rst) begin
+    if (rst == 1'b0) begin
         mode_wr      <= 1'b0;
         dout_shifter <= 0;
         bit_cnt      <= 0;

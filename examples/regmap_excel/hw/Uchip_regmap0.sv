@@ -1519,8 +1519,8 @@ assign disdrvconfig0_wen = wen && (waddr == 8'h0);
 wire disdrvconfig0_ren;
 assign disdrvconfig0_ren = ren && (raddr == 8'h0);
 reg disdrvconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig0_ren_ff <= 1'b0;
     end else begin
         disdrvconfig0_ren_ff <= disdrvconfig0_ren;
@@ -1537,8 +1537,8 @@ assign disdrvconfig0_rdata[3:0] = disdrvconfig0_ddis_drvb_cfg_inj_ff;
 
 assign disdrvconfig0_ddis_drvb_cfg_inj_out = disdrvconfig0_ddis_drvb_cfg_inj_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig0_ddis_drvb_cfg_inj_ff <= 4'hf;
     end else  begin
      if (disdrvconfig0_wen) begin
@@ -1563,8 +1563,8 @@ assign disdrvconfig0_rdata[7:4] = disdrvconfig0_ddis_drvb_cfg_ign_ff;
 
 assign disdrvconfig0_ddis_drvb_cfg_ign_out = disdrvconfig0_ddis_drvb_cfg_ign_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig0_ddis_drvb_cfg_ign_ff <= 4'hf;
     end else  begin
      if (disdrvconfig0_wen) begin
@@ -1590,8 +1590,8 @@ assign disdrvconfig1_wen = wen && (waddr == 8'h1);
 wire disdrvconfig1_ren;
 assign disdrvconfig1_ren = ren && (raddr == 8'h1);
 reg disdrvconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig1_ren_ff <= 1'b0;
     end else begin
         disdrvconfig1_ren_ff <= disdrvconfig1_ren;
@@ -1608,8 +1608,8 @@ assign disdrvconfig1_rdata[7:0] = disdrvconfig1_ddis_drvb_cfg_rly_ff;
 
 assign disdrvconfig1_ddis_drvb_cfg_rly_out = disdrvconfig1_ddis_drvb_cfg_rly_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig1_ddis_drvb_cfg_rly_ff <= 8'hff;
     end else  begin
      if (disdrvconfig1_wen) begin
@@ -1635,8 +1635,8 @@ assign disdrvconfig2_wen = wen && (waddr == 8'h2);
 wire disdrvconfig2_ren;
 assign disdrvconfig2_ren = ren && (raddr == 8'h2);
 reg disdrvconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig2_ren_ff <= 1'b0;
     end else begin
         disdrvconfig2_ren_ff <= disdrvconfig2_ren;
@@ -1653,8 +1653,8 @@ assign disdrvconfig2_rdata[0] = disdrvconfig2_ddis_drvb_cfg_rly_ff;
 
 assign disdrvconfig2_ddis_drvb_cfg_rly_out = disdrvconfig2_ddis_drvb_cfg_rly_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig2_ddis_drvb_cfg_rly_ff <= 1'b1;
     end else  begin
      if (disdrvconfig2_wen) begin
@@ -1679,8 +1679,8 @@ assign disdrvconfig2_rdata[3:1] = disdrvconfig2_ddis_drvb_cfg_vlv_ff;
 
 assign disdrvconfig2_ddis_drvb_cfg_vlv_out = disdrvconfig2_ddis_drvb_cfg_vlv_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig2_ddis_drvb_cfg_vlv_ff <= 3'h7;
     end else  begin
      if (disdrvconfig2_wen) begin
@@ -1705,8 +1705,8 @@ assign disdrvconfig2_rdata[5:4] = disdrvconfig2_ddis_drvb_cfg_htr_ff;
 
 assign disdrvconfig2_ddis_drvb_cfg_htr_out = disdrvconfig2_ddis_drvb_cfg_htr_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig2_ddis_drvb_cfg_htr_ff <= 2'h3;
     end else  begin
      if (disdrvconfig2_wen) begin
@@ -1731,8 +1731,8 @@ assign disdrvconfig2_rdata[7:6] = disdrvconfig2_ddis_drvb_cfg_hb_ff;
 
 assign disdrvconfig2_ddis_drvb_cfg_hb_out = disdrvconfig2_ddis_drvb_cfg_hb_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         disdrvconfig2_ddis_drvb_cfg_hb_ff <= 2'h3;
     end else  begin
      if (disdrvconfig2_wen) begin
@@ -1759,8 +1759,8 @@ assign denconfig0_wen = wen && (waddr == 8'h3);
 wire denconfig0_ren;
 assign denconfig0_ren = ren && (raddr == 8'h3);
 reg denconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig0_ren_ff <= 1'b0;
     end else begin
         denconfig0_ren_ff <= denconfig0_ren;
@@ -1777,8 +1777,8 @@ assign denconfig0_rdata[3:0] = denconfig0_den_drv_cfg_ign_ff;
 
 assign denconfig0_den_drv_cfg_ign_out = denconfig0_den_drv_cfg_ign_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig0_den_drv_cfg_ign_ff <= 4'hf;
     end else  begin
      if (denconfig0_wen) begin
@@ -1804,8 +1804,8 @@ assign denconfig1_wen = wen && (waddr == 8'h4);
 wire denconfig1_ren;
 assign denconfig1_ren = ren && (raddr == 8'h4);
 reg denconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_ren_ff <= 1'b0;
     end else begin
         denconfig1_ren_ff <= denconfig1_ren;
@@ -1822,8 +1822,8 @@ assign denconfig1_rdata[0] = denconfig1_den_drv_cfg_rly1_ff;
 
 assign denconfig1_den_drv_cfg_rly1_out = denconfig1_den_drv_cfg_rly1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_drv_cfg_rly1_ff <= 1'b1;
     end else  begin
      if (denconfig1_wen) begin
@@ -1848,8 +1848,8 @@ assign denconfig1_rdata[1] = denconfig1_den_rly_cfg_rly1_ff;
 
 assign denconfig1_den_rly_cfg_rly1_out = denconfig1_den_rly_cfg_rly1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_rly_cfg_rly1_ff <= 1'b1;
     end else  begin
      if (denconfig1_wen) begin
@@ -1874,8 +1874,8 @@ assign denconfig1_rdata[2] = denconfig1_den_drv_cfg_rly2_ff;
 
 assign denconfig1_den_drv_cfg_rly2_out = denconfig1_den_drv_cfg_rly2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_drv_cfg_rly2_ff <= 1'b1;
     end else  begin
      if (denconfig1_wen) begin
@@ -1900,8 +1900,8 @@ assign denconfig1_rdata[3] = denconfig1_den_rly_cfg_rly2_ff;
 
 assign denconfig1_den_rly_cfg_rly2_out = denconfig1_den_rly_cfg_rly2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_rly_cfg_rly2_ff <= 1'b1;
     end else  begin
      if (denconfig1_wen) begin
@@ -1926,8 +1926,8 @@ assign denconfig1_rdata[4] = denconfig1_den_drv_cfg_rly3_ff;
 
 assign denconfig1_den_drv_cfg_rly3_out = denconfig1_den_drv_cfg_rly3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_drv_cfg_rly3_ff <= 1'b1;
     end else  begin
      if (denconfig1_wen) begin
@@ -1952,8 +1952,8 @@ assign denconfig1_rdata[5] = denconfig1_den_rly_cfg_rly3_ff;
 
 assign denconfig1_den_rly_cfg_rly3_out = denconfig1_den_rly_cfg_rly3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_rly_cfg_rly3_ff <= 1'b0;
     end else  begin
      if (denconfig1_wen) begin
@@ -1978,8 +1978,8 @@ assign denconfig1_rdata[6] = denconfig1_den_drv_cfg_rly4_ff;
 
 assign denconfig1_den_drv_cfg_rly4_out = denconfig1_den_drv_cfg_rly4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_drv_cfg_rly4_ff <= 1'b0;
     end else  begin
      if (denconfig1_wen) begin
@@ -2004,8 +2004,8 @@ assign denconfig1_rdata[7] = denconfig1_den_rly_cfg_rly4_ff;
 
 assign denconfig1_den_rly_cfg_rly4_out = denconfig1_den_rly_cfg_rly4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig1_den_rly_cfg_rly4_ff <= 1'b0;
     end else  begin
      if (denconfig1_wen) begin
@@ -2031,8 +2031,8 @@ assign denconfig2_wen = wen && (waddr == 8'h5);
 wire denconfig2_ren;
 assign denconfig2_ren = ren && (raddr == 8'h5);
 reg denconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_ren_ff <= 1'b0;
     end else begin
         denconfig2_ren_ff <= denconfig2_ren;
@@ -2049,8 +2049,8 @@ assign denconfig2_rdata[0] = denconfig2_den_drv_cfg_rly5_ff;
 
 assign denconfig2_den_drv_cfg_rly5_out = denconfig2_den_drv_cfg_rly5_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_drv_cfg_rly5_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2075,8 +2075,8 @@ assign denconfig2_rdata[1] = denconfig2_den_rly_cfg_rly5_ff;
 
 assign denconfig2_den_rly_cfg_rly5_out = denconfig2_den_rly_cfg_rly5_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_rly_cfg_rly5_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2101,8 +2101,8 @@ assign denconfig2_rdata[2] = denconfig2_den_drv_cfg_rly6_ff;
 
 assign denconfig2_den_drv_cfg_rly6_out = denconfig2_den_drv_cfg_rly6_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_drv_cfg_rly6_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2127,8 +2127,8 @@ assign denconfig2_rdata[3] = denconfig2_den_rly_cfg_rly6_ff;
 
 assign denconfig2_den_rly_cfg_rly6_out = denconfig2_den_rly_cfg_rly6_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_rly_cfg_rly6_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2153,8 +2153,8 @@ assign denconfig2_rdata[4] = denconfig2_den_drv_cfg_rly7_ff;
 
 assign denconfig2_den_drv_cfg_rly7_out = denconfig2_den_drv_cfg_rly7_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_drv_cfg_rly7_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2179,8 +2179,8 @@ assign denconfig2_rdata[5] = denconfig2_den_rly_cfg_rly7_ff;
 
 assign denconfig2_den_rly_cfg_rly7_out = denconfig2_den_rly_cfg_rly7_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_rly_cfg_rly7_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2205,8 +2205,8 @@ assign denconfig2_rdata[6] = denconfig2_den_drv_cfg_rly8_ff;
 
 assign denconfig2_den_drv_cfg_rly8_out = denconfig2_den_drv_cfg_rly8_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_drv_cfg_rly8_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2231,8 +2231,8 @@ assign denconfig2_rdata[7] = denconfig2_den_rly_cfg_rly8_ff;
 
 assign denconfig2_den_rly_cfg_rly8_out = denconfig2_den_rly_cfg_rly8_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig2_den_rly_cfg_rly8_ff <= 1'b0;
     end else  begin
      if (denconfig2_wen) begin
@@ -2258,8 +2258,8 @@ assign denconfig3_wen = wen && (waddr == 8'h6);
 wire denconfig3_ren;
 assign denconfig3_ren = ren && (raddr == 8'h6);
 reg denconfig3_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_ren_ff <= 1'b0;
     end else begin
         denconfig3_ren_ff <= denconfig3_ren;
@@ -2276,8 +2276,8 @@ assign denconfig3_rdata[0] = denconfig3_den_drv_cfg_rly9_ff;
 
 assign denconfig3_den_drv_cfg_rly9_out = denconfig3_den_drv_cfg_rly9_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_drv_cfg_rly9_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2302,8 +2302,8 @@ assign denconfig3_rdata[1] = denconfig3_den_rly_cfg_rly9_ff;
 
 assign denconfig3_den_rly_cfg_rly9_out = denconfig3_den_rly_cfg_rly9_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_rly_cfg_rly9_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2328,8 +2328,8 @@ assign denconfig3_rdata[2] = denconfig3_den_drv_cfg_vlv1_ff;
 
 assign denconfig3_den_drv_cfg_vlv1_out = denconfig3_den_drv_cfg_vlv1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_drv_cfg_vlv1_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2354,8 +2354,8 @@ assign denconfig3_rdata[3] = denconfig3_den_rly_cfg_vlv1_ff;
 
 assign denconfig3_den_rly_cfg_vlv1_out = denconfig3_den_rly_cfg_vlv1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_rly_cfg_vlv1_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2380,8 +2380,8 @@ assign denconfig3_rdata[4] = denconfig3_den_drv_cfg_vlv2_ff;
 
 assign denconfig3_den_drv_cfg_vlv2_out = denconfig3_den_drv_cfg_vlv2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_drv_cfg_vlv2_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2406,8 +2406,8 @@ assign denconfig3_rdata[5] = denconfig3_den_rly_cfg_vlv2_ff;
 
 assign denconfig3_den_rly_cfg_vlv2_out = denconfig3_den_rly_cfg_vlv2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_rly_cfg_vlv2_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2432,8 +2432,8 @@ assign denconfig3_rdata[6] = denconfig3_den_drv_cfg_vlv3_ff;
 
 assign denconfig3_den_drv_cfg_vlv3_out = denconfig3_den_drv_cfg_vlv3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_drv_cfg_vlv3_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2458,8 +2458,8 @@ assign denconfig3_rdata[7] = denconfig3_den_rly_cfg_vlv3_ff;
 
 assign denconfig3_den_rly_cfg_vlv3_out = denconfig3_den_rly_cfg_vlv3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig3_den_rly_cfg_vlv3_ff <= 1'b0;
     end else  begin
      if (denconfig3_wen) begin
@@ -2485,8 +2485,8 @@ assign denconfig4_wen = wen && (waddr == 8'h7);
 wire denconfig4_ren;
 assign denconfig4_ren = ren && (raddr == 8'h7);
 reg denconfig4_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_ren_ff <= 1'b0;
     end else begin
         denconfig4_ren_ff <= denconfig4_ren;
@@ -2503,8 +2503,8 @@ assign denconfig4_rdata[0] = denconfig4_den_drv_cfg_htr1_ff;
 
 assign denconfig4_den_drv_cfg_htr1_out = denconfig4_den_drv_cfg_htr1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_drv_cfg_htr1_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2529,8 +2529,8 @@ assign denconfig4_rdata[1] = denconfig4_den_rly_cfg_htr1_ff;
 
 assign denconfig4_den_rly_cfg_htr1_out = denconfig4_den_rly_cfg_htr1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_rly_cfg_htr1_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2555,8 +2555,8 @@ assign denconfig4_rdata[2] = denconfig4_den_drv_cfg_htr2_ff;
 
 assign denconfig4_den_drv_cfg_htr2_out = denconfig4_den_drv_cfg_htr2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_drv_cfg_htr2_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2581,8 +2581,8 @@ assign denconfig4_rdata[3] = denconfig4_den_rly_cfg_htr2_ff;
 
 assign denconfig4_den_rly_cfg_htr2_out = denconfig4_den_rly_cfg_htr2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_rly_cfg_htr2_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2607,8 +2607,8 @@ assign denconfig4_rdata[4] = denconfig4_den_drv_cfg_hb1_ff;
 
 assign denconfig4_den_drv_cfg_hb1_out = denconfig4_den_drv_cfg_hb1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_drv_cfg_hb1_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2633,8 +2633,8 @@ assign denconfig4_rdata[5] = denconfig4_den_rly_cfg_hb1_ff;
 
 assign denconfig4_den_rly_cfg_hb1_out = denconfig4_den_rly_cfg_hb1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_rly_cfg_hb1_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2659,8 +2659,8 @@ assign denconfig4_rdata[6] = denconfig4_den_drv_cfg_hb2_ff;
 
 assign denconfig4_den_drv_cfg_hb2_out = denconfig4_den_drv_cfg_hb2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_drv_cfg_hb2_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2685,8 +2685,8 @@ assign denconfig4_rdata[7] = denconfig4_den_rly_cfg_hb2_ff;
 
 assign denconfig4_den_rly_cfg_hb2_out = denconfig4_den_rly_cfg_hb2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         denconfig4_den_rly_cfg_hb2_ff <= 1'b0;
     end else  begin
      if (denconfig4_wen) begin
@@ -2712,8 +2712,8 @@ assign oeconfig0_wen = wen && (waddr == 8'h8);
 wire oeconfig0_ren;
 assign oeconfig0_ren = ren && (raddr == 8'h8);
 reg oeconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig0_ren_ff <= 1'b0;
     end else begin
         oeconfig0_ren_ff <= oeconfig0_ren;
@@ -2730,8 +2730,8 @@ assign oeconfig0_rdata[3:0] = oeconfig0_ign_oe_ff;
 
 assign oeconfig0_ign_oe_out = oeconfig0_ign_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig0_ign_oe_ff <= 4'h0;
     end else  begin
      if (oeconfig0_wen) begin
@@ -2756,8 +2756,8 @@ assign oeconfig0_rdata[7:4] = oeconfig0_inj_oe_ff;
 
 assign oeconfig0_inj_oe_out = oeconfig0_inj_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig0_inj_oe_ff <= 4'h0;
     end else  begin
      if (oeconfig0_wen) begin
@@ -2783,8 +2783,8 @@ assign oeconfig1_wen = wen && (waddr == 8'h9);
 wire oeconfig1_ren;
 assign oeconfig1_ren = ren && (raddr == 8'h9);
 reg oeconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig1_ren_ff <= 1'b0;
     end else begin
         oeconfig1_ren_ff <= oeconfig1_ren;
@@ -2801,8 +2801,8 @@ assign oeconfig1_rdata[7:0] = oeconfig1_rly_oe_ff;
 
 assign oeconfig1_rly_oe_out = oeconfig1_rly_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig1_rly_oe_ff <= 8'h0;
     end else  begin
      if (oeconfig1_wen) begin
@@ -2829,8 +2829,8 @@ assign oeconfig2_wen = wen && (waddr == 8'ha);
 wire oeconfig2_ren;
 assign oeconfig2_ren = ren && (raddr == 8'ha);
 reg oeconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig2_ren_ff <= 1'b0;
     end else begin
         oeconfig2_ren_ff <= oeconfig2_ren;
@@ -2847,8 +2847,8 @@ assign oeconfig2_rdata[0] = oeconfig2_rly_oe_ff;
 
 assign oeconfig2_rly_oe_out = oeconfig2_rly_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig2_rly_oe_ff <= 1'b0;
     end else  begin
      if (oeconfig2_wen) begin
@@ -2873,8 +2873,8 @@ assign oeconfig2_rdata[2:1] = oeconfig2_htr_oe_ff;
 
 assign oeconfig2_htr_oe_out = oeconfig2_htr_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig2_htr_oe_ff <= 2'h0;
     end else  begin
      if (oeconfig2_wen) begin
@@ -2899,8 +2899,8 @@ assign oeconfig2_rdata[5:3] = oeconfig2_vlv_oe_ff;
 
 assign oeconfig2_vlv_oe_out = oeconfig2_vlv_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig2_vlv_oe_ff <= 3'h0;
     end else  begin
      if (oeconfig2_wen) begin
@@ -2927,8 +2927,8 @@ assign oeconfig3_wen = wen && (waddr == 8'hb);
 wire oeconfig3_ren;
 assign oeconfig3_ren = ren && (raddr == 8'hb);
 reg oeconfig3_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig3_ren_ff <= 1'b0;
     end else begin
         oeconfig3_ren_ff <= oeconfig3_ren;
@@ -2945,8 +2945,8 @@ assign oeconfig3_rdata[1:0] = oeconfig3_hs_oe_ff;
 
 assign oeconfig3_hs_oe_out = oeconfig3_hs_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig3_hs_oe_ff <= 2'h0;
     end else  begin
      if (oeconfig3_wen) begin
@@ -2971,8 +2971,8 @@ assign oeconfig3_rdata[3:2] = oeconfig3_ls_oe_ff;
 
 assign oeconfig3_ls_oe_out = oeconfig3_ls_oe_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         oeconfig3_ls_oe_ff <= 2'h0;
     end else  begin
      if (oeconfig3_wen) begin
@@ -2998,8 +2998,8 @@ assign ddconfig0_wen = wen && (waddr == 8'hc);
 wire ddconfig0_ren;
 assign ddconfig0_ren = ren && (raddr == 8'hc);
 reg ddconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig0_ren_ff <= 1'b0;
     end else begin
         ddconfig0_ren_ff <= ddconfig0_ren;
@@ -3016,8 +3016,8 @@ assign ddconfig0_rdata[3:0] = ddconfig0_ign_dd_ff;
 
 assign ddconfig0_ign_dd_out = ddconfig0_ign_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig0_ign_dd_ff <= 4'h0;
     end else  begin
      if (ddconfig0_wen) begin
@@ -3042,8 +3042,8 @@ assign ddconfig0_rdata[7:4] = ddconfig0_inj_dd_ff;
 
 assign ddconfig0_inj_dd_out = ddconfig0_inj_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig0_inj_dd_ff <= 4'h0;
     end else  begin
      if (ddconfig0_wen) begin
@@ -3069,8 +3069,8 @@ assign ddconfig1_wen = wen && (waddr == 8'hd);
 wire ddconfig1_ren;
 assign ddconfig1_ren = ren && (raddr == 8'hd);
 reg ddconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig1_ren_ff <= 1'b0;
     end else begin
         ddconfig1_ren_ff <= ddconfig1_ren;
@@ -3087,8 +3087,8 @@ assign ddconfig1_rdata[7:0] = ddconfig1_rly_dd_ff;
 
 assign ddconfig1_rly_dd_out = ddconfig1_rly_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig1_rly_dd_ff <= 8'h0;
     end else  begin
      if (ddconfig1_wen) begin
@@ -3114,8 +3114,8 @@ assign ddconfig2_wen = wen && (waddr == 8'he);
 wire ddconfig2_ren;
 assign ddconfig2_ren = ren && (raddr == 8'he);
 reg ddconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig2_ren_ff <= 1'b0;
     end else begin
         ddconfig2_ren_ff <= ddconfig2_ren;
@@ -3132,8 +3132,8 @@ assign ddconfig2_rdata[0] = ddconfig2_rly_dd_ff;
 
 assign ddconfig2_rly_dd_out = ddconfig2_rly_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig2_rly_dd_ff <= 1'b0;
     end else  begin
      if (ddconfig2_wen) begin
@@ -3158,8 +3158,8 @@ assign ddconfig2_rdata[2:1] = ddconfig2_htr_dd_ff;
 
 assign ddconfig2_htr_dd_out = ddconfig2_htr_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig2_htr_dd_ff <= 2'h0;
     end else  begin
      if (ddconfig2_wen) begin
@@ -3184,8 +3184,8 @@ assign ddconfig2_rdata[5:3] = ddconfig2_vlv_dd_ff;
 
 assign ddconfig2_vlv_dd_out = ddconfig2_vlv_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig2_vlv_dd_ff <= 3'h0;
     end else  begin
      if (ddconfig2_wen) begin
@@ -3210,8 +3210,8 @@ assign ddconfig2_rdata[7:6] = ddconfig2_hb_dd_ff;
 
 assign ddconfig2_hb_dd_out = ddconfig2_hb_dd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         ddconfig2_hb_dd_ff <= 2'h0;
     end else  begin
      if (ddconfig2_wen) begin
@@ -3237,8 +3237,8 @@ assign cont0_wen = wen && (waddr == 8'hf);
 wire cont0_ren;
 assign cont0_ren = ren && (raddr == 8'hf);
 reg cont0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont0_ren_ff <= 1'b0;
     end else begin
         cont0_ren_ff <= cont0_ren;
@@ -3255,8 +3255,8 @@ assign cont0_rdata[3:0] = cont0_ign_on_ff;
 
 assign cont0_ign_on_out = cont0_ign_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont0_ign_on_ff <= 4'h0;
     end else  begin
      if (cont0_wen) begin
@@ -3281,8 +3281,8 @@ assign cont0_rdata[7:4] = cont0_inj_on_ff;
 
 assign cont0_inj_on_out = cont0_inj_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont0_inj_on_ff <= 4'h0;
     end else  begin
      if (cont0_wen) begin
@@ -3308,8 +3308,8 @@ assign cont1_wen = wen && (waddr == 8'h10);
 wire cont1_ren;
 assign cont1_ren = ren && (raddr == 8'h10);
 reg cont1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont1_ren_ff <= 1'b0;
     end else begin
         cont1_ren_ff <= cont1_ren;
@@ -3326,8 +3326,8 @@ assign cont1_rdata[7:0] = cont1_rly_on_ff;
 
 assign cont1_rly_on_out = cont1_rly_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont1_rly_on_ff <= 8'h0;
     end else  begin
      if (cont1_wen) begin
@@ -3353,8 +3353,8 @@ assign cont2_wen = wen && (waddr == 8'h11);
 wire cont2_ren;
 assign cont2_ren = ren && (raddr == 8'h11);
 reg cont2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont2_ren_ff <= 1'b0;
     end else begin
         cont2_ren_ff <= cont2_ren;
@@ -3371,8 +3371,8 @@ assign cont2_rdata[0] = cont2_rly_on_ff;
 
 assign cont2_rly_on_out = cont2_rly_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont2_rly_on_ff <= 1'b0;
     end else  begin
      if (cont2_wen) begin
@@ -3397,8 +3397,8 @@ assign cont2_rdata[2:1] = cont2_htr_on_ff;
 
 assign cont2_htr_on_out = cont2_htr_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont2_htr_on_ff <= 2'h0;
     end else  begin
      if (cont2_wen) begin
@@ -3423,8 +3423,8 @@ assign cont2_rdata[5:3] = cont2_vlv_on_ff;
 
 assign cont2_vlv_on_out = cont2_vlv_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont2_vlv_on_ff <= 3'h0;
     end else  begin
      if (cont2_wen) begin
@@ -3449,8 +3449,8 @@ assign cont2_rdata[7:6] = cont2_hb_on_ff;
 
 assign cont2_hb_on_out = cont2_hb_on_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cont2_hb_on_ff <= 2'h0;
     end else  begin
      if (cont2_wen) begin
@@ -3477,8 +3477,8 @@ assign briconfig0_wen = wen && (waddr == 8'h12);
 wire briconfig0_ren;
 assign briconfig0_ren = ren && (raddr == 8'h12);
 reg briconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         briconfig0_ren_ff <= 1'b0;
     end else begin
         briconfig0_ren_ff <= briconfig0_ren;
@@ -3495,8 +3495,8 @@ assign briconfig0_rdata[1:0] = briconfig0_fw_mode_ff;
 
 assign briconfig0_fw_mode_out = briconfig0_fw_mode_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         briconfig0_fw_mode_ff <= 2'h0;
     end else  begin
      if (briconfig0_wen) begin
@@ -3521,8 +3521,8 @@ assign briconfig0_rdata[3:2] = briconfig0_hs_ls_mode_ff;
 
 assign briconfig0_hs_ls_mode_out = briconfig0_hs_ls_mode_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         briconfig0_hs_ls_mode_ff <= 2'h0;
     end else  begin
      if (briconfig0_wen) begin
@@ -3549,8 +3549,8 @@ assign igndiagconfig_wen = wen && (waddr == 8'h13);
 wire igndiagconfig_ren;
 assign igndiagconfig_ren = ren && (raddr == 8'h13);
 reg igndiagconfig_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiagconfig_ren_ff <= 1'b0;
     end else begin
         igndiagconfig_ren_ff <= igndiagconfig_ren;
@@ -3567,8 +3567,8 @@ assign igndiagconfig_rdata[0] = igndiagconfig_en_diag_ol_ign_ff;
 
 assign igndiagconfig_en_diag_ol_ign_out = igndiagconfig_en_diag_ol_ign_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiagconfig_en_diag_ol_ign_ff <= 1'b1;
     end else  begin
      if (igndiagconfig_wen) begin
@@ -3593,8 +3593,8 @@ assign igndiagconfig_rdata[2:1] = igndiagconfig_sel_ol_th_ign_ff;
 
 assign igndiagconfig_sel_ol_th_ign_out = igndiagconfig_sel_ol_th_ign_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiagconfig_sel_ol_th_ign_ff <= 2'h2;
     end else  begin
      if (igndiagconfig_wen) begin
@@ -3620,8 +3620,8 @@ assign outdiagconfig0_wen = wen && (waddr == 8'h14);
 wire outdiagconfig0_ren;
 assign outdiagconfig0_ren = ren && (raddr == 8'h14);
 reg outdiagconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig0_ren_ff <= 1'b0;
     end else begin
         outdiagconfig0_ren_ff <= outdiagconfig0_ren;
@@ -3638,8 +3638,8 @@ assign outdiagconfig0_rdata[1:0] = outdiagconfig0_diag_inj1_ff;
 
 assign outdiagconfig0_diag_inj1_out = outdiagconfig0_diag_inj1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig0_diag_inj1_ff <= 2'h3;
     end else  begin
      if (outdiagconfig0_wen) begin
@@ -3664,8 +3664,8 @@ assign outdiagconfig0_rdata[3:2] = outdiagconfig0_diag_inj2_ff;
 
 assign outdiagconfig0_diag_inj2_out = outdiagconfig0_diag_inj2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig0_diag_inj2_ff <= 2'h3;
     end else  begin
      if (outdiagconfig0_wen) begin
@@ -3690,8 +3690,8 @@ assign outdiagconfig0_rdata[5:4] = outdiagconfig0_diag_inj3_ff;
 
 assign outdiagconfig0_diag_inj3_out = outdiagconfig0_diag_inj3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig0_diag_inj3_ff <= 2'h3;
     end else  begin
      if (outdiagconfig0_wen) begin
@@ -3716,8 +3716,8 @@ assign outdiagconfig0_rdata[7:6] = outdiagconfig0_diag_inj4_ff;
 
 assign outdiagconfig0_diag_inj4_out = outdiagconfig0_diag_inj4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig0_diag_inj4_ff <= 2'h3;
     end else  begin
      if (outdiagconfig0_wen) begin
@@ -3743,8 +3743,8 @@ assign outdiagconfig1_wen = wen && (waddr == 8'h15);
 wire outdiagconfig1_ren;
 assign outdiagconfig1_ren = ren && (raddr == 8'h15);
 reg outdiagconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig1_ren_ff <= 1'b0;
     end else begin
         outdiagconfig1_ren_ff <= outdiagconfig1_ren;
@@ -3761,8 +3761,8 @@ assign outdiagconfig1_rdata[1:0] = outdiagconfig1_diag_rly1_ff;
 
 assign outdiagconfig1_diag_rly1_out = outdiagconfig1_diag_rly1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig1_diag_rly1_ff <= 2'h3;
     end else  begin
      if (outdiagconfig1_wen) begin
@@ -3787,8 +3787,8 @@ assign outdiagconfig1_rdata[3:2] = outdiagconfig1_diag_rly2_ff;
 
 assign outdiagconfig1_diag_rly2_out = outdiagconfig1_diag_rly2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig1_diag_rly2_ff <= 2'h3;
     end else  begin
      if (outdiagconfig1_wen) begin
@@ -3813,8 +3813,8 @@ assign outdiagconfig1_rdata[5:4] = outdiagconfig1_diag_rly3_ff;
 
 assign outdiagconfig1_diag_rly3_out = outdiagconfig1_diag_rly3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig1_diag_rly3_ff <= 2'h3;
     end else  begin
      if (outdiagconfig1_wen) begin
@@ -3839,8 +3839,8 @@ assign outdiagconfig1_rdata[7:6] = outdiagconfig1_diag_rly4_ff;
 
 assign outdiagconfig1_diag_rly4_out = outdiagconfig1_diag_rly4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig1_diag_rly4_ff <= 2'h3;
     end else  begin
      if (outdiagconfig1_wen) begin
@@ -3866,8 +3866,8 @@ assign outdiagconfig2_wen = wen && (waddr == 8'h16);
 wire outdiagconfig2_ren;
 assign outdiagconfig2_ren = ren && (raddr == 8'h16);
 reg outdiagconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig2_ren_ff <= 1'b0;
     end else begin
         outdiagconfig2_ren_ff <= outdiagconfig2_ren;
@@ -3884,8 +3884,8 @@ assign outdiagconfig2_rdata[1:0] = outdiagconfig2_diag_rly5_ff;
 
 assign outdiagconfig2_diag_rly5_out = outdiagconfig2_diag_rly5_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig2_diag_rly5_ff <= 2'h3;
     end else  begin
      if (outdiagconfig2_wen) begin
@@ -3910,8 +3910,8 @@ assign outdiagconfig2_rdata[3:2] = outdiagconfig2_diag_rly6_ff;
 
 assign outdiagconfig2_diag_rly6_out = outdiagconfig2_diag_rly6_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig2_diag_rly6_ff <= 2'h3;
     end else  begin
      if (outdiagconfig2_wen) begin
@@ -3936,8 +3936,8 @@ assign outdiagconfig2_rdata[5:4] = outdiagconfig2_diag_rly7_ff;
 
 assign outdiagconfig2_diag_rly7_out = outdiagconfig2_diag_rly7_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig2_diag_rly7_ff <= 2'h3;
     end else  begin
      if (outdiagconfig2_wen) begin
@@ -3962,8 +3962,8 @@ assign outdiagconfig2_rdata[7:6] = outdiagconfig2_diag_rly8_ff;
 
 assign outdiagconfig2_diag_rly8_out = outdiagconfig2_diag_rly8_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig2_diag_rly8_ff <= 2'h3;
     end else  begin
      if (outdiagconfig2_wen) begin
@@ -3989,8 +3989,8 @@ assign outdiagconfig3_wen = wen && (waddr == 8'h17);
 wire outdiagconfig3_ren;
 assign outdiagconfig3_ren = ren && (raddr == 8'h17);
 reg outdiagconfig3_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig3_ren_ff <= 1'b0;
     end else begin
         outdiagconfig3_ren_ff <= outdiagconfig3_ren;
@@ -4007,8 +4007,8 @@ assign outdiagconfig3_rdata[1:0] = outdiagconfig3_diag_rly9_ff;
 
 assign outdiagconfig3_diag_rly9_out = outdiagconfig3_diag_rly9_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig3_diag_rly9_ff <= 2'h3;
     end else  begin
      if (outdiagconfig3_wen) begin
@@ -4033,8 +4033,8 @@ assign outdiagconfig3_rdata[3:2] = outdiagconfig3_diag_vlv1_ff;
 
 assign outdiagconfig3_diag_vlv1_out = outdiagconfig3_diag_vlv1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig3_diag_vlv1_ff <= 2'h3;
     end else  begin
      if (outdiagconfig3_wen) begin
@@ -4059,8 +4059,8 @@ assign outdiagconfig3_rdata[5:4] = outdiagconfig3_diag_vlv2_ff;
 
 assign outdiagconfig3_diag_vlv2_out = outdiagconfig3_diag_vlv2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig3_diag_vlv2_ff <= 2'h3;
     end else  begin
      if (outdiagconfig3_wen) begin
@@ -4085,8 +4085,8 @@ assign outdiagconfig3_rdata[7:6] = outdiagconfig3_diag_vlv3_ff;
 
 assign outdiagconfig3_diag_vlv3_out = outdiagconfig3_diag_vlv3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig3_diag_vlv3_ff <= 2'h3;
     end else  begin
      if (outdiagconfig3_wen) begin
@@ -4112,8 +4112,8 @@ assign outdiagconfig4_wen = wen && (waddr == 8'h18);
 wire outdiagconfig4_ren;
 assign outdiagconfig4_ren = ren && (raddr == 8'h18);
 reg outdiagconfig4_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig4_ren_ff <= 1'b0;
     end else begin
         outdiagconfig4_ren_ff <= outdiagconfig4_ren;
@@ -4130,8 +4130,8 @@ assign outdiagconfig4_rdata[1:0] = outdiagconfig4_diag_htr1_ff;
 
 assign outdiagconfig4_diag_htr1_out = outdiagconfig4_diag_htr1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig4_diag_htr1_ff <= 2'h3;
     end else  begin
      if (outdiagconfig4_wen) begin
@@ -4156,8 +4156,8 @@ assign outdiagconfig4_rdata[3:2] = outdiagconfig4_diag_htr2_ff;
 
 assign outdiagconfig4_diag_htr2_out = outdiagconfig4_diag_htr2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig4_diag_htr2_ff <= 2'h3;
     end else  begin
      if (outdiagconfig4_wen) begin
@@ -4182,8 +4182,8 @@ assign outdiagconfig4_rdata[5:4] = outdiagconfig4_diag_hb1_ff;
 
 assign outdiagconfig4_diag_hb1_out = outdiagconfig4_diag_hb1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig4_diag_hb1_ff <= 2'h3;
     end else  begin
      if (outdiagconfig4_wen) begin
@@ -4208,8 +4208,8 @@ assign outdiagconfig4_rdata[7:6] = outdiagconfig4_diag_hb2_ff;
 
 assign outdiagconfig4_diag_hb2_out = outdiagconfig4_diag_hb2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         outdiagconfig4_diag_hb2_ff <= 2'h3;
     end else  begin
      if (outdiagconfig4_wen) begin
@@ -4236,8 +4236,8 @@ assign currlimconfig0_wen = wen && (waddr == 8'h19);
 wire currlimconfig0_ren;
 assign currlimconfig0_ren = ren && (raddr == 8'h19);
 reg currlimconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig0_ren_ff <= 1'b0;
     end else begin
         currlimconfig0_ren_ff <= currlimconfig0_ren;
@@ -4254,8 +4254,8 @@ assign currlimconfig0_rdata[3:0] = currlimconfig0_curr_lim_inj_ff;
 
 assign currlimconfig0_curr_lim_inj_out = currlimconfig0_curr_lim_inj_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig0_curr_lim_inj_ff <= 4'h0;
     end else  begin
      if (currlimconfig0_wen) begin
@@ -4281,8 +4281,8 @@ assign currlimconfig1_wen = wen && (waddr == 8'h1a);
 wire currlimconfig1_ren;
 assign currlimconfig1_ren = ren && (raddr == 8'h1a);
 reg currlimconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig1_ren_ff <= 1'b0;
     end else begin
         currlimconfig1_ren_ff <= currlimconfig1_ren;
@@ -4299,8 +4299,8 @@ assign currlimconfig1_rdata[7:0] = currlimconfig1_curr_lim_rly_ff;
 
 assign currlimconfig1_curr_lim_rly_out = currlimconfig1_curr_lim_rly_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig1_curr_lim_rly_ff <= 8'h0;
     end else  begin
      if (currlimconfig1_wen) begin
@@ -4326,8 +4326,8 @@ assign currlimconfig2_wen = wen && (waddr == 8'h1b);
 wire currlimconfig2_ren;
 assign currlimconfig2_ren = ren && (raddr == 8'h1b);
 reg currlimconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig2_ren_ff <= 1'b0;
     end else begin
         currlimconfig2_ren_ff <= currlimconfig2_ren;
@@ -4344,8 +4344,8 @@ assign currlimconfig2_rdata[0] = currlimconfig2_curr_lim_rly_ff;
 
 assign currlimconfig2_curr_lim_rly_out = currlimconfig2_curr_lim_rly_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig2_curr_lim_rly_ff <= 1'b0;
     end else  begin
      if (currlimconfig2_wen) begin
@@ -4370,8 +4370,8 @@ assign currlimconfig2_rdata[3:1] = currlimconfig2_curr_lim_vlv_ff;
 
 assign currlimconfig2_curr_lim_vlv_out = currlimconfig2_curr_lim_vlv_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig2_curr_lim_vlv_ff <= 3'h0;
     end else  begin
      if (currlimconfig2_wen) begin
@@ -4396,8 +4396,8 @@ assign currlimconfig2_rdata[5:4] = currlimconfig2_curr_lim_htr_ff;
 
 assign currlimconfig2_curr_lim_htr_out = currlimconfig2_curr_lim_htr_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig2_curr_lim_htr_ff <= 2'h0;
     end else  begin
      if (currlimconfig2_wen) begin
@@ -4422,8 +4422,8 @@ assign currlimconfig2_rdata[7:6] = currlimconfig2_curr_lim_hb_ff;
 
 assign currlimconfig2_curr_lim_hb_out = currlimconfig2_curr_lim_hb_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         currlimconfig2_curr_lim_hb_ff <= 2'h0;
     end else  begin
      if (currlimconfig2_wen) begin
@@ -4450,8 +4450,8 @@ assign dlyoffconfig_wen = wen && (waddr == 8'h1c);
 wire dlyoffconfig_ren;
 assign dlyoffconfig_ren = ren && (raddr == 8'h1c);
 reg dlyoffconfig_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dlyoffconfig_ren_ff <= 1'b0;
     end else begin
         dlyoffconfig_ren_ff <= dlyoffconfig_ren;
@@ -4468,8 +4468,8 @@ assign dlyoffconfig_rdata[2:0] = dlyoffconfig_del_off_rly_ff;
 
 assign dlyoffconfig_del_off_rly_out = dlyoffconfig_del_off_rly_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dlyoffconfig_del_off_rly_ff <= 3'h0;
     end else  begin
      if (dlyoffconfig_wen) begin
@@ -4494,8 +4494,8 @@ assign dlyoffconfig_rdata[4:3] = dlyoffconfig_del_off_hb_ff;
 
 assign dlyoffconfig_del_off_hb_out = dlyoffconfig_del_off_hb_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dlyoffconfig_del_off_hb_ff <= 2'h0;
     end else  begin
      if (dlyoffconfig_wen) begin
@@ -4521,8 +4521,8 @@ assign dinconfig0_wen = wen && (waddr == 8'h1d);
 wire dinconfig0_ren;
 assign dinconfig0_ren = ren && (raddr == 8'h1d);
 reg dinconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig0_ren_ff <= 1'b0;
     end else begin
         dinconfig0_ren_ff <= dinconfig0_ren;
@@ -4539,8 +4539,8 @@ assign dinconfig0_rdata[3:0] = dinconfig0_inj_in1_ff;
 
 assign dinconfig0_inj_in1_out = dinconfig0_inj_in1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig0_inj_in1_ff <= 4'h1;
     end else  begin
      if (dinconfig0_wen) begin
@@ -4565,8 +4565,8 @@ assign dinconfig0_rdata[7:4] = dinconfig0_inj_in2_ff;
 
 assign dinconfig0_inj_in2_out = dinconfig0_inj_in2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig0_inj_in2_ff <= 4'h2;
     end else  begin
      if (dinconfig0_wen) begin
@@ -4592,8 +4592,8 @@ assign dinconfig1_wen = wen && (waddr == 8'h1e);
 wire dinconfig1_ren;
 assign dinconfig1_ren = ren && (raddr == 8'h1e);
 reg dinconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig1_ren_ff <= 1'b0;
     end else begin
         dinconfig1_ren_ff <= dinconfig1_ren;
@@ -4610,8 +4610,8 @@ assign dinconfig1_rdata[3:0] = dinconfig1_inj_in3_ff;
 
 assign dinconfig1_inj_in3_out = dinconfig1_inj_in3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig1_inj_in3_ff <= 4'h3;
     end else  begin
      if (dinconfig1_wen) begin
@@ -4636,8 +4636,8 @@ assign dinconfig1_rdata[7:4] = dinconfig1_inj_in4_ff;
 
 assign dinconfig1_inj_in4_out = dinconfig1_inj_in4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig1_inj_in4_ff <= 4'h4;
     end else  begin
      if (dinconfig1_wen) begin
@@ -4663,8 +4663,8 @@ assign dinconfig2_wen = wen && (waddr == 8'h1f);
 wire dinconfig2_ren;
 assign dinconfig2_ren = ren && (raddr == 8'h1f);
 reg dinconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig2_ren_ff <= 1'b0;
     end else begin
         dinconfig2_ren_ff <= dinconfig2_ren;
@@ -4681,8 +4681,8 @@ assign dinconfig2_rdata[3:0] = dinconfig2_ign_in1_ff;
 
 assign dinconfig2_ign_in1_out = dinconfig2_ign_in1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig2_ign_in1_ff <= 4'ha;
     end else  begin
      if (dinconfig2_wen) begin
@@ -4707,8 +4707,8 @@ assign dinconfig2_rdata[7:4] = dinconfig2_ign_in2_ff;
 
 assign dinconfig2_ign_in2_out = dinconfig2_ign_in2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig2_ign_in2_ff <= 4'hb;
     end else  begin
      if (dinconfig2_wen) begin
@@ -4734,8 +4734,8 @@ assign dinconfig3_wen = wen && (waddr == 8'h20);
 wire dinconfig3_ren;
 assign dinconfig3_ren = ren && (raddr == 8'h20);
 reg dinconfig3_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig3_ren_ff <= 1'b0;
     end else begin
         dinconfig3_ren_ff <= dinconfig3_ren;
@@ -4752,8 +4752,8 @@ assign dinconfig3_rdata[3:0] = dinconfig3_ign_in3_ff;
 
 assign dinconfig3_ign_in3_out = dinconfig3_ign_in3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig3_ign_in3_ff <= 4'hc;
     end else  begin
      if (dinconfig3_wen) begin
@@ -4778,8 +4778,8 @@ assign dinconfig3_rdata[7:4] = dinconfig3_ign_in4_ff;
 
 assign dinconfig3_ign_in4_out = dinconfig3_ign_in4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig3_ign_in4_ff <= 4'hd;
     end else  begin
      if (dinconfig3_wen) begin
@@ -4805,8 +4805,8 @@ assign dinconfig4_wen = wen && (waddr == 8'h21);
 wire dinconfig4_ren;
 assign dinconfig4_ren = ren && (raddr == 8'h21);
 reg dinconfig4_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig4_ren_ff <= 1'b0;
     end else begin
         dinconfig4_ren_ff <= dinconfig4_ren;
@@ -4823,8 +4823,8 @@ assign dinconfig4_rdata[3:0] = dinconfig4_htr_in1_ff;
 
 assign dinconfig4_htr_in1_out = dinconfig4_htr_in1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig4_htr_in1_ff <= 4'h0;
     end else  begin
      if (dinconfig4_wen) begin
@@ -4849,8 +4849,8 @@ assign dinconfig4_rdata[7:4] = dinconfig4_htr_in2_ff;
 
 assign dinconfig4_htr_in2_out = dinconfig4_htr_in2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig4_htr_in2_ff <= 4'h0;
     end else  begin
      if (dinconfig4_wen) begin
@@ -4876,8 +4876,8 @@ assign dinconfig5_wen = wen && (waddr == 8'h22);
 wire dinconfig5_ren;
 assign dinconfig5_ren = ren && (raddr == 8'h22);
 reg dinconfig5_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig5_ren_ff <= 1'b0;
     end else begin
         dinconfig5_ren_ff <= dinconfig5_ren;
@@ -4894,8 +4894,8 @@ assign dinconfig5_rdata[3:0] = dinconfig5_hb_in1_ff;
 
 assign dinconfig5_hb_in1_out = dinconfig5_hb_in1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig5_hb_in1_ff <= 4'h0;
     end else  begin
      if (dinconfig5_wen) begin
@@ -4920,8 +4920,8 @@ assign dinconfig5_rdata[7:4] = dinconfig5_hb_in2_ff;
 
 assign dinconfig5_hb_in2_out = dinconfig5_hb_in2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig5_hb_in2_ff <= 4'h0;
     end else  begin
      if (dinconfig5_wen) begin
@@ -4947,8 +4947,8 @@ assign dinconfig6_wen = wen && (waddr == 8'h23);
 wire dinconfig6_ren;
 assign dinconfig6_ren = ren && (raddr == 8'h23);
 reg dinconfig6_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig6_ren_ff <= 1'b0;
     end else begin
         dinconfig6_ren_ff <= dinconfig6_ren;
@@ -4965,8 +4965,8 @@ assign dinconfig6_rdata[3:0] = dinconfig6_rly_in1_ff;
 
 assign dinconfig6_rly_in1_out = dinconfig6_rly_in1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig6_rly_in1_ff <= 4'h0;
     end else  begin
      if (dinconfig6_wen) begin
@@ -4991,8 +4991,8 @@ assign dinconfig6_rdata[7:4] = dinconfig6_rly_in2_ff;
 
 assign dinconfig6_rly_in2_out = dinconfig6_rly_in2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig6_rly_in2_ff <= 4'h0;
     end else  begin
      if (dinconfig6_wen) begin
@@ -5018,8 +5018,8 @@ assign dinconfig7_wen = wen && (waddr == 8'h24);
 wire dinconfig7_ren;
 assign dinconfig7_ren = ren && (raddr == 8'h24);
 reg dinconfig7_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig7_ren_ff <= 1'b0;
     end else begin
         dinconfig7_ren_ff <= dinconfig7_ren;
@@ -5036,8 +5036,8 @@ assign dinconfig7_rdata[3:0] = dinconfig7_rly_in3_ff;
 
 assign dinconfig7_rly_in3_out = dinconfig7_rly_in3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig7_rly_in3_ff <= 4'h0;
     end else  begin
      if (dinconfig7_wen) begin
@@ -5062,8 +5062,8 @@ assign dinconfig7_rdata[7:4] = dinconfig7_rly_in4_ff;
 
 assign dinconfig7_rly_in4_out = dinconfig7_rly_in4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig7_rly_in4_ff <= 4'h0;
     end else  begin
      if (dinconfig7_wen) begin
@@ -5089,8 +5089,8 @@ assign dinconfig8_wen = wen && (waddr == 8'h25);
 wire dinconfig8_ren;
 assign dinconfig8_ren = ren && (raddr == 8'h25);
 reg dinconfig8_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig8_ren_ff <= 1'b0;
     end else begin
         dinconfig8_ren_ff <= dinconfig8_ren;
@@ -5107,8 +5107,8 @@ assign dinconfig8_rdata[3:0] = dinconfig8_rly_in5_ff;
 
 assign dinconfig8_rly_in5_out = dinconfig8_rly_in5_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig8_rly_in5_ff <= 4'h0;
     end else  begin
      if (dinconfig8_wen) begin
@@ -5133,8 +5133,8 @@ assign dinconfig8_rdata[7:4] = dinconfig8_rly_in6_ff;
 
 assign dinconfig8_rly_in6_out = dinconfig8_rly_in6_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig8_rly_in6_ff <= 4'h0;
     end else  begin
      if (dinconfig8_wen) begin
@@ -5160,8 +5160,8 @@ assign dinconfig9_wen = wen && (waddr == 8'h26);
 wire dinconfig9_ren;
 assign dinconfig9_ren = ren && (raddr == 8'h26);
 reg dinconfig9_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig9_ren_ff <= 1'b0;
     end else begin
         dinconfig9_ren_ff <= dinconfig9_ren;
@@ -5178,8 +5178,8 @@ assign dinconfig9_rdata[3:0] = dinconfig9_rly_in7_ff;
 
 assign dinconfig9_rly_in7_out = dinconfig9_rly_in7_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig9_rly_in7_ff <= 4'h0;
     end else  begin
      if (dinconfig9_wen) begin
@@ -5204,8 +5204,8 @@ assign dinconfig9_rdata[7:4] = dinconfig9_rly_in8_ff;
 
 assign dinconfig9_rly_in8_out = dinconfig9_rly_in8_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig9_rly_in8_ff <= 4'h8;
     end else  begin
      if (dinconfig9_wen) begin
@@ -5231,8 +5231,8 @@ assign dinconfig10_wen = wen && (waddr == 8'h27);
 wire dinconfig10_ren;
 assign dinconfig10_ren = ren && (raddr == 8'h27);
 reg dinconfig10_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig10_ren_ff <= 1'b0;
     end else begin
         dinconfig10_ren_ff <= dinconfig10_ren;
@@ -5249,8 +5249,8 @@ assign dinconfig10_rdata[3:0] = dinconfig10_rly_in9_ff;
 
 assign dinconfig10_rly_in9_out = dinconfig10_rly_in9_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig10_rly_in9_ff <= 4'h9;
     end else  begin
      if (dinconfig10_wen) begin
@@ -5275,8 +5275,8 @@ assign dinconfig10_rdata[7:4] = dinconfig10_vlv_in1_ff;
 
 assign dinconfig10_vlv_in1_out = dinconfig10_vlv_in1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig10_vlv_in1_ff <= 4'h5;
     end else  begin
      if (dinconfig10_wen) begin
@@ -5302,8 +5302,8 @@ assign dinconfig11_wen = wen && (waddr == 8'h28);
 wire dinconfig11_ren;
 assign dinconfig11_ren = ren && (raddr == 8'h28);
 reg dinconfig11_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig11_ren_ff <= 1'b0;
     end else begin
         dinconfig11_ren_ff <= dinconfig11_ren;
@@ -5320,8 +5320,8 @@ assign dinconfig11_rdata[3:0] = dinconfig11_vlv_in2_ff;
 
 assign dinconfig11_vlv_in2_out = dinconfig11_vlv_in2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig11_vlv_in2_ff <= 4'h6;
     end else  begin
      if (dinconfig11_wen) begin
@@ -5346,8 +5346,8 @@ assign dinconfig11_rdata[7:4] = dinconfig11_vlv_in3_ff;
 
 assign dinconfig11_vlv_in3_out = dinconfig11_vlv_in3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         dinconfig11_vlv_in3_ff <= 4'h7;
     end else  begin
      if (dinconfig11_wen) begin
@@ -5374,8 +5374,8 @@ assign wdconfig0_wen = wen && (waddr == 8'h29);
 wire wdconfig0_ren;
 assign wdconfig0_ren = ren && (raddr == 8'h29);
 reg wdconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig0_ren_ff <= 1'b0;
     end else begin
         wdconfig0_ren_ff <= wdconfig0_ren;
@@ -5392,8 +5392,8 @@ assign wdconfig0_rdata[3:0] = wdconfig0_wd_duration_ff;
 
 assign wdconfig0_wd_duration_out = wdconfig0_wd_duration_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig0_wd_duration_ff <= 4'h0;
     end else  begin
      if (wdconfig0_wen) begin
@@ -5418,8 +5418,8 @@ assign wdconfig0_rdata[5:4] = wdconfig0_vrs_wd_duration_ff;
 
 assign wdconfig0_vrs_wd_duration_out = wdconfig0_vrs_wd_duration_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig0_vrs_wd_duration_ff <= 2'h2;
     end else  begin
      if (wdconfig0_wen) begin
@@ -5444,8 +5444,8 @@ assign wdconfig0_rdata[6] = wdconfig0_vrs_wd_en_ff;
 
 assign wdconfig0_vrs_wd_en_out = wdconfig0_vrs_wd_en_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig0_vrs_wd_en_ff <= 1'b0;
     end else  begin
      if (wdconfig0_wen) begin
@@ -5472,8 +5472,8 @@ assign wdconfig1_wen = wen && (waddr == 8'h2a);
 wire wdconfig1_ren;
 assign wdconfig1_ren = ren && (raddr == 8'h2a);
 reg wdconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig1_ren_ff <= 1'b0;
     end else begin
         wdconfig1_ren_ff <= wdconfig1_ren;
@@ -5490,8 +5490,8 @@ assign wdconfig1_rdata[1:0] = wdconfig1_spi_err_cnt_cfg_ff;
 
 assign wdconfig1_spi_err_cnt_cfg_out = wdconfig1_spi_err_cnt_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig1_spi_err_cnt_cfg_ff <= 2'h0;
     end else  begin
      if (wdconfig1_wen) begin
@@ -5516,8 +5516,8 @@ assign wdconfig1_rdata[3:2] = wdconfig1_spi_rfh_cnt_cfg_ff;
 
 assign wdconfig1_spi_rfh_cnt_cfg_out = wdconfig1_spi_rfh_cnt_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig1_spi_rfh_cnt_cfg_ff <= 2'h0;
     end else  begin
      if (wdconfig1_wen) begin
@@ -5542,8 +5542,8 @@ assign wdconfig1_rdata[4] = wdconfig1_spi_rst_err_fs_ff;
 
 assign wdconfig1_spi_rst_err_fs_out = wdconfig1_spi_rst_err_fs_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdconfig1_spi_rst_err_fs_ff <= 1'b0;
     end else  begin
      if (wdconfig1_wen) begin
@@ -5569,8 +5569,8 @@ assign vrsconfig0_wen = wen && (waddr == 8'h2b);
 wire vrsconfig0_ren;
 assign vrsconfig0_ren = ren && (raddr == 8'h2b);
 reg vrsconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig0_ren_ff <= 1'b0;
     end else begin
         vrsconfig0_ren_ff <= vrsconfig0_ren;
@@ -5587,8 +5587,8 @@ assign vrsconfig0_rdata[1:0] = vrsconfig0_vrs_mode_cfg_ff;
 
 assign vrsconfig0_vrs_mode_cfg_out = vrsconfig0_vrs_mode_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig0_vrs_mode_cfg_ff <= 2'h2;
     end else  begin
      if (vrsconfig0_wen) begin
@@ -5613,8 +5613,8 @@ assign vrsconfig0_rdata[3:2] = vrsconfig0_vrs_ref_ff;
 
 assign vrsconfig0_vrs_ref_out = vrsconfig0_vrs_ref_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig0_vrs_ref_ff <= 2'h0;
     end else  begin
      if (vrsconfig0_wen) begin
@@ -5639,8 +5639,8 @@ assign vrsconfig0_rdata[5:4] = vrsconfig0_vrs_test_cfg_ff;
 
 assign vrsconfig0_vrs_test_cfg_out = vrsconfig0_vrs_test_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig0_vrs_test_cfg_ff <= 2'h0;
     end else  begin
      if (vrsconfig0_wen) begin
@@ -5665,8 +5665,8 @@ assign vrsconfig0_rdata[6] = vrsconfig0_vrso_spi_ctrl_mode_ff;
 
 assign vrsconfig0_vrso_spi_ctrl_mode_out = vrsconfig0_vrso_spi_ctrl_mode_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig0_vrso_spi_ctrl_mode_ff <= 1'b0;
     end else  begin
      if (vrsconfig0_wen) begin
@@ -5691,8 +5691,8 @@ assign vrsconfig0_rdata[7] = vrsconfig0_vrso_spi_ctrl_ff;
 
 assign vrsconfig0_vrso_spi_ctrl_out = vrsconfig0_vrso_spi_ctrl_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig0_vrso_spi_ctrl_ff <= 1'b0;
     end else  begin
      if (vrsconfig0_wen) begin
@@ -5718,8 +5718,8 @@ assign vrsconfig1_wen = wen && (waddr == 8'h2c);
 wire vrsconfig1_ren;
 assign vrsconfig1_ren = ren && (raddr == 8'h2c);
 reg vrsconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_ren_ff <= 1'b0;
     end else begin
         vrsconfig1_ren_ff <= vrsconfig1_ren;
@@ -5736,8 +5736,8 @@ assign vrsconfig1_rdata[2:0] = vrsconfig1_vrsf_ff;
 
 assign vrsconfig1_vrsf_out = vrsconfig1_vrsf_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_vrsf_ff <= 3'h0;
     end else  begin
      if (vrsconfig1_wen) begin
@@ -5762,8 +5762,8 @@ assign vrsconfig1_rdata[3] = vrsconfig1_vrsm_ff;
 
 assign vrsconfig1_vrsm_out = vrsconfig1_vrsm_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_vrsm_ff <= 1'b1;
     end else  begin
      if (vrsconfig1_wen) begin
@@ -5788,8 +5788,8 @@ assign vrsconfig1_rdata[4] = vrsconfig1_vrsrf_ff;
 
 assign vrsconfig1_vrsrf_out = vrsconfig1_vrsrf_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_vrsrf_ff <= 1'b1;
     end else  begin
      if (vrsconfig1_wen) begin
@@ -5814,8 +5814,8 @@ assign vrsconfig1_rdata[5] = vrsconfig1_vrsff_ff;
 
 assign vrsconfig1_vrsff_out = vrsconfig1_vrsff_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_vrsff_ff <= 1'b1;
     end else  begin
      if (vrsconfig1_wen) begin
@@ -5840,8 +5840,8 @@ assign vrsconfig1_rdata[6] = vrsconfig1_vrseff_ff;
 
 assign vrsconfig1_vrseff_out = vrsconfig1_vrseff_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_vrseff_ff <= 1'b1;
     end else  begin
      if (vrsconfig1_wen) begin
@@ -5866,8 +5866,8 @@ assign vrsconfig1_rdata[7] = vrsconfig1_vrso_en_ff;
 
 assign vrsconfig1_vrso_en_out = vrsconfig1_vrso_en_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig1_vrso_en_ff <= 1'b0;
     end else  begin
      if (vrsconfig1_wen) begin
@@ -5894,8 +5894,8 @@ assign vrsconfig2_wen = wen && (waddr == 8'h2d);
 wire vrsconfig2_ren;
 assign vrsconfig2_ren = ren && (raddr == 8'h2d);
 reg vrsconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig2_ren_ff <= 1'b0;
     end else begin
         vrsconfig2_ren_ff <= vrsconfig2_ren;
@@ -5912,8 +5912,8 @@ assign vrsconfig2_rdata[6:0] = vrsconfig2_vrs_ol_diag_ff;
 
 assign vrsconfig2_vrs_ol_diag_out = vrsconfig2_vrs_ol_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsconfig2_vrs_ol_diag_ff <= 7'h0;
     end else  begin
      if (vrsconfig2_wen) begin
@@ -5940,8 +5940,8 @@ assign mscconfig0_wen = wen && (waddr == 8'h2e);
 wire mscconfig0_ren;
 assign mscconfig0_ren = ren && (raddr == 8'h2e);
 reg mscconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig0_ren_ff <= 1'b0;
     end else begin
         mscconfig0_ren_ff <= mscconfig0_ren;
@@ -5958,8 +5958,8 @@ assign mscconfig0_rdata[2:0] = mscconfig0_msc_clk_div_cfg_ff;
 
 assign mscconfig0_msc_clk_div_cfg_out = mscconfig0_msc_clk_div_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig0_msc_clk_div_cfg_ff <= 3'h0;
     end else  begin
      if (mscconfig0_wen) begin
@@ -5984,8 +5984,8 @@ assign mscconfig0_rdata[3] = mscconfig0_msc_sv_en_ff;
 
 assign mscconfig0_msc_sv_en_out = mscconfig0_msc_sv_en_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig0_msc_sv_en_ff <= 1'b0;
     end else  begin
      if (mscconfig0_wen) begin
@@ -6011,8 +6011,8 @@ assign mscconfig1_wen = wen && (waddr == 8'h2f);
 wire mscconfig1_ren;
 assign mscconfig1_ren = ren && (raddr == 8'h2f);
 reg mscconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig1_ren_ff <= 1'b0;
     end else begin
         mscconfig1_ren_ff <= mscconfig1_ren;
@@ -6029,8 +6029,8 @@ assign mscconfig1_rdata[0] = mscconfig1_msc_crc_cfg_ff;
 
 assign mscconfig1_msc_crc_cfg_out = mscconfig1_msc_crc_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig1_msc_crc_cfg_ff <= 1'b1;
     end else  begin
      if (mscconfig1_wen) begin
@@ -6055,8 +6055,8 @@ assign mscconfig1_rdata[1] = mscconfig1_msc_up_frame_ff;
 
 assign mscconfig1_msc_up_frame_out = mscconfig1_msc_up_frame_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig1_msc_up_frame_ff <= 1'b0;
     end else  begin
      if (mscconfig1_wen) begin
@@ -6081,8 +6081,8 @@ assign mscconfig1_rdata[2] = mscconfig1_msc_addr_mode_ff;
 
 assign mscconfig1_msc_addr_mode_out = mscconfig1_msc_addr_mode_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig1_msc_addr_mode_ff <= 1'b0;
     end else  begin
      if (mscconfig1_wen) begin
@@ -6107,8 +6107,8 @@ assign mscconfig1_rdata[6:3] = mscconfig1_msc_addr_cfg_ff;
 
 assign mscconfig1_msc_addr_cfg_out = mscconfig1_msc_addr_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig1_msc_addr_cfg_ff <= 4'h0;
     end else  begin
      if (mscconfig1_wen) begin
@@ -6133,8 +6133,8 @@ assign mscconfig1_rdata[7] = mscconfig1_od_miso_ff;
 
 assign mscconfig1_od_miso_out = mscconfig1_od_miso_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscconfig1_od_miso_ff <= 1'b0;
     end else  begin
      if (mscconfig1_wen) begin
@@ -6161,8 +6161,8 @@ assign aoutconfig_wen = wen && (waddr == 8'h30);
 wire aoutconfig_ren;
 assign aoutconfig_ren = ren && (raddr == 8'h30);
 reg aoutconfig_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         aoutconfig_ren_ff <= 1'b0;
     end else begin
         aoutconfig_ren_ff <= aoutconfig_ren;
@@ -6179,8 +6179,8 @@ assign aoutconfig_rdata[3:0] = aoutconfig_amux_ff;
 
 assign aoutconfig_amux_out = aoutconfig_amux_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         aoutconfig_amux_ff <= 4'h0;
     end else  begin
      if (aoutconfig_wen) begin
@@ -6205,8 +6205,8 @@ assign aoutconfig_rdata[5:4] = aoutconfig_vddio_rng_ff;
 
 assign aoutconfig_vddio_rng_out = aoutconfig_vddio_rng_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         aoutconfig_vddio_rng_ff <= 2'h1;
     end else  begin
      if (aoutconfig_wen) begin
@@ -6231,8 +6231,8 @@ assign aoutconfig_rdata[6] = aoutconfig_vpwr_rng_ff;
 
 assign aoutconfig_vpwr_rng_out = aoutconfig_vpwr_rng_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         aoutconfig_vpwr_rng_ff <= 1'b0;
     end else  begin
      if (aoutconfig_wen) begin
@@ -6259,8 +6259,8 @@ assign rstbconfig_wen = wen && (waddr == 8'h31);
 wire rstbconfig_ren;
 assign rstbconfig_ren = ren && (raddr == 8'h31);
 reg rstbconfig_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstbconfig_ren_ff <= 1'b0;
     end else begin
         rstbconfig_ren_ff <= rstbconfig_ren;
@@ -6277,8 +6277,8 @@ assign rstbconfig_rdata[0] = rstbconfig_vdd5_uv_rstb_cfg_ff;
 
 assign rstbconfig_vdd5_uv_rstb_cfg_out = rstbconfig_vdd5_uv_rstb_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstbconfig_vdd5_uv_rstb_cfg_ff <= 1'b1;
     end else  begin
      if (rstbconfig_wen) begin
@@ -6303,8 +6303,8 @@ assign rstbconfig_rdata[1] = rstbconfig_vdd5_ov_rstb_cfg_ff;
 
 assign rstbconfig_vdd5_ov_rstb_cfg_out = rstbconfig_vdd5_ov_rstb_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstbconfig_vdd5_ov_rstb_cfg_ff <= 1'b1;
     end else  begin
      if (rstbconfig_wen) begin
@@ -6329,8 +6329,8 @@ assign rstbconfig_rdata[2] = rstbconfig_wd_rstb_cfg_ff;
 
 assign rstbconfig_wd_rstb_cfg_out = rstbconfig_wd_rstb_cfg_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstbconfig_wd_rstb_cfg_ff <= 1'b1;
     end else  begin
      if (rstbconfig_wen) begin
@@ -6357,8 +6357,8 @@ assign faultbconfig0_wen = wen && (waddr == 8'h32);
 wire faultbconfig0_ren;
 assign faultbconfig0_ren = ren && (raddr == 8'h32);
 reg faultbconfig0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_ren_ff <= 1'b0;
     end else begin
         faultbconfig0_ren_ff <= faultbconfig0_ren;
@@ -6375,8 +6375,8 @@ assign faultbconfig0_rdata[0] = faultbconfig0_wd_sv_fail_diag_ff;
 
 assign faultbconfig0_wd_sv_fail_diag_out = faultbconfig0_wd_sv_fail_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_wd_sv_fail_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6401,8 +6401,8 @@ assign faultbconfig0_rdata[1] = faultbconfig0_spi_msc_fail_diag_ff;
 
 assign faultbconfig0_spi_msc_fail_diag_out = faultbconfig0_spi_msc_fail_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_spi_msc_fail_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6427,8 +6427,8 @@ assign faultbconfig0_rdata[2] = faultbconfig0_otp_fail_diag_ff;
 
 assign faultbconfig0_otp_fail_diag_out = faultbconfig0_otp_fail_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_otp_fail_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6453,8 +6453,8 @@ assign faultbconfig0_rdata[3] = faultbconfig0_fault_vrs_wd_diag_ff;
 
 assign faultbconfig0_fault_vrs_wd_diag_out = faultbconfig0_fault_vrs_wd_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_fault_vrs_wd_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6479,8 +6479,8 @@ assign faultbconfig0_rdata[4] = faultbconfig0_vrs_ol_sc_diag_ff;
 
 assign faultbconfig0_vrs_ol_sc_diag_out = faultbconfig0_vrs_ol_sc_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_vrs_ol_sc_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6505,8 +6505,8 @@ assign faultbconfig0_rdata[5] = faultbconfig0_gnd_fail_diag_ff;
 
 assign faultbconfig0_gnd_fail_diag_out = faultbconfig0_gnd_fail_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_gnd_fail_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6531,8 +6531,8 @@ assign faultbconfig0_rdata[7] = faultbconfig0_faultb_latch_data_ff;
 
 assign faultbconfig0_faultb_latch_data_out = faultbconfig0_faultb_latch_data_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig0_faultb_latch_data_ff <= 1'b0;
     end else  begin
      if (faultbconfig0_wen) begin
@@ -6558,8 +6558,8 @@ assign faultbconfig1_wen = wen && (waddr == 8'h33);
 wire faultbconfig1_ren;
 assign faultbconfig1_ren = ren && (raddr == 8'h33);
 reg faultbconfig1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_ren_ff <= 1'b0;
     end else begin
         faultbconfig1_ren_ff <= faultbconfig1_ren;
@@ -6576,8 +6576,8 @@ assign faultbconfig1_rdata[0] = faultbconfig1_sup_regl_diag_ff;
 
 assign faultbconfig1_sup_regl_diag_out = faultbconfig1_sup_regl_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_sup_regl_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6602,8 +6602,8 @@ assign faultbconfig1_rdata[1] = faultbconfig1_cp_uv_diag_ff;
 
 assign faultbconfig1_cp_uv_diag_out = faultbconfig1_cp_uv_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_cp_uv_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6628,8 +6628,8 @@ assign faultbconfig1_rdata[2] = faultbconfig1_vddio_uv_diag_ff;
 
 assign faultbconfig1_vddio_uv_diag_out = faultbconfig1_vddio_uv_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_vddio_uv_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6654,8 +6654,8 @@ assign faultbconfig1_rdata[3] = faultbconfig1_vddio_ov_diag_ff;
 
 assign faultbconfig1_vddio_ov_diag_out = faultbconfig1_vddio_ov_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_vddio_ov_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6680,8 +6680,8 @@ assign faultbconfig1_rdata[4] = faultbconfig1_vpwr_uv_diag_ff;
 
 assign faultbconfig1_vpwr_uv_diag_out = faultbconfig1_vpwr_uv_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_vpwr_uv_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6706,8 +6706,8 @@ assign faultbconfig1_rdata[5] = faultbconfig1_vpwr_ov_diag_ff;
 
 assign faultbconfig1_vpwr_ov_diag_out = faultbconfig1_vpwr_ov_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_vpwr_ov_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6732,8 +6732,8 @@ assign faultbconfig1_rdata[6] = faultbconfig1_vdd5_uv_diag_ff;
 
 assign faultbconfig1_vdd5_uv_diag_out = faultbconfig1_vdd5_uv_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_vdd5_uv_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6758,8 +6758,8 @@ assign faultbconfig1_rdata[7] = faultbconfig1_vdd5_ov_diag_ff;
 
 assign faultbconfig1_vdd5_ov_diag_out = faultbconfig1_vdd5_ov_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig1_vdd5_ov_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig1_wen) begin
@@ -6785,8 +6785,8 @@ assign faultbconfig2_wen = wen && (waddr == 8'h34);
 wire faultbconfig2_ren;
 assign faultbconfig2_ren = ren && (raddr == 8'h34);
 reg faultbconfig2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_ren_ff <= 1'b0;
     end else begin
         faultbconfig2_ren_ff <= faultbconfig2_ren;
@@ -6803,8 +6803,8 @@ assign faultbconfig2_rdata[0] = faultbconfig2_ol_sc_diag_ff;
 
 assign faultbconfig2_ol_sc_diag_out = faultbconfig2_ol_sc_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_ol_sc_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6829,8 +6829,8 @@ assign faultbconfig2_rdata[1] = faultbconfig2_tsd_diag_ff;
 
 assign faultbconfig2_tsd_diag_out = faultbconfig2_tsd_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_tsd_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6855,8 +6855,8 @@ assign faultbconfig2_rdata[2] = faultbconfig2_oc_diag_ff;
 
 assign faultbconfig2_oc_diag_out = faultbconfig2_oc_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_oc_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6881,8 +6881,8 @@ assign faultbconfig2_rdata[3] = faultbconfig2_sc_ign_diag_ff;
 
 assign faultbconfig2_sc_ign_diag_out = faultbconfig2_sc_ign_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_sc_ign_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6907,8 +6907,8 @@ assign faultbconfig2_rdata[4] = faultbconfig2_ol_ign_diag_ff;
 
 assign faultbconfig2_ol_ign_diag_out = faultbconfig2_ol_ign_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_ol_ign_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6933,8 +6933,8 @@ assign faultbconfig2_rdata[5] = faultbconfig2_dndis_drv_diag_ff;
 
 assign faultbconfig2_dndis_drv_diag_out = faultbconfig2_dndis_drv_diag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_dndis_drv_diag_ff <= 1'b1;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6959,8 +6959,8 @@ assign faultbconfig2_rdata[6] = faultbconfig2_faultb_spi_ctrl_mode_ff;
 
 assign faultbconfig2_faultb_spi_ctrl_mode_out = faultbconfig2_faultb_spi_ctrl_mode_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_faultb_spi_ctrl_mode_ff <= 1'b0;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -6985,8 +6985,8 @@ assign faultbconfig2_rdata[7] = faultbconfig2_faultb_spi_ctrl_ff;
 
 assign faultbconfig2_faultb_spi_ctrl_out = faultbconfig2_faultb_spi_ctrl_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         faultbconfig2_faultb_spi_ctrl_ff <= 1'b0;
     end else  begin
      if (faultbconfig2_wen) begin
@@ -7011,8 +7011,8 @@ assign vrsdiag_rdata[7:5] = 3'h0;
 wire vrsdiag_ren;
 assign vrsdiag_ren = ren && (raddr == 8'h35);
 reg vrsdiag_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsdiag_ren_ff <= 1'b0;
     end else begin
         vrsdiag_ren_ff <= vrsdiag_ren;
@@ -7028,8 +7028,8 @@ reg  vrsdiag_fault_vrs_wd_ff;
 assign vrsdiag_rdata[0] = vrsdiag_fault_vrs_wd_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsdiag_fault_vrs_wd_ff <= 1'b0;
     end else  begin
       if (vrsdiag_fault_vrs_wd_en) begin
@@ -7049,8 +7049,8 @@ reg  vrsdiag_vrs_scb_ff;
 assign vrsdiag_rdata[1] = vrsdiag_vrs_scb_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsdiag_vrs_scb_ff <= 1'b0;
     end else  begin
       if (vrsdiag_vrs_scb_en) begin
@@ -7070,8 +7070,8 @@ reg  vrsdiag_vrs_scg_ff;
 assign vrsdiag_rdata[2] = vrsdiag_vrs_scg_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsdiag_vrs_scg_ff <= 1'b0;
     end else  begin
       if (vrsdiag_vrs_scg_en) begin
@@ -7091,8 +7091,8 @@ reg  vrsdiag_vrs_ol_ff;
 assign vrsdiag_rdata[3] = vrsdiag_vrs_ol_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsdiag_vrs_ol_ff <= 1'b0;
     end else  begin
       if (vrsdiag_vrs_ol_en) begin
@@ -7112,8 +7112,8 @@ reg  vrsdiag_vrs_th_fault_ff;
 assign vrsdiag_rdata[4] = vrsdiag_vrs_th_fault_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vrsdiag_vrs_th_fault_ff <= 1'b0;
     end else  begin
       if (vrsdiag_vrs_th_fault_en) begin
@@ -7133,8 +7133,8 @@ wire [7:0] supdiag_rdata;
 wire supdiag_ren;
 assign supdiag_ren = ren && (raddr == 8'h36);
 reg supdiag_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_ren_ff <= 1'b0;
     end else begin
         supdiag_ren_ff <= supdiag_ren;
@@ -7150,8 +7150,8 @@ reg  supdiag_sup_regl_ff;
 assign supdiag_rdata[0] = supdiag_sup_regl_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_sup_regl_ff <= 1'b0;
     end else  begin
       if (supdiag_sup_regl_en) begin
@@ -7171,8 +7171,8 @@ reg  supdiag_cp_uv_ff;
 assign supdiag_rdata[1] = supdiag_cp_uv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_cp_uv_ff <= 1'b0;
     end else  begin
       if (supdiag_cp_uv_en) begin
@@ -7192,8 +7192,8 @@ reg  supdiag_vddio_uv_ff;
 assign supdiag_rdata[2] = supdiag_vddio_uv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_vddio_uv_ff <= 1'b0;
     end else  begin
       if (supdiag_vddio_uv_en) begin
@@ -7213,8 +7213,8 @@ reg  supdiag_vddio_ov_ff;
 assign supdiag_rdata[3] = supdiag_vddio_ov_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_vddio_ov_ff <= 1'b0;
     end else  begin
       if (supdiag_vddio_ov_en) begin
@@ -7234,8 +7234,8 @@ reg  supdiag_vpwr_uv_ff;
 assign supdiag_rdata[4] = supdiag_vpwr_uv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_vpwr_uv_ff <= 1'b0;
     end else  begin
       if (supdiag_vpwr_uv_en) begin
@@ -7255,8 +7255,8 @@ reg  supdiag_vpwr_ov_ff;
 assign supdiag_rdata[5] = supdiag_vpwr_ov_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_vpwr_ov_ff <= 1'b0;
     end else  begin
       if (supdiag_vpwr_ov_en) begin
@@ -7276,8 +7276,8 @@ reg  supdiag_vdd5_uv_ff;
 assign supdiag_rdata[6] = supdiag_vdd5_uv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_vdd5_uv_ff <= 1'b0;
     end else  begin
       if (supdiag_vdd5_uv_en) begin
@@ -7297,8 +7297,8 @@ reg  supdiag_vdd5_ov_ff;
 assign supdiag_rdata[7] = supdiag_vdd5_ov_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         supdiag_vdd5_ov_ff <= 1'b0;
     end else  begin
       if (supdiag_vdd5_ov_en) begin
@@ -7319,8 +7319,8 @@ assign extdiag0_rdata[7] = 1'b0;
 wire extdiag0_ren;
 assign extdiag0_ren = ren && (raddr == 8'h37);
 reg extdiag0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_ren_ff <= 1'b0;
     end else begin
         extdiag0_ren_ff <= extdiag0_ren;
@@ -7336,8 +7336,8 @@ reg  extdiag0_msc_spi_error_ff;
 assign extdiag0_rdata[0] = extdiag0_msc_spi_error_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_msc_spi_error_ff <= 1'b0;
     end else  begin
       if (extdiag0_msc_spi_error_en) begin
@@ -7357,8 +7357,8 @@ reg  extdiag0_msc_sv_error_ff;
 assign extdiag0_rdata[1] = extdiag0_msc_sv_error_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_msc_sv_error_ff <= 1'b0;
     end else  begin
       if (extdiag0_msc_sv_error_en) begin
@@ -7378,8 +7378,8 @@ reg  extdiag0_wd_warn_ff;
 assign extdiag0_rdata[2] = extdiag0_wd_warn_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_wd_warn_ff <= 1'b0;
     end else  begin
       if (extdiag0_wd_warn_en) begin
@@ -7399,8 +7399,8 @@ reg  extdiag0_wd_fail_ff;
 assign extdiag0_rdata[3] = extdiag0_wd_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_wd_fail_ff <= 1'b0;
     end else  begin
       if (extdiag0_wd_fail_en) begin
@@ -7420,8 +7420,8 @@ reg  extdiag0_fuse_check_error_ff;
 assign extdiag0_rdata[4] = extdiag0_fuse_check_error_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_fuse_check_error_ff <= 1'b0;
     end else  begin
       if (extdiag0_fuse_check_error_en) begin
@@ -7441,8 +7441,8 @@ reg  extdiag0_otp_usage_fault_ff;
 assign extdiag0_rdata[5] = extdiag0_otp_usage_fault_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_otp_usage_fault_ff <= 1'b0;
     end else  begin
       if (extdiag0_otp_usage_fault_en) begin
@@ -7462,8 +7462,8 @@ reg  extdiag0_self_test_error_ff;
 assign extdiag0_rdata[6] = extdiag0_self_test_error_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag0_self_test_error_ff <= 1'b0;
     end else  begin
       if (extdiag0_self_test_error_en) begin
@@ -7483,8 +7483,8 @@ wire [7:0] extdiag1_rdata;
 wire extdiag1_ren;
 assign extdiag1_ren = ren && (raddr == 8'h38);
 reg extdiag1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_ren_ff <= 1'b0;
     end else begin
         extdiag1_ren_ff <= extdiag1_ren;
@@ -7500,8 +7500,8 @@ reg  extdiag1_pgnd_loss_ff;
 assign extdiag1_rdata[0] = extdiag1_pgnd_loss_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_pgnd_loss_ff <= 1'b0;
     end else  begin
       if (extdiag1_pgnd_loss_en) begin
@@ -7521,8 +7521,8 @@ reg  extdiag1_agnd_loss_ff;
 assign extdiag1_rdata[1] = extdiag1_agnd_loss_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_agnd_loss_ff <= 1'b0;
     end else  begin
       if (extdiag1_agnd_loss_en) begin
@@ -7542,8 +7542,8 @@ reg  extdiag1_gndio_loss_ff;
 assign extdiag1_rdata[2] = extdiag1_gndio_loss_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_gndio_loss_ff <= 1'b0;
     end else  begin
       if (extdiag1_gndio_loss_en) begin
@@ -7563,8 +7563,8 @@ reg  extdiag1_vdig_1p5v_ov_ff;
 assign extdiag1_rdata[3] = extdiag1_vdig_1p5v_ov_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_vdig_1p5v_ov_ff <= 1'b0;
     end else  begin
       if (extdiag1_vdig_1p5v_ov_en) begin
@@ -7584,8 +7584,8 @@ reg  extdiag1_vdig_1p5v_uv_ff;
 assign extdiag1_rdata[4] = extdiag1_vdig_1p5v_uv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_vdig_1p5v_uv_ff <= 1'b0;
     end else  begin
       if (extdiag1_vdig_1p5v_uv_en) begin
@@ -7605,8 +7605,8 @@ reg  extdiag1_vana_1p5v_uv_ff;
 assign extdiag1_rdata[5] = extdiag1_vana_1p5v_uv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_vana_1p5v_uv_ff <= 1'b0;
     end else  begin
       if (extdiag1_vana_1p5v_uv_en) begin
@@ -7626,8 +7626,8 @@ reg  extdiag1_vana_1p5v_ov_ff;
 assign extdiag1_rdata[6] = extdiag1_vana_1p5v_ov_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_vana_1p5v_ov_ff <= 1'b0;
     end else  begin
       if (extdiag1_vana_1p5v_ov_en) begin
@@ -7647,8 +7647,8 @@ reg  extdiag1_dis_drv_ff;
 assign extdiag1_rdata[7] = extdiag1_dis_drv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         extdiag1_dis_drv_ff <= 1'b0;
     end else  begin
       if (extdiag1_dis_drv_en) begin
@@ -7668,8 +7668,8 @@ wire [7:0] injdiag0_rdata;
 wire injdiag0_ren;
 assign injdiag0_ren = ren && (raddr == 8'h39);
 reg injdiag0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_ren_ff <= 1'b0;
     end else begin
         injdiag0_ren_ff <= injdiag0_ren;
@@ -7685,8 +7685,8 @@ reg  injdiag0_scg_inj1_ff;
 assign injdiag0_rdata[0] = injdiag0_scg_inj1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_scg_inj1_ff <= 1'b0;
     end else  begin
       if (injdiag0_scg_inj1_en) begin
@@ -7706,8 +7706,8 @@ reg  injdiag0_ol_inj1_ff;
 assign injdiag0_rdata[1] = injdiag0_ol_inj1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_ol_inj1_ff <= 1'b0;
     end else  begin
       if (injdiag0_ol_inj1_en) begin
@@ -7727,8 +7727,8 @@ reg  injdiag0_tsd_inj1_ff;
 assign injdiag0_rdata[2] = injdiag0_tsd_inj1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_tsd_inj1_ff <= 1'b0;
     end else  begin
       if (injdiag0_tsd_inj1_en) begin
@@ -7748,8 +7748,8 @@ reg  injdiag0_oc_inj1_ff;
 assign injdiag0_rdata[3] = injdiag0_oc_inj1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_oc_inj1_ff <= 1'b0;
     end else  begin
       if (injdiag0_oc_inj1_en) begin
@@ -7769,8 +7769,8 @@ reg  injdiag0_scg_inj2_ff;
 assign injdiag0_rdata[4] = injdiag0_scg_inj2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_scg_inj2_ff <= 1'b0;
     end else  begin
       if (injdiag0_scg_inj2_en) begin
@@ -7790,8 +7790,8 @@ reg  injdiag0_ol_inj2_ff;
 assign injdiag0_rdata[5] = injdiag0_ol_inj2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_ol_inj2_ff <= 1'b0;
     end else  begin
       if (injdiag0_ol_inj2_en) begin
@@ -7811,8 +7811,8 @@ reg  injdiag0_tsd_inj2_ff;
 assign injdiag0_rdata[6] = injdiag0_tsd_inj2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_tsd_inj2_ff <= 1'b0;
     end else  begin
       if (injdiag0_tsd_inj2_en) begin
@@ -7832,8 +7832,8 @@ reg  injdiag0_oc_inj2_ff;
 assign injdiag0_rdata[7] = injdiag0_oc_inj2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag0_oc_inj2_ff <= 1'b0;
     end else  begin
       if (injdiag0_oc_inj2_en) begin
@@ -7853,8 +7853,8 @@ wire [7:0] injdiag1_rdata;
 wire injdiag1_ren;
 assign injdiag1_ren = ren && (raddr == 8'h3a);
 reg injdiag1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_ren_ff <= 1'b0;
     end else begin
         injdiag1_ren_ff <= injdiag1_ren;
@@ -7870,8 +7870,8 @@ reg  injdiag1_scg_inj3_ff;
 assign injdiag1_rdata[0] = injdiag1_scg_inj3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_scg_inj3_ff <= 1'b0;
     end else  begin
       if (injdiag1_scg_inj3_en) begin
@@ -7891,8 +7891,8 @@ reg  injdiag1_ol_inj3_ff;
 assign injdiag1_rdata[1] = injdiag1_ol_inj3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_ol_inj3_ff <= 1'b0;
     end else  begin
       if (injdiag1_ol_inj3_en) begin
@@ -7912,8 +7912,8 @@ reg  injdiag1_tsd_inj3_ff;
 assign injdiag1_rdata[2] = injdiag1_tsd_inj3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_tsd_inj3_ff <= 1'b0;
     end else  begin
       if (injdiag1_tsd_inj3_en) begin
@@ -7933,8 +7933,8 @@ reg  injdiag1_oc_inj3_ff;
 assign injdiag1_rdata[3] = injdiag1_oc_inj3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_oc_inj3_ff <= 1'b0;
     end else  begin
       if (injdiag1_oc_inj3_en) begin
@@ -7954,8 +7954,8 @@ reg  injdiag1_scg_inj4_ff;
 assign injdiag1_rdata[4] = injdiag1_scg_inj4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_scg_inj4_ff <= 1'b0;
     end else  begin
       if (injdiag1_scg_inj4_en) begin
@@ -7975,8 +7975,8 @@ reg  injdiag1_ol_inj4_ff;
 assign injdiag1_rdata[5] = injdiag1_ol_inj4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_ol_inj4_ff <= 1'b0;
     end else  begin
       if (injdiag1_ol_inj4_en) begin
@@ -7996,8 +7996,8 @@ reg  injdiag1_tsd_inj4_ff;
 assign injdiag1_rdata[6] = injdiag1_tsd_inj4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_tsd_inj4_ff <= 1'b0;
     end else  begin
       if (injdiag1_tsd_inj4_en) begin
@@ -8017,8 +8017,8 @@ reg  injdiag1_oc_inj4_ff;
 assign injdiag1_rdata[7] = injdiag1_oc_inj4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         injdiag1_oc_inj4_ff <= 1'b0;
     end else  begin
       if (injdiag1_oc_inj4_en) begin
@@ -8039,8 +8039,8 @@ assign igndiag0_rdata[7] = 1'b0;
 wire igndiag0_ren;
 assign igndiag0_ren = ren && (raddr == 8'h3b);
 reg igndiag0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_ren_ff <= 1'b0;
     end else begin
         igndiag0_ren_ff <= igndiag0_ren;
@@ -8056,8 +8056,8 @@ reg  igndiag0_scg_ign1_ff;
 assign igndiag0_rdata[0] = igndiag0_scg_ign1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_scg_ign1_ff <= 1'b0;
     end else  begin
       if (igndiag0_scg_ign1_en) begin
@@ -8077,8 +8077,8 @@ reg  igndiag0_ol_ign1_ff;
 assign igndiag0_rdata[1] = igndiag0_ol_ign1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_ol_ign1_ff <= 1'b0;
     end else  begin
       if (igndiag0_ol_ign1_en) begin
@@ -8098,8 +8098,8 @@ reg  igndiag0_scb_ign1_ff;
 assign igndiag0_rdata[2] = igndiag0_scb_ign1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_scb_ign1_ff <= 1'b0;
     end else  begin
       if (igndiag0_scb_ign1_en) begin
@@ -8119,8 +8119,8 @@ reg  igndiag0_scg_ign2_ff;
 assign igndiag0_rdata[3] = igndiag0_scg_ign2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_scg_ign2_ff <= 1'b0;
     end else  begin
       if (igndiag0_scg_ign2_en) begin
@@ -8140,8 +8140,8 @@ reg  igndiag0_ol_ign2_ff;
 assign igndiag0_rdata[4] = igndiag0_ol_ign2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_ol_ign2_ff <= 1'b0;
     end else  begin
       if (igndiag0_ol_ign2_en) begin
@@ -8161,8 +8161,8 @@ reg  igndiag0_scb_ign2_ff;
 assign igndiag0_rdata[5] = igndiag0_scb_ign2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_scb_ign2_ff <= 1'b0;
     end else  begin
       if (igndiag0_scb_ign2_en) begin
@@ -8182,8 +8182,8 @@ reg  igndiag0_tsd_ign1_ff;
 assign igndiag0_rdata[6] = igndiag0_tsd_ign1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag0_tsd_ign1_ff <= 1'b0;
     end else  begin
       if (igndiag0_tsd_ign1_en) begin
@@ -8204,8 +8204,8 @@ assign igndiag1_rdata[7] = 1'b0;
 wire igndiag1_ren;
 assign igndiag1_ren = ren && (raddr == 8'h3c);
 reg igndiag1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_ren_ff <= 1'b0;
     end else begin
         igndiag1_ren_ff <= igndiag1_ren;
@@ -8221,8 +8221,8 @@ reg  igndiag1_scg_ign3_ff;
 assign igndiag1_rdata[0] = igndiag1_scg_ign3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_scg_ign3_ff <= 1'b0;
     end else  begin
       if (igndiag1_scg_ign3_en) begin
@@ -8242,8 +8242,8 @@ reg  igndiag1_ol_ign3_ff;
 assign igndiag1_rdata[1] = igndiag1_ol_ign3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_ol_ign3_ff <= 1'b0;
     end else  begin
       if (igndiag1_ol_ign3_en) begin
@@ -8263,8 +8263,8 @@ reg  igndiag1_scb_ign3_ff;
 assign igndiag1_rdata[2] = igndiag1_scb_ign3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_scb_ign3_ff <= 1'b0;
     end else  begin
       if (igndiag1_scb_ign3_en) begin
@@ -8284,8 +8284,8 @@ reg  igndiag1_scg_ign4_ff;
 assign igndiag1_rdata[3] = igndiag1_scg_ign4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_scg_ign4_ff <= 1'b0;
     end else  begin
       if (igndiag1_scg_ign4_en) begin
@@ -8305,8 +8305,8 @@ reg  igndiag1_ol_ign4_ff;
 assign igndiag1_rdata[4] = igndiag1_ol_ign4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_ol_ign4_ff <= 1'b0;
     end else  begin
       if (igndiag1_ol_ign4_en) begin
@@ -8326,8 +8326,8 @@ reg  igndiag1_scb_ign4_ff;
 assign igndiag1_rdata[5] = igndiag1_scb_ign4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_scb_ign4_ff <= 1'b0;
     end else  begin
       if (igndiag1_scb_ign4_en) begin
@@ -8347,8 +8347,8 @@ reg  igndiag1_tsd_ign2_ff;
 assign igndiag1_rdata[6] = igndiag1_tsd_ign2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         igndiag1_tsd_ign2_ff <= 1'b0;
     end else  begin
       if (igndiag1_tsd_ign2_en) begin
@@ -8368,8 +8368,8 @@ wire [7:0] htrdiag0_rdata;
 wire htrdiag0_ren;
 assign htrdiag0_ren = ren && (raddr == 8'h3d);
 reg htrdiag0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_ren_ff <= 1'b0;
     end else begin
         htrdiag0_ren_ff <= htrdiag0_ren;
@@ -8385,8 +8385,8 @@ reg  htrdiag0_scg_htr1_ff;
 assign htrdiag0_rdata[0] = htrdiag0_scg_htr1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_scg_htr1_ff <= 1'b0;
     end else  begin
       if (htrdiag0_scg_htr1_en) begin
@@ -8406,8 +8406,8 @@ reg  htrdiag0_ol_htr1_ff;
 assign htrdiag0_rdata[1] = htrdiag0_ol_htr1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_ol_htr1_ff <= 1'b0;
     end else  begin
       if (htrdiag0_ol_htr1_en) begin
@@ -8427,8 +8427,8 @@ reg  htrdiag0_tsd_htr1_ff;
 assign htrdiag0_rdata[2] = htrdiag0_tsd_htr1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_tsd_htr1_ff <= 1'b0;
     end else  begin
       if (htrdiag0_tsd_htr1_en) begin
@@ -8448,8 +8448,8 @@ reg  htrdiag0_oc_htr1_ff;
 assign htrdiag0_rdata[3] = htrdiag0_oc_htr1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_oc_htr1_ff <= 1'b0;
     end else  begin
       if (htrdiag0_oc_htr1_en) begin
@@ -8469,8 +8469,8 @@ reg  htrdiag0_scg_htr2_ff;
 assign htrdiag0_rdata[4] = htrdiag0_scg_htr2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_scg_htr2_ff <= 1'b0;
     end else  begin
       if (htrdiag0_scg_htr2_en) begin
@@ -8490,8 +8490,8 @@ reg  htrdiag0_ol_htr2_ff;
 assign htrdiag0_rdata[5] = htrdiag0_ol_htr2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_ol_htr2_ff <= 1'b0;
     end else  begin
       if (htrdiag0_ol_htr2_en) begin
@@ -8511,8 +8511,8 @@ reg  htrdiag0_tsd_htr2_ff;
 assign htrdiag0_rdata[6] = htrdiag0_tsd_htr2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_tsd_htr2_ff <= 1'b0;
     end else  begin
       if (htrdiag0_tsd_htr2_en) begin
@@ -8532,8 +8532,8 @@ reg  htrdiag0_oc_htr2_ff;
 assign htrdiag0_rdata[7] = htrdiag0_oc_htr2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         htrdiag0_oc_htr2_ff <= 1'b0;
     end else  begin
       if (htrdiag0_oc_htr2_en) begin
@@ -8553,8 +8553,8 @@ wire [7:0] rlydiag0_rdata;
 wire rlydiag0_ren;
 assign rlydiag0_ren = ren && (raddr == 8'h3e);
 reg rlydiag0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_ren_ff <= 1'b0;
     end else begin
         rlydiag0_ren_ff <= rlydiag0_ren;
@@ -8570,8 +8570,8 @@ reg  rlydiag0_scg_rly1_ff;
 assign rlydiag0_rdata[0] = rlydiag0_scg_rly1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_scg_rly1_ff <= 1'b0;
     end else  begin
       if (rlydiag0_scg_rly1_en) begin
@@ -8591,8 +8591,8 @@ reg  rlydiag0_ol_rly1_ff;
 assign rlydiag0_rdata[1] = rlydiag0_ol_rly1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_ol_rly1_ff <= 1'b0;
     end else  begin
       if (rlydiag0_ol_rly1_en) begin
@@ -8612,8 +8612,8 @@ reg  rlydiag0_tsd_rly1_ff;
 assign rlydiag0_rdata[2] = rlydiag0_tsd_rly1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_tsd_rly1_ff <= 1'b0;
     end else  begin
       if (rlydiag0_tsd_rly1_en) begin
@@ -8633,8 +8633,8 @@ reg  rlydiag0_oc_rly1_ff;
 assign rlydiag0_rdata[3] = rlydiag0_oc_rly1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_oc_rly1_ff <= 1'b0;
     end else  begin
       if (rlydiag0_oc_rly1_en) begin
@@ -8654,8 +8654,8 @@ reg  rlydiag0_scg_rly2_ff;
 assign rlydiag0_rdata[4] = rlydiag0_scg_rly2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_scg_rly2_ff <= 1'b0;
     end else  begin
       if (rlydiag0_scg_rly2_en) begin
@@ -8675,8 +8675,8 @@ reg  rlydiag0_ol_rly2_ff;
 assign rlydiag0_rdata[5] = rlydiag0_ol_rly2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_ol_rly2_ff <= 1'b0;
     end else  begin
       if (rlydiag0_ol_rly2_en) begin
@@ -8696,8 +8696,8 @@ reg  rlydiag0_tsd_rly2_ff;
 assign rlydiag0_rdata[6] = rlydiag0_tsd_rly2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_tsd_rly2_ff <= 1'b0;
     end else  begin
       if (rlydiag0_tsd_rly2_en) begin
@@ -8717,8 +8717,8 @@ reg  rlydiag0_oc_rly2_ff;
 assign rlydiag0_rdata[7] = rlydiag0_oc_rly2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag0_oc_rly2_ff <= 1'b0;
     end else  begin
       if (rlydiag0_oc_rly2_en) begin
@@ -8738,8 +8738,8 @@ wire [7:0] rlydiag1_rdata;
 wire rlydiag1_ren;
 assign rlydiag1_ren = ren && (raddr == 8'h3f);
 reg rlydiag1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_ren_ff <= 1'b0;
     end else begin
         rlydiag1_ren_ff <= rlydiag1_ren;
@@ -8755,8 +8755,8 @@ reg  rlydiag1_scg_rly3_ff;
 assign rlydiag1_rdata[0] = rlydiag1_scg_rly3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_scg_rly3_ff <= 1'b0;
     end else  begin
       if (rlydiag1_scg_rly3_en) begin
@@ -8776,8 +8776,8 @@ reg  rlydiag1_ol_rly3_ff;
 assign rlydiag1_rdata[1] = rlydiag1_ol_rly3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_ol_rly3_ff <= 1'b0;
     end else  begin
       if (rlydiag1_ol_rly3_en) begin
@@ -8797,8 +8797,8 @@ reg  rlydiag1_tsd_rly3_ff;
 assign rlydiag1_rdata[2] = rlydiag1_tsd_rly3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_tsd_rly3_ff <= 1'b0;
     end else  begin
       if (rlydiag1_tsd_rly3_en) begin
@@ -8818,8 +8818,8 @@ reg  rlydiag1_oc_rly3_ff;
 assign rlydiag1_rdata[3] = rlydiag1_oc_rly3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_oc_rly3_ff <= 1'b0;
     end else  begin
       if (rlydiag1_oc_rly3_en) begin
@@ -8839,8 +8839,8 @@ reg  rlydiag1_scg_rly4_ff;
 assign rlydiag1_rdata[4] = rlydiag1_scg_rly4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_scg_rly4_ff <= 1'b0;
     end else  begin
       if (rlydiag1_scg_rly4_en) begin
@@ -8860,8 +8860,8 @@ reg  rlydiag1_ol_rly4_ff;
 assign rlydiag1_rdata[5] = rlydiag1_ol_rly4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_ol_rly4_ff <= 1'b0;
     end else  begin
       if (rlydiag1_ol_rly4_en) begin
@@ -8881,8 +8881,8 @@ reg  rlydiag1_tsd_rly4_ff;
 assign rlydiag1_rdata[6] = rlydiag1_tsd_rly4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_tsd_rly4_ff <= 1'b0;
     end else  begin
       if (rlydiag1_tsd_rly4_en) begin
@@ -8902,8 +8902,8 @@ reg  rlydiag1_oc_rly4_ff;
 assign rlydiag1_rdata[7] = rlydiag1_oc_rly4_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag1_oc_rly4_ff <= 1'b0;
     end else  begin
       if (rlydiag1_oc_rly4_en) begin
@@ -8923,8 +8923,8 @@ wire [7:0] rlydiag2_rdata;
 wire rlydiag2_ren;
 assign rlydiag2_ren = ren && (raddr == 8'h40);
 reg rlydiag2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_ren_ff <= 1'b0;
     end else begin
         rlydiag2_ren_ff <= rlydiag2_ren;
@@ -8940,8 +8940,8 @@ reg  rlydiag2_scg_rly5_ff;
 assign rlydiag2_rdata[0] = rlydiag2_scg_rly5_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_scg_rly5_ff <= 1'b0;
     end else  begin
       if (rlydiag2_scg_rly5_en) begin
@@ -8961,8 +8961,8 @@ reg  rlydiag2_ol_rly5_ff;
 assign rlydiag2_rdata[1] = rlydiag2_ol_rly5_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_ol_rly5_ff <= 1'b0;
     end else  begin
       if (rlydiag2_ol_rly5_en) begin
@@ -8982,8 +8982,8 @@ reg  rlydiag2_tsd_rly5_ff;
 assign rlydiag2_rdata[2] = rlydiag2_tsd_rly5_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_tsd_rly5_ff <= 1'b0;
     end else  begin
       if (rlydiag2_tsd_rly5_en) begin
@@ -9003,8 +9003,8 @@ reg  rlydiag2_oc_rly5_ff;
 assign rlydiag2_rdata[3] = rlydiag2_oc_rly5_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_oc_rly5_ff <= 1'b0;
     end else  begin
       if (rlydiag2_oc_rly5_en) begin
@@ -9024,8 +9024,8 @@ reg  rlydiag2_scg_rly6_ff;
 assign rlydiag2_rdata[4] = rlydiag2_scg_rly6_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_scg_rly6_ff <= 1'b0;
     end else  begin
       if (rlydiag2_scg_rly6_en) begin
@@ -9045,8 +9045,8 @@ reg  rlydiag2_ol_rly6_ff;
 assign rlydiag2_rdata[5] = rlydiag2_ol_rly6_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_ol_rly6_ff <= 1'b0;
     end else  begin
       if (rlydiag2_ol_rly6_en) begin
@@ -9066,8 +9066,8 @@ reg  rlydiag2_tsd_rly6_ff;
 assign rlydiag2_rdata[6] = rlydiag2_tsd_rly6_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_tsd_rly6_ff <= 1'b0;
     end else  begin
       if (rlydiag2_tsd_rly6_en) begin
@@ -9087,8 +9087,8 @@ reg  rlydiag2_oc_rly6_ff;
 assign rlydiag2_rdata[7] = rlydiag2_oc_rly6_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag2_oc_rly6_ff <= 1'b0;
     end else  begin
       if (rlydiag2_oc_rly6_en) begin
@@ -9108,8 +9108,8 @@ wire [7:0] rlydiag3_rdata;
 wire rlydiag3_ren;
 assign rlydiag3_ren = ren && (raddr == 8'h41);
 reg rlydiag3_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_ren_ff <= 1'b0;
     end else begin
         rlydiag3_ren_ff <= rlydiag3_ren;
@@ -9125,8 +9125,8 @@ reg  rlydiag3_scg_rly7_ff;
 assign rlydiag3_rdata[0] = rlydiag3_scg_rly7_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_scg_rly7_ff <= 1'b0;
     end else  begin
       if (rlydiag3_scg_rly7_en) begin
@@ -9146,8 +9146,8 @@ reg  rlydiag3_ol_rly7_ff;
 assign rlydiag3_rdata[1] = rlydiag3_ol_rly7_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_ol_rly7_ff <= 1'b0;
     end else  begin
       if (rlydiag3_ol_rly7_en) begin
@@ -9167,8 +9167,8 @@ reg  rlydiag3_tsd_rly7_ff;
 assign rlydiag3_rdata[2] = rlydiag3_tsd_rly7_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_tsd_rly7_ff <= 1'b0;
     end else  begin
       if (rlydiag3_tsd_rly7_en) begin
@@ -9188,8 +9188,8 @@ reg  rlydiag3_oc_rly7_ff;
 assign rlydiag3_rdata[3] = rlydiag3_oc_rly7_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_oc_rly7_ff <= 1'b0;
     end else  begin
       if (rlydiag3_oc_rly7_en) begin
@@ -9209,8 +9209,8 @@ reg  rlydiag3_scg_rly8_ff;
 assign rlydiag3_rdata[4] = rlydiag3_scg_rly8_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_scg_rly8_ff <= 1'b0;
     end else  begin
       if (rlydiag3_scg_rly8_en) begin
@@ -9230,8 +9230,8 @@ reg  rlydiag3_ol_rly8_ff;
 assign rlydiag3_rdata[5] = rlydiag3_ol_rly8_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_ol_rly8_ff <= 1'b0;
     end else  begin
       if (rlydiag3_ol_rly8_en) begin
@@ -9251,8 +9251,8 @@ reg  rlydiag3_tsd_rly8_ff;
 assign rlydiag3_rdata[6] = rlydiag3_tsd_rly8_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_tsd_rly8_ff <= 1'b0;
     end else  begin
       if (rlydiag3_tsd_rly8_en) begin
@@ -9272,8 +9272,8 @@ reg  rlydiag3_oc_rly8_ff;
 assign rlydiag3_rdata[7] = rlydiag3_oc_rly8_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag3_oc_rly8_ff <= 1'b0;
     end else  begin
       if (rlydiag3_oc_rly8_en) begin
@@ -9293,8 +9293,8 @@ wire [7:0] rlydiag4_rdata;
 wire rlydiag4_ren;
 assign rlydiag4_ren = ren && (raddr == 8'h42);
 reg rlydiag4_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_ren_ff <= 1'b0;
     end else begin
         rlydiag4_ren_ff <= rlydiag4_ren;
@@ -9310,8 +9310,8 @@ reg  rlydiag4_scg_rly9_ff;
 assign rlydiag4_rdata[0] = rlydiag4_scg_rly9_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_scg_rly9_ff <= 1'b0;
     end else  begin
       if (rlydiag4_scg_rly9_en) begin
@@ -9331,8 +9331,8 @@ reg  rlydiag4_ol_rly9_ff;
 assign rlydiag4_rdata[1] = rlydiag4_ol_rly9_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_ol_rly9_ff <= 1'b0;
     end else  begin
       if (rlydiag4_ol_rly9_en) begin
@@ -9352,8 +9352,8 @@ reg  rlydiag4_tsd_rly9_ff;
 assign rlydiag4_rdata[2] = rlydiag4_tsd_rly9_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_tsd_rly9_ff <= 1'b0;
     end else  begin
       if (rlydiag4_tsd_rly9_en) begin
@@ -9373,8 +9373,8 @@ reg  rlydiag4_oc_rly9_ff;
 assign rlydiag4_rdata[3] = rlydiag4_oc_rly9_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_oc_rly9_ff <= 1'b0;
     end else  begin
       if (rlydiag4_oc_rly9_en) begin
@@ -9394,8 +9394,8 @@ reg  rlydiag4_scg_vlv1_ff;
 assign rlydiag4_rdata[4] = rlydiag4_scg_vlv1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_scg_vlv1_ff <= 1'b0;
     end else  begin
       if (rlydiag4_scg_vlv1_en) begin
@@ -9415,8 +9415,8 @@ reg  rlydiag4_ol_vlv1_ff;
 assign rlydiag4_rdata[5] = rlydiag4_ol_vlv1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_ol_vlv1_ff <= 1'b0;
     end else  begin
       if (rlydiag4_ol_vlv1_en) begin
@@ -9436,8 +9436,8 @@ reg  rlydiag4_tsd_vlv1_ff;
 assign rlydiag4_rdata[6] = rlydiag4_tsd_vlv1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_tsd_vlv1_ff <= 1'b0;
     end else  begin
       if (rlydiag4_tsd_vlv1_en) begin
@@ -9457,8 +9457,8 @@ reg  rlydiag4_oc_vlv1_ff;
 assign rlydiag4_rdata[7] = rlydiag4_oc_vlv1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rlydiag4_oc_vlv1_ff <= 1'b0;
     end else  begin
       if (rlydiag4_oc_vlv1_en) begin
@@ -9478,8 +9478,8 @@ wire [7:0] vlvdiag_rdata;
 wire vlvdiag_ren;
 assign vlvdiag_ren = ren && (raddr == 8'h43);
 reg vlvdiag_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_ren_ff <= 1'b0;
     end else begin
         vlvdiag_ren_ff <= vlvdiag_ren;
@@ -9495,8 +9495,8 @@ reg  vlvdiag_scg_vlv2_ff;
 assign vlvdiag_rdata[0] = vlvdiag_scg_vlv2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_scg_vlv2_ff <= 1'b0;
     end else  begin
       if (vlvdiag_scg_vlv2_en) begin
@@ -9516,8 +9516,8 @@ reg  vlvdiag_ol_vlv2_ff;
 assign vlvdiag_rdata[1] = vlvdiag_ol_vlv2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_ol_vlv2_ff <= 1'b0;
     end else  begin
       if (vlvdiag_ol_vlv2_en) begin
@@ -9537,8 +9537,8 @@ reg  vlvdiag_tsd_vlv2_ff;
 assign vlvdiag_rdata[2] = vlvdiag_tsd_vlv2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_tsd_vlv2_ff <= 1'b0;
     end else  begin
       if (vlvdiag_tsd_vlv2_en) begin
@@ -9558,8 +9558,8 @@ reg  vlvdiag_oc_vlv2_ff;
 assign vlvdiag_rdata[3] = vlvdiag_oc_vlv2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_oc_vlv2_ff <= 1'b0;
     end else  begin
       if (vlvdiag_oc_vlv2_en) begin
@@ -9579,8 +9579,8 @@ reg  vlvdiag_scg_vlv3_ff;
 assign vlvdiag_rdata[4] = vlvdiag_scg_vlv3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_scg_vlv3_ff <= 1'b0;
     end else  begin
       if (vlvdiag_scg_vlv3_en) begin
@@ -9600,8 +9600,8 @@ reg  vlvdiag_ol_vlv3_ff;
 assign vlvdiag_rdata[5] = vlvdiag_ol_vlv3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_ol_vlv3_ff <= 1'b0;
     end else  begin
       if (vlvdiag_ol_vlv3_en) begin
@@ -9621,8 +9621,8 @@ reg  vlvdiag_tsd_vlv3_ff;
 assign vlvdiag_rdata[6] = vlvdiag_tsd_vlv3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_tsd_vlv3_ff <= 1'b0;
     end else  begin
       if (vlvdiag_tsd_vlv3_en) begin
@@ -9642,8 +9642,8 @@ reg  vlvdiag_oc_vlv3_ff;
 assign vlvdiag_rdata[7] = vlvdiag_oc_vlv3_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         vlvdiag_oc_vlv3_ff <= 1'b0;
     end else  begin
       if (vlvdiag_oc_vlv3_en) begin
@@ -9664,8 +9664,8 @@ assign hbdiag0_rdata[7] = 1'b0;
 wire hbdiag0_ren;
 assign hbdiag0_ren = ren && (raddr == 8'h44);
 reg hbdiag0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_ren_ff <= 1'b0;
     end else begin
         hbdiag0_ren_ff <= hbdiag0_ren;
@@ -9681,8 +9681,8 @@ reg  hbdiag0_tsd_hs1_ff;
 assign hbdiag0_rdata[0] = hbdiag0_tsd_hs1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_tsd_hs1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_tsd_hs1_en) begin
@@ -9702,8 +9702,8 @@ reg  hbdiag0_oc_hs1_ff;
 assign hbdiag0_rdata[1] = hbdiag0_oc_hs1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_oc_hs1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_oc_hs1_en) begin
@@ -9723,8 +9723,8 @@ reg  hbdiag0_tsd_ls1_ff;
 assign hbdiag0_rdata[2] = hbdiag0_tsd_ls1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_tsd_ls1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_tsd_ls1_en) begin
@@ -9744,8 +9744,8 @@ reg  hbdiag0_oc_ls1_ff;
 assign hbdiag0_rdata[3] = hbdiag0_oc_ls1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_oc_ls1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_oc_ls1_en) begin
@@ -9765,8 +9765,8 @@ reg  hbdiag0_scg_hb1_ff;
 assign hbdiag0_rdata[4] = hbdiag0_scg_hb1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_scg_hb1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_scg_hb1_en) begin
@@ -9786,8 +9786,8 @@ reg  hbdiag0_scb_hb1_ff;
 assign hbdiag0_rdata[5] = hbdiag0_scb_hb1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_scb_hb1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_scb_hb1_en) begin
@@ -9807,8 +9807,8 @@ reg  hbdiag0_ol_hb1_ff;
 assign hbdiag0_rdata[6] = hbdiag0_ol_hb1_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag0_ol_hb1_ff <= 1'b0;
     end else  begin
       if (hbdiag0_ol_hb1_en) begin
@@ -9829,8 +9829,8 @@ assign hbdiag1_rdata[7] = 1'b0;
 wire hbdiag1_ren;
 assign hbdiag1_ren = ren && (raddr == 8'h45);
 reg hbdiag1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_ren_ff <= 1'b0;
     end else begin
         hbdiag1_ren_ff <= hbdiag1_ren;
@@ -9846,8 +9846,8 @@ reg  hbdiag1_tsd_hs2_ff;
 assign hbdiag1_rdata[0] = hbdiag1_tsd_hs2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_tsd_hs2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_tsd_hs2_en) begin
@@ -9867,8 +9867,8 @@ reg  hbdiag1_oc_hs2_ff;
 assign hbdiag1_rdata[1] = hbdiag1_oc_hs2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_oc_hs2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_oc_hs2_en) begin
@@ -9888,8 +9888,8 @@ reg  hbdiag1_tsd_ls2_ff;
 assign hbdiag1_rdata[2] = hbdiag1_tsd_ls2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_tsd_ls2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_tsd_ls2_en) begin
@@ -9909,8 +9909,8 @@ reg  hbdiag1_oc_ls2_ff;
 assign hbdiag1_rdata[3] = hbdiag1_oc_ls2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_oc_ls2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_oc_ls2_en) begin
@@ -9930,8 +9930,8 @@ reg  hbdiag1_scg_hb2_ff;
 assign hbdiag1_rdata[4] = hbdiag1_scg_hb2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_scg_hb2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_scg_hb2_en) begin
@@ -9951,8 +9951,8 @@ reg  hbdiag1_scb_hb2_ff;
 assign hbdiag1_rdata[5] = hbdiag1_scb_hb2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_scb_hb2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_scb_hb2_en) begin
@@ -9972,8 +9972,8 @@ reg  hbdiag1_ol_hb2_ff;
 assign hbdiag1_rdata[6] = hbdiag1_ol_hb2_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         hbdiag1_ol_hb2_ff <= 1'b0;
     end else  begin
       if (hbdiag1_ol_hb2_en) begin
@@ -9994,8 +9994,8 @@ assign rstdiag_rdata[7:6] = 2'h0;
 wire rstdiag_ren;
 assign rstdiag_ren = ren && (raddr == 8'h46);
 reg rstdiag_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_ren_ff <= 1'b0;
     end else begin
         rstdiag_ren_ff <= rstdiag_ren;
@@ -10011,8 +10011,8 @@ reg  rstdiag_rstb_event_ff;
 assign rstdiag_rdata[0] = rstdiag_rstb_event_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_rstb_event_ff <= 1'b0;
     end else  begin
       if (rstdiag_rstb_event_en) begin
@@ -10032,8 +10032,8 @@ reg  rstdiag_wd_rst_event_ff;
 assign rstdiag_rdata[1] = rstdiag_wd_rst_event_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_wd_rst_event_ff <= 1'b0;
     end else  begin
       if (rstdiag_wd_rst_event_en) begin
@@ -10053,8 +10053,8 @@ reg  rstdiag_software_rst_event_ff;
 assign rstdiag_rdata[2] = rstdiag_software_rst_event_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_software_rst_event_ff <= 1'b0;
     end else  begin
       if (rstdiag_software_rst_event_en) begin
@@ -10074,8 +10074,8 @@ reg  rstdiag_vdd5_uv_rst_event_ff;
 assign rstdiag_rdata[3] = rstdiag_vdd5_uv_rst_event_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_vdd5_uv_rst_event_ff <= 1'b0;
     end else  begin
       if (rstdiag_vdd5_uv_rst_event_en) begin
@@ -10095,8 +10095,8 @@ reg  rstdiag_vdd5_ov_rst_event_ff;
 assign rstdiag_rdata[4] = rstdiag_vdd5_ov_rst_event_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_vdd5_ov_rst_event_ff <= 1'b0;
     end else  begin
       if (rstdiag_vdd5_ov_rst_event_en) begin
@@ -10116,8 +10116,8 @@ reg  rstdiag_por_event_ff;
 assign rstdiag_rdata[5] = rstdiag_por_event_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rstdiag_por_event_ff <= 1'b0;
     end else  begin
       if (rstdiag_por_event_en) begin
@@ -10137,8 +10137,8 @@ wire [7:0] glbstatus_rdata;
 wire glbstatus_ren;
 assign glbstatus_ren = ren && (raddr == 8'h47);
 reg glbstatus_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_ren_ff <= 1'b0;
     end else begin
         glbstatus_ren_ff <= glbstatus_ren;
@@ -10154,8 +10154,8 @@ reg  glbstatus_tsd_oc_fail_ff;
 assign glbstatus_rdata[0] = glbstatus_tsd_oc_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_tsd_oc_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_tsd_oc_fail_en) begin
@@ -10175,8 +10175,8 @@ reg  glbstatus_sc_ol_fail_ff;
 assign glbstatus_rdata[1] = glbstatus_sc_ol_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_sc_ol_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_sc_ol_fail_en) begin
@@ -10196,8 +10196,8 @@ reg  glbstatus_wd_sv_fail_ff;
 assign glbstatus_rdata[2] = glbstatus_wd_sv_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_wd_sv_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_wd_sv_fail_en) begin
@@ -10217,8 +10217,8 @@ reg  glbstatus_sup_fail_dis_drv_ff;
 assign glbstatus_rdata[3] = glbstatus_sup_fail_dis_drv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_sup_fail_dis_drv_ff <= 1'b0;
     end else  begin
       if (glbstatus_sup_fail_dis_drv_en) begin
@@ -10238,8 +10238,8 @@ reg  glbstatus_vrs_fail_ff;
 assign glbstatus_rdata[4] = glbstatus_vrs_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_vrs_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_vrs_fail_en) begin
@@ -10259,8 +10259,8 @@ reg  glbstatus_otp_fail_ff;
 assign glbstatus_rdata[5] = glbstatus_otp_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_otp_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_otp_fail_en) begin
@@ -10280,8 +10280,8 @@ reg  glbstatus_spi_msc_fail_ff;
 assign glbstatus_rdata[6] = glbstatus_spi_msc_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_spi_msc_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_spi_msc_fail_en) begin
@@ -10301,8 +10301,8 @@ reg  glbstatus_gnd_fail_ff;
 assign glbstatus_rdata[7] = glbstatus_gnd_fail_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         glbstatus_gnd_fail_ff <= 1'b0;
     end else  begin
       if (glbstatus_gnd_fail_en) begin
@@ -10322,8 +10322,8 @@ wire [7:0] wdquestion_rdata;
 wire wdquestion_ren;
 assign wdquestion_ren = ren && (raddr == 8'h48);
 reg wdquestion_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdquestion_ren_ff <= 1'b0;
     end else begin
         wdquestion_ren_ff <= wdquestion_ren;
@@ -10339,8 +10339,8 @@ reg [7:0] wdquestion_lfsr_ff;
 assign wdquestion_rdata[7:0] = wdquestion_lfsr_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdquestion_lfsr_ff <= 8'h0;
     end else  begin
       if (wdquestion_lfsr_en) begin
@@ -10361,8 +10361,8 @@ assign wdpasscnt_rdata[7:3] = 5'h0;
 wire wdpasscnt_ren;
 assign wdpasscnt_ren = ren && (raddr == 8'h49);
 reg wdpasscnt_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdpasscnt_ren_ff <= 1'b0;
     end else begin
         wdpasscnt_ren_ff <= wdpasscnt_ren;
@@ -10378,8 +10378,8 @@ reg [2:0] wdpasscnt_wd_rfh_cnt_ff;
 assign wdpasscnt_rdata[2:0] = wdpasscnt_wd_rfh_cnt_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdpasscnt_wd_rfh_cnt_ff <= 3'h0;
     end else  begin
       if (wdpasscnt_wd_rfh_cnt_en) begin
@@ -10400,8 +10400,8 @@ assign wdfailcnt_rdata[7:6] = 2'h0;
 wire wdfailcnt_ren;
 assign wdfailcnt_ren = ren && (raddr == 8'h4a);
 reg wdfailcnt_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdfailcnt_ren_ff <= 1'b0;
     end else begin
         wdfailcnt_ren_ff <= wdfailcnt_ren;
@@ -10417,8 +10417,8 @@ reg [2:0] wdfailcnt_wd_err_cnt_ff;
 assign wdfailcnt_rdata[2:0] = wdfailcnt_wd_err_cnt_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdfailcnt_wd_err_cnt_ff <= 3'h0;
     end else  begin
       if (wdfailcnt_wd_err_cnt_en) begin
@@ -10438,8 +10438,8 @@ reg [2:0] wdfailcnt_rst_err_cnt_ff;
 assign wdfailcnt_rdata[5:3] = wdfailcnt_rst_err_cnt_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         wdfailcnt_rst_err_cnt_ff <= 3'h0;
     end else  begin
       if (wdfailcnt_rst_err_cnt_en) begin
@@ -10459,8 +10459,8 @@ wire [7:0] psstate0_rdata;
 wire psstate0_ren;
 assign psstate0_ren = ren && (raddr == 8'h4b);
 reg psstate0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate0_ren_ff <= 1'b0;
     end else begin
         psstate0_ren_ff <= psstate0_ren;
@@ -10476,8 +10476,8 @@ reg [3:0] psstate0_out_state_ign_ff;
 assign psstate0_rdata[3:0] = psstate0_out_state_ign_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate0_out_state_ign_ff <= 4'h0;
     end else  begin
       if (psstate0_out_state_ign_en) begin
@@ -10497,8 +10497,8 @@ reg [3:0] psstate0_out_state_inj_ff;
 assign psstate0_rdata[7:4] = psstate0_out_state_inj_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate0_out_state_inj_ff <= 4'h0;
     end else  begin
       if (psstate0_out_state_inj_en) begin
@@ -10518,8 +10518,8 @@ wire [7:0] psstate1_rdata;
 wire psstate1_ren;
 assign psstate1_ren = ren && (raddr == 8'h4c);
 reg psstate1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate1_ren_ff <= 1'b0;
     end else begin
         psstate1_ren_ff <= psstate1_ren;
@@ -10535,8 +10535,8 @@ reg [7:0] psstate1_out_state_rly_ff;
 assign psstate1_rdata[7:0] = psstate1_out_state_rly_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate1_out_state_rly_ff <= 8'h0;
     end else  begin
       if (psstate1_out_state_rly_en) begin
@@ -10557,8 +10557,8 @@ assign psstate2_rdata[7:6] = 2'h0;
 wire psstate2_ren;
 assign psstate2_ren = ren && (raddr == 8'h4d);
 reg psstate2_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate2_ren_ff <= 1'b0;
     end else begin
         psstate2_ren_ff <= psstate2_ren;
@@ -10574,8 +10574,8 @@ reg  psstate2_out_state_rly_ff;
 assign psstate2_rdata[0] = psstate2_out_state_rly_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate2_out_state_rly_ff <= 1'b0;
     end else  begin
       if (psstate2_out_state_rly_en) begin
@@ -10595,8 +10595,8 @@ reg [1:0] psstate2_out_state_htr_ff;
 assign psstate2_rdata[2:1] = psstate2_out_state_htr_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate2_out_state_htr_ff <= 2'h0;
     end else  begin
       if (psstate2_out_state_htr_en) begin
@@ -10616,8 +10616,8 @@ reg [2:0] psstate2_out_state_vlv_ff;
 assign psstate2_rdata[5:3] = psstate2_out_state_vlv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate2_out_state_vlv_ff <= 3'h0;
     end else  begin
       if (psstate2_out_state_vlv_en) begin
@@ -10638,8 +10638,8 @@ assign psstate3_rdata[7:4] = 4'h0;
 wire psstate3_ren;
 assign psstate3_ren = ren && (raddr == 8'h4e);
 reg psstate3_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate3_ren_ff <= 1'b0;
     end else begin
         psstate3_ren_ff <= psstate3_ren;
@@ -10655,8 +10655,8 @@ reg [1:0] psstate3_out_state_hs_ff;
 assign psstate3_rdata[1:0] = psstate3_out_state_hs_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate3_out_state_hs_ff <= 2'h0;
     end else  begin
       if (psstate3_out_state_hs_en) begin
@@ -10676,8 +10676,8 @@ reg [1:0] psstate3_out_state_ls_ff;
 assign psstate3_rdata[3:2] = psstate3_out_state_ls_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         psstate3_out_state_ls_ff <= 2'h0;
     end else  begin
       if (psstate3_out_state_ls_en) begin
@@ -10697,8 +10697,8 @@ wire [7:0] instate0_rdata;
 wire instate0_ren;
 assign instate0_ren = ren && (raddr == 8'h4f);
 reg instate0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         instate0_ren_ff <= 1'b0;
     end else begin
         instate0_ren_ff <= instate0_ren;
@@ -10714,8 +10714,8 @@ reg [7:0] instate0_din_ff;
 assign instate0_rdata[7:0] = instate0_din_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         instate0_din_ff <= 8'h0;
     end else  begin
       if (instate0_din_en) begin
@@ -10736,8 +10736,8 @@ assign instate1_rdata[7:5] = 3'h0;
 wire instate1_ren;
 assign instate1_ren = ren && (raddr == 8'h50);
 reg instate1_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         instate1_ren_ff <= 1'b0;
     end else begin
         instate1_ren_ff <= instate1_ren;
@@ -10753,8 +10753,8 @@ reg [4:0] instate1_din_ff;
 assign instate1_rdata[4:0] = instate1_din_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         instate1_din_ff <= 5'h0;
     end else  begin
       if (instate1_din_en) begin
@@ -10775,8 +10775,8 @@ assign enstate0_rdata[7:4] = 4'h0;
 wire enstate0_ren;
 assign enstate0_ren = ren && (raddr == 8'h51);
 reg enstate0_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         enstate0_ren_ff <= 1'b0;
     end else begin
         enstate0_ren_ff <= enstate0_ren;
@@ -10792,8 +10792,8 @@ reg  enstate0_oe_ff;
 assign enstate0_rdata[0] = enstate0_oe_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         enstate0_oe_ff <= 1'b0;
     end else  begin
       if (enstate0_oe_en) begin
@@ -10813,8 +10813,8 @@ reg  enstate0_den_rly_ff;
 assign enstate0_rdata[1] = enstate0_den_rly_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         enstate0_den_rly_ff <= 1'b0;
     end else  begin
       if (enstate0_den_rly_en) begin
@@ -10834,8 +10834,8 @@ reg  enstate0_den_drv_ff;
 assign enstate0_rdata[2] = enstate0_den_drv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         enstate0_den_drv_ff <= 1'b0;
     end else  begin
       if (enstate0_den_drv_en) begin
@@ -10855,8 +10855,8 @@ reg  enstate0_dndis_drv_ff;
 assign enstate0_rdata[3] = enstate0_dndis_drv_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         enstate0_dndis_drv_ff <= 1'b0;
     end else  begin
       if (enstate0_dndis_drv_en) begin
@@ -10877,8 +10877,8 @@ assign maskid_rdata[7:5] = 3'h0;
 wire maskid_ren;
 assign maskid_ren = ren && (raddr == 8'h52);
 reg maskid_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         maskid_ren_ff <= 1'b0;
     end else begin
         maskid_ren_ff <= maskid_ren;
@@ -10894,8 +10894,8 @@ reg [4:0] maskid_mask_id_ff;
 assign maskid_rdata[4:0] = maskid_mask_id_ff;
 
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         maskid_mask_id_ff <= 5'h0;
     end else  begin
       if (maskid_mask_id_en) begin
@@ -10925,8 +10925,8 @@ assign cmd0_rdata[7:0] = 8'h0;
 
 assign cmd0_code_out = cmd0_code_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmd0_code_ff <= 8'h0;
     end else  begin
      if (cmd0_wen) begin
@@ -10960,8 +10960,8 @@ assign cmdwdcheck_rdata[7:0] = 8'h0;
 
 assign cmdwdcheck_mcu_reply_out = cmdwdcheck_mcu_reply_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdwdcheck_mcu_reply_ff <= 8'h0;
     end else  begin
      if (cmdwdcheck_wen) begin
@@ -10995,8 +10995,8 @@ assign cmdwdldsd_rdata[7:0] = 8'h0;
 
 assign cmdwdldsd_seed_out = cmdwdldsd_seed_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdwdldsd_seed_ff <= 8'h0;
     end else  begin
      if (cmdwdldsd_wen) begin
@@ -11030,8 +11030,8 @@ assign cmdsoftrst_rdata[7:0] = 8'h0;
 
 assign cmdsoftrst_software_rst_out = cmdsoftrst_software_rst_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdsoftrst_software_rst_ff <= 8'h0;
     end else  begin
      if (cmdsoftrst_wen) begin
@@ -11065,8 +11065,8 @@ assign mscrcmd0_rdata[0] = 1'b0;
 
 assign mscrcmd0_disdrvconfig0_out = mscrcmd0_disdrvconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_disdrvconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11091,8 +11091,8 @@ assign mscrcmd0_rdata[1] = 1'b0;
 
 assign mscrcmd0_disdrvconfig1_out = mscrcmd0_disdrvconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_disdrvconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11117,8 +11117,8 @@ assign mscrcmd0_rdata[2] = 1'b0;
 
 assign mscrcmd0_disdrvconfig2_out = mscrcmd0_disdrvconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_disdrvconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11143,8 +11143,8 @@ assign mscrcmd0_rdata[3] = 1'b0;
 
 assign mscrcmd0_denconfig0_out = mscrcmd0_denconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_denconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11169,8 +11169,8 @@ assign mscrcmd0_rdata[4] = 1'b0;
 
 assign mscrcmd0_denconfig1_out = mscrcmd0_denconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_denconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11195,8 +11195,8 @@ assign mscrcmd0_rdata[5] = 1'b0;
 
 assign mscrcmd0_denconfig2_out = mscrcmd0_denconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_denconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11221,8 +11221,8 @@ assign mscrcmd0_rdata[6] = 1'b0;
 
 assign mscrcmd0_denconfig3_out = mscrcmd0_denconfig3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_denconfig3_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11247,8 +11247,8 @@ assign mscrcmd0_rdata[7] = 1'b0;
 
 assign mscrcmd0_denconfig4_out = mscrcmd0_denconfig4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd0_denconfig4_ff <= 1'b0;
     end else  begin
      if (mscrcmd0_wen) begin
@@ -11283,8 +11283,8 @@ assign mscrcmd1_rdata[0] = 1'b0;
 
 assign mscrcmd1_oeconfig0_out = mscrcmd1_oeconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_oeconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11309,8 +11309,8 @@ assign mscrcmd1_rdata[1] = 1'b0;
 
 assign mscrcmd1_oeconfig1_out = mscrcmd1_oeconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_oeconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11335,8 +11335,8 @@ assign mscrcmd1_rdata[2] = 1'b0;
 
 assign mscrcmd1_oeconfig2_out = mscrcmd1_oeconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_oeconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11361,8 +11361,8 @@ assign mscrcmd1_rdata[3] = 1'b0;
 
 assign mscrcmd1_oeconfig3_out = mscrcmd1_oeconfig3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_oeconfig3_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11387,8 +11387,8 @@ assign mscrcmd1_rdata[4] = 1'b0;
 
 assign mscrcmd1_cont0_out = mscrcmd1_cont0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_cont0_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11413,8 +11413,8 @@ assign mscrcmd1_rdata[5] = 1'b0;
 
 assign mscrcmd1_cont1_out = mscrcmd1_cont1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_cont1_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11439,8 +11439,8 @@ assign mscrcmd1_rdata[6] = 1'b0;
 
 assign mscrcmd1_cont2_out = mscrcmd1_cont2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd1_cont2_ff <= 1'b0;
     end else  begin
      if (mscrcmd1_wen) begin
@@ -11474,8 +11474,8 @@ assign mscrcmd2_rdata[0] = 1'b0;
 
 assign mscrcmd2_ddconfig0_out = mscrcmd2_ddconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_ddconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11500,8 +11500,8 @@ assign mscrcmd2_rdata[1] = 1'b0;
 
 assign mscrcmd2_ddconfig1_out = mscrcmd2_ddconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_ddconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11526,8 +11526,8 @@ assign mscrcmd2_rdata[2] = 1'b0;
 
 assign mscrcmd2_ddconfig2_out = mscrcmd2_ddconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_ddconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11552,8 +11552,8 @@ assign mscrcmd2_rdata[3] = 1'b0;
 
 assign mscrcmd2_briconfig_out = mscrcmd2_briconfig_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_briconfig_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11578,8 +11578,8 @@ assign mscrcmd2_rdata[4] = 1'b0;
 
 assign mscrcmd2_dlyoffconfig_out = mscrcmd2_dlyoffconfig_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_dlyoffconfig_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11604,8 +11604,8 @@ assign mscrcmd2_rdata[5] = 1'b0;
 
 assign mscrcmd2_currlimconfig0_out = mscrcmd2_currlimconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_currlimconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11630,8 +11630,8 @@ assign mscrcmd2_rdata[6] = 1'b0;
 
 assign mscrcmd2_currlimconfig1_out = mscrcmd2_currlimconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_currlimconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11656,8 +11656,8 @@ assign mscrcmd2_rdata[7] = 1'b0;
 
 assign mscrcmd2_currlimconfig2_out = mscrcmd2_currlimconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd2_currlimconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd2_wen) begin
@@ -11692,8 +11692,8 @@ assign mscrcmd3_rdata[0] = 1'b0;
 
 assign mscrcmd3_outdiagconfig0_out = mscrcmd3_outdiagconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd3_outdiagconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd3_wen) begin
@@ -11718,8 +11718,8 @@ assign mscrcmd3_rdata[1] = 1'b0;
 
 assign mscrcmd3_outdiagconfig1_out = mscrcmd3_outdiagconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd3_outdiagconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd3_wen) begin
@@ -11744,8 +11744,8 @@ assign mscrcmd3_rdata[2] = 1'b0;
 
 assign mscrcmd3_outdiagconfig2_out = mscrcmd3_outdiagconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd3_outdiagconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd3_wen) begin
@@ -11770,8 +11770,8 @@ assign mscrcmd3_rdata[3] = 1'b0;
 
 assign mscrcmd3_outdiagconfig3_out = mscrcmd3_outdiagconfig3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd3_outdiagconfig3_ff <= 1'b0;
     end else  begin
      if (mscrcmd3_wen) begin
@@ -11796,8 +11796,8 @@ assign mscrcmd3_rdata[4] = 1'b0;
 
 assign mscrcmd3_outdiagconfig4_out = mscrcmd3_outdiagconfig4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd3_outdiagconfig4_ff <= 1'b0;
     end else  begin
      if (mscrcmd3_wen) begin
@@ -11822,8 +11822,8 @@ assign mscrcmd3_rdata[5] = 1'b0;
 
 assign mscrcmd3_igndiagconfig_out = mscrcmd3_igndiagconfig_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd3_igndiagconfig_ff <= 1'b0;
     end else  begin
      if (mscrcmd3_wen) begin
@@ -11857,8 +11857,8 @@ assign mscrcmd4_rdata[0] = 1'b0;
 
 assign mscrcmd4_dinconfig0_out = mscrcmd4_dinconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -11883,8 +11883,8 @@ assign mscrcmd4_rdata[1] = 1'b0;
 
 assign mscrcmd4_dinconfig1_out = mscrcmd4_dinconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -11909,8 +11909,8 @@ assign mscrcmd4_rdata[2] = 1'b0;
 
 assign mscrcmd4_dinconfig2_out = mscrcmd4_dinconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -11935,8 +11935,8 @@ assign mscrcmd4_rdata[3] = 1'b0;
 
 assign mscrcmd4_dinconfig3_out = mscrcmd4_dinconfig3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig3_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -11961,8 +11961,8 @@ assign mscrcmd4_rdata[4] = 1'b0;
 
 assign mscrcmd4_dinconfig4_out = mscrcmd4_dinconfig4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig4_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -11987,8 +11987,8 @@ assign mscrcmd4_rdata[5] = 1'b0;
 
 assign mscrcmd4_dinconfig5_out = mscrcmd4_dinconfig5_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig5_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -12013,8 +12013,8 @@ assign mscrcmd4_rdata[6] = 1'b0;
 
 assign mscrcmd4_dinconfig6_out = mscrcmd4_dinconfig6_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig6_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -12039,8 +12039,8 @@ assign mscrcmd4_rdata[7] = 1'b0;
 
 assign mscrcmd4_dinconfig7_out = mscrcmd4_dinconfig7_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd4_dinconfig7_ff <= 1'b0;
     end else  begin
      if (mscrcmd4_wen) begin
@@ -12074,8 +12074,8 @@ assign mscrcmd5_rdata[0] = 1'b0;
 
 assign mscrcmd5_dinconfig8_out = mscrcmd5_dinconfig8_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_dinconfig8_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12100,8 +12100,8 @@ assign mscrcmd5_rdata[1] = 1'b0;
 
 assign mscrcmd5_dinconfig9_out = mscrcmd5_dinconfig9_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_dinconfig9_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12126,8 +12126,8 @@ assign mscrcmd5_rdata[2] = 1'b0;
 
 assign mscrcmd5_dinconfig10_out = mscrcmd5_dinconfig10_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_dinconfig10_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12152,8 +12152,8 @@ assign mscrcmd5_rdata[3] = 1'b0;
 
 assign mscrcmd5_dinconfig11_out = mscrcmd5_dinconfig11_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_dinconfig11_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12178,8 +12178,8 @@ assign mscrcmd5_rdata[4] = 1'b0;
 
 assign mscrcmd5_rstbconfig_out = mscrcmd5_rstbconfig_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_rstbconfig_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12204,8 +12204,8 @@ assign mscrcmd5_rdata[5] = 1'b0;
 
 assign mscrcmd5_faultbconfig0_out = mscrcmd5_faultbconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_faultbconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12230,8 +12230,8 @@ assign mscrcmd5_rdata[6] = 1'b0;
 
 assign mscrcmd5_faultbconfig1_out = mscrcmd5_faultbconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_faultbconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12256,8 +12256,8 @@ assign mscrcmd5_rdata[7] = 1'b0;
 
 assign mscrcmd5_faultbconfig2_out = mscrcmd5_faultbconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd5_faultbconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd5_wen) begin
@@ -12291,8 +12291,8 @@ assign mscrcmd6_rdata[0] = 1'b0;
 
 assign mscrcmd6_wdconfig0_out = mscrcmd6_wdconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_wdconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12317,8 +12317,8 @@ assign mscrcmd6_rdata[1] = 1'b0;
 
 assign mscrcmd6_wdconfig1_out = mscrcmd6_wdconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_wdconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12343,8 +12343,8 @@ assign mscrcmd6_rdata[2] = 1'b0;
 
 assign mscrcmd6_vrsconfig0_out = mscrcmd6_vrsconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_vrsconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12369,8 +12369,8 @@ assign mscrcmd6_rdata[3] = 1'b0;
 
 assign mscrcmd6_vrsconfig1_out = mscrcmd6_vrsconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_vrsconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12395,8 +12395,8 @@ assign mscrcmd6_rdata[4] = 1'b0;
 
 assign mscrcmd6_vrsconfig2_out = mscrcmd6_vrsconfig2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_vrsconfig2_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12421,8 +12421,8 @@ assign mscrcmd6_rdata[5] = 1'b0;
 
 assign mscrcmd6_mscconfig0_out = mscrcmd6_mscconfig0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_mscconfig0_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12447,8 +12447,8 @@ assign mscrcmd6_rdata[6] = 1'b0;
 
 assign mscrcmd6_mscconfig1_out = mscrcmd6_mscconfig1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_mscconfig1_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12473,8 +12473,8 @@ assign mscrcmd6_rdata[7] = 1'b0;
 
 assign mscrcmd6_aoutconfig_out = mscrcmd6_aoutconfig_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd6_aoutconfig_ff <= 1'b0;
     end else  begin
      if (mscrcmd6_wen) begin
@@ -12509,8 +12509,8 @@ assign mscrcmd7_rdata[0] = 1'b0;
 
 assign mscrcmd7_vrsdiag_out = mscrcmd7_vrsdiag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd7_vrsdiag_ff <= 1'b0;
     end else  begin
      if (mscrcmd7_wen) begin
@@ -12535,8 +12535,8 @@ assign mscrcmd7_rdata[1] = 1'b0;
 
 assign mscrcmd7_supdiag_out = mscrcmd7_supdiag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd7_supdiag_ff <= 1'b0;
     end else  begin
      if (mscrcmd7_wen) begin
@@ -12561,8 +12561,8 @@ assign mscrcmd7_rdata[2] = 1'b0;
 
 assign mscrcmd7_extdiag0_out = mscrcmd7_extdiag0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd7_extdiag0_ff <= 1'b0;
     end else  begin
      if (mscrcmd7_wen) begin
@@ -12587,8 +12587,8 @@ assign mscrcmd7_rdata[3] = 1'b0;
 
 assign mscrcmd7_extdiag1_out = mscrcmd7_extdiag1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd7_extdiag1_ff <= 1'b0;
     end else  begin
      if (mscrcmd7_wen) begin
@@ -12623,8 +12623,8 @@ assign mscrcmd8_rdata[0] = 1'b0;
 
 assign mscrcmd8_injdiag0_out = mscrcmd8_injdiag0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd8_injdiag0_ff <= 1'b0;
     end else  begin
      if (mscrcmd8_wen) begin
@@ -12649,8 +12649,8 @@ assign mscrcmd8_rdata[1] = 1'b0;
 
 assign mscrcmd8_injdiag1_out = mscrcmd8_injdiag1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd8_injdiag1_ff <= 1'b0;
     end else  begin
      if (mscrcmd8_wen) begin
@@ -12675,8 +12675,8 @@ assign mscrcmd8_rdata[2] = 1'b0;
 
 assign mscrcmd8_igndiag0_out = mscrcmd8_igndiag0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd8_igndiag0_ff <= 1'b0;
     end else  begin
      if (mscrcmd8_wen) begin
@@ -12701,8 +12701,8 @@ assign mscrcmd8_rdata[3] = 1'b0;
 
 assign mscrcmd8_igndiag1_out = mscrcmd8_igndiag1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd8_igndiag1_ff <= 1'b0;
     end else  begin
      if (mscrcmd8_wen) begin
@@ -12727,8 +12727,8 @@ assign mscrcmd8_rdata[4] = 1'b0;
 
 assign mscrcmd8_hbdiag0_out = mscrcmd8_hbdiag0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd8_hbdiag0_ff <= 1'b0;
     end else  begin
      if (mscrcmd8_wen) begin
@@ -12753,8 +12753,8 @@ assign mscrcmd8_rdata[5] = 1'b0;
 
 assign mscrcmd8_hbdiag1_out = mscrcmd8_hbdiag1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd8_hbdiag1_ff <= 1'b0;
     end else  begin
      if (mscrcmd8_wen) begin
@@ -12788,8 +12788,8 @@ assign mscrcmd9_rdata[0] = 1'b0;
 
 assign mscrcmd9_rlydiag0_out = mscrcmd9_rlydiag0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_rlydiag0_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12814,8 +12814,8 @@ assign mscrcmd9_rdata[1] = 1'b0;
 
 assign mscrcmd9_rlydiag1_out = mscrcmd9_rlydiag1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_rlydiag1_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12840,8 +12840,8 @@ assign mscrcmd9_rdata[2] = 1'b0;
 
 assign mscrcmd9_rlydiag2_out = mscrcmd9_rlydiag2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_rlydiag2_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12866,8 +12866,8 @@ assign mscrcmd9_rdata[3] = 1'b0;
 
 assign mscrcmd9_rlydiag3_out = mscrcmd9_rlydiag3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_rlydiag3_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12892,8 +12892,8 @@ assign mscrcmd9_rdata[4] = 1'b0;
 
 assign mscrcmd9_rlydiag4_out = mscrcmd9_rlydiag4_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_rlydiag4_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12918,8 +12918,8 @@ assign mscrcmd9_rdata[5] = 1'b0;
 
 assign mscrcmd9_htrdiag0_out = mscrcmd9_htrdiag0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_htrdiag0_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12944,8 +12944,8 @@ assign mscrcmd9_rdata[6] = 1'b0;
 
 assign mscrcmd9_vlvdiag_out = mscrcmd9_vlvdiag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_vlvdiag_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -12970,8 +12970,8 @@ assign mscrcmd9_rdata[7] = 1'b0;
 
 assign mscrcmd9_rstdiag_out = mscrcmd9_rstdiag_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd9_rstdiag_ff <= 1'b0;
     end else  begin
      if (mscrcmd9_wen) begin
@@ -13006,8 +13006,8 @@ assign mscrcmd10_rdata[0] = 1'b0;
 
 assign mscrcmd10_glbstatus_out = mscrcmd10_glbstatus_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd10_glbstatus_ff <= 1'b0;
     end else  begin
      if (mscrcmd10_wen) begin
@@ -13032,8 +13032,8 @@ assign mscrcmd10_rdata[1] = 1'b0;
 
 assign mscrcmd10_wdquestion_out = mscrcmd10_wdquestion_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd10_wdquestion_ff <= 1'b0;
     end else  begin
      if (mscrcmd10_wen) begin
@@ -13058,8 +13058,8 @@ assign mscrcmd10_rdata[2] = 1'b0;
 
 assign mscrcmd10_wdpasscnt_out = mscrcmd10_wdpasscnt_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd10_wdpasscnt_ff <= 1'b0;
     end else  begin
      if (mscrcmd10_wen) begin
@@ -13084,8 +13084,8 @@ assign mscrcmd10_rdata[3] = 1'b0;
 
 assign mscrcmd10_wdfailcnt_out = mscrcmd10_wdfailcnt_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd10_wdfailcnt_ff <= 1'b0;
     end else  begin
      if (mscrcmd10_wen) begin
@@ -13119,8 +13119,8 @@ assign mscrcmd11_rdata[0] = 1'b0;
 
 assign mscrcmd11_psstate0_out = mscrcmd11_psstate0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_psstate0_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13145,8 +13145,8 @@ assign mscrcmd11_rdata[1] = 1'b0;
 
 assign mscrcmd11_psstate1_out = mscrcmd11_psstate1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_psstate1_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13171,8 +13171,8 @@ assign mscrcmd11_rdata[2] = 1'b0;
 
 assign mscrcmd11_psstate2_out = mscrcmd11_psstate2_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_psstate2_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13197,8 +13197,8 @@ assign mscrcmd11_rdata[3] = 1'b0;
 
 assign mscrcmd11_psstate3_out = mscrcmd11_psstate3_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_psstate3_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13223,8 +13223,8 @@ assign mscrcmd11_rdata[4] = 1'b0;
 
 assign mscrcmd11_instate0_out = mscrcmd11_instate0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_instate0_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13249,8 +13249,8 @@ assign mscrcmd11_rdata[5] = 1'b0;
 
 assign mscrcmd11_instate1_out = mscrcmd11_instate1_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_instate1_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13275,8 +13275,8 @@ assign mscrcmd11_rdata[6] = 1'b0;
 
 assign mscrcmd11_enstate0_out = mscrcmd11_enstate0_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_enstate0_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13301,8 +13301,8 @@ assign mscrcmd11_rdata[7] = 1'b0;
 
 assign mscrcmd11_maskid_out = mscrcmd11_maskid_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         mscrcmd11_maskid_ff <= 1'b0;
     end else  begin
      if (mscrcmd11_wen) begin
@@ -13328,8 +13328,8 @@ assign cmdspecialmode_wen = wen && (waddr == 8'h7d);
 wire cmdspecialmode_ren;
 assign cmdspecialmode_ren = ren && (raddr == 8'h7d);
 reg cmdspecialmode_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_ren_ff <= 1'b0;
     end else begin
         cmdspecialmode_ren_ff <= cmdspecialmode_ren;
@@ -13346,8 +13346,8 @@ assign cmdspecialmode_rdata[0] = cmdspecialmode_sm_dis_tsd_ff;
 
 assign cmdspecialmode_sm_dis_tsd_out = cmdspecialmode_sm_dis_tsd_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_tsd_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13372,8 +13372,8 @@ assign cmdspecialmode_rdata[1] = cmdspecialmode_sm_dis_vdd5_uv_ff;
 
 assign cmdspecialmode_sm_dis_vdd5_uv_out = cmdspecialmode_sm_dis_vdd5_uv_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_vdd5_uv_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13398,8 +13398,8 @@ assign cmdspecialmode_rdata[2] = cmdspecialmode_sm_dis_vdd5_ov_ff;
 
 assign cmdspecialmode_sm_dis_vdd5_ov_out = cmdspecialmode_sm_dis_vdd5_ov_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_vdd5_ov_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13424,8 +13424,8 @@ assign cmdspecialmode_rdata[3] = cmdspecialmode_sm_dis_vpwr_ov_ff;
 
 assign cmdspecialmode_sm_dis_vpwr_ov_out = cmdspecialmode_sm_dis_vpwr_ov_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_vpwr_ov_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13450,8 +13450,8 @@ assign cmdspecialmode_rdata[4] = cmdspecialmode_sm_dis_vpwr_uv_ff;
 
 assign cmdspecialmode_sm_dis_vpwr_uv_out = cmdspecialmode_sm_dis_vpwr_uv_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_vpwr_uv_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13476,8 +13476,8 @@ assign cmdspecialmode_rdata[5] = cmdspecialmode_sm_dis_vcp_uv_ff;
 
 assign cmdspecialmode_sm_dis_vcp_uv_out = cmdspecialmode_sm_dis_vcp_uv_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_vcp_uv_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13502,8 +13502,8 @@ assign cmdspecialmode_rdata[6] = cmdspecialmode_sm_dis_oc_ff;
 
 assign cmdspecialmode_sm_dis_oc_out = cmdspecialmode_sm_dis_oc_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_oc_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13528,8 +13528,8 @@ assign cmdspecialmode_rdata[7] = cmdspecialmode_sm_dis_ign_scg_gndloss_ff;
 
 assign cmdspecialmode_sm_dis_ign_scg_gndloss_out = cmdspecialmode_sm_dis_ign_scg_gndloss_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdspecialmode_sm_dis_ign_scg_gndloss_ff <= 1'b0;
     end else  begin
      if (cmdspecialmode_wen) begin
@@ -13563,8 +13563,8 @@ assign cmdtm_rdata[7:0] = 8'h0;
 
 assign cmdtm_tm_code_out = cmdtm_tm_code_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         cmdtm_tm_code_ff <= 8'h0;
     end else  begin
      if (cmdtm_wen) begin
@@ -13590,8 +13590,8 @@ assign pagevrb_wen = wen && (waddr == 8'h7f);
 wire pagevrb_ren;
 assign pagevrb_ren = ren && (raddr == 8'h7f);
 reg pagevrb_ren_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         pagevrb_ren_ff <= 1'b0;
     end else begin
         pagevrb_ren_ff <= pagevrb_ren;
@@ -13608,8 +13608,8 @@ assign pagevrb_rdata[7:0] = pagevrb_code_ff;
 
 assign pagevrb_code_out = pagevrb_code_ff;
 
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         pagevrb_code_ff <= 8'h0;
     end else  begin
      if (pagevrb_wen) begin
@@ -13632,8 +13632,8 @@ assign wready = 1'b1;
 // Read address decoder
 //------------------------------------------------------------------------------
 reg [7:0] rdata_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rdata_ff <= 8'h0;
     end else if (ren) begin
         case (raddr)
@@ -13751,8 +13751,8 @@ assign rdata = rdata_ff;
 // Read data valid
 //------------------------------------------------------------------------------
 reg rvalid_ff;
-always @(posedge clk) begin
-    if (rst) begin
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
         rvalid_ff <= 1'b0;
     end else if (ren && rvalid) begin
         rvalid_ff <= 1'b0;
