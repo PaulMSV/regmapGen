@@ -17,6 +17,7 @@ def default_globcfg():
         "register_reset": "sync_pos",
         "address_increment": "none",
         "address_alignment": "data_width",
+        "address_duplicate": "none",
         "force_name_case": "none",
     }
 
@@ -40,6 +41,10 @@ def read_config(cfgpath):
             pass
         try:
             globcfg["address_alignment"] = utils.str2int(globcfg["address_alignment"])
+        except ValueError:
+            pass
+        try:
+            globcfg["address_duplicate"] = utils.str2int(globcfg["address_duplicate"])
         except ValueError:
             pass
         validate_globcfg(globcfg)
@@ -103,6 +108,17 @@ def validate_globcfg(globcfg):
     assert is_valid, \
         "Wrong value for 'address_alignment'='%s'. Must be one of this: %s or a non negative integer." % (
             globcfg["address_alignment"], address_alignment_alowed)
+
+    # address_duplicate
+    address_duplicate_alowed = ['none', 'true']
+    try:
+        is_valid = (globcfg["address_duplicate"] in address_duplicate_alowed or
+                    utils.is_non_neg_int(globcfg["address_duplicate"]))
+    except ValueError:
+        is_valid = False
+    assert is_valid, \
+        "Wrong value for 'address_duplicate'='%s'. Must be one of this: %s." % (
+            globcfg["address_duplicate"], address_duplicate_alowed)
 
     # force_name_case
     force_name_case_allowed = ['lower', 'upper', 'none']

@@ -109,8 +109,11 @@ class RegisterMap():
         addresses = [reg.address for reg in self]
         if reg.address in addresses:
             conflict_reg = self[addresses.index(reg.address)]
-            assert False, "Register '%s' with address '%d' conflicts with register '%s' with the same address!" % \
-                (reg.name, reg.address, conflict_reg.name)
+            if config.globcfg['address_duplicate'] == 'true':
+                return
+            else:
+                assert False, "Register '%s' with address '%d' conflicts with register '%s' with the same address!" % \
+                    (reg.name, reg.address, conflict_reg.name)
 
     @property
     def regs(self):

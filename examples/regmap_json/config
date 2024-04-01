@@ -5,6 +5,7 @@ address_width = 16
 register_reset = sync_pos
 address_increment = none
 address_alignment = data_width
+address_duplicate = none
 force_name_case = none
 regmap_path = regs.json
 

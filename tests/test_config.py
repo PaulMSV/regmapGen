@@ -18,6 +18,7 @@ def test_config(tmpdir):
         "register_reset": "sync_pos",
         "address_increment": "none",
         "address_alignment": "data_width",
+        "address_duplicate": "none",
         "force_name_case": "none",
     }
     targets = {
