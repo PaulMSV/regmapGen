@@ -69,12 +69,13 @@ class TestSystemVerilog:
 
     def test_sv_write(self, tmpdir):
         """Test of creating regmap module in SystemVerilog."""
+        template = 'regmap_sv.j2'
         output_file = str(tmpdir.join('regs.sv'))
         print('output_file:', output_file)
         # create regmap
         rmap = utils.create_template()
         # write output file
-        generators.SystemVerilog(rmap, output_file).generate()
+        generators.SystemVerilog(rmap, template, output_file).generate()
         # read file and verify
         with open(output_file, 'r') as f:
             raw_str = ''.join(f.readlines())
@@ -134,12 +135,13 @@ class TestMarkdown:
 
     def test_md(self, tmpdir):
         """Test of creating markdown regmap file."""
+        template = 'regmap_md.j2'
         md_path = str(tmpdir.join('regs.md'))
         print('md_path:', md_path)
         # create regmap
         rmap = utils.create_template()
         # write output file
-        generators.Markdown(rmap, md_path).generate()
+        generators.Markdown(rmap, template, md_path).generate()
         # read file and verify
         with open(md_path, 'r') as f:
             raw_str = ''.join(f.readlines())
@@ -151,12 +153,13 @@ class TestAsciidoc:
 
     def test_adoc(self, tmpdir):
         """Test of creating asciidoc regmap file."""
+        template = 'regmap_asciidoc.j2'
         adoc_path = str(tmpdir.join('regs.adoc'))
         print('adoc_path:', adoc_path)
         # create regmap
         rmap = utils.create_template()
         # write output file
-        generators.Asciidoc(rmap, adoc_path).generate()
+        generators.Asciidoc(rmap, template, adoc_path).generate()
         # read file and verify
         with open(adoc_path, 'r') as f:
             raw_str = ''.join(f.readlines())
@@ -168,6 +171,7 @@ class TestDocx:
 
     def test_docx(self, tmpdir):
         """Test of creating markdown regmap file."""
+        template = 'regmap_md.j2'
         md_path = str(tmpdir.join('regs.md'))
         print('md_path:', md_path)
         docx_path = str(tmpdir.join('regs.docx'))
@@ -175,7 +179,7 @@ class TestDocx:
         # create regmap
         rmap = utils.create_template()
         # write output file
-        generators.Markdown(rmap, md_path).generate()
+        generators.Markdown(rmap, template, md_path).generate()
         generators.Docx(rmap, docx_path, md_path).generate()
         # read file and verify
         doc = Document(docx_path)

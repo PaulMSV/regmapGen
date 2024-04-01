@@ -74,13 +74,13 @@ def generate_templates(format):
 
     # targets
     targets = {}
-    targets.update(regmapGen.generators.SystemVerilog(path="hw/regs.sv").make_target('sv_module'))
+    targets.update(regmapGen.generators.SystemVerilog(template="regmap_sv.j2", path="hw/regs.sv").make_target('sv_module'))
     targets.update(regmapGen.generators.SystemVerilogHeader(path="hw/regs.svh").make_target('sv_header'))
     targets.update(regmapGen.generators.SystemVerilogPackage(path="hw/regs_pkg.sv").make_target('sv_pkg'))
     targets.update(regmapGen.generators.Python(path="sw/regs.py").make_target('py'))
     targets.update(regmapGen.generators.CHeader(path="sw/regs.h").make_target('c_header'))
-    targets.update(regmapGen.generators.Markdown(path="doc/regs.md", image_dir="md_img").make_target('md_doc'))
-    targets.update(regmapGen.generators.Asciidoc(path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
+    targets.update(regmapGen.generators.Markdown(template="regmap_md.j2", path="doc/regs.md", image_dir="md_img").make_target('md_doc'))
+    targets.update(regmapGen.generators.Asciidoc(template="regmap_asciidoc.j2", path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
     targets.update(regmapGen.generators.Docx(path="doc/regs.docx").make_target('docx_doc'))
 
     # create templates

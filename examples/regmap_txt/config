@@ -10,6 +10,7 @@ force_name_case = none
 regmap_path = regs.txt
 
 [sv_module]
+template = regmap_sv.j2
 path = hw/regs.sv
 read_filler = 0
 interface = axil
@@ -35,6 +36,7 @@ prefix =
 generator = CHeader
 
 [md_doc]
+template = regmap_md.j2
 path = doc/regs.md
 title = Register map
 print_images = True
@@ -43,6 +45,7 @@ print_conventions = True
 generator = Markdown
 
 [asciidoc_doc]
+template = regmap_asciidoc.j2
 path = doc/regs.adoc
 title = Register map
 print_images = True
