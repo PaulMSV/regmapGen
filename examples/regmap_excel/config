@@ -10,10 +10,10 @@ force_name_case = none
 regmap_path = Uchip_regmap0.yaml
 
 [sv_module]
-template = regmap_sv.j2
 path = hw/Uchip_regmap0.sv
 read_filler = 0
 interface = lb
+template_path =
 generator = SystemVerilog
 
 [spi2lb_module]
@@ -41,21 +41,21 @@ prefix =
 generator = CHeader
 
 [md_doc]
-template = regmap_md.j2
 path = doc/Uchip_regmap0.md
 title = Register map
 print_images = True
 image_dir = md_img
 print_conventions = True
+template_path =
 generator = Markdown
 
 [asciidoc_doc]
-template = regmap_asciidoc.j2
 path = doc/Uchip_regmap0.adoc
 title = Register map
 print_images = True
 image_dir = adoc_img
 print_conventions = True
+template_path =
 generator = Asciidoc
 
 [docx_doc]

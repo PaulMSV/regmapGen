@@ -239,22 +239,22 @@ class SystemVerilog(Generator, Jinja2):
 
     :param rmap: Register map object
     :type rmap: :class:`regmapGen.RegisterMap`
-    :param template: Name of template file
-    :type template: str
     :param path: Path to the output file
     :type path: str
     :param read_filler: Numeric value to return if wrong address was read
     :type read_filler: int
     :param interface: Register map bus protocol. Use one of: `axil`, `apb`, `amm`, `spi`, `lb`
     :type interface: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, template='regmap_sv.j2', path='regs.sv', read_filler=0, interface='axil', **args):
+    def __init__(self, rmap=None, path='regs.sv', read_filler=0, interface='axil', template_path='', **args):
         super().__init__(rmap, **args)
-        self.template = template
         self.path = path
         self.read_filler = read_filler
         self.interface = interface
+        self.template_path = template_path
 
     def validate(self):
         super().validate()
@@ -265,7 +265,11 @@ class SystemVerilog(Generator, Jinja2):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = self.template
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'regmap_sv.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -274,7 +278,7 @@ class SystemVerilog(Generator, Jinja2):
         j2_vars['interface'] = self.interface
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class SystemVerilogHeader(Generator, Jinja2):
@@ -422,8 +426,6 @@ class Markdown(Generator, Jinja2, Wavedrom):
 
     :param rmap: Register map object
     :type rmap: :class:`regmapGen.RegisterMap`
-    :param template: Name of template file
-    :type template: str
     :param path: Path to the output file
     :type path: str
     :param title: Document title
@@ -434,24 +436,30 @@ class Markdown(Generator, Jinja2, Wavedrom):
     :type image_dir: str
     :param print_conventions: Enable generating table with register access modes explained
     :type print_conventions: bool
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, template='regmap_md.j2', path='regs.md', title='Register map',
-                 print_images=True, image_dir="regs_img", print_conventions=True, **args):
+    def __init__(self, rmap=None, path='regs.md', title='Register map',
+                 print_images=True, image_dir="regs_img", print_conventions=True, template_path='', **args):
         super().__init__(rmap, **args)
-        self.template = template
         self.path = path
         self.title = title
         self.print_images = print_images
         self.image_dir = image_dir
         self.print_conventions = print_conventions
+        self.template_path = template_path
 
     def generate(self):
         filename = utils.get_file_name(self.path)
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = self.template
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'regmap_md.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -462,7 +470,7 @@ class Markdown(Generator, Jinja2, Wavedrom):
         j2_vars['title'] = self.title
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
         # draw register images
         if self.print_images:
             self.draw_regs(Path(self.path).parent / self.image_dir, self.rmap)
@@ -473,8 +481,6 @@ class Asciidoc(Generator, Jinja2, Wavedrom):
 
     :param rmap: Register map object
     :type rmap: :class:`regmapGen.RegisterMap`
-    :param template: Name of template file
-    :type template: str
     :param path: Path to the output file
     :type path: str
     :param title: Document title
@@ -485,24 +491,30 @@ class Asciidoc(Generator, Jinja2, Wavedrom):
     :type image_dir: str
     :param print_conventions: Enable generating table with register access modes explained
     :type print_conventions: bool
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, template='regmap_asciidoc.j2', path='regs.adoc', title='Register map',
-                 print_images=True, image_dir="regs_img", print_conventions=True, **args):
+    def __init__(self, rmap=None, path='regs.adoc', title='Register map',
+                 print_images=True, image_dir="regs_img", print_conventions=True, template_path='', **args):
         super().__init__(rmap, **args)
-        self.template = template
         self.path = path
         self.title = title
         self.print_images = print_images
         self.image_dir = image_dir
         self.print_conventions = print_conventions
+        self.template_path = template_path
 
     def generate(self):
         filename = utils.get_file_name(self.path)
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = self.template
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'regmap_asciidoc.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -513,7 +525,7 @@ class Asciidoc(Generator, Jinja2, Wavedrom):
         j2_vars['title'] = self.title
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
         # draw register images
         if self.print_images:
             self.draw_regs(Path(self.path).parent / self.image_dir, self.rmap)

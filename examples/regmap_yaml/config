@@ -10,10 +10,10 @@ force_name_case = none
 regmap_path = regs.yaml
 
 [sv_module]
-template = regmap_sv.j2
 path = hw/regs.sv
 read_filler = 0
 interface = axil
+template_path = 
 generator = SystemVerilog
 
 [sv_header]
@@ -36,21 +36,21 @@ prefix =
 generator = CHeader
 
 [md_doc]
-template = regmap_md.j2
 path = doc/regs.md
 title = Register map
 print_images = True
 image_dir = md_img
 print_conventions = True
+template_path = 
 generator = Markdown
 
 [asciidoc_doc]
-template = regmap_asciidoc.j2
 path = doc/regs.adoc
 title = Register map
 print_images = True
 image_dir = adoc_img
 print_conventions = True
+template_path = 
 generator = Asciidoc
 
 [docx_doc]

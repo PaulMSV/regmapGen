@@ -57,5 +57,5 @@ rmap.add_registers(Register('ID', 'IP-core ID register', 0xFFC).add_bitfields([
 ]))
 
 # outputs
-generators.SystemVerilog(rmap, 'regmap_sv.j2', 'regs.sv', interface='apb').generate()
-generators.Markdown(rmap, 'regmap_md.j2', 'regs.md', print_images=False).generate()
+generators.SystemVerilog(rmap, 'regs.sv', interface='apb').generate()
+generators.Markdown(rmap, 'regs.md', print_images=False).generate()

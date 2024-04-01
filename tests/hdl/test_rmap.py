@@ -66,7 +66,7 @@ def gen_rtl(tmpdir, interface, reset, hdl):
     ]))
 
     regmap_path = path_join(tmpdir, 'regs.sv')
-    generators.SystemVerilog(rmap, 'regmap_sv.j2', regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
+    generators.SystemVerilog(rmap, regmap_path, read_filler=0xdeadc0de, interface=interface).generate()
 
     header_path = path_join(tmpdir, 'regs.svh')
     generators.SystemVerilogHeader(rmap, header_path).generate()
