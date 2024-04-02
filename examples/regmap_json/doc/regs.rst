@@ -7,8 +7,8 @@ Register map
 
 Автоматически сгенерировано с помощью программы regmapGen.
 
-Conventions
------------
+Сокращения
+----------
 
 .. list-table::
    :header-rows: 1
@@ -70,12 +70,15 @@ DATA
 ----
 
 Описание
+
 Data register
 
 Смещение адреса
+
 0x0004
 
 Значение при сбросе
+
 0x00000000
 
 .. image:: rst_img/data.svg
@@ -116,19 +119,22 @@ Data register
      - 0x00
      - Write to push value to TX FIFO, read to get data from RX FIFO
 
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 
 STAT
 ----
 
 Описание
+
 Status register
 
 Смещение адреса
+
 0x000c
 
 Значение при сбросе
+
 0x00000000
 
 .. image:: rst_img/stat.svg
@@ -174,19 +180,22 @@ Status register
      - 0x0
      - Transciever is busy
 
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 
 CTRL
 ----
 
 Описание
+
 Control register
 
 Смещение адреса
+
 0x0010
 
 Значение при сбросе
+
 0x00000000
 
 .. image:: rst_img/ctrl.svg
@@ -252,19 +261,22 @@ Enumerated значения для CTRL.BAUD
      - 0x2
      - 115200 baud
 
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 
 LPMODE
 ------
 
 Описание
+
 Low power mode control
 
 Смещение адреса
+
 0x0014
 
 Значение при сбросе
+
 0x00000000
 
 .. image:: rst_img/lpmode.svg
@@ -295,19 +307,22 @@ Low power mode control
      - 0x00
      - Clock divider in low power mode
 
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 
 INTSTAT
 -------
 
 Описание
+
 Interrupt status register
 
 Смещение адреса
+
 0x0020
 
 Значение при сбросе
+
 0x00000000
 
 .. image:: rst_img/intstat.svg
@@ -338,19 +353,22 @@ Interrupt status register
      - 0x0
      - Transmitter interrupt flag. Write 1 to clear.
 
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 
 ID
 --
 
 Описание
+
 IP-core ID register
 
 Смещение адреса
+
 0x0040
 
 Значение при сбросе
+
 0xcafe0666
 
 .. image:: rst_img/id.svg
@@ -371,4 +389,4 @@ IP-core ID register
      - 0xcafe0666
      - Unique ID
 
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.

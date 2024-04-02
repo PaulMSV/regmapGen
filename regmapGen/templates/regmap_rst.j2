@@ -32,7 +32,7 @@
 Автоматически сгенерировано с помощью программы regmapGen.
 
 {% if print_conventions %}
-{{ make_title("Conventions", '-') }}
+{{ make_title("Сокращения", '-') }}
 
 .. list-table::
    :header-rows: 1
@@ -81,12 +81,15 @@ Base address: {{ "0x%08x" % config['base_address'] }}
 {{ make_title(reg.name, '-') }}
 
 Описание
+
 {{ reg.description }}
 
 Смещение адреса
+
 {{ literal(reg.address, config['address_width']) }}
 
 Значение при сбросе
+
 {{ literal(reg.reset, config['data_width']) }}
 
 {% if print_images %}
@@ -141,5 +144,5 @@ Base address: {{ "0x%08x" % config['base_address'] }}
 
         {% endif %}
     {% endfor %}
-Back to `Регистры и команды <#Регистры-и-команды>`__.
+Назад к `Регистры и команды <#Регистры-и-команды>`__.
 {% endfor %}
