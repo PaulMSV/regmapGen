@@ -83,6 +83,15 @@ print_conventions = True
 template_path =
 generator = Asciidoc
 
+[rst_doc]
+path = doc/Uchip_regmap0.rst
+title = Register map
+print_images = True
+image_dir = rst_img
+print_conventions = True
+template_path = 
+generator = Rst
+
 [docx_doc]
 path = doc/Uchip_regmap0.docx
 input_md = Uchip_regmap0.md

@@ -83,6 +83,7 @@ def generate_templates(format):
     targets.update(regmapGen.generators.IpxactXml(path="sw/regs.xml").make_target('ipxact_xml'))
     targets.update(regmapGen.generators.Markdown(path="doc/regs.md", image_dir="md_img").make_target('md_doc'))
     targets.update(regmapGen.generators.Asciidoc(path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
+    targets.update(regmapGen.generators.Rst(path="doc/regs.rst", image_dir="rst_img").make_target('rst_doc'))
     targets.update(regmapGen.generators.Docx(path="doc/regs.docx").make_target('docx_doc'))
 
     # create templates

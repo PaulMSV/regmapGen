@@ -116,6 +116,14 @@ Asciidoc
    :inherited-members:
    :show-inheritance:
 
+Rst
+===
+.. autoclass:: regmapGen.generators.Rst
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
 Docx
 ========
 .. autoclass:: regmapGen.generators.Docx

@@ -163,6 +163,23 @@ class TestAsciidoc:
         assert '== Регистры и команды' in raw_str
 
 
+class TestRst:
+    """Class 'generators.Rst' testing."""
+
+    def test_rst(self, tmpdir):
+        """Test of creating reStructuredText regmap file."""
+        rst_path = str(tmpdir.join('regs.rst'))
+        print('rst_path:', rst_path)
+        # create regmap
+        rmap = utils.create_template()
+        # write output file
+        generators.Rst(rmap, rst_path).generate()
+        # read file and verify
+        with open(rst_path, 'r') as f:
+            raw_str = ''.join(f.readlines())
+        assert 'Регистры и команды' in raw_str
+
+
 class TestDocx:
     """Class 'generators.Docx' testing."""
 
