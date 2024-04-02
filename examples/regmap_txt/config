@@ -19,20 +19,24 @@ generator = SystemVerilog
 [sv_header]
 path = hw/regs.svh
 prefix = 
+template_path = 
 generator = SystemVerilogHeader
 
 [sv_pkg]
 path = hw/regs_pkg.sv
 prefix = 
+template_path = 
 generator = SystemVerilogPackage
 
 [py]
 path = sw/regs.py
+template_path = 
 generator = Python
 
 [c_header]
 path = sw/regs.h
 prefix = 
+template_path = 
 generator = CHeader
 
 [cmsis_svd]
@@ -40,6 +44,7 @@ path = sw/regs.svd
 peripheral_name = CSR
 description = no description
 part_version = 1.0.0
+template_path = 
 generator = CmsisSvd
 
 [ipxact_xml]
@@ -51,6 +56,7 @@ version = No version
 memorymap_name = No memorymap_name
 addressblock_name = No addressblock_name
 description = No description
+template_path = 
 generator = IpxactXml
 
 [md_doc]

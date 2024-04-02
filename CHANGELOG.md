@@ -1,10 +1,11 @@
 ## 1.0.2 (02-04-2024) 
 * Добавлен генератор CMSIS SVD
 * Добавлен генератор IPXACT
+* В генераторы LbBridgeSystemVerilog, SystemVerilogHeader, SystemVerilogPackage, CHeader, CmsisSvd, IpxactXml, Python добавлен параметр template_path для задания пользовательского шаблона (по умолчанию используется встроенный шаблон)
 
 ## 1.0.1 (01-04-2024) 
 * В globalcfg добавлен параметр address_duplicate для разрешения одинаковых адресов
-* В генераторы SystemVerilog, Asciidoc, Markdown добавлен параметр template_path для задания пользовательского шаблона. По умолчанию используется встроенный шаблон.
+* В генераторы SystemVerilog, Asciidoc, Markdown добавлен параметр template_path для задания пользовательского шаблона (по умолчанию используется встроенный шаблон)
 
 ## 1.0.0 (27-03-2024) 
 * Релиз

@@ -19,25 +19,30 @@ generator = SystemVerilog
 [spi2lb_module]
 path = hw/spi2lb_bridge.sv
 bridge_type = spi
+template_path = 
 generator = LbBridgeSystemVerilog
 
 [sv_header]
 path = hw/Uchip_regmap0.svh
 prefix = 
+template_path = 
 generator = SystemVerilogHeader
 
 [sv_pkg]
 path = hw/Uchip_regmap0_pkg.sv
 prefix = 
+template_path = 
 generator = SystemVerilogPackage
 
 [py]
 path = sw/Uchip_regmap0.py
+template_path = 
 generator = Python
 
 [c_header]
 path = sw/Uchip_regmap0.h
 prefix = 
+template_path = 
 generator = CHeader
 
 [cmsis_svd]
@@ -45,6 +50,7 @@ path = sw/Uchip_regmap0.svd
 peripheral_name = CSR
 description = No description
 version = 1.0.0
+template_path = 
 generator = CmsisSvd
 
 [ipxact_xml]
@@ -56,6 +62,7 @@ version = A0
 memorymap_name = MemMap
 addressblock_name = regmap0
 description = U-chip Register Map (page0)
+template_path = 
 generator = IpxactXml
 
 [md_doc]

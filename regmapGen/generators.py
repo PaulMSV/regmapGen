@@ -290,18 +290,25 @@ class SystemVerilogHeader(Generator, Jinja2):
     :type path: str
     :param prefix: Prefix for the all defines. Empty is allowed.
     :type prefix: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, path='regs.svh', prefix="", **args):
+    def __init__(self, rmap=None, path='regs.svh', prefix="", template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
+        self.template_path = template_path
 
     def generate(self):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = 'sv_header.j2'
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'sv_header.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -309,7 +316,7 @@ class SystemVerilogHeader(Generator, Jinja2):
         j2_vars['file_name'] = utils.get_file_name(self.path)
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class CHeader(Generator, Jinja2):
@@ -321,12 +328,15 @@ class CHeader(Generator, Jinja2):
     :type path: str
     :param prefix: Prefix for the all defines and types. Empty is allowed.
     :type prefix: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, path='regs.h', prefix="", **args):
+    def __init__(self, rmap=None, path='regs.h', prefix="", template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
+        self.template_path = template_path
 
     def validate(self):
         super().validate()
@@ -339,7 +349,11 @@ class CHeader(Generator, Jinja2):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = 'c_header.j2'
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'c_header.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -347,7 +361,7 @@ class CHeader(Generator, Jinja2):
         j2_vars['file_name'] = utils.get_file_name(self.path)
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class SystemVerilogPackage(Generator, Jinja2):
@@ -359,18 +373,25 @@ class SystemVerilogPackage(Generator, Jinja2):
     :type path: str
     :param prefix: Prefix for the all parameters and types. Empty is allowed.
     :type prefix: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, path='regs_pkg.sv', prefix="", **args):
+    def __init__(self, rmap=None, path='regs_pkg.sv', prefix="", template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.prefix = prefix
+        self.template_path = template_path
 
     def generate(self):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = 'sv_package.j2'
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'sv_package.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -378,7 +399,7 @@ class SystemVerilogPackage(Generator, Jinja2):
         j2_vars['file_name'] = utils.get_file_name(self.path)
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class LbBridgeSystemVerilog(Generator, Jinja2):
@@ -390,12 +411,15 @@ class LbBridgeSystemVerilog(Generator, Jinja2):
     :type path: str
     :param bridge_type: Bridge protocol. Use one of `axil`, `apb`, `amm`, `spi`.
     :type bridge_type: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, path='axil2lb.sv', bridge_type='axil', **args):
+    def __init__(self, rmap=None, path='axil2lb.sv', bridge_type='axil', template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.bridge_type = bridge_type
+        self.template_path = template_path
 
     def validate(self):
         assert self.bridge_type in ['axil', 'apb', 'amm', 'spi'], \
@@ -405,20 +429,23 @@ class LbBridgeSystemVerilog(Generator, Jinja2):
         # validate parameters
         self.validate()
         # prepare jinja2
-        if self.bridge_type == 'axil':
-            j2_template = 'axil2lb_sv.j2'
-        elif self.bridge_type == 'apb':
-            j2_template = 'apb2lb_sv.j2'
-        elif self.bridge_type == 'amm':
-            j2_template = 'amm2lb_sv.j2'
-        elif self.bridge_type == 'spi':
-            j2_template = 'spi2lb_sv.j2'
+        default_templates = {
+            'axil' : 'axil2lb_sv.j2',
+            'apb' : 'apb2lb_sv.j2',
+            'amm' : 'amm2lb_sv.j2',
+            'spi' : 'spi2lb_sv.j2'
+        }
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', default_templates[self.bridge_type]
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['module_name'] = utils.get_file_name(self.path)
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class Markdown(Generator, Jinja2, Wavedrom):
@@ -590,22 +617,29 @@ class CmsisSvd(Generator, Jinja2):
     :type description: str
     :param part_version: Header SVD info - version
     :type part_version: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
     def __init__(self, rmap=None, path='regs.svd', peripheral_name='CSR',
-                 description='no description', part_version='1.0.0', **args):
+                 description='no description', part_version='1.0.0', template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.peripheral_name = peripheral_name
         self.description = description
         self.part_version = part_version
+        self.template_path = template_path
 
     def generate(self):
         # validate parameters
         self.validate()
 
         # prepare jinja2
-        j2_template = 'cmsis_svd.j2'
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'cmsis_svd.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -615,7 +649,7 @@ class CmsisSvd(Generator, Jinja2):
         j2_vars['config'] = config.globcfg
         j2_vars['part_name'] = utils.get_file_name(self.path)
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class IpxactXml(Generator, Jinja2):
@@ -639,11 +673,14 @@ class IpxactXml(Generator, Jinja2):
     :type addressblock_name: str
     :param description: Header XML info - description
     :type description: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
     def __init__(self, rmap=None, path='regs.xml', vendor='NM-Tech',
                  library='No library', component_name='No component_name', version='No version', 
-                 memorymap_name='No memorymap_name', addressblock_name='No addressblock_name', description='No description', **args):
+                 memorymap_name='No memorymap_name', addressblock_name='No addressblock_name', description='No description', 
+                 template_path='',  **args):
         super().__init__(rmap, **args)
         self.path = path
         self.vendor = vendor
@@ -653,13 +690,18 @@ class IpxactXml(Generator, Jinja2):
         self.memorymap_name = memorymap_name
         self.addressblock_name = addressblock_name
         self.description = description
+        self.template_path = template_path
 
     def generate(self):
         # validate parameters
         self.validate()
 
         # prepare jinja2
-        j2_template = 'ipxact_xml.j2'
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'ipxact_xml.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
@@ -674,7 +716,7 @@ class IpxactXml(Generator, Jinja2):
         j2_vars['part_name'] = utils.get_file_name(self.path)
 
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
 class Xls2Yaml(Generator):
@@ -800,20 +842,27 @@ class Python(Generator, Jinja2):
     :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
     """
 
-    def __init__(self, rmap=None, path='regs.py', **args):
+    def __init__(self, rmap=None, path='regs.py', template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
+        self.template_path = template_path
 
     def generate(self):
         # validate parameters
         self.validate()
         # prepare jinja2
-        j2_template = 'regmap_py.j2'
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'regmap_py.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
         j2_vars = {}
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['config'] = config.globcfg
         # render
-        self.render_to_file(j2_template, j2_vars, self.path)
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
