@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>NM-Tech</spirit:vendor>
+  <spirit:library>No library</spirit:library>
+  <spirit:name>No component_name</spirit:name>
+  <spirit:version>No version</spirit:version>
+  <spirit:memoryMaps>
+    <spirit:memoryMap>
+      <spirit:name>No memorymap_name</spirit:name>
+      <spirit:addressBlock>
+        <spirit:name>No addressblock_name</spirit:name>
+        <spirit:description>No description</spirit:description>
+        <spirit:baseAddress>0x0000</spirit:baseAddress>
+        <spirit:range>0x102</spirit:range>
+        <spirit:width>32</spirit:width>
+        <spirit:register>
+          <spirit:name>DATA</spirit:name>
+          <spirit:description>Data register</spirit:description>
+          <spirit:addressOffset>0x0000</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>val</spirit:name>
+            <spirit:description>Value of the register</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>32</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>CTRL</spirit:name>
+          <spirit:description>Control register</spirit:description>
+          <spirit:addressOffset>0x0004</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000100</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>val</spirit:name>
+            <spirit:description>Value of the register</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>16</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>STATUS</spirit:name>
+          <spirit:description>Status register</spirit:description>
+          <spirit:addressOffset>0x0008</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>val</spirit:name>
+            <spirit:description>Value of the register</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>8</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>START</spirit:name>
+          <spirit:description>Start register</spirit:description>
+          <spirit:addressOffset>0x0100</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>val</spirit:name>
+            <spirit:description>Value of the register</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>write-only</spirit:access>
+          </spirit:field>
+        </spirit:register>
+      </spirit:addressBlock>
+    </spirit:memoryMap>
+  </spirit:memoryMaps>
+</spirit:component>

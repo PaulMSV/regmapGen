@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>NM-Tech</spirit:vendor>
+  <spirit:library>No library</spirit:library>
+  <spirit:name>No component_name</spirit:name>
+  <spirit:version>No version</spirit:version>
+  <spirit:memoryMaps>
+    <spirit:memoryMap>
+      <spirit:name>No memorymap_name</spirit:name>
+      <spirit:addressBlock>
+        <spirit:name>No addressblock_name</spirit:name>
+        <spirit:description>No description</spirit:description>
+        <spirit:baseAddress>0x0000</spirit:baseAddress>
+        <spirit:range>0x3e</spirit:range>
+        <spirit:width>32</spirit:width>
+        <spirit:register>
+          <spirit:name>DATA</spirit:name>
+          <spirit:description>Data register</spirit:description>
+          <spirit:addressOffset>0x0004</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>FIFO</spirit:name>
+            <spirit:description>Write to push value to TX FIFO, read to get data from RX FIFO</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>8</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>FERR</spirit:name>
+            <spirit:description>Frame error flag. Read to clear.</spirit:description>
+            <spirit:bitOffset>16</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>            <spirit:readAction>clear</spirit:readAction>
+
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>PERR</spirit:name>
+            <spirit:description>Parity error flag. Read to clear.</spirit:description>
+            <spirit:bitOffset>17</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>            <spirit:readAction>clear</spirit:readAction>
+
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>STAT</spirit:name>
+          <spirit:description>Status register</spirit:description>
+          <spirit:addressOffset>0x000c</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>BUSY</spirit:name>
+            <spirit:description>Transciever is busy</spirit:description>
+            <spirit:bitOffset>2</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>RXE</spirit:name>
+            <spirit:description>RX FIFO is empty</spirit:description>
+            <spirit:bitOffset>4</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>TXF</spirit:name>
+            <spirit:description>TX FIFO is full</spirit:description>
+            <spirit:bitOffset>8</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>CTRL</spirit:name>
+          <spirit:description>Control register</spirit:description>
+          <spirit:addressOffset>0x0010</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>BAUD</spirit:name>
+            <spirit:description>Baudrate value</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>2</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+            <spirit:enumeratedValues>
+              <spirit:enumeratedValue>
+                <spirit:name>B9600</spirit:name>
+                <spirit:description>9600 baud</spirit:description>
+                <spirit:value>0</spirit:value>
+              </spirit:enumeratedValue>
+              <spirit:enumeratedValue>
+                <spirit:name>B38400</spirit:name>
+                <spirit:description>38400 baud</spirit:description>
+                <spirit:value>1</spirit:value>
+              </spirit:enumeratedValue>
+              <spirit:enumeratedValue>
+                <spirit:name>B115200</spirit:name>
+                <spirit:description>115200 baud</spirit:description>
+                <spirit:value>2</spirit:value>
+              </spirit:enumeratedValue>
+            </spirit:enumeratedValues>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>TXEN</spirit:name>
+            <spirit:description>Transmitter enable. Can be disabled by hardware on error.</spirit:description>
+            <spirit:bitOffset>4</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>RXEN</spirit:name>
+            <spirit:description>Receiver enable. Can be disabled by hardware on error.</spirit:description>
+            <spirit:bitOffset>5</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>TXST</spirit:name>
+            <spirit:description>Force transmission start</spirit:description>
+            <spirit:bitOffset>6</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>write-only</spirit:access>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>LPMODE</spirit:name>
+          <spirit:description>Low power mode control</spirit:description>
+          <spirit:addressOffset>0x0014</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>DIV</spirit:name>
+            <spirit:description>Clock divider in low power mode</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>8</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>EN</spirit:name>
+            <spirit:description>Low power mode enable</spirit:description>
+            <spirit:bitOffset>31</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>INTSTAT</spirit:name>
+          <spirit:description>Interrupt status register</spirit:description>
+          <spirit:addressOffset>0x0020</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0x00000000</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>TX</spirit:name>
+            <spirit:description>Transmitter interrupt flag. Write 1 to clear.</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>            <spirit:modifiedWriteValues>oneToClear</spirit:modifiedWriteValues>
+
+          </spirit:field>
+          <spirit:field>
+            <spirit:name>RX</spirit:name>
+            <spirit:description>Receiver interrupt. Write 1 to clear.</spirit:description>
+            <spirit:bitOffset>1</spirit:bitOffset>
+            <spirit:bitWidth>1</spirit:bitWidth>
+            <spirit:access>read-write</spirit:access>            <spirit:modifiedWriteValues>oneToClear</spirit:modifiedWriteValues>
+
+          </spirit:field>
+        </spirit:register>
+        <spirit:register>
+          <spirit:name>ID</spirit:name>
+          <spirit:description>IP-core ID register</spirit:description>
+          <spirit:addressOffset>0x0040</spirit:addressOffset>
+          <spirit:size>32</spirit:size>
+          <spirit:reset>
+            <spirit:value>0xcafe0666</spirit:value>
+          </spirit:reset>
+          <spirit:field>
+            <spirit:name>UID</spirit:name>
+            <spirit:description>Unique ID</spirit:description>
+            <spirit:bitOffset>0</spirit:bitOffset>
+            <spirit:bitWidth>32</spirit:bitWidth>
+            <spirit:access>read-only</spirit:access>
+          </spirit:field>
+        </spirit:register>
+      </spirit:addressBlock>
+    </spirit:memoryMap>
+  </spirit:memoryMaps>
+</spirit:component>

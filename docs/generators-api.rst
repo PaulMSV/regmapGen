@@ -84,6 +84,22 @@ CHeader
    :inherited-members:
    :show-inheritance:
 
+CmsisSvd
+========
+.. autoclass:: regmapGen.generators.CmsisSvd
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+IpxactXml
+=========
+.. autoclass:: regmapGen.generators.IpxactXml
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
 Markdown
 ========
 .. autoclass:: regmapGen.generators.Markdown

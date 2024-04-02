@@ -200,6 +200,23 @@ class TestCmsisSvd:
         assert '<name>regs</name>' in raw_str
 
 
+class TestIpxactXml:
+    """Class 'generators.IpxactXml' testing."""
+
+    def test_ipxactxml(self, tmpdir):
+        """Test of creating IP-XACT XML regmap file."""
+        ipxactxml_path = str(tmpdir.join('regs.xml'))
+        print('ipxactxml_path:', ipxactxml_path)
+        # create regmap
+        rmap = utils.create_template()
+        # write output file
+        generators.IpxactXml(rmap, ipxactxml_path).generate()
+        # read file and verify
+        with open(ipxactxml_path, 'r') as f:
+            raw_str = ''.join(f.readlines())
+        assert '<spirit:vendor>NM-Tech</spirit:vendor>' in raw_str
+
+
 class TestPython:
     """Class 'generators.Python' testing."""
 

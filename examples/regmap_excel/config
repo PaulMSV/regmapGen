@@ -42,8 +42,21 @@ generator = CHeader
 
 [cmsis_svd]
 path = sw/Uchip_regmap0.svd
-other = {'peripheral_name': 'CSR', 'description': 'no description', 'part_version': '1.0.0'}
+peripheral_name = CSR
+description = No description
+version = 1.0.0
 generator = CmsisSvd
+
+[ipxact_xml]
+path = sw/Uchip_regmap0.xml
+vendor = NM-Tech
+library = bcd130_ptv
+component_name = U-chip
+version = A0
+memorymap_name = MemMap
+addressblock_name = regmap0
+description = U-chip Register Map (page0)
+generator = IpxactXml
 
 [md_doc]
 path = doc/Uchip_regmap0.md

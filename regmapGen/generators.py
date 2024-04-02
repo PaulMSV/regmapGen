@@ -584,29 +584,95 @@ class CmsisSvd(Generator, Jinja2):
     :type rmap: :class:`regmapGen.RegisterMap`
     :param path: Path to the output file
     :type path: str
+    :param peripheral_name: Header SVD info - peripheral name
+    :type peripheral_name: str
+    :param description: Header SVD info - description
+    :type description: str
+    :param part_version: Header SVD info - version
+    :type part_version: str
     """
 
     def __init__(self, rmap=None, path='regs.svd', peripheral_name='CSR',
                  description='no description', part_version='1.0.0', **args):
         super().__init__(rmap, **args)
         self.path = path
-        self.other = {'peripheral_name': peripheral_name,
-                      'description': description,
-                      'part_version': part_version}
+        self.peripheral_name = peripheral_name
+        self.description = description
+        self.part_version = part_version
 
     def generate(self):
         # validate parameters
         self.validate()
-        for key, item in self.other.items():
-            assert item and utils.is_str(item), f'[SVD] {key} must be a non-empty string.'
+
         # prepare jinja2
         j2_template = 'cmsis_svd.j2'
         j2_vars = {}
-        j2_vars['corsair_ver'] = __version__
+        j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
+        j2_vars['peripheral_name'] = self.peripheral_name
+        j2_vars['description'] = self.description
+        j2_vars['part_version'] = self.part_version
         j2_vars['config'] = config.globcfg
         j2_vars['part_name'] = utils.get_file_name(self.path)
-        j2_vars.update(self.other)
+        # render
+        self.render_to_file(j2_template, j2_vars, self.path)
+
+
+class IpxactXml(Generator, Jinja2):
+    """ Create the IP-XACT XML file.
+
+    :param rmap: Register map object
+    :type rmap: :class:`regmapGen.RegisterMap`
+    :param path: Path to the output file
+    :type path: str
+    :param vendor: Header XML info - Vendor
+    :type vendor: str
+    :param library: Header XML info - library
+    :type library: str
+    :param component_name: Header XML info - component name
+    :type component_name: str
+    :param version: Header XML info - version
+    :type version: str
+    :param memorymap_name: Header XML info - memorymap name
+    :type memorymap_name: str
+    :param addressblock_name: Header XML info - addressblock name
+    :type addressblock_name: str
+    :param description: Header XML info - description
+    :type description: str
+    """
+
+    def __init__(self, rmap=None, path='regs.xml', vendor='NM-Tech',
+                 library='No library', component_name='No component_name', version='No version', 
+                 memorymap_name='No memorymap_name', addressblock_name='No addressblock_name', description='No description', **args):
+        super().__init__(rmap, **args)
+        self.path = path
+        self.vendor = vendor
+        self.library = library
+        self.component_name = component_name
+        self.version = version
+        self.memorymap_name = memorymap_name
+        self.addressblock_name = addressblock_name
+        self.description = description
+
+    def generate(self):
+        # validate parameters
+        self.validate()
+
+        # prepare jinja2
+        j2_template = 'ipxact_xml.j2'
+        j2_vars = {}
+        j2_vars['regmapGen_ver'] = __version__
+        j2_vars['rmap'] = self.rmap
+        j2_vars['vendor'] = self.vendor
+        j2_vars['library'] =self.library
+        j2_vars['component_name'] =self.component_name
+        j2_vars['version'] =self.version
+        j2_vars['memorymap_name'] =self.memorymap_name
+        j2_vars['addressblock_name'] =self.addressblock_name
+        j2_vars['description'] =self.description
+        j2_vars['config'] = config.globcfg
+        j2_vars['part_name'] = utils.get_file_name(self.path)
+
         # render
         self.render_to_file(j2_template, j2_vars, self.path)
 

@@ -37,8 +37,21 @@ generator = CHeader
 
 [cmsis_svd]
 path = sw/regs.svd
-other = {'peripheral_name': 'CSR', 'description': 'no description', 'part_version': '1.0.0'}
+peripheral_name = CSR
+description = no description
+part_version = 1.0.0
 generator = CmsisSvd
+
+[ipxact_xml]
+path = sw/regs.xml
+vendor = NM-Tech
+library = No library
+component_name = No component_name
+version = No version
+memorymap_name = No memorymap_name
+addressblock_name = No addressblock_name
+description = No description
+generator = IpxactXml
 
 [md_doc]
 path = doc/regs.md
