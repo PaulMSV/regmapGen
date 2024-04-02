@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/ARM-software/CMSIS_5/develop/CMSIS/Utilities/CMSIS-SVD.xsd" >
+  <name>regs</name>
+  <version>1.0.0</version>
+  <description>no description</description>
+  <addressUnitBits>16</addressUnitBits>
+  <width>32</width>
+  <size>32</size>
+
+  <peripherals>
+    <!-- CSR -->
+    <peripheral>
+      <name>CSR</name>
+      <baseAddress>0x0000</baseAddress>
+      <addressBlock>
+        <offset>0x0004</offset>
+        <size>0x3e</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <!-- DATA -->
+        <register>
+          <name>DATA</name>
+          <description>Data register</description>
+          <addressOffset>0x0004</addressOffset>
+          <resetValue>0x00000000</resetValue>
+
+          <fields>
+            <!-- FIFO -->
+            <field>
+              <name>FIFO</name>
+              <description>Write to push value to TX FIFO, read to get data from RX FIFO</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- FERR -->
+            <field>
+              <name>FERR</name>
+              <description>Frame error flag. Read to clear.</description>
+              <bitRange>[16:16]</bitRange>
+              <access>read-only</access>
+              <readAction>clear</readAction>
+
+            </field>
+            <!-- PERR -->
+            <field>
+              <name>PERR</name>
+              <description>Parity error flag. Read to clear.</description>
+              <bitRange>[17:17]</bitRange>
+              <access>read-only</access>
+              <readAction>clear</readAction>
+
+            </field>
+          </fields>
+        </register>
+        <!-- STAT -->
+        <register>
+          <name>STAT</name>
+          <description>Status register</description>
+          <addressOffset>0x000c</addressOffset>
+          <resetValue>0x00000000</resetValue>
+
+          <fields>
+            <!-- BUSY -->
+            <field>
+              <name>BUSY</name>
+              <description>Transciever is busy</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- RXE -->
+            <field>
+              <name>RXE</name>
+              <description>RX FIFO is empty</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TXF -->
+            <field>
+              <name>TXF</name>
+              <description>TX FIFO is full</description>
+              <bitRange>[8:8]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CTRL -->
+        <register>
+          <name>CTRL</name>
+          <description>Control register</description>
+          <addressOffset>0x0010</addressOffset>
+          <resetValue>0x00000000</resetValue>
+
+          <fields>
+            <!-- BAUD -->
+            <field>
+              <name>BAUD</name>
+              <description>Baudrate value</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>B9600</name>
+                  <description>9600 baud</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>B38400</name>
+                  <description>38400 baud</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>B115200</name>
+                  <description>115200 baud</description>
+                  <value>2</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <!-- TXEN -->
+            <field>
+              <name>TXEN</name>
+              <description>Transmitter enable. Can be disabled by hardware on error.</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- RXEN -->
+            <field>
+              <name>RXEN</name>
+              <description>Receiver enable. Can be disabled by hardware on error.</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- TXST -->
+            <field>
+              <name>TXST</name>
+              <description>Force transmission start</description>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- LPMODE -->
+        <register>
+          <name>LPMODE</name>
+          <description>Low power mode control</description>
+          <addressOffset>0x0014</addressOffset>
+          <resetValue>0x00000000</resetValue>
+
+          <fields>
+            <!-- DIV -->
+            <field>
+              <name>DIV</name>
+              <description>Clock divider in low power mode</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- EN -->
+            <field>
+              <name>EN</name>
+              <description>Low power mode enable</description>
+              <bitRange>[31:31]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- INTSTAT -->
+        <register>
+          <name>INTSTAT</name>
+          <description>Interrupt status register</description>
+          <addressOffset>0x0020</addressOffset>
+          <resetValue>0x00000000</resetValue>
+
+          <fields>
+            <!-- TX -->
+            <field>
+              <name>TX</name>
+              <description>Transmitter interrupt flag. Write 1 to clear.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+              <modifiedWriteValues>oneToClear</modifiedWriteValues>
+
+            </field>
+            <!-- RX -->
+            <field>
+              <name>RX</name>
+              <description>Receiver interrupt. Write 1 to clear.</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+              <modifiedWriteValues>oneToClear</modifiedWriteValues>
+
+            </field>
+          </fields>
+        </register>
+        <!-- ID -->
+        <register>
+          <name>ID</name>
+          <description>IP-core ID register</description>
+          <addressOffset>0x0040</addressOffset>
+          <resetValue>0xcafe0666</resetValue>
+
+          <fields>
+            <!-- UID -->
+            <field>
+              <name>UID</name>
+              <description>Unique ID</description>
+              <bitRange>[31:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+</device>

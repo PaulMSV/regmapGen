@@ -183,6 +183,23 @@ class TestDocx:
         assert 'Регистры и команды' in text
 
 
+class TestCmsisSvd:
+    """Class 'generators.CmsisSvd' testing."""
+
+    def test_cmsissvd(self, tmpdir):
+        """Test of creating CMSIS SVD regmap file."""
+        cmsissvd_path = str(tmpdir.join('regs.svd'))
+        print('cmsissvd_path:', cmsissvd_path)
+        # create regmap
+        rmap = utils.create_template()
+        # write output file
+        generators.CmsisSvd(rmap, cmsissvd_path).generate()
+        # read file and verify
+        with open(cmsissvd_path, 'r') as f:
+            raw_str = ''.join(f.readlines())
+        assert '<name>regs</name>' in raw_str
+
+
 class TestPython:
     """Class 'generators.Python' testing."""
 

@@ -35,6 +35,11 @@ path = sw/regs.h
 prefix = 
 generator = CHeader
 
+[cmsis_svd]
+path = sw/regs.svd
+other = {'peripheral_name': 'CSR', 'description': 'no description', 'part_version': '1.0.0'}
+generator = CmsisSvd
+
 [md_doc]
 path = doc/regs.md
 title = Register map

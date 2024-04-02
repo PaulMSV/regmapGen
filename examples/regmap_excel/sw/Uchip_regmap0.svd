@@ -1,0 +1,4401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="https://raw.githubusercontent.com/ARM-software/CMSIS_5/develop/CMSIS/Utilities/CMSIS-SVD.xsd" >
+  <name>Uchip_regmap0</name>
+  <version>1.0.0</version>
+  <description>no description</description>
+  <addressUnitBits>8</addressUnitBits>
+  <width>8</width>
+  <size>8</size>
+
+  <peripherals>
+    <!-- CSR -->
+    <peripheral>
+      <name>CSR</name>
+      <baseAddress>0x00</baseAddress>
+      <addressBlock>
+        <offset>0x00</offset>
+        <size>0x80</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <!-- DisDrvConfig0 -->
+        <register>
+          <name>DisDrvConfig0</name>
+          <description>Настройка чувствительности силовых драйверов к DIS_DRVb - INJ[4:1], IGN[4:1]</description>
+          <addressOffset>0x00</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DDIS_DRVB_CFG_INJ -->
+            <field>
+              <name>DDIS_DRVB_CFG_INJ</name>
+              <description>Для INJ[4:1]: 0 - силовой драйвер не отключается при DIS_DRVb=0, 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DDIS_DRVB_CFG_IGN -->
+            <field>
+              <name>DDIS_DRVB_CFG_IGN</name>
+              <description>Для IGN[4:1]: 0 - силовой драйвер не отключается при DIS_DRVb=0, 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DisDrvConfig1 -->
+        <register>
+          <name>DisDrvConfig1</name>
+          <description>Настройка чувствительности силовых драйверов к DIS_DRVb - RLY[8:1]</description>
+          <addressOffset>0x01</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DDIS_DRVB_CFG_RLY -->
+            <field>
+              <name>DDIS_DRVB_CFG_RLY</name>
+              <description>Для RLY[8:1]: 0 - силовой драйвер не отключается при DIS_DRVb=0 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DisDrvConfig2 -->
+        <register>
+          <name>DisDrvConfig2</name>
+          <description>Настройка чувствительности силовых драйверов к DIS_DRVb - RLY[9], VLV[3:1], HTR[2:1], HB[2:1]</description>
+          <addressOffset>0x02</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DDIS_DRVB_CFG_RLY -->
+            <field>
+              <name>DDIS_DRVB_CFG_RLY</name>
+              <description>Для RLY[9]: 0 - силовой драйвер не отключается при DIS_DRVb=0 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DDIS_DRVB_CFG_VLV -->
+            <field>
+              <name>DDIS_DRVB_CFG_VLV</name>
+              <description>Для VLV[3:1]: 0 - силовой драйвер не отключается при DIS_DRVb=0 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[3:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DDIS_DRVB_CFG_HTR -->
+            <field>
+              <name>DDIS_DRVB_CFG_HTR</name>
+              <description>Для HTR[2:1]: 0 - силовой драйвер не отключается при DIS_DRVb=0 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DDIS_DRVB_CFG_HB -->
+            <field>
+              <name>DDIS_DRVB_CFG_HB</name>
+              <description>Для HB[2:1]: 0 - силовой драйвер не отключается при DIS_DRVb=0 1 - силовой драйвер отключается при DIS_DRVb=0</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DenConfig0 -->
+        <register>
+          <name>DenConfig0</name>
+          <description>Настройка чувствительности силовых драйверов к EN_DRV - IGN[4:1]</description>
+          <addressOffset>0x03</addressOffset>
+          <resetValue>0x0f</resetValue>
+
+          <fields>
+            <!-- DEN_DRV_CFG_IGN -->
+            <field>
+              <name>DEN_DRV_CFG_IGN</name>
+              <description>Для IGN[4:1]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DenConfig1 -->
+        <register>
+          <name>DenConfig1</name>
+          <description>Настройка чувствительности силовых драйвер к EN_DRV и EN_RLY12 - RLY[4:1]</description>
+          <addressOffset>0x04</addressOffset>
+          <resetValue>0x1f</resetValue>
+
+          <fields>
+            <!-- DEN_DRV_CFG_RLY1 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY1</name>
+              <description>Для RLY[1]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY1 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY1</name>
+              <description>Для RLY[1]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_RLY2 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY2</name>
+              <description>Для RLY[2]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY2 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY2</name>
+              <description>Для RLY[2]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_RLY3 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY3</name>
+              <description>Для RLY[3]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY3 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY3</name>
+              <description>Для RLY[3]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_RLY4 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY4</name>
+              <description>Для RLY[4]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY4 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY4</name>
+              <description>Для RLY[4]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DenConfig2 -->
+        <register>
+          <name>DenConfig2</name>
+          <description>Настройка чувствительности силовых драйвер к EN_DRV и EN_RLY12 - RLY[8:5]</description>
+          <addressOffset>0x05</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DEN_DRV_CFG_RLY5 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY5</name>
+              <description>Для RLY[5]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY5 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY5</name>
+              <description>Для RLY[5]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_RLY6 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY6</name>
+              <description>Для RLY[6]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY6 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY6</name>
+              <description>Для RLY[6]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_RLY7 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY7</name>
+              <description>Для RLY[7]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY7 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY7</name>
+              <description>Для RLY[7]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_RLY8 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY8</name>
+              <description>Для RLY[8]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY8 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY8</name>
+              <description>Для RLY[8]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DenConfig3 -->
+        <register>
+          <name>DenConfig3</name>
+          <description>Настройка чувствительности силовых драйвер к EN_DRV и EN_RLY12 - RLY[9], VLV[3:1]</description>
+          <addressOffset>0x06</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DEN_DRV_CFG_RLY9 -->
+            <field>
+              <name>DEN_DRV_CFG_RLY9</name>
+              <description>Для RLY[9]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_RLY9 -->
+            <field>
+              <name>DEN_RLY_CFG_RLY9</name>
+              <description>Для RLY[9]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_VLV1 -->
+            <field>
+              <name>DEN_DRV_CFG_VLV1</name>
+              <description>Для VLV[1]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_VLV1 -->
+            <field>
+              <name>DEN_RLY_CFG_VLV1</name>
+              <description>Для VLV[1]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_VLV2 -->
+            <field>
+              <name>DEN_DRV_CFG_VLV2</name>
+              <description>Для VLV[2]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_VLV2 -->
+            <field>
+              <name>DEN_RLY_CFG_VLV2</name>
+              <description>Для VLV[2]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_VLV3 -->
+            <field>
+              <name>DEN_DRV_CFG_VLV3</name>
+              <description>Для VLV[3]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_VLV3 -->
+            <field>
+              <name>DEN_RLY_CFG_VLV3</name>
+              <description>Для VLV[3]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DenConfig4 -->
+        <register>
+          <name>DenConfig4</name>
+          <description>Настройка чувствительности силовых драйверов к EN_DRV и EN_RLY12 - HTR[2:1], HB[2:1]</description>
+          <addressOffset>0x07</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DEN_DRV_CFG_HTR1 -->
+            <field>
+              <name>DEN_DRV_CFG_HTR1</name>
+              <description>Для HTR[1]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_HTR1 -->
+            <field>
+              <name>DEN_RLY_CFG_HTR1</name>
+              <description>Для HTR[1]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_HTR2 -->
+            <field>
+              <name>DEN_DRV_CFG_HTR2</name>
+              <description>Для HTR[2]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_HTR2 -->
+            <field>
+              <name>DEN_RLY_CFG_HTR2</name>
+              <description>Для HTR[2]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_HB1 -->
+            <field>
+              <name>DEN_DRV_CFG_HB1</name>
+              <description>Для HB[1]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_HB1 -->
+            <field>
+              <name>DEN_RLY_CFG_HB1</name>
+              <description>Для HB[1]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_DRV_CFG_HB2 -->
+            <field>
+              <name>DEN_DRV_CFG_HB2</name>
+              <description>Для HB[2]: 0 - силовой драйвер не отключается при EN_DRV=0 1 - силовой драйвер отключается при EN_DRV=0</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEN_RLY_CFG_HB2 -->
+            <field>
+              <name>DEN_RLY_CFG_HB2</name>
+              <description>Для HB[2]: 0 - силовой драйвер не отключается при EN_RLY12=0 1 - силовой драйвер отключается при EN_RLY12=0</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OEConfig0 -->
+        <register>
+          <name>OEConfig0</name>
+          <description>Активация управления силовыми драйверами - IGN[4:1], INJ[4:1]</description>
+          <addressOffset>0x08</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- IGN_OE -->
+            <field>
+              <name>IGN_OE</name>
+              <description>Для IGN[4:1]: 0 - управление деактивировано 1 - управление активировано</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- INJ_OE -->
+            <field>
+              <name>INJ_OE</name>
+              <description>Для INJ[4:1]: "0" - управление деактивировано "1" - управление активировано</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OEConfig1 -->
+        <register>
+          <name>OEConfig1</name>
+          <description>Активация управления силовыми драйверами - RLY[8:1]</description>
+          <addressOffset>0x09</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_OE -->
+            <field>
+              <name>RLY_OE</name>
+              <description>Для RLY[8:1]: 0 - управление деактивировано 1 - управление активировано</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OEConfig2 -->
+        <register>
+          <name>OEConfig2</name>
+          <description>Активация управления силовыми драйверами - RLY[9], HTR[2:1], VLV[3:1]</description>
+          <addressOffset>0x0a</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_OE -->
+            <field>
+              <name>RLY_OE</name>
+              <description>Для RLY[9]: 0 - управление деактивировано 1 - управление активировано</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HTR_OE -->
+            <field>
+              <name>HTR_OE</name>
+              <description>Для HTR[2:1]: "0" - управление деактивировано "1" - управление активировано</description>
+              <bitRange>[2:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VLV_OE -->
+            <field>
+              <name>VLV_OE</name>
+              <description>Для VLV[3:1]: 0 - управление деактивировано 1 - управление активировано</description>
+              <bitRange>[5:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OEConfig3 -->
+        <register>
+          <name>OEConfig3</name>
+          <description>Активация\деактивация управления силовыми драйверами - HB[2:1]</description>
+          <addressOffset>0x0b</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- HS_OE -->
+            <field>
+              <name>HS_OE</name>
+              <description>Для HS[2:1]: 0 - управление деактивировано 1 - управление активировано</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- LS_OE -->
+            <field>
+              <name>LS_OE</name>
+              <description>Для LS[2:1]: 0 - управление деактивировано 1 - управление активировано</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DDConfig0 -->
+        <register>
+          <name>DDConfig0</name>
+          <description>Выбор способа управления силовыми драйверами - IGN[4:1], INJ[4:1]</description>
+          <addressOffset>0x0c</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- IGN_DD -->
+            <field>
+              <name>IGN_DD</name>
+              <description>Для IGN[4:1]: 0 - управление осуществляется через SPI 1 - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- INJ_DD -->
+            <field>
+              <name>INJ_DD</name>
+              <description>Для INJ[4:1]: 0 - управление осуществляется через SPI 1 - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DDConfig1 -->
+        <register>
+          <name>DDConfig1</name>
+          <description>Выбор способа управления силовыми драйверами - RLY[8:1]</description>
+          <addressOffset>0x0d</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_DD -->
+            <field>
+              <name>RLY_DD</name>
+              <description>Для RLY[8:1]: 0 - управление осуществляется через SPI 1 - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DDConfig2 -->
+        <register>
+          <name>DDConfig2</name>
+          <description>Выбор способа управления силовыми драйверами - RLY[9], HTR[2:1], VLV[3:1], HB[2:1]</description>
+          <addressOffset>0x0e</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_DD -->
+            <field>
+              <name>RLY_DD</name>
+              <description>Для RLY[9]: 0 - управление осуществляется через SPI 1 - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HTR_DD -->
+            <field>
+              <name>HTR_DD</name>
+              <description>Для HTR[2:1]: 0 - управление осуществляется через SPI 1 - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[2:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VLV_DD -->
+            <field>
+              <name>VLV_DD</name>
+              <description>Для VLV[3:1]: 0 - управление осуществляется через SPI 1 - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[5:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HB_DD -->
+            <field>
+              <name>HB_DD</name>
+              <description>Для HB[2:1]: "0" - управление осуществляется через SPI "1" - управление осуществляется через Входы Непосредственного Управления</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- Cont0 -->
+        <register>
+          <name>Cont0</name>
+          <description>SPI-управление ctrl-сигналом силовых драйверов - IGN[4:1], INJ[4:1]</description>
+          <addressOffset>0x0f</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- IGN_ON -->
+            <field>
+              <name>IGN_ON</name>
+              <description>Для IGN[4:1]: 0 - силовой драйвер ВЫКЛ. 1 - силовой драйвер ВКЛ.</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- INJ_ON -->
+            <field>
+              <name>INJ_ON</name>
+              <description>Для INJ[4:1]: "0" - силовой драйвер ВЫКЛ. "1" - силовой драйвер ВКЛ.</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- Cont1 -->
+        <register>
+          <name>Cont1</name>
+          <description>SPI-управление ctrl-сигналом силовых драйверов - RLY[8:1]</description>
+          <addressOffset>0x10</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_ON -->
+            <field>
+              <name>RLY_ON</name>
+              <description>Для RLY[8:1]: 0 - силовой драйвер ВЫКЛ. 1 - силовой драйвер ВКЛ.</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- Cont2 -->
+        <register>
+          <name>Cont2</name>
+          <description>SPI-управление ctrl-сигналом силовых драйверов - RLY[9], HTR[2:1], VLV[3:1], HB[2:1]</description>
+          <addressOffset>0x11</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_ON -->
+            <field>
+              <name>RLY_ON</name>
+              <description>Для RLY[9]: 0 - силовой драйвер ВЫКЛ. 1 - силовой драйвер ВКЛ.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HTR_ON -->
+            <field>
+              <name>HTR_ON</name>
+              <description>Для HTR[2:1]: 0 - силовой драйвер ВЫКЛ. 1 - силовой драйвер ВКЛ.</description>
+              <bitRange>[2:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VLV_ON -->
+            <field>
+              <name>VLV_ON</name>
+              <description>Для VLV[3:1]: 0 - силовой драйвер ВЫКЛ. 1 - силовой драйвер ВКЛ.</description>
+              <bitRange>[5:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HB_ON -->
+            <field>
+              <name>HB_ON</name>
+              <description>Для HB[2:1]: 0 - силовой драйвер ВЫКЛ. 1 - силовой драйвер ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- BRIConfig0 -->
+        <register>
+          <name>BRIConfig0</name>
+          <description>Настройка работы полумостов - HB[2:1]</description>
+          <addressOffset>0x12</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- FW_MODE -->
+            <field>
+              <name>FW_MODE</name>
+              <description>Режим Free Wheeling для HB[2:1]: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HS_LS_MODE -->
+            <field>
+              <name>HS_LS_MODE</name>
+              <description>Настройка ctrl-сигнала для HB[2:1]: 0 - ctrl-сигнал идёт на LS 1 - ctrl-сигнал идёт на HS</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- IgnDiagConfig -->
+        <register>
+          <name>IgnDiagConfig</name>
+          <description>Настройка OL-диагностики - IGN[4:1]</description>
+          <addressOffset>0x13</addressOffset>
+          <resetValue>0x05</resetValue>
+
+          <fields>
+            <!-- EN_DIAG_OL_IGN -->
+            <field>
+              <name>EN_DIAG_OL_IGN</name>
+              <description>Активация OL-диагностики: 0 - диагностика ВЫКЛ. 1 - диагностика ВКЛ.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SEL_OL_TH_IGN -->
+            <field>
+              <name>SEL_OL_TH_IGN</name>
+              <description>Настройка порога OL-диагностики</description>
+              <bitRange>[2:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OutDiagConfig0 -->
+        <register>
+          <name>OutDiagConfig0</name>
+          <description>Настройка конфигурации диагностик силовых драйверов - INJ[4:1]</description>
+          <addressOffset>0x14</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DIAG_INJ1 -->
+            <field>
+              <name>DIAG_INJ1</name>
+              <description>Для INJ[1]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_INJ2 -->
+            <field>
+              <name>DIAG_INJ2</name>
+              <description>Для INJ[2]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_INJ3 -->
+            <field>
+              <name>DIAG_INJ3</name>
+              <description>Для INJ[3]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_INJ4 -->
+            <field>
+              <name>DIAG_INJ4</name>
+              <description>Для INJ[4]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OutDiagConfig1 -->
+        <register>
+          <name>OutDiagConfig1</name>
+          <description>Настройка конфигурации диагностик силовых драйверов - RLY[4:1]</description>
+          <addressOffset>0x15</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DIAG_RLY1 -->
+            <field>
+              <name>DIAG_RLY1</name>
+              <description>Для RLY[1]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_RLY2 -->
+            <field>
+              <name>DIAG_RLY2</name>
+              <description>Для RLY[2]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_RLY3 -->
+            <field>
+              <name>DIAG_RLY3</name>
+              <description>Для RLY[3]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_RLY4 -->
+            <field>
+              <name>DIAG_RLY4</name>
+              <description>Для RLY[4]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OutDiagConfig2 -->
+        <register>
+          <name>OutDiagConfig2</name>
+          <description>Настройка конфигурации диагностик силовых драйверов - RLY[8:5]</description>
+          <addressOffset>0x16</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DIAG_RLY5 -->
+            <field>
+              <name>DIAG_RLY5</name>
+              <description>Для RLY[5]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_RLY6 -->
+            <field>
+              <name>DIAG_RLY6</name>
+              <description>Для RLY[6]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_RLY7 -->
+            <field>
+              <name>DIAG_RLY7</name>
+              <description>Для RLY[7]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_RLY8 -->
+            <field>
+              <name>DIAG_RLY8</name>
+              <description>Для RLY[8]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OutDiagConfig3 -->
+        <register>
+          <name>OutDiagConfig3</name>
+          <description>Настройка конфигурации диагностик силовых драйверов - RLY[9], VLV[3:1]</description>
+          <addressOffset>0x17</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DIAG_RLY9 -->
+            <field>
+              <name>DIAG_RLY9</name>
+              <description>Для RLY[9]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_VLV1 -->
+            <field>
+              <name>DIAG_VLV1</name>
+              <description>Для VLV[1]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_VLV2 -->
+            <field>
+              <name>DIAG_VLV2</name>
+              <description>Для VLV[2]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_VLV3 -->
+            <field>
+              <name>DIAG_VLV3</name>
+              <description>Для VLV[3]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- OutDiagConfig4 -->
+        <register>
+          <name>OutDiagConfig4</name>
+          <description>Настройка конфигурации диагностик силовых драйверов - HTR[2:1], HB[2:1]</description>
+          <addressOffset>0x18</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- DIAG_HTR1 -->
+            <field>
+              <name>DIAG_HTR1</name>
+              <description>Для HTR[1]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_HTR2 -->
+            <field>
+              <name>DIAG_HTR2</name>
+              <description>Для HTR[2]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_HB1 -->
+            <field>
+              <name>DIAG_HB1</name>
+              <description>Для HB[1]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DIAG_HB2 -->
+            <field>
+              <name>DIAG_HB2</name>
+              <description>Для HB[2]: 0x0 - все диагностики ВЫКЛ. 0x1 - все диагностики ВЫКЛ. 0x2 -только SCG/SCB диагностика ВКЛ. 0x3 - SCG/SCB и OL диагностика ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CurrLimConfig0 -->
+        <register>
+          <name>CurrLimConfig0</name>
+          <description>Активация режима ограничения по току силовых драйверов в случае OC - INJ[4:1]</description>
+          <addressOffset>0x19</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- CURR_LIM_INJ -->
+            <field>
+              <name>CURR_LIM_INJ</name>
+              <description>Для INJ[4:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CurrLimConfig1 -->
+        <register>
+          <name>CurrLimConfig1</name>
+          <description>Активация режима ограничения по току силовых драйверов в случае OC - RLY[8:1]</description>
+          <addressOffset>0x1a</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- CURR_LIM_RLY -->
+            <field>
+              <name>CURR_LIM_RLY</name>
+              <description>Для RLY[8:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CurrLimConfig2 -->
+        <register>
+          <name>CurrLimConfig2</name>
+          <description>Активация режима ограничения по току силовых драйверов в случае OC - RLY[9], VLV[3:1], HTR[2:1], HB[2:1]</description>
+          <addressOffset>0x1b</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- CURR_LIM_RLY -->
+            <field>
+              <name>CURR_LIM_RLY</name>
+              <description>Для RLY[9]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- CURR_LIM_VLV -->
+            <field>
+              <name>CURR_LIM_VLV</name>
+              <description>Для VLV[3:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[3:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- CURR_LIM_HTR -->
+            <field>
+              <name>CURR_LIM_HTR</name>
+              <description>Для HTR[2:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- CURR_LIM_HB -->
+            <field>
+              <name>CURR_LIM_HB</name>
+              <description>Для HB[2:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[7:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DlyOffConfig -->
+        <register>
+          <name>DlyOffConfig</name>
+          <description>Активация режима позднего отключения силовых драйверов в случае VDD5_UV, VDD5_OV, WD_FAIL, RSTb=0</description>
+          <addressOffset>0x1c</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DEL_OFF_RLY -->
+            <field>
+              <name>DEL_OFF_RLY</name>
+              <description>Для RLY[3:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[2:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DEL_OFF_HB -->
+            <field>
+              <name>DEL_OFF_HB</name>
+              <description>Для HB[2:1]: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[4:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig0 -->
+        <register>
+          <name>DinConfig0</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - INJ[2:1]</description>
+          <addressOffset>0x1d</addressOffset>
+          <resetValue>0x21</resetValue>
+
+          <fields>
+            <!-- INJ_IN1 -->
+            <field>
+              <name>INJ_IN1</name>
+              <description>Для INJ[1]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- INJ_IN2 -->
+            <field>
+              <name>INJ_IN2</name>
+              <description>Для INJ[2]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig1 -->
+        <register>
+          <name>DinConfig1</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - INJ[4:3]</description>
+          <addressOffset>0x1e</addressOffset>
+          <resetValue>0x43</resetValue>
+
+          <fields>
+            <!-- INJ_IN3 -->
+            <field>
+              <name>INJ_IN3</name>
+              <description>Для INJ[3]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- INJ_IN4 -->
+            <field>
+              <name>INJ_IN4</name>
+              <description>Для INJ[4]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig2 -->
+        <register>
+          <name>DinConfig2</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - IGN[2:1]</description>
+          <addressOffset>0x1f</addressOffset>
+          <resetValue>0xba</resetValue>
+
+          <fields>
+            <!-- IGN_IN1 -->
+            <field>
+              <name>IGN_IN1</name>
+              <description>Для IGN[1]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- IGN_IN2 -->
+            <field>
+              <name>IGN_IN2</name>
+              <description>Для IGN[2]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig3 -->
+        <register>
+          <name>DinConfig3</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - IGN[4:3]</description>
+          <addressOffset>0x20</addressOffset>
+          <resetValue>0xdc</resetValue>
+
+          <fields>
+            <!-- IGN_IN3 -->
+            <field>
+              <name>IGN_IN3</name>
+              <description>Для IGN[3]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- IGN_IN4 -->
+            <field>
+              <name>IGN_IN4</name>
+              <description>Для IGN[4]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig4 -->
+        <register>
+          <name>DinConfig4</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - HTR[2:1]</description>
+          <addressOffset>0x21</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- HTR_IN1 -->
+            <field>
+              <name>HTR_IN1</name>
+              <description>Для HTR[1]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HTR_IN2 -->
+            <field>
+              <name>HTR_IN2</name>
+              <description>Для HTR[2]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig5 -->
+        <register>
+          <name>DinConfig5</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - HB[2:1]</description>
+          <addressOffset>0x22</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- HB_IN1 -->
+            <field>
+              <name>HB_IN1</name>
+              <description>Для HB[1]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- HB_IN2 -->
+            <field>
+              <name>HB_IN2</name>
+              <description>Для HB[2]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig6 -->
+        <register>
+          <name>DinConfig6</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - RLY[2:1]</description>
+          <addressOffset>0x23</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_IN1 -->
+            <field>
+              <name>RLY_IN1</name>
+              <description>Для RLY[1]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- RLY_IN2 -->
+            <field>
+              <name>RLY_IN2</name>
+              <description>Для RLY[2]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig7 -->
+        <register>
+          <name>DinConfig7</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - RLY[4:3]</description>
+          <addressOffset>0x24</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_IN3 -->
+            <field>
+              <name>RLY_IN3</name>
+              <description>Для RLY[3]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- RLY_IN4 -->
+            <field>
+              <name>RLY_IN4</name>
+              <description>Для RLY[4]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig8 -->
+        <register>
+          <name>DinConfig8</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - RLY[6:5]</description>
+          <addressOffset>0x25</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RLY_IN5 -->
+            <field>
+              <name>RLY_IN5</name>
+              <description>Для RLY[5]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- RLY_IN6 -->
+            <field>
+              <name>RLY_IN6</name>
+              <description>Для RLY[6]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig9 -->
+        <register>
+          <name>DinConfig9</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - RLY[8:7]</description>
+          <addressOffset>0x26</addressOffset>
+          <resetValue>0x80</resetValue>
+
+          <fields>
+            <!-- RLY_IN7 -->
+            <field>
+              <name>RLY_IN7</name>
+              <description>Для RLY[7]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- RLY_IN8 -->
+            <field>
+              <name>RLY_IN8</name>
+              <description>Для RLY[8]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig10 -->
+        <register>
+          <name>DinConfig10</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - RLY[9], VLV[1]</description>
+          <addressOffset>0x27</addressOffset>
+          <resetValue>0x59</resetValue>
+
+          <fields>
+            <!-- RLY_IN9 -->
+            <field>
+              <name>RLY_IN9</name>
+              <description>Для RLY[9]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VLV_IN1 -->
+            <field>
+              <name>VLV_IN1</name>
+              <description>Для VLV[1]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- DinConfig11 -->
+        <register>
+          <name>DinConfig11</name>
+          <description>Выбор Входа Непосредственно Управления для управления силовыми драйверами - VLV[3:2]</description>
+          <addressOffset>0x28</addressOffset>
+          <resetValue>0x76</resetValue>
+
+          <fields>
+            <!-- VLV_IN2 -->
+            <field>
+              <name>VLV_IN2</name>
+              <description>Для VLV[2]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VLV_IN3 -->
+            <field>
+              <name>VLV_IN3</name>
+              <description>Для VLV[3]: 0x1 - IN1, 0x2 - IN2, 0x3 - IN3, 0x4 - IN4, 0x5 - IN5, 0x6 - IN6, 0x7 - IN7, 0x8 - IN8, 0x9 - IN9, 0xA - IN10, 0xB - IN11, 0xC - IN12, 0xD - IN13</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- WDConfig0 -->
+        <register>
+          <name>WDConfig0</name>
+          <description>Настройки Сторожевых Таймеров (WatchDog)</description>
+          <addressOffset>0x29</addressOffset>
+          <resetValue>0x20</resetValue>
+
+          <fields>
+            <!-- WD_DURATION -->
+            <field>
+              <name>WD_DURATION</name>
+              <description>Настройка длительности ожидания "посылки-ответа" SPI WatchDog</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRS_WD_DURATION -->
+            <field>
+              <name>VRS_WD_DURATION</name>
+              <description>Настройка порога VRS WatchDog</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRS_WD_EN -->
+            <field>
+              <name>VRS_WD_EN</name>
+              <description>Активация VRS WatchDog: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- WDConfig1 -->
+        <register>
+          <name>WDConfig1</name>
+          <description>Настройки SPI WatchDog</description>
+          <addressOffset>0x2a</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SPI_ERR_CNT_CFG -->
+            <field>
+              <name>SPI_ERR_CNT_CFG</name>
+              <description>Настройка порога счетчика ошибок: 0x0 - 6 ошибок 0x1 - 6 ошибок 0x2 - 4 ошибки 0x3 - 2 ошибки</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SPI_RFH_CNT_CFG -->
+            <field>
+              <name>SPI_RFH_CNT_CFG</name>
+              <description>Настройка порога счетчика успехов: 0x0 - 6 успехов 0x1 - 6 успехов 0x2 - 4 успеха 0x3 - 2 успеха</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SPI_RST_ERR_FS -->
+            <field>
+              <name>SPI_RST_ERR_FS</name>
+              <description>Настройка порога генерации FAULTb, RSTb: 0 - стандартный порог 1 - уменьшенный в два раза порог</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- VrsConfig0 -->
+        <register>
+          <name>VrsConfig0</name>
+          <description>Конфигурация VR Сенсора</description>
+          <addressOffset>0x2b</addressOffset>
+          <resetValue>0x02</resetValue>
+
+          <fields>
+            <!-- VRS_MODE_CFG -->
+            <field>
+              <name>VRS_MODE_CFG</name>
+              <description>Настройка режима vrs_mode: 0x0 - ручной 0x1 - Hall-сенсор 0x2 - автоматический 0x3 - pre diag</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRS_REF -->
+            <field>
+              <name>VRS_REF</name>
+              <description>Настройка значения vrs_ref</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRS_TEST_CFG -->
+            <field>
+              <name>VRS_TEST_CFG</name>
+              <description>Настройка режима тестирования: 0x0 - все тесты 0x1 - SCG 0x2 - SCB 0x3 - OL</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSO_SPI_CTRL_MODE -->
+            <field>
+              <name>VRSO_SPI_CTRL_MODE</name>
+              <description>Активация режима прямого управления управления VRS_OUT: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSO_SPI_CTRL -->
+            <field>
+              <name>VRSO_SPI_CTRL</name>
+              <description>Сигнал установки значения на VRS_OUT в режиме прямого управления</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- VrsConfig1 -->
+        <register>
+          <name>VrsConfig1</name>
+          <description>Конфигурация VR Сенсора</description>
+          <addressOffset>0x2c</addressOffset>
+          <resetValue>0x78</resetValue>
+
+          <fields>
+            <!-- VRSF -->
+            <field>
+              <name>VRSF</name>
+              <description>Настройка времени фильтрации в ручном режиме: 0x0 - 2мкс 0x1 - 4мкс 0x2 - 8мкс 0x3 - 16мкс 0x4 - 32мкс 0x5 - 64мкс 0x6 - 128мкс 0x7 - 200мкс</description>
+              <bitRange>[2:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSM -->
+            <field>
+              <name>VRSM</name>
+              <description>Настройка режима фильтации: 0 - адаптивный 1 - ручной</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSRF -->
+            <field>
+              <name>VRSRF</name>
+              <description>Активация/деактивация фильтрации по Rising Edge: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSFF -->
+            <field>
+              <name>VRSFF</name>
+              <description>Активация/деактивация фильтрации по Falling Edge: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSEFF -->
+            <field>
+              <name>VRSEFF</name>
+              <description> Активация/деактивация маскирования по Falling Edge: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRSO_EN -->
+            <field>
+              <name>VRSO_EN</name>
+              <description>Активация/деактивация VROUT-буфера: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- VrsConfig2 -->
+        <register>
+          <name>VrsConfig2</name>
+          <description>Конфигурация VR Сенсора</description>
+          <addressOffset>0x2d</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- VRS_OL_DIAG -->
+            <field>
+              <name>VRS_OL_DIAG</name>
+              <description>Настройка OL-диагностики VR Сенсора</description>
+              <bitRange>[6:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscConfig0 -->
+        <register>
+          <name>MscConfig0</name>
+          <description>Конфигурация MSC Интерфейса</description>
+          <addressOffset>0x2e</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- MSC_CLK_DIV_CFG -->
+            <field>
+              <name>MSC_CLK_DIV_CFG</name>
+              <description>Настройка делителя частоты SCLK для Upstream-посылок: 0x0 - 64 0x1 - 4 0x2 - 8 0x3 - 16 0x4 - 32 0x5 - 64 0x6 - 128 0x7 - 256</description>
+              <bitRange>[2:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- MSC_SV_EN -->
+            <field>
+              <name>MSC_SV_EN</name>
+              <description>Активация/деактивация SuperVision функции: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscConfig1 -->
+        <register>
+          <name>MscConfig1</name>
+          <description>Конфигурация MSC Интерфейса</description>
+          <addressOffset>0x2f</addressOffset>
+          <resetValue>0x01</resetValue>
+
+          <fields>
+            <!-- MSC_CRC_CFG -->
+            <field>
+              <name>MSC_CRC_CFG</name>
+              <description>Тип бита четности: 0 - нечётный 1 - чётный</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- MSC_UP_FRAME -->
+            <field>
+              <name>MSC_UP_FRAME</name>
+              <description>Настройка типа Upstream кадра: 0 - без адресного поля 1 - с адресным полем</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- MSC_ADDR_MODE -->
+            <field>
+              <name>MSC_ADDR_MODE</name>
+              <description>Активация режима установки адресного поля: 0 - автоматический подбор 1 - фиксированный MSC_ADDR_CFG</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- MSC_ADDR_CFG -->
+            <field>
+              <name>MSC_ADDR_CFG</name>
+              <description>Значения адресного поля в случае выбора фиксированного адреса</description>
+              <bitRange>[6:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- OD_MISO -->
+            <field>
+              <name>OD_MISO</name>
+              <description>Активация режима OpenDrain для MSC: 0 - ВЫКЛ. 1 - ВКЛ.</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- AoutConfig -->
+        <register>
+          <name>AoutConfig</name>
+          <description>Конфигурация AOUT буфера</description>
+          <addressOffset>0x30</addressOffset>
+          <resetValue>0x10</resetValue>
+
+          <fields>
+            <!-- AMUX -->
+            <field>
+              <name>AMUX</name>
+              <description>Настройка AOUT-буфера: 0x0 - en_aout=0 0x1 - en_aout=1, sel_aout_vrs_amp=1 - выводится дифф. напряжения усилителя VRS 0x2 - en_aout=1, sel_aout_vdd5_sns=1 - выводится VDD5 0x3 - en_aout=1, sel_aout_vddio_sns=1 - выводится VDDIO 0x4 - en_aout=1, sel_aout_vpwr_sns=1 - выводится VPWR 0x5 - en_aout=1, sel_aout_vtemp_sns=1 - выводится напряжения температурного датчика any: en_aout=0</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VDDIO_RNG -->
+            <field>
+              <name>VDDIO_RNG</name>
+              <description>Настройка порогов VDDIO-монитора: 0x0 - sel_vddio_uv_th=0, sel_vddio_ov_th=0 - 3.3В 0x1 - sel_vddio_uv_th=0, sel_vddio_ov_th=1 - широкий диапазон 0x2 - sel_vddio_uv_th=1, sel_vddio_ov_th=0 - узкий диапазон 0x3 - sel_vddio_uv_th=1, sel_vddio_ov_th=1 - 5В</description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VPWR_RNG -->
+            <field>
+              <name>VPWR_RNG</name>
+              <description>Настройка порогов VPWR-монитора: 0 - sel_vpwr_ov_th=0 - 12В 1 - sel_vpwr_ov_th=1 - 24В</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RstbConfig -->
+        <register>
+          <name>RstbConfig</name>
+          <description>Конфигурация сброса цифровой логики</description>
+          <addressOffset>0x31</addressOffset>
+          <resetValue>0x07</resetValue>
+
+          <fields>
+            <!-- VDD5_UV_RSTB_CFG -->
+            <field>
+              <name>VDD5_UV_RSTB_CFG</name>
+              <description>Сброс цифррвой логики по VDD5_UV: 0 - reset не происходит 1 - reset происходит</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VDD5_OV_RSTB_CFG -->
+            <field>
+              <name>VDD5_OV_RSTB_CFG</name>
+              <description>Сброс цифрвой логики по VDD5_OV: 0 - reset не происходит 1 - reset происходит</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- WD_RSTB_CFG -->
+            <field>
+              <name>WD_RSTB_CFG</name>
+              <description>Сброс цифрвой логики по  переполнению WD счетчика ошибок: 0 - reset не происходит 1 - reset происходит</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- FaultbConfig0 -->
+        <register>
+          <name>FaultbConfig0</name>
+          <description>Конфигурация FAULTb вывода</description>
+          <addressOffset>0x32</addressOffset>
+          <resetValue>0x3f</resetValue>
+
+          <fields>
+            <!-- WD_SV_FAIL_DIAG -->
+            <field>
+              <name>WD_SV_FAIL_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки по WD и SV функциям: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SPI_MSC_FAIL_DIAG -->
+            <field>
+              <name>SPI_MSC_FAIL_DIAG</name>
+              <description>Настройка реакции FAULTb на обращения по SPI/MSC к неверному адресу: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- OTP_FAIL_DIAG -->
+            <field>
+              <name>OTP_FAIL_DIAG</name>
+              <description>Настройка реакции FAULTb на OTP-ошибку (ошибка коммуникации OTP, обращение к занятому контроллеру, ошибка чтения OTP,  ошибка tm тестов margin off, margin1, margin2, selftest): 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- FAULT_VRS_WD_DIAG -->
+            <field>
+              <name>FAULT_VRS_WD_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибку по VRS WD: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VRS_OL_SC_DIAG -->
+            <field>
+              <name>VRS_OL_SC_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки диагностик VRS (OL, SCG, SCB): 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- GND_FAIL_DIAG -->
+            <field>
+              <name>GND_FAIL_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки потери земли (AGND/PGND/GNDIO_LOSS): 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- FAULTB_LATCH_DATA -->
+            <field>
+              <name>FAULTB_LATCH_DATA</name>
+              <description>Режим репортирования ошибок: 0 - репортируются актуальные ошибки 1 - репортируются ошибки, хранящиеся в диагностических регистрах</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- FaultbConfig1 -->
+        <register>
+          <name>FaultbConfig1</name>
+          <description>Конфигурация FAULTb вывода</description>
+          <addressOffset>0x33</addressOffset>
+          <resetValue>0xff</resetValue>
+
+          <fields>
+            <!-- SUP_REGL_DIAG -->
+            <field>
+              <name>SUP_REGL_DIAG</name>
+              <description>Настройка реакции FAULTb на OV/UV по vdig_1p5v, vana_1p5v: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- CP_UV_DIAG -->
+            <field>
+              <name>CP_UV_DIAG</name>
+              <description>Настройка реакции FAULTb на UV по CP: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VDDIO_UV_DIAG -->
+            <field>
+              <name>VDDIO_UV_DIAG</name>
+              <description>Настройка реакции FAULTb на UV по VDDIO: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VDDIO_OV_DIAG -->
+            <field>
+              <name>VDDIO_OV_DIAG</name>
+              <description>Настройка реакции FAULTb на OV по VDDIO: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VPWR_UV_DIAG -->
+            <field>
+              <name>VPWR_UV_DIAG</name>
+              <description>Настройка реакции FAULTb на UV по VPWR: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VPWR_OV_DIAG -->
+            <field>
+              <name>VPWR_OV_DIAG</name>
+              <description>Настройка реакции FAULTb на OV по VPWR: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VDD5_UV_DIAG -->
+            <field>
+              <name>VDD5_UV_DIAG</name>
+              <description>Настройка реакции FAULTb на UV по VDD5: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- VDD5_OV_DIAG -->
+            <field>
+              <name>VDD5_OV_DIAG</name>
+              <description>Настройка реакции FAULTb на OV по VDD5: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- FaultbConfig2 -->
+        <register>
+          <name>FaultbConfig2</name>
+          <description>Конфигурация FAULTb вывода</description>
+          <addressOffset>0x34</addressOffset>
+          <resetValue>0x3f</resetValue>
+
+          <fields>
+            <!-- OL_SC_DIAG -->
+            <field>
+              <name>OL_SC_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки OL-диагностик для RLY/INJ/VLV/HTR/HB, SCG-диагностик для RLY/INJ/VLV/HTR/HB_LS, SCB-диагностики для HB_HS: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- TSD_DIAG -->
+            <field>
+              <name>TSD_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки TSD-защиты для RLY/INJ/VLV/HTR/HB/IGN: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- OC_DIAG -->
+            <field>
+              <name>OC_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки OC-защиты для RLY/INJ/VLV/HTR/HB: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SC_IGN_DIAG -->
+            <field>
+              <name>SC_IGN_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки SCG/SCB-защиты для IGN: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- OL_IGN_DIAG -->
+            <field>
+              <name>OL_IGN_DIAG</name>
+              <description>Настройка реакции FAULTb на ошибки OL-диагностики для IGN: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- DNDIS_DRV_DIAG -->
+            <field>
+              <name>DNDIS_DRV_DIAG</name>
+              <description>Настройка реакции FAULTb на DIS_DRVb=0: 0 - игнорирурет 1 - репортирует</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- FAULTB_SPI_CTRL_MODE -->
+            <field>
+              <name>FAULTB_SPI_CTRL_MODE</name>
+              <description>Активация/деактивация режима прямого управления FAULTb: 0 - прямое управление ВЫКЛ. 1 - прямое управление ВКЛ.</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- FAULTB_SPI_CTRL -->
+            <field>
+              <name>FAULTB_SPI_CTRL</name>
+              <description>Значение сигнала FAULTb в случае прямого управления</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- VrsDiag -->
+        <register>
+          <name>VrsDiag</name>
+          <description>Диагностический регистр для VR Сенсора</description>
+          <addressOffset>0x35</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- FAULT_VRS_WD -->
+            <field>
+              <name>FAULT_VRS_WD</name>
+              <description>Многоскратный сбой по VRS WD</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VRS_SCB -->
+            <field>
+              <name>VRS_SCB</name>
+              <description>КЗ на питание</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VRS_SCG -->
+            <field>
+              <name>VRS_SCG</name>
+              <description>КЗ на землю</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VRS_OL -->
+            <field>
+              <name>VRS_OL</name>
+              <description>Обрыв нагрузки</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VRS_TH_FAULT -->
+            <field>
+              <name>VRS_TH_FAULT</name>
+              <description>Нарушение порога компаратора</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- SupDiag -->
+        <register>
+          <name>SupDiag</name>
+          <description>Диагностический регистр для Мониторов питаний</description>
+          <addressOffset>0x36</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SUP_REGL -->
+            <field>
+              <name>SUP_REGL</name>
+              <description>Нарушения по vana_1p5v, vdig_1p5v (см. регистр ExtDiag1)</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- CP_UV -->
+            <field>
+              <name>CP_UV</name>
+              <description>UnderVoltage по CP</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDDIO_UV -->
+            <field>
+              <name>VDDIO_UV</name>
+              <description>UnderVoltage по VDDIO</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDDIO_OV -->
+            <field>
+              <name>VDDIO_OV</name>
+              <description>OverVoltage по VDDIO</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VPWR_UV -->
+            <field>
+              <name>VPWR_UV</name>
+              <description>UnderVoltage по VPWR</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VPWR_OV -->
+            <field>
+              <name>VPWR_OV</name>
+              <description>OverVoltage по VPWR</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDD5_UV -->
+            <field>
+              <name>VDD5_UV</name>
+              <description>UnderVoltage по VDD5</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDD5_OV -->
+            <field>
+              <name>VDD5_OV</name>
+              <description>OverVoltage по VDD5</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- ExtDiag0 -->
+        <register>
+          <name>ExtDiag0</name>
+          <description>Диагностический регистр внутренних ошибок цифровых функций</description>
+          <addressOffset>0x37</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- MSC_SPI_ERROR -->
+            <field>
+              <name>MSC_SPI_ERROR</name>
+              <description>Ошибка обращения по SPI/MSC к неверному адресу</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- MSC_SV_ERROR -->
+            <field>
+              <name>MSC_SV_ERROR</name>
+              <description>Ошибка истечения SuperVision таймера </description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- WD_WARN -->
+            <field>
+              <name>WD_WARN</name>
+              <description>Предупреждение о наличии множественных нарушений по WD</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- WD_FAIL -->
+            <field>
+              <name>WD_FAIL</name>
+              <description>Исчерпан лимит ошибок по WD</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- FUSE_CHECK_ERROR -->
+            <field>
+              <name>FUSE_CHECK_ERROR</name>
+              <description>При чтении OTP обнаружены неверные данные</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OTP_USAGE_FAULT -->
+            <field>
+              <name>OTP_USAGE_FAULT</name>
+              <description>Обращение к занятомму контроллеру или неправльная команда OTP контроллера</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SELF_TEST_ERROR -->
+            <field>
+              <name>SELF_TEST_ERROR</name>
+              <description>Ошибка сравнения данных при тестовых проверках (margin off, margine1, margin2, selftest)</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- ExtDiag1 -->
+        <register>
+          <name>ExtDiag1</name>
+          <description>Диагностический регистр внутренних ошибок - потеря земли, OV/UV внутренних регуляторов</description>
+          <addressOffset>0x38</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- PGND_LOSS -->
+            <field>
+              <name>PGND_LOSS</name>
+              <description>Ошибка обрыва земли PGND</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- AGND_LOSS -->
+            <field>
+              <name>AGND_LOSS</name>
+              <description>Ошибка обрыва земли AGND</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- GNDIO_LOSS -->
+            <field>
+              <name>GNDIO_LOSS</name>
+              <description>Ошибка обрыва земли GNDIO</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDIG_1P5V_OV -->
+            <field>
+              <name>VDIG_1P5V_OV</name>
+              <description>Ошибка OverVoltage по vdig_1p5v</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDIG_1P5V_UV -->
+            <field>
+              <name>VDIG_1P5V_UV</name>
+              <description>Ошибка UnderVoltage по vdig_1p5v</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VANA_1P5V_UV -->
+            <field>
+              <name>VANA_1P5V_UV</name>
+              <description>Ошибка UnderVoltage по vana_1p5v</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VANA_1P5V_OV -->
+            <field>
+              <name>VANA_1P5V_OV</name>
+              <description>Ошибка OverVoltage по vana_1p5v</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- DIS_DRV -->
+            <field>
+              <name>DIS_DRV</name>
+              <description>Статус DIS_DRVb=0</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- InjDiag0 -->
+        <register>
+          <name>InjDiag0</name>
+          <description>Диагностический регистр для силовых драйверов - INJ[2:1]</description>
+          <addressOffset>0x39</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_INJ1 -->
+            <field>
+              <name>SCG_INJ1</name>
+              <description>SCG для INJ[1]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_INJ1 -->
+            <field>
+              <name>OL_INJ1</name>
+              <description>OL для INJ[1]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_INJ1 -->
+            <field>
+              <name>TSD_INJ1</name>
+              <description>TSD для INJ[1]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_INJ1 -->
+            <field>
+              <name>OC_INJ1</name>
+              <description>OC для INJ[1]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_INJ2 -->
+            <field>
+              <name>SCG_INJ2</name>
+              <description>SCG для INJ[2]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_INJ2 -->
+            <field>
+              <name>OL_INJ2</name>
+              <description>OL для INJ[2]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_INJ2 -->
+            <field>
+              <name>TSD_INJ2</name>
+              <description>TSD для INJ[2]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_INJ2 -->
+            <field>
+              <name>OC_INJ2</name>
+              <description>OC для INJ[2]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- InjDiag1 -->
+        <register>
+          <name>InjDiag1</name>
+          <description>Диагностический регистр для силовых драйверов - INJ[4:3]</description>
+          <addressOffset>0x3a</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_INJ3 -->
+            <field>
+              <name>SCG_INJ3</name>
+              <description>SCG для INJ[3]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_INJ3 -->
+            <field>
+              <name>OL_INJ3</name>
+              <description>OL для INJ[3]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_INJ3 -->
+            <field>
+              <name>TSD_INJ3</name>
+              <description>TSD для INJ[3]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_INJ3 -->
+            <field>
+              <name>OC_INJ3</name>
+              <description>OC для INJ[3]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_INJ4 -->
+            <field>
+              <name>SCG_INJ4</name>
+              <description>SCG для INJ[4]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_INJ4 -->
+            <field>
+              <name>OL_INJ4</name>
+              <description>OL для INJ[4]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_INJ4 -->
+            <field>
+              <name>TSD_INJ4</name>
+              <description>TSD для INJ[4]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_INJ4 -->
+            <field>
+              <name>OC_INJ4</name>
+              <description>OC для INJ[4]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- IgnDiag0 -->
+        <register>
+          <name>IgnDiag0</name>
+          <description>Диагностический регистр для силовых драйверов - IGN[2:1]</description>
+          <addressOffset>0x3b</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_IGN1 -->
+            <field>
+              <name>SCG_IGN1</name>
+              <description>SCG для IGN[1]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_IGN1 -->
+            <field>
+              <name>OL_IGN1</name>
+              <description>OL для IGN[1]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCB_IGN1 -->
+            <field>
+              <name>SCB_IGN1</name>
+              <description>SCB для IGN[1]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_IGN2 -->
+            <field>
+              <name>SCG_IGN2</name>
+              <description>SCG для IGN[2]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_IGN2 -->
+            <field>
+              <name>OL_IGN2</name>
+              <description>OL для IGN[2]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCB_IGN2 -->
+            <field>
+              <name>SCB_IGN2</name>
+              <description>SCB для IGN[2]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_IGN1 -->
+            <field>
+              <name>TSD_IGN1</name>
+              <description>TSD для IGN[1:2]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- IgnDiag1 -->
+        <register>
+          <name>IgnDiag1</name>
+          <description>Диагностический регистр для силовых драйверов - IGN[4:3]</description>
+          <addressOffset>0x3c</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_IGN3 -->
+            <field>
+              <name>SCG_IGN3</name>
+              <description>SCG для IGN[3]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_IGN3 -->
+            <field>
+              <name>OL_IGN3</name>
+              <description>OL для IGN[3]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCB_IGN3 -->
+            <field>
+              <name>SCB_IGN3</name>
+              <description>SCB для IGN[3]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_IGN4 -->
+            <field>
+              <name>SCG_IGN4</name>
+              <description>SCG для IGN[4]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_IGN4 -->
+            <field>
+              <name>OL_IGN4</name>
+              <description>OL для IGN[4]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCB_IGN4 -->
+            <field>
+              <name>SCB_IGN4</name>
+              <description>SCB для IGN[4]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_IGN2 -->
+            <field>
+              <name>TSD_IGN2</name>
+              <description>TSD для IGN[3:4]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- HtrDiag0 -->
+        <register>
+          <name>HtrDiag0</name>
+          <description>Диагностический регистр для силовых драйверов - HTR[2:1]</description>
+          <addressOffset>0x3d</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_HTR1 -->
+            <field>
+              <name>SCG_HTR1</name>
+              <description>SCG для HTR[1]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_HTR1 -->
+            <field>
+              <name>OL_HTR1</name>
+              <description>OL для HTR[1]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_HTR1 -->
+            <field>
+              <name>TSD_HTR1</name>
+              <description>TSD для HTR[1]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_HTR1 -->
+            <field>
+              <name>OC_HTR1</name>
+              <description>OC для HTR[1]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_HTR2 -->
+            <field>
+              <name>SCG_HTR2</name>
+              <description>SCG для HTR[2]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_HTR2 -->
+            <field>
+              <name>OL_HTR2</name>
+              <description>OL для HTR[2]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_HTR2 -->
+            <field>
+              <name>TSD_HTR2</name>
+              <description>TSD для HTR[2]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_HTR2 -->
+            <field>
+              <name>OC_HTR2</name>
+              <description>OC для HTR[2]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RlyDiag0 -->
+        <register>
+          <name>RlyDiag0</name>
+          <description>Диагностический регистр для силовых драйверов - RLY[2:1]</description>
+          <addressOffset>0x3e</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_RLY1 -->
+            <field>
+              <name>SCG_RLY1</name>
+              <description>SCG для RLY[1]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY1 -->
+            <field>
+              <name>OL_RLY1</name>
+              <description>OL для RLY[1]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY1 -->
+            <field>
+              <name>TSD_RLY1</name>
+              <description>TSD для RLY[1]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY1 -->
+            <field>
+              <name>OC_RLY1</name>
+              <description>OC для RLY[1]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_RLY2 -->
+            <field>
+              <name>SCG_RLY2</name>
+              <description>SCG для RLY[2]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY2 -->
+            <field>
+              <name>OL_RLY2</name>
+              <description>OL для RLY[2]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY2 -->
+            <field>
+              <name>TSD_RLY2</name>
+              <description>TSD для RLY[2]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY2 -->
+            <field>
+              <name>OC_RLY2</name>
+              <description>OC для RLY[2]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RlyDiag1 -->
+        <register>
+          <name>RlyDiag1</name>
+          <description>Диагностический регистр для силовых драйверов - RLY[4:3]</description>
+          <addressOffset>0x3f</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_RLY3 -->
+            <field>
+              <name>SCG_RLY3</name>
+              <description>SCG для RLY[3]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY3 -->
+            <field>
+              <name>OL_RLY3</name>
+              <description>OL для RLY[3]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY3 -->
+            <field>
+              <name>TSD_RLY3</name>
+              <description>TSD для RLY[3]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY3 -->
+            <field>
+              <name>OC_RLY3</name>
+              <description>OC для RLY[3]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_RLY4 -->
+            <field>
+              <name>SCG_RLY4</name>
+              <description>SCG для RLY[4]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY4 -->
+            <field>
+              <name>OL_RLY4</name>
+              <description>OL для RLY[4]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY4 -->
+            <field>
+              <name>TSD_RLY4</name>
+              <description>TSD для RLY[4]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY4 -->
+            <field>
+              <name>OC_RLY4</name>
+              <description>OC для RLY[4]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RlyDiag2 -->
+        <register>
+          <name>RlyDiag2</name>
+          <description>Диагностический регистр для силовых драйверов - RLY[6:5]</description>
+          <addressOffset>0x40</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_RLY5 -->
+            <field>
+              <name>SCG_RLY5</name>
+              <description>SCG для RLY[5]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY5 -->
+            <field>
+              <name>OL_RLY5</name>
+              <description>OL для RLY[5]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY5 -->
+            <field>
+              <name>TSD_RLY5</name>
+              <description>TSD для RLY[5]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY5 -->
+            <field>
+              <name>OC_RLY5</name>
+              <description>OC для RLY[5]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_RLY6 -->
+            <field>
+              <name>SCG_RLY6</name>
+              <description>SCG для RLY[6]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY6 -->
+            <field>
+              <name>OL_RLY6</name>
+              <description>OL для RLY[6]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY6 -->
+            <field>
+              <name>TSD_RLY6</name>
+              <description>TSD для RLY[6]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY6 -->
+            <field>
+              <name>OC_RLY6</name>
+              <description>OC для RLY[6]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RlyDiag3 -->
+        <register>
+          <name>RlyDiag3</name>
+          <description>Диагностический регистр для силовых драйверов - RLY[8:7]</description>
+          <addressOffset>0x41</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_RLY7 -->
+            <field>
+              <name>SCG_RLY7</name>
+              <description>SCG для RLY[7]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY7 -->
+            <field>
+              <name>OL_RLY7</name>
+              <description>OL для RLY[7]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY7 -->
+            <field>
+              <name>TSD_RLY7</name>
+              <description>TSD для RLY[7]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY7 -->
+            <field>
+              <name>OC_RLY7</name>
+              <description>OC для RLY[7]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_RLY8 -->
+            <field>
+              <name>SCG_RLY8</name>
+              <description>SCG для RLY[8]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY8 -->
+            <field>
+              <name>OL_RLY8</name>
+              <description>OL для RLY[8]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY8 -->
+            <field>
+              <name>TSD_RLY8</name>
+              <description>TSD для RLY[8]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY8 -->
+            <field>
+              <name>OC_RLY8</name>
+              <description>OC для RLY[8]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RlyDiag4 -->
+        <register>
+          <name>RlyDiag4</name>
+          <description>Диагностический регистр для силовых драйверов - RLY[9], VLV[1]</description>
+          <addressOffset>0x42</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_RLY9 -->
+            <field>
+              <name>SCG_RLY9</name>
+              <description>SCG для RLY[9]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_RLY9 -->
+            <field>
+              <name>OL_RLY9</name>
+              <description>OL для RLY[9]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_RLY9 -->
+            <field>
+              <name>TSD_RLY9</name>
+              <description>TSD для RLY[9]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_RLY9 -->
+            <field>
+              <name>OC_RLY9</name>
+              <description>OC для RLY[9]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_VLV1 -->
+            <field>
+              <name>SCG_VLV1</name>
+              <description>SCG для VLV[1]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_VLV1 -->
+            <field>
+              <name>OL_VLV1</name>
+              <description>OL для VLV[1]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_VLV1 -->
+            <field>
+              <name>TSD_VLV1</name>
+              <description>TSD для VLV[1]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_VLV1 -->
+            <field>
+              <name>OC_VLV1</name>
+              <description>OC для VLV[1]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- VlvDiag -->
+        <register>
+          <name>VlvDiag</name>
+          <description>Диагностический регистр для силовых драйверов - VLV[3:2]</description>
+          <addressOffset>0x43</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SCG_VLV2 -->
+            <field>
+              <name>SCG_VLV2</name>
+              <description>SCG для VLV[2]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_VLV2 -->
+            <field>
+              <name>OL_VLV2</name>
+              <description>OL для VLV[2]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_VLV2 -->
+            <field>
+              <name>TSD_VLV2</name>
+              <description>TSD для VLV[2]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_VLV2 -->
+            <field>
+              <name>OC_VLV2</name>
+              <description>OC для VLV[2]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_VLV3 -->
+            <field>
+              <name>SCG_VLV3</name>
+              <description>SCG для VLV[3]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_VLV3 -->
+            <field>
+              <name>OL_VLV3</name>
+              <description>OL для VLV[3]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_VLV3 -->
+            <field>
+              <name>TSD_VLV3</name>
+              <description>TSD для VLV[3]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_VLV3 -->
+            <field>
+              <name>OC_VLV3</name>
+              <description>OC для VLV[3]</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- HbDiag0 -->
+        <register>
+          <name>HbDiag0</name>
+          <description>Диагностический регистр для силовых драйверов - HB[1]</description>
+          <addressOffset>0x44</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- TSD_HS1 -->
+            <field>
+              <name>TSD_HS1</name>
+              <description>TSD для HB_HS[1]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_HS1 -->
+            <field>
+              <name>OC_HS1</name>
+              <description>OC для HB_HS[1]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_LS1 -->
+            <field>
+              <name>TSD_LS1</name>
+              <description>TSD для HB_LS[1]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_LS1 -->
+            <field>
+              <name>OC_LS1</name>
+              <description>OC для HB_LS[1]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_HB1 -->
+            <field>
+              <name>SCG_HB1</name>
+              <description>SCG для HB[1]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCB_HB1 -->
+            <field>
+              <name>SCB_HB1</name>
+              <description>SCB для HB[1]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_HB1 -->
+            <field>
+              <name>OL_HB1</name>
+              <description>OL для HB[1]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- HbDiag1 -->
+        <register>
+          <name>HbDiag1</name>
+          <description>Диагностический регистр для силовых драйверов - HB[2]</description>
+          <addressOffset>0x45</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- TSD_HS2 -->
+            <field>
+              <name>TSD_HS2</name>
+              <description>TSD для HB_HS[2]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_HS2 -->
+            <field>
+              <name>OC_HS2</name>
+              <description>OC для HB_HS[2]</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- TSD_LS2 -->
+            <field>
+              <name>TSD_LS2</name>
+              <description>TSD для HB_LS[2]</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OC_LS2 -->
+            <field>
+              <name>OC_LS2</name>
+              <description>OC для HB_LS[2]</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCG_HB2 -->
+            <field>
+              <name>SCG_HB2</name>
+              <description>SCG для HB[2]</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SCB_HB2 -->
+            <field>
+              <name>SCB_HB2</name>
+              <description>SCB для HB[2]</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OL_HB2 -->
+            <field>
+              <name>OL_HB2</name>
+              <description>OL для HB[2]</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- RstDiag -->
+        <register>
+          <name>RstDiag</name>
+          <description>Статус причины сброса (reset) цифровой логики</description>
+          <addressOffset>0x46</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RSTB_EVENT -->
+            <field>
+              <name>RSTB_EVENT</name>
+              <description>Порт RSTb переводили в 0</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- WD_RST_EVENT -->
+            <field>
+              <name>WD_RST_EVENT</name>
+              <description>Многократный сбой по WD </description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SOFTWARE_RST_EVENT -->
+            <field>
+              <name>SOFTWARE_RST_EVENT</name>
+              <description>Была оправлена SPI/MSC команда на сброс</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDD5_UV_RST_EVENT -->
+            <field>
+              <name>VDD5_UV_RST_EVENT</name>
+              <description>UnderVoltage по VDD5</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VDD5_OV_RST_EVENT -->
+            <field>
+              <name>VDD5_OV_RST_EVENT</name>
+              <description>OverColtage по VDD5</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- POR_EVENT -->
+            <field>
+              <name>POR_EVENT</name>
+              <description>Происходил сброс по PoR (отключение внутреннего 1.8В питания)</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- GLBStatus -->
+        <register>
+          <name>GLBStatus</name>
+          <description>Общий диагностический регистр цифровых функций</description>
+          <addressOffset>0x47</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- TSD_OC_FAIL -->
+            <field>
+              <name>TSD_OC_FAIL</name>
+              <description>Ошибка в работе OTP (OTP_COMMUN_FAIL/OTP_USAGE_FAULT/FUSE_CHECK_ERROR/SELF_TEST_ERROR)</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SC_OL_FAIL -->
+            <field>
+              <name>SC_OL_FAIL</name>
+              <description>Ошибка OC/TSD на одном или нескольких силовых транзисторах</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- WD_SV_FAIL -->
+            <field>
+              <name>WD_SV_FAIL</name>
+              <description>Ошибка SCB/SCG/OL на одном или нескольких силовых транзисторах</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SUP_FAIL_DIS_DRV -->
+            <field>
+              <name>SUP_FAIL_DIS_DRV</name>
+              <description>Нарушение по WD или MSC SV </description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- VRS_FAIL -->
+            <field>
+              <name>VRS_FAIL</name>
+              <description>Одно и более нарушений по питаниям VDD5, VPWR, vdig_1p5v, vana_1p5v</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OTP_FAIL -->
+            <field>
+              <name>OTP_FAIL</name>
+              <description>Ошибка в блоке VR Сенсора (OL/SCG/SCB/VRS WD)</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- SPI_MSC_FAIL -->
+            <field>
+              <name>SPI_MSC_FAIL</name>
+              <description>Ошибка коммуникации SPI/MSC</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- GND_FAIL -->
+            <field>
+              <name>GND_FAIL</name>
+              <description>Потеря земли (PGND_LOSS/AGND_LOSS/GNDIO_LOSS)</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- WdQuestion -->
+        <register>
+          <name>WdQuestion</name>
+          <description>Статус актуального вопроса WD</description>
+          <addressOffset>0x48</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- LFSR -->
+            <field>
+              <name>LFSR</name>
+              <description>Статус актуального вопроса WD</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- WdPassCnt -->
+        <register>
+          <name>WdPassCnt</name>
+          <description>Статус refresh-счётчика WD</description>
+          <addressOffset>0x49</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- WD_RFH_CNT -->
+            <field>
+              <name>WD_RFH_CNT</name>
+              <description>Статус refresh-счётчика WD</description>
+              <bitRange>[2:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- WdFailCnt -->
+        <register>
+          <name>WdFailCnt</name>
+          <description>Статус счётчика ошибок и reset-счёстчика WD</description>
+          <addressOffset>0x4a</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- WD_ERR_CNT -->
+            <field>
+              <name>WD_ERR_CNT</name>
+              <description>Статус счётчика ошибок</description>
+              <bitRange>[2:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- RST_ERR_CNT -->
+            <field>
+              <name>RST_ERR_CNT</name>
+              <description>Статус reset-счётчика</description>
+              <bitRange>[5:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- PSState0 -->
+        <register>
+          <name>PSState0</name>
+          <description>Статусный регистр выходов силовых драйверов - IGN[4:1], INJ[4:1]</description>
+          <addressOffset>0x4b</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OUT_STATE_IGN -->
+            <field>
+              <name>OUT_STATE_IGN</name>
+              <description>Для IGN[4:1]</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OUT_STATE_INJ -->
+            <field>
+              <name>OUT_STATE_INJ</name>
+              <description>Для INJ[4:1]</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- PSState1 -->
+        <register>
+          <name>PSState1</name>
+          <description>Статусный регистр выходов силовых драйверов - RLY[8:1]</description>
+          <addressOffset>0x4c</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OUT_STATE_RLY -->
+            <field>
+              <name>OUT_STATE_RLY</name>
+              <description>Для RLY[8:1]</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- PSState2 -->
+        <register>
+          <name>PSState2</name>
+          <description>Статусный регистр выходов силовых драйверов - RLY[9], HTR[2:1], VLV[3:1]</description>
+          <addressOffset>0x4d</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OUT_STATE_RLY -->
+            <field>
+              <name>OUT_STATE_RLY</name>
+              <description>Для RLY[9]</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OUT_STATE_HTR -->
+            <field>
+              <name>OUT_STATE_HTR</name>
+              <description>Для HTR[2:1]</description>
+              <bitRange>[2:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OUT_STATE_VLV -->
+            <field>
+              <name>OUT_STATE_VLV</name>
+              <description>Для VLV[3:1]</description>
+              <bitRange>[5:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- PSState3 -->
+        <register>
+          <name>PSState3</name>
+          <description>Статусный регистр выходов силовых драйверов - HB[2:1]</description>
+          <addressOffset>0x4e</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OUT_STATE_HS -->
+            <field>
+              <name>OUT_STATE_HS</name>
+              <description>Для HB_HS[2:1]</description>
+              <bitRange>[1:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- OUT_STATE_LS -->
+            <field>
+              <name>OUT_STATE_LS</name>
+              <description>Для HB_LS[2:1]</description>
+              <bitRange>[3:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- InState0 -->
+        <register>
+          <name>InState0</name>
+          <description>Статусный регистр входов Непосредственного Управления - IN[8:1]</description>
+          <addressOffset>0x4f</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DIN -->
+            <field>
+              <name>DIN</name>
+              <description>Для IN[8:1]</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- InState1 -->
+        <register>
+          <name>InState1</name>
+          <description>Статусный регистр входов Непосредственного Управления - IN[13:9]</description>
+          <addressOffset>0x50</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DIN -->
+            <field>
+              <name>DIN</name>
+              <description>Для IN[13:9]</description>
+              <bitRange>[4:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- EnState0 -->
+        <register>
+          <name>EnState0</name>
+          <description>Статусный регистр цифровых входов и глобальной команды OE</description>
+          <addressOffset>0x51</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OE -->
+            <field>
+              <name>OE</name>
+              <description>Статус глобальной команды OE</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- DEN_RLY -->
+            <field>
+              <name>DEN_RLY</name>
+              <description>Статус входа EN_RLY12</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- DEN_DRV -->
+            <field>
+              <name>DEN_DRV</name>
+              <description>Статус входа EN_DRV</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-only</access>
+
+            </field>
+            <!-- DNDIS_DRV -->
+            <field>
+              <name>DNDIS_DRV</name>
+              <description>Статус входы DIS_DRVb</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MaskID -->
+        <register>
+          <name>MaskID</name>
+          <description>Mask ID статус</description>
+          <addressOffset>0x52</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- MASK_ID -->
+            <field>
+              <name>MASK_ID</name>
+              <description>Mask ID статус</description>
+              <bitRange>[4:0]</bitRange>
+              <access>read-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- Cmd0 -->
+        <register>
+          <name>Cmd0</name>
+          <description>Общие команды управления</description>
+          <addressOffset>0x53</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- Code -->
+            <field>
+              <name>Code</name>
+              <description>0x0 - комманда блокировки управления всех силовых транзисторов (все OE=0)       0x1 - комманда на активацию управления всех силовых транзисторов (все OE=1)         0x2 - комманда на блокировку частотной модуляции осцилятора CP   0x3 - комманда на активацию частотной модуляции осцилятора CP   0x4 - комманда на старт диагностики VRS 0x5 - комманда на прерывание MSC UPSTREAM посылки 0x6 - комманда на сброс DELAY OFF таймера </description>
+              <bitRange>[7:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CmdWdCheck -->
+        <register>
+          <name>CmdWdCheck</name>
+          <description>Посылка-ответ от MCU для WD</description>
+          <addressOffset>0x54</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- MCU_REPLY -->
+            <field>
+              <name>MCU_REPLY</name>
+              <description>Посылка-ответ от MCU для WD</description>
+              <bitRange>[7:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CmdWdLdSd -->
+        <register>
+          <name>CmdWdLdSd</name>
+          <description>Настройка WD вопроса</description>
+          <addressOffset>0x55</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SEED -->
+            <field>
+              <name>SEED</name>
+              <description>Стартовый seed для полинома WD</description>
+              <bitRange>[7:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CmdSoftRst -->
+        <register>
+          <name>CmdSoftRst</name>
+          <description>Команда с кодовыми посылками для активации soft-reset</description>
+          <addressOffset>0x56</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SOFTWARE_RST -->
+            <field>
+              <name>SOFTWARE_RST</name>
+              <description>1 - data[7:0]=0xA3, 2 - data[7:0]=0x8F</description>
+              <bitRange>[7:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd0 -->
+        <register>
+          <name>MscRCmd0</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x57</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DisDrvConfig0 -->
+            <field>
+              <name>DisDrvConfig0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DisDrvConfig1 -->
+            <field>
+              <name>DisDrvConfig1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DisDrvConfig2 -->
+            <field>
+              <name>DisDrvConfig2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DenConfig0 -->
+            <field>
+              <name>DenConfig0</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DenConfig1 -->
+            <field>
+              <name>DenConfig1</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DenConfig2 -->
+            <field>
+              <name>DenConfig2</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DenConfig3 -->
+            <field>
+              <name>DenConfig3</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DenConfig4 -->
+            <field>
+              <name>DenConfig4</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd1 -->
+        <register>
+          <name>MscRCmd1</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x58</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OEConfig0 -->
+            <field>
+              <name>OEConfig0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OEConfig1 -->
+            <field>
+              <name>OEConfig1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OEConfig2 -->
+            <field>
+              <name>OEConfig2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OEConfig3 -->
+            <field>
+              <name>OEConfig3</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- Cont0 -->
+            <field>
+              <name>Cont0</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- Cont1 -->
+            <field>
+              <name>Cont1</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- Cont2 -->
+            <field>
+              <name>Cont2</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd2 -->
+        <register>
+          <name>MscRCmd2</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x59</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DDConfig0 -->
+            <field>
+              <name>DDConfig0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DDConfig1 -->
+            <field>
+              <name>DDConfig1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DDConfig2 -->
+            <field>
+              <name>DDConfig2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- BRIConfig -->
+            <field>
+              <name>BRIConfig</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DlyOffConfig -->
+            <field>
+              <name>DlyOffConfig</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- CurrLimConfig0 -->
+            <field>
+              <name>CurrLimConfig0</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- CurrLimConfig1 -->
+            <field>
+              <name>CurrLimConfig1</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- CurrLimConfig2 -->
+            <field>
+              <name>CurrLimConfig2</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd3 -->
+        <register>
+          <name>MscRCmd3</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x5a</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- OutDiagConfig0 -->
+            <field>
+              <name>OutDiagConfig0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OutDiagConfig1 -->
+            <field>
+              <name>OutDiagConfig1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OutDiagConfig2 -->
+            <field>
+              <name>OutDiagConfig2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OutDiagConfig3 -->
+            <field>
+              <name>OutDiagConfig3</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- OutDiagConfig4 -->
+            <field>
+              <name>OutDiagConfig4</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- IgnDiagConfig -->
+            <field>
+              <name>IgnDiagConfig</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd4 -->
+        <register>
+          <name>MscRCmd4</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x5b</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DinConfig0 -->
+            <field>
+              <name>DinConfig0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig1 -->
+            <field>
+              <name>DinConfig1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig2 -->
+            <field>
+              <name>DinConfig2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig3 -->
+            <field>
+              <name>DinConfig3</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig4 -->
+            <field>
+              <name>DinConfig4</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig5 -->
+            <field>
+              <name>DinConfig5</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig6 -->
+            <field>
+              <name>DinConfig6</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig7 -->
+            <field>
+              <name>DinConfig7</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd5 -->
+        <register>
+          <name>MscRCmd5</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x5c</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- DinConfig8 -->
+            <field>
+              <name>DinConfig8</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig9 -->
+            <field>
+              <name>DinConfig9</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig10 -->
+            <field>
+              <name>DinConfig10</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- DinConfig11 -->
+            <field>
+              <name>DinConfig11</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- RstbConfig -->
+            <field>
+              <name>RstbConfig</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- FaultbConfig0 -->
+            <field>
+              <name>FaultbConfig0</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- FaultbConfig1 -->
+            <field>
+              <name>FaultbConfig1</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- FaultbConfig2 -->
+            <field>
+              <name>FaultbConfig2</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd6 -->
+        <register>
+          <name>MscRCmd6</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x5d</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- WDConfig0 -->
+            <field>
+              <name>WDConfig0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- WDConfig1 -->
+            <field>
+              <name>WDConfig1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- VrsConfig0 -->
+            <field>
+              <name>VrsConfig0</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- VrsConfig1 -->
+            <field>
+              <name>VrsConfig1</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- VrsConfig2 -->
+            <field>
+              <name>VrsConfig2</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- MscConfig0 -->
+            <field>
+              <name>MscConfig0</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- MscConfig1 -->
+            <field>
+              <name>MscConfig1</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- AoutConfig -->
+            <field>
+              <name>AoutConfig</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd7 -->
+        <register>
+          <name>MscRCmd7</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x5e</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- VrsDiag -->
+            <field>
+              <name>VrsDiag</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- SupDiag -->
+            <field>
+              <name>SupDiag</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- ExtDiag0 -->
+            <field>
+              <name>ExtDiag0</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- ExtDiag1 -->
+            <field>
+              <name>ExtDiag1</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd8 -->
+        <register>
+          <name>MscRCmd8</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x5f</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- InjDiag0 -->
+            <field>
+              <name>InjDiag0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- InjDiag1 -->
+            <field>
+              <name>InjDiag1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- IgnDiag0 -->
+            <field>
+              <name>IgnDiag0</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- IgnDiag1 -->
+            <field>
+              <name>IgnDiag1</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- HbDiag0 -->
+            <field>
+              <name>HbDiag0</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- HbDiag1 -->
+            <field>
+              <name>HbDiag1</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd9 -->
+        <register>
+          <name>MscRCmd9</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x60</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- RlyDiag0 -->
+            <field>
+              <name>RlyDiag0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- RlyDiag1 -->
+            <field>
+              <name>RlyDiag1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- RlyDiag2 -->
+            <field>
+              <name>RlyDiag2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- RlyDiag3 -->
+            <field>
+              <name>RlyDiag3</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- RlyDiag4 -->
+            <field>
+              <name>RlyDiag4</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- HtrDiag0 -->
+            <field>
+              <name>HtrDiag0</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- VlvDiag -->
+            <field>
+              <name>VlvDiag</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- RstDiag -->
+            <field>
+              <name>RstDiag</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd10 -->
+        <register>
+          <name>MscRCmd10</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x61</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- GLBStatus -->
+            <field>
+              <name>GLBStatus</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- WdQuestion -->
+            <field>
+              <name>WdQuestion</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- WdPassCnt -->
+            <field>
+              <name>WdPassCnt</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- WdFailCnt -->
+            <field>
+              <name>WdFailCnt</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- MscRCmd11 -->
+        <register>
+          <name>MscRCmd11</name>
+          <description>Настройка байта MSC Multiread посылки</description>
+          <addressOffset>0x62</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- PSState0 -->
+            <field>
+              <name>PSState0</name>
+              <bitRange>[0:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- PSState1 -->
+            <field>
+              <name>PSState1</name>
+              <bitRange>[1:1]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- PSState2 -->
+            <field>
+              <name>PSState2</name>
+              <bitRange>[2:2]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- PSState3 -->
+            <field>
+              <name>PSState3</name>
+              <bitRange>[3:3]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- InState0 -->
+            <field>
+              <name>InState0</name>
+              <bitRange>[4:4]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- InState1 -->
+            <field>
+              <name>InState1</name>
+              <bitRange>[5:5]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- EnState0 -->
+            <field>
+              <name>EnState0</name>
+              <bitRange>[6:6]</bitRange>
+              <access>write-only</access>
+
+            </field>
+            <!-- MaskId -->
+            <field>
+              <name>MaskId</name>
+              <bitRange>[7:7]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CmdSpecialMode -->
+        <register>
+          <name>CmdSpecialMode</name>
+          <description>Активация специальных режимов - запись 8-битной кодовой посылки</description>
+          <addressOffset>0x7d</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- SM_DIS_TSD -->
+            <field>
+              <name>SM_DIS_TSD</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[0:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_VDD5_UV -->
+            <field>
+              <name>SM_DIS_VDD5_UV</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[1:1]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_VDD5_OV -->
+            <field>
+              <name>SM_DIS_VDD5_OV</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[2:2]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_VPWR_OV -->
+            <field>
+              <name>SM_DIS_VPWR_OV</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[3:3]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_VPWR_UV -->
+            <field>
+              <name>SM_DIS_VPWR_UV</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[4:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_VCP_UV -->
+            <field>
+              <name>SM_DIS_VCP_UV</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[5:5]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_OC -->
+            <field>
+              <name>SM_DIS_OC</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[6:6]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <!-- SM_DIS_IGN_SCG_GNDLOSS -->
+            <field>
+              <name>SM_DIS_IGN_SCG_GNDLOSS</name>
+              <description>Чтение бита вернёт статус специального режима: 0 - режим ВЫКЛ. 1 - режим ВКЛ.</description>
+              <bitRange>[7:7]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- CmdTM -->
+        <register>
+          <name>CmdTM</name>
+          <description>Команда с кодовыми посылками для активации тестового режима</description>
+          <addressOffset>0x7e</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- TM_CODE -->
+            <field>
+              <name>TM_CODE</name>
+              <description>Команда с кодовыми посылками для активации тестового режима</description>
+              <bitRange>[7:0]</bitRange>
+              <access>write-only</access>
+
+            </field>
+          </fields>
+        </register>
+        <!-- PageVrb -->
+        <register>
+          <name>PageVrb</name>
+          <description>Команда с кодовой посылкой для переключения страницы карты регистров</description>
+          <addressOffset>0x7f</addressOffset>
+          <resetValue>0x00</resetValue>
+
+          <fields>
+            <!-- CODE -->
+            <field>
+              <name>CODE</name>
+              <description>Запись или Чтение: Запись (W) - команда переключения страницы Чтение (R) - статус (бит 0 - номер активной страницы, бит 1 - статус testmode, бит 2 - статус special_mode, бит 3 - статус trim_mask)</description>
+              <bitRange>[7:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+</device>

@@ -79,6 +79,7 @@ def generate_templates(format):
     targets.update(regmapGen.generators.SystemVerilogPackage(path="hw/regs_pkg.sv").make_target('sv_pkg'))
     targets.update(regmapGen.generators.Python(path="sw/regs.py").make_target('py'))
     targets.update(regmapGen.generators.CHeader(path="sw/regs.h").make_target('c_header'))
+    targets.update(regmapGen.generators.CmsisSvd(path="sw/regs.svd").make_target('cmsis_svd'))
     targets.update(regmapGen.generators.Markdown(path="doc/regs.md", image_dir="md_img").make_target('md_doc'))
     targets.update(regmapGen.generators.Asciidoc(path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
     targets.update(regmapGen.generators.Docx(path="doc/regs.docx").make_target('docx_doc'))

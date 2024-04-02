@@ -40,6 +40,11 @@ path = sw/Uchip_regmap0.h
 prefix = 
 generator = CHeader
 
+[cmsis_svd]
+path = sw/Uchip_regmap0.svd
+other = {'peripheral_name': 'CSR', 'description': 'no description', 'part_version': '1.0.0'}
+generator = CmsisSvd
+
 [md_doc]
 path = doc/Uchip_regmap0.md
 title = Register map
