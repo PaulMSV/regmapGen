@@ -118,6 +118,15 @@ regmapGen -h
 
 Пожалуйста, ознакомьтесь с [Руководством разработчика](https://regmapGen.readthedocs.io/en/latest/contributing.html).
 
+Для PyPi:
+
+```bash
+rm -rf dist
+pip3 install -e .
+python3 setup.py sdist
+twine upload dist/*
+```
+
 ## Лицензия
 
 regmapGen лицензирован под [Лицензией MIT](LICENSE).
