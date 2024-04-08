@@ -1,4 +1,4 @@
-// Created with regmapGen vgit-latest
+// Created with regmapGen v1.0.3
 
 package Uchip_regmap0_pkg;
 

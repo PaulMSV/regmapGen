@@ -1,4 +1,4 @@
-// Created with regmapGen vgit-latest
+// Created with regmapGen v1.0.3
 
 module Uchip_regmap0 #(
     parameter ADDR_W = 8,

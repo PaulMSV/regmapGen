@@ -75,6 +75,7 @@ def generate_templates(format):
     # targets
     targets = {}
     targets.update(regmapGen.generators.SystemVerilog(path="hw/regs.sv").make_target('sv_module'))
+    targets.update(regmapGen.generators.SystemVerilogWrapper(path="hw/regs_wrapper.svh").make_target('sv_wrapper'))
     targets.update(regmapGen.generators.SystemVerilogHeader(path="hw/regs.svh").make_target('sv_header'))
     targets.update(regmapGen.generators.SystemVerilogPackage(path="hw/regs_pkg.sv").make_target('sv_pkg'))
     targets.update(regmapGen.generators.Python(path="sw/regs.py").make_target('py'))

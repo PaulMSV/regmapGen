@@ -82,6 +82,24 @@ class TestSystemVerilog:
         assert 'endmodule' in raw_str
 
 
+class TestSystemVerilogWrapper:
+    """Class 'generators.SystemVerilogWrapper' testing."""
+
+    def test_svh_wrapper_write(self, tmpdir):
+        """Test of creating wrapper of regmap module in SystemVerilog."""
+        output_file = str(tmpdir.join('regs_wrapper.svh'))
+        print('output_file:', output_file)
+        # create regmap
+        rmap = utils.create_template()
+        # write output file
+        generators.SystemVerilogWrapper(rmap, output_file).generate()
+        # read file and verify
+        with open(output_file, 'r') as f:
+            raw_str = ''.join(f.readlines())
+        assert 'regs regs_wrapper(' in raw_str
+        assert ');' in raw_str
+
+
 class TestSystemVerilogHeader:
     """Class 'generators.SystemVerilogHeader' testing."""
 

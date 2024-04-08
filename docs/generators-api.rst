@@ -60,6 +60,15 @@ SystemVerilog
    :inherited-members:
    :show-inheritance:
 
+SystemVerilogWrapper
+====================
+.. autoclass:: regmapGen.generators.SystemVerilogWrapper
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
+
 SystemVerilogHeader
 ===================
 .. autoclass:: regmapGen.generators.SystemVerilogHeader

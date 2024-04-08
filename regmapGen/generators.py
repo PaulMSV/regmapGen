@@ -281,6 +281,52 @@ class SystemVerilog(Generator, Jinja2):
         self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
+class SystemVerilogWrapper(Generator, Jinja2):
+    """Create SystemVerilog file with register map.
+
+    :param rmap: Register map object
+    :type rmap: :class:`regmapGen.RegisterMap`
+    :param path: Path to the output file
+    :type path: str
+    :param module_name: Module name of register map
+    :type module_name: str
+    :param interface: Register map bus protocol. Use one of: `axil`, `apb`, `amm`, `spi`, `lb`
+    :type interface: str
+    :param template_path: A path to the template to use instead of the default template.
+    :type template_path: str
+    """
+
+    def __init__(self, rmap=None, path='regs_wrapper.svh', module_name='regs', interface='axil', template_path='', **args):
+        super().__init__(rmap, **args)
+        self.path = path
+        self.module_name = module_name
+        self.interface = interface
+        self.template_path = template_path
+
+    def validate(self):
+        super().validate()
+        assert self.interface in ['axil', 'apb', 'amm', 'spi', 'lb'], \
+            "Unknown '%s' interface!" % (self.interface)
+
+    def generate(self):
+        # validate parameters
+        self.validate()
+        # prepare jinja2
+        default_template = os.path.join(
+            Path(__file__).parent, 'templates', 'sv_wrapper.j2'
+        )
+        template_path = self.template_path if self.template_path != '' else default_template
+        j2_template = Path(template_path).name
+        j2_vars = {}
+        j2_vars['regmapGen_ver'] = __version__
+        j2_vars['rmap'] = self.rmap
+        j2_vars['module_name'] = self.module_name
+        j2_vars['interface'] = self.interface
+        j2_vars['config'] = config.globcfg
+        # render
+        self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
+
+
 class SystemVerilogHeader(Generator, Jinja2):
     """Create SystemVerilog header file with register map defines.
 

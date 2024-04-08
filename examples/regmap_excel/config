@@ -16,6 +16,13 @@ interface = lb
 template_path =
 generator = SystemVerilog
 
+[sv_wrapper]
+path = hw/Uchip_regmap0_wrapper.sv
+module_name = Uchip_regmap0
+interface = lb
+template_path =
+generator = SystemVerilogWrapper
+
 [spi2lb_module]
 path = hw/spi2lb_bridge.sv
 bridge_type = spi

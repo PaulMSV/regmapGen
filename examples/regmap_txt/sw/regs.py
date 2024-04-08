@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""" Created with regmapGen vgit-latest
+""" Created with regmapGen v1.0.3
 
 Control/status register map.
 """

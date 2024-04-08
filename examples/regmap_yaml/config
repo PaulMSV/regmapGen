@@ -16,6 +16,13 @@ interface = axil
 template_path = 
 generator = SystemVerilog
 
+[sv_wrapper]
+path = hw/regs_wrapper.svh
+module_name = regs
+interface = axil
+template_path = 
+generator = SystemVerilogWrapper
+
 [sv_header]
 path = hw/regs.svh
 prefix = 

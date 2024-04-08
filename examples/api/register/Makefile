@@ -8,6 +8,6 @@ run:
 	python3 register.py
 
 clean:
-	@rm -rf *.v *.md *_img __pycache__
+	@rm -rf *.sv *.md *_img __pycache__
 
 .PHONY: all run clean

@@ -1,5 +1,5 @@
 
-// Created with regmapGen vgit-latest
+// Created with regmapGen v1.0.3
 
 #ifndef __REGS_H
 #define __REGS_H

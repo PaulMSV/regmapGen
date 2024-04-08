@@ -1,4 +1,4 @@
-// Created with regmapGen vgit-latest
+// Created with regmapGen v1.0.3
 //
 // SPI to Local Bus bridge
 //

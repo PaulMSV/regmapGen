@@ -8,6 +8,6 @@ generate:
 	python3 -m regmapGen
 
 clean:
-	@rm -rf cofig *.json hw doc sw
+	@rm -rf cofig hw sw
 
 .PHONY: all generate clean

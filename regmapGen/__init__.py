@@ -7,11 +7,7 @@
 
 __title__ = "regmapGen"
 __description__ = "Генератор Регистровой Карты."
-
-try:
-    from ._version import version as __version__
-except (ImportError, ModuleNotFoundError) as e:
-    __version__ = 'git-latest'
+__version__ = '1.0.3'
 
 from . import config
 from .enum import EnumValue

@@ -1,4 +1,4 @@
-// Created with regmapGen vgit-latest
+// Created with regmapGen v1.0.3
 
 `ifndef __UCHIP_REGMAP0_SVH
 `define __UCHIP_REGMAP0_SVH

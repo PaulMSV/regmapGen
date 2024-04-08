@@ -8,6 +8,6 @@ generate:
 	python3 -m regmapGen
 
 clean:
-	@rm -rf *.csv *.v
+	@rm -rf *.csv *.sv
 
 .PHONY: all generate clean
