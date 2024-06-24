@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 # Install package
 setuptools.setup(
     name="regmapGen",
-    version='1.0.3',
+    version='1.0.4',
     author="paulmsv",
     author_email="bobkovpg@gmail.com",
     description="Генератор Регистровой Карты",
@@ -17,7 +17,10 @@ setuptools.setup(
         'Documentation': 'https://regmapGen.readthedocs.io'
     },
     packages=setuptools.find_packages(exclude='tests'),
-    package_data={'regmapGen': ['templates/*.j2']},
+    package_data={
+        'regmapGen': ['templates/*.j2'],
+        'regmapGen': ['html/*'],
+    },
     entry_points={
         'console_scripts': [
             'regmapGen = regmapGen.__main__:main',
@@ -33,6 +36,7 @@ setuptools.setup(
         'pandas',
         'python-docx',
         'ruamel.yaml',
+        'openpyxl',
         'm2r2',
         'numpy',
         'pandoc',
