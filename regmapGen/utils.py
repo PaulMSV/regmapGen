@@ -149,11 +149,12 @@ def create_template():
     ]))
 
     rmap.add_registers(Register('CTRL', 'Control register', 0x10).add_bitfields([
-        BitField("BAUD", "Baudrate value", width=2, lsb=0, access='rw', hardware='o').add_enums([
-            EnumValue("B9600", 0, "9600 baud"),
-            EnumValue("B38400", 1, "38400 baud"),
-            EnumValue("B115200", 2, "115200 baud"),
-        ]),
+        #BitField("BAUD", "Baudrate value", width=2, lsb=0, access='rw', hardware='o').add_enums([
+        #    EnumValue("B9600", 0, "9600 baud"),
+        #    EnumValue("B38400", 1, "38400 baud"),
+        #    EnumValue("B115200", 2, "115200 baud"),
+        #]),
+        BitField("BAUD", "Baudrate value", width=2, lsb=0, access='rw', hardware='o'),
         BitField("TXEN", "Transmitter enable. Can be disabled by hardware on error.",
                  width=1, lsb=4, access='rw', hardware='oie'),
         BitField("RXEN", "Receiver enable. Can be disabled by hardware on error.",

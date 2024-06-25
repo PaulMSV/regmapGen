@@ -9,6 +9,7 @@ from . import config
 from .reg import Register
 from .bitfield import BitField
 from .enum import EnumValue
+from .xls_parser import XLSParser
 import json
 import yaml
 
@@ -166,6 +167,8 @@ class RegisterMap():
             self.read_json(path)
         elif ext == '.txt':
             self.read_txt(path)
+        elif ext in ['.xlsx', '.xls']:
+            self.read_xls(path)
         else:
             raise ValueError("Unknown extension '%s' of the file '%s'" % (ext, path))
 
@@ -214,6 +217,13 @@ class RegisterMap():
                 raise ValueError("Can't find table with registers!")
             self._fill_from_file_data(data)
 
+    def read_xls(self, path):
+        """Read register map from Excel file."""
+        parser = XLSParser()
+        parser.get_sheet(path)
+        root = parser.parse_data()
+        self._fill_from_table_data(root)
+
     def _fill_from_file_data(self, data):
         """Fill register map with data from file."""
         self._regs = []
@@ -228,3 +238,28 @@ class RegisterMap():
                         bf.add_enums(EnumValue(**data_enum))
                 reg.add_bitfields(bf)
             self.add_registers(reg)
+
+    def _fill_from_table_data(self, root):
+        """Fill register map with data parsed from Excel."""
+        self._regs = []
+        for block_name, block in root:
+            for reg_name, reg in block:
+                reg_data = {
+                    "name": reg_name,
+                    "description": reg.attrs.get("description"),
+                    "address": int(reg.attrs.get('offset', '0'), 16),
+                    "bitfields": []
+                }
+                for field_name, field in reg:
+                    field_data = {
+                        "name": field_name,
+                        "description": field.attrs.get("description"),
+                        "reset": int(field.attrs.get("reset"), 16),
+                        "width": field.size,
+                        "lsb": field.lsb_pos,
+                        "access": field.attrs.get("access"),
+                        "hardware": field.attrs.get("hardware"),
+                        "enums": []
+                    }
+                    reg_data["bitfields"].append(field_data)
+                self._regs.append(Register(**reg_data))

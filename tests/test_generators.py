@@ -64,6 +64,24 @@ class TestTxt:
         assert rmap_test == rmap
 
 
+class TestXls:
+    """Class 'generators.Xls' testing."""
+
+    def test_xls(self, tmpdir):
+        """Test of writing register map to a XLS file"""
+        # prepare output file
+        output_file = str(tmpdir.join('map_out.xlsx'))
+        print('output_file:', output_file)
+        # create regmap
+        rmap = utils.create_template()
+        # write to file
+        generators.Xls(rmap, output_file).generate()
+        # read back
+        rmap_test = RegisterMap()
+        rmap_test.read_file(output_file)
+        assert rmap_test == rmap
+
+
 class TestSystemVerilog:
     """Class 'generators.SystemVerilog' testing."""
 
