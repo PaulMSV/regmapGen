@@ -1,0 +1,784 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewpoint" content="width=device-width, initial-scale=1">
+
+  <link href="html_src/css/reset.css"  rel="stylesheet">
+  <link href="html_src/css/font.css"   rel="stylesheet" type="text/css">
+  <link href="html_src/css/style.css"  rel="stylesheet">
+  <script src="html_src/js/modernizr.js"></script>
+</head>
+<body id="top">
+  <nav id="regmapGen-address-map">
+    <a id="regmapGen-map-text" href="#top">Address Map</a>
+    <ul>
+      <li class="regmapGen-reg-block">
+        <a href="#0">csr (0x00000000)&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <ul>
+          <li class="regmapGen-reg"><a href="#DATA">DATA</a></li>
+          <li class="regmapGen-reg"><a href="#STAT">STAT</a></li>
+          <li class="regmapGen-reg"><a href="#CTRL">CTRL</a></li>
+          <li class="regmapGen-reg"><a href="#LPMODE">LPMODE</a></li>
+          <li class="regmapGen-reg"><a href="#INSTAT">INSTAT</a></li>
+        </ul>
+      </li>
+      <li class="regmapGen-reg-block">
+        <a href="#0">tm (0x00000100)&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <ul>
+          <li class="regmapGen-reg"><a href="#ID">ID</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <header id="regmapGen-header">
+    <div id="regmapGen-header-text">Register map</div>
+  </header>
+  <main id="regmapGen-main-content">
+    <div>&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div>&nbsp;</div>
+    <h3 id="DATA" class="section">DATA: 0x00000004</h3>
+    <div id="reg_desc">Data register</div>
+    <div>&nbsp;</div>
+    <div id="attribute">Access: rw</div>
+    <table class="regmapGen-reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>31</th>
+          <th>30</th>
+          <th>29</th>
+          <th>28</th>
+          <th>27</th>
+          <th>26</th>
+          <th>25</th>
+          <th>24</th>
+          <th>23</th>
+          <th>22</th>
+          <th>21</th>
+          <th>20</th>
+          <th>19</th>
+          <th>18</th>
+          <th>17</th>
+          <th>16</th>
+          <th>15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <td colspan="14" class="reserved-field">res_1</td>
+          <td colspan="1" class="used-field">PERR</td>
+          <td colspan="1" class="used-field">FERR</td>
+          <td colspan="8" class="reserved-field">res_0</td>
+          <td colspan="8" class="used-field">FIFO</td>
+        </tr>
+        <tr>
+          <th>access</th>
+          <td colspan="14" class="reserved-field">RO</td>
+          <td colspan="1" class="used-field">rolh</td>
+          <td colspan="1" class="used-field">rolh</td>
+          <td colspan="8" class="reserved-field">RO</td>
+          <td colspan="8" class="used-field">rw</td>
+        </tr>
+        <tr>
+          <th>reset</th>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_1</h4>
+    <div id="attribute" class=field_even>Bits: [31:18]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>PERR</h4>
+    <div id="attribute" class=field_odd>Bits: [17]</div>
+    <div id="attribute" class=field_odd>Access: rolh</div>
+    <div id="field_desc" class=field_odd>Parity error flag. Read to clear.</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>FERR</h4>
+    <div id="attribute" class=field_even>Bits: [16]</div>
+    <div id="attribute" class=field_even>Access: rolh</div>
+    <div id="field_desc" class=field_even>Frame error flag. Read to clear.</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>res_0</h4>
+    <div id="attribute" class=field_odd>Bits: [15:8]</div>
+    <div id="attribute" class=field_odd>Access: RO</div>
+    <div id="field_desc" class=field_odd>Reserved bit(s)</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>FIFO</h4>
+    <div id="attribute" class=field_even>Bits: [7:0]</div>
+    <div id="attribute" class=field_even>Access: rw</div>
+    <div id="field_desc" class=field_even>Write to push value to TX FIFO, read to get data from RX FIFO</div>
+    <div class=field_even>&nbsp;</div>
+
+    <div>&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div>&nbsp;</div>
+    <h3 id="STAT" class="section">STAT: 0x0000000C</h3>
+    <div id="reg_desc">Status register</div>
+    <div>&nbsp;</div>
+    <div id="attribute">Access: rw</div>
+    <table class="regmapGen-reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>31</th>
+          <th>30</th>
+          <th>29</th>
+          <th>28</th>
+          <th>27</th>
+          <th>26</th>
+          <th>25</th>
+          <th>24</th>
+          <th>23</th>
+          <th>22</th>
+          <th>21</th>
+          <th>20</th>
+          <th>19</th>
+          <th>18</th>
+          <th>17</th>
+          <th>16</th>
+          <th>15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <td colspan="23" class="reserved-field">res_3</td>
+          <td colspan="1" class="used-field">TXF</td>
+          <td colspan="3" class="reserved-field">res_2</td>
+          <td colspan="1" class="used-field">RXE</td>
+          <td colspan="1" class="reserved-field">res_1</td>
+          <td colspan="1" class="used-field">BUSY</td>
+          <td colspan="2" class="reserved-field">res_0</td>
+        </tr>
+        <tr>
+          <th>access</th>
+          <td colspan="23" class="reserved-field">RO</td>
+          <td colspan="1" class="used-field">ro</td>
+          <td colspan="3" class="reserved-field">RO</td>
+          <td colspan="1" class="used-field">ro</td>
+          <td colspan="1" class="reserved-field">RO</td>
+          <td colspan="1" class="used-field">ro</td>
+          <td colspan="2" class="reserved-field">RO</td>
+        </tr>
+        <tr>
+          <th>reset</th>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_3</h4>
+    <div id="attribute" class=field_even>Bits: [31:9]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>TXF</h4>
+    <div id="attribute" class=field_odd>Bits: [8]</div>
+    <div id="attribute" class=field_odd>Access: ro</div>
+    <div id="field_desc" class=field_odd>TX FIFO is full</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_2</h4>
+    <div id="attribute" class=field_even>Bits: [7:5]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>RXE</h4>
+    <div id="attribute" class=field_odd>Bits: [4]</div>
+    <div id="attribute" class=field_odd>Access: ro</div>
+    <div id="field_desc" class=field_odd>RX FIFO is empty</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_1</h4>
+    <div id="attribute" class=field_even>Bits: [3]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>BUSY</h4>
+    <div id="attribute" class=field_odd>Bits: [2]</div>
+    <div id="attribute" class=field_odd>Access: ro</div>
+    <div id="field_desc" class=field_odd>Transciever is busy</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_0</h4>
+    <div id="attribute" class=field_even>Bits: [1:0]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+
+    <div>&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div>&nbsp;</div>
+    <h3 id="CTRL" class="section">CTRL: 0x00000010</h3>
+    <div id="reg_desc">Control register</div>
+    <div>&nbsp;</div>
+    <div id="attribute">Access: rw</div>
+    <table class="regmapGen-reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>31</th>
+          <th>30</th>
+          <th>29</th>
+          <th>28</th>
+          <th>27</th>
+          <th>26</th>
+          <th>25</th>
+          <th>24</th>
+          <th>23</th>
+          <th>22</th>
+          <th>21</th>
+          <th>20</th>
+          <th>19</th>
+          <th>18</th>
+          <th>17</th>
+          <th>16</th>
+          <th>15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <td colspan="25" class="reserved-field">res_1</td>
+          <td colspan="1" class="used-field">TXST</td>
+          <td colspan="1" class="used-field">RXEN</td>
+          <td colspan="1" class="used-field">TXEN</td>
+          <td colspan="2" class="reserved-field">res_0</td>
+          <td colspan="2" class="used-field">BAUD</td>
+        </tr>
+        <tr>
+          <th>access</th>
+          <td colspan="25" class="reserved-field">RO</td>
+          <td colspan="1" class="used-field">wosc</td>
+          <td colspan="1" class="used-field">rw</td>
+          <td colspan="1" class="used-field">rw</td>
+          <td colspan="2" class="reserved-field">RO</td>
+          <td colspan="2" class="used-field">rw</td>
+        </tr>
+        <tr>
+          <th>reset</th>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_1</h4>
+    <div id="attribute" class=field_even>Bits: [31:7]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>TXST</h4>
+    <div id="attribute" class=field_odd>Bits: [6]</div>
+    <div id="attribute" class=field_odd>Access: wosc</div>
+    <div id="field_desc" class=field_odd>Force transmission start</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>RXEN</h4>
+    <div id="attribute" class=field_even>Bits: [5]</div>
+    <div id="attribute" class=field_even>Access: rw</div>
+    <div id="field_desc" class=field_even>Receiver enable. Can be disabled by hardware on error.</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>TXEN</h4>
+    <div id="attribute" class=field_odd>Bits: [4]</div>
+    <div id="attribute" class=field_odd>Access: rw</div>
+    <div id="field_desc" class=field_odd>Transmitter enable. Can be disabled by hardware on error.</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_0</h4>
+    <div id="attribute" class=field_even>Bits: [3:2]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>BAUD</h4>
+    <div id="attribute" class=field_odd>Bits: [1:0]</div>
+    <div id="attribute" class=field_odd>Access: rw</div>
+    <div id="field_desc" class=field_odd>Baudrate value</div>
+    <div class=field_odd>&nbsp;</div>
+
+    <div>&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div>&nbsp;</div>
+    <h3 id="LPMODE" class="section">LPMODE: 0x00000014</h3>
+    <div id="reg_desc">Low power mode control</div>
+    <div>&nbsp;</div>
+    <div id="attribute">Access: rw</div>
+    <table class="regmapGen-reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>31</th>
+          <th>30</th>
+          <th>29</th>
+          <th>28</th>
+          <th>27</th>
+          <th>26</th>
+          <th>25</th>
+          <th>24</th>
+          <th>23</th>
+          <th>22</th>
+          <th>21</th>
+          <th>20</th>
+          <th>19</th>
+          <th>18</th>
+          <th>17</th>
+          <th>16</th>
+          <th>15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <td colspan="1" class="used-field">EN</td>
+          <td colspan="23" class="reserved-field">res_0</td>
+          <td colspan="8" class="used-field">DIV</td>
+        </tr>
+        <tr>
+          <th>access</th>
+          <td colspan="1" class="used-field">rw</td>
+          <td colspan="23" class="reserved-field">RO</td>
+          <td colspan="8" class="used-field">rw</td>
+        </tr>
+        <tr>
+          <th>reset</th>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>EN</h4>
+    <div id="attribute" class=field_even>Bits: [31]</div>
+    <div id="attribute" class=field_even>Access: rw</div>
+    <div id="field_desc" class=field_even>Low power mode enable</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>res_0</h4>
+    <div id="attribute" class=field_odd>Bits: [30:8]</div>
+    <div id="attribute" class=field_odd>Access: RO</div>
+    <div id="field_desc" class=field_odd>Reserved bit(s)</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>DIV</h4>
+    <div id="attribute" class=field_even>Bits: [7:0]</div>
+    <div id="attribute" class=field_even>Access: rw</div>
+    <div id="field_desc" class=field_even>Clock divider in low power mode</div>
+    <div class=field_even>&nbsp;</div>
+
+    <div>&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div>&nbsp;</div>
+    <h3 id="INSTAT" class="section">INSTAT: 0x00000020</h3>
+    <div id="reg_desc">Interrupt status register</div>
+    <div>&nbsp;</div>
+    <div id="attribute">Access: rw</div>
+    <table class="regmapGen-reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>31</th>
+          <th>30</th>
+          <th>29</th>
+          <th>28</th>
+          <th>27</th>
+          <th>26</th>
+          <th>25</th>
+          <th>24</th>
+          <th>23</th>
+          <th>22</th>
+          <th>21</th>
+          <th>20</th>
+          <th>19</th>
+          <th>18</th>
+          <th>17</th>
+          <th>16</th>
+          <th>15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <td colspan="30" class="reserved-field">res_0</td>
+          <td colspan="1" class="used-field">RX</td>
+          <td colspan="1" class="used-field">TX</td>
+        </tr>
+        <tr>
+          <th>access</th>
+          <td colspan="30" class="reserved-field">RO</td>
+          <td colspan="1" class="used-field">rw1c</td>
+          <td colspan="1" class="used-field">rw1c</td>
+        </tr>
+        <tr>
+          <th>reset</th>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>res_0</h4>
+    <div id="attribute" class=field_even>Bits: [31:2]</div>
+    <div id="attribute" class=field_even>Access: RO</div>
+    <div id="field_desc" class=field_even>Reserved bit(s)</div>
+    <div class=field_even>&nbsp;</div>
+    <div class=field_odd>&nbsp;</div>
+    <h4 class=field_odd>RX</h4>
+    <div id="attribute" class=field_odd>Bits: [1]</div>
+    <div id="attribute" class=field_odd>Access: rw1c</div>
+    <div id="field_desc" class=field_odd>Receiver interrupt. Write 1 to clear.</div>
+    <div class=field_odd>&nbsp;</div>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>TX</h4>
+    <div id="attribute" class=field_even>Bits: [0]</div>
+    <div id="attribute" class=field_even>Access: rw1c</div>
+    <div id="field_desc" class=field_even>Transmitter interrupt flag. Write 1 to clear.</div>
+    <div class=field_even>&nbsp;</div>
+
+    <div>&nbsp;</div>
+    <hr class="divider" color=#ede8d6>
+    <div>&nbsp;</div>
+    <h3 id="ID" class="section">ID: 0x00000140</h3>
+    <div id="reg_desc">IP-core ID register</div>
+    <div>&nbsp;</div>
+    <div id="attribute">Access: rw</div>
+    <table class="regmapGen-reg-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>31</th>
+          <th>30</th>
+          <th>29</th>
+          <th>28</th>
+          <th>27</th>
+          <th>26</th>
+          <th>25</th>
+          <th>24</th>
+          <th>23</th>
+          <th>22</th>
+          <th>21</th>
+          <th>20</th>
+          <th>19</th>
+          <th>18</th>
+          <th>17</th>
+          <th>16</th>
+          <th>15</th>
+          <th>14</th>
+          <th>13</th>
+          <th>12</th>
+          <th>11</th>
+          <th>10</th>
+          <th>9</th>
+          <th>8</th>
+          <th>7</th>
+          <th>6</th>
+          <th>5</th>
+          <th>4</th>
+          <th>3</th>
+          <th>2</th>
+          <th>1</th>
+          <th>0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <td colspan="32" class="used-field">UID</td>
+        </tr>
+        <tr>
+          <th>access</th>
+          <td colspan="32" class="used-field">ro</td>
+        </tr>
+        <tr>
+          <th>reset</th>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class=field_even>&nbsp;</div>
+    <h4 class=field_even>UID</h4>
+    <div id="attribute" class=field_even>Bits: [31:0]</div>
+    <div id="attribute" class=field_even>Access: ro</div>
+    <div id="field_desc" class=field_even>Unique ID</div>
+    <div class=field_even>&nbsp;</div>
+
+  </main>
+
+  
+  <script src="html_src/js/jquery.min.js"></script>
+  <script src="html_src/js/main.js"></script>
+</body>
+</html>

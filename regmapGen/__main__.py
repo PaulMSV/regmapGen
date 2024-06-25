@@ -106,7 +106,7 @@ def generate_templates(format):
         gen = regmapGen.generators.Xls(rmap)
         regmap_path = 'regs.yaml'
         targets.update(regmapGen.generators.Xls2Yaml(path=regmap_path).make_target('xls_yaml'))
-        targets.update(regmapGen.generators.Xls2Uvm(path="uvm/regs_uvm_regmodel.sv").make_target('xls_uvm'))
+        targets.update(regmapGen.generators.Xls2Uvm(path="uvm/uvm_regmodel.sv").make_target('xls_uvm'))
         targets.update(regmapGen.generators.Xls2Html(path="doc/regs.html").make_target('xls_html'))
     if format == 'xls':
         print("... generate register map file 'regs.xlsx'")

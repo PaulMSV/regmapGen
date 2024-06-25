@@ -1,0 +1,122 @@
+[globcfg]
+base_address = 0
+data_width = 32
+address_width = 16
+register_reset = sync_pos
+address_increment = none
+address_alignment = data_width
+address_duplicate = none
+force_name_case = none
+regmap_path = regs.yaml
+
+[sv_module]
+path = hw/regs.sv
+read_filler = 0
+interface = axil
+template_path = 
+generator = SystemVerilog
+
+[sv_wrapper]
+path = hw/regs_wrapper.svh
+module_name = regs
+interface = axil
+template_path = 
+generator = SystemVerilogWrapper
+
+[sv_header]
+path = hw/regs.svh
+prefix = 
+template_path = 
+generator = SystemVerilogHeader
+
+[sv_pkg]
+path = hw/regs_pkg.sv
+prefix = 
+template_path = 
+generator = SystemVerilogPackage
+
+[py]
+path = sw/regs.py
+template_path = 
+generator = Python
+
+[c_header]
+path = sw/regs.h
+prefix = 
+template_path = 
+generator = CHeader
+
+[cmsis_svd]
+path = sw/regs.svd
+peripheral_name = CSR
+description = no description
+part_version = 1.0.0
+template_path = 
+generator = CmsisSvd
+
+[ipxact_xml]
+path = sw/regs.xml
+vendor = NM-Tech
+library = No library
+component_name = No component_name
+version = No version
+memorymap_name = No memorymap_name
+addressblock_name = No addressblock_name
+description = No description
+template_path = 
+generator = IpxactXml
+
+[md_doc]
+path = doc/regs.md
+title = Register map
+print_images = True
+image_dir = md_img
+print_conventions = True
+template_path = 
+generator = Markdown
+
+[asciidoc_doc]
+path = doc/regs.adoc
+title = Register map
+print_images = True
+image_dir = adoc_img
+print_conventions = True
+template_path = 
+generator = Asciidoc
+
+[rst_doc]
+path = doc/regs.rst
+title = Register map
+print_images = True
+image_dir = rst_img
+print_conventions = True
+template_path = 
+generator = Rst
+
+[docx_doc]
+path = doc/regs.docx
+input_md = regs.md
+pandoc_args = 
+generator = Docx
+
+[xls_yaml]
+path = regs.yaml
+input_xls = regs.xlsx
+generator = Xls2Yaml
+
+[xls_uvm]
+path = uvm/uvm_regmodel.sv
+input_xls = regs.xlsx
+template_path = 
+module_name = uvm
+use_factory = 
+use_coverage = 
+generator = Xls2Uvm
+
+[xls_html]
+path = doc/regs.html
+title = Register map
+input_xls = regs.xlsx
+template_path = 
+generator = Xls2Html
+

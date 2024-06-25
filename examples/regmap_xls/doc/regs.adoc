@@ -1,0 +1,213 @@
+= Register map
+
+Автоматически сгенерировано с помощью программы regmapGen.
+
+[#table-Register_access_modes,cols="1,1", options="header"]
+|==========================
+| Тип доступа | Описание
+| rw          | Read and Write
+| rw1c        | Read and Write 1 to Clear
+| rw1s        | Read and Write 1 to Set
+| ro          | Read Only
+| roc         | Read Only to Clear
+| roll        | Read Only / Latch Low
+| rolh        | Read Only / Latch High
+| wo          | Write only
+| wosc        | Write Only / Self Clear
+|==========================
+
+[[register_map_summary]]
+== Регистры и команды
+
+**Базовый адрес**
+
+0x00000000
+
+[#table-Register_map,cols="1,1,1", options="header"]
+|==========================
+| Регистр | Адрес | Описание
+| <<DATA>>                 | 0x0004     | Data register
+| <<STAT>>                 | 0x000c     | Status register
+| <<CTRL>>                 | 0x0010     | Control register
+| <<LPMODE>>               | 0x0014     | Low power mode control
+| <<INSTAT>>               | 0x0020     | Interrupt status register
+| <<ID>>                   | 0x0040     | IP-core ID register
+|==========================
+
+
+\newpage
+
+[[DATA]]
+=== DATA
+
+**Описание**
+
+Data register
+
+**Смещение адреса**
+
+0x0004
+
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/data.svg[]
+
+[#table-DATA,cols="1,1,1,1,1", options="header"]
+|==========================
+| Поле | Биты | Тип | Значение | Описание
+| PERR             | 17     | rolh            | 0x0        | Parity error flag. Read to clear.
+| FERR             | 16     | rolh            | 0x0        | Frame error flag. Read to clear.
+| FIFO             | 7:0    | rw              | 0x00       | Write to push value to TX FIFO, read to get data from RX FIFO
+|==========================
+
+: *Таблица 1* - Описание полей регистра DATA
+
+
+\newpage
+
+[[STAT]]
+=== STAT
+
+**Описание**
+
+Status register
+
+**Смещение адреса**
+
+0x000c
+
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/stat.svg[]
+
+[#table-STAT,cols="1,1,1,1,1", options="header"]
+|==========================
+| Поле | Биты | Тип | Значение | Описание
+| TXF              | 8      | ro              | 0x0        | TX FIFO is full
+| RXE              | 4      | ro              | 0x0        | RX FIFO is empty
+| BUSY             | 2      | ro              | 0x0        | Transciever is busy
+|==========================
+
+: *Таблица 2* - Описание полей регистра STAT
+
+
+\newpage
+
+[[CTRL]]
+=== CTRL
+
+**Описание**
+
+Control register
+
+**Смещение адреса**
+
+0x0010
+
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/ctrl.svg[]
+
+[#table-CTRL,cols="1,1,1,1,1", options="header"]
+|==========================
+| Поле | Биты | Тип | Значение | Описание
+| TXST             | 6      | wosc            | 0x0        | Force transmission start
+| RXEN             | 5      | rw              | 0x0        | Receiver enable. Can be disabled by hardware on error.
+| TXEN             | 4      | rw              | 0x0        | Transmitter enable. Can be disabled by hardware on error.
+| BAUD             | 1:0    | rw              | 0x0        | Baudrate value
+|==========================
+
+: *Таблица 3* - Описание полей регистра CTRL
+
+
+\newpage
+
+[[LPMODE]]
+=== LPMODE
+
+**Описание**
+
+Low power mode control
+
+**Смещение адреса**
+
+0x0014
+
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/lpmode.svg[]
+
+[#table-LPMODE,cols="1,1,1,1,1", options="header"]
+|==========================
+| Поле | Биты | Тип | Значение | Описание
+| EN               | 31     | rw              | 0x0        | Low power mode enable
+| DIV              | 7:0    | rw              | 0x00       | Clock divider in low power mode
+|==========================
+
+: *Таблица 4* - Описание полей регистра LPMODE
+
+
+\newpage
+
+[[INSTAT]]
+=== INSTAT
+
+**Описание**
+
+Interrupt status register
+
+**Смещение адреса**
+
+0x0020
+
+**Значение при сбросе**
+
+0x00000000
+
+image::adoc_img/instat.svg[]
+
+[#table-INSTAT,cols="1,1,1,1,1", options="header"]
+|==========================
+| Поле | Биты | Тип | Значение | Описание
+| RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear.
+| TX               | 0      | rw1c            | 0x0        | Transmitter interrupt flag. Write 1 to clear.
+|==========================
+
+: *Таблица 5* - Описание полей регистра INSTAT
+
+
+\newpage
+
+[[ID]]
+=== ID
+
+**Описание**
+
+IP-core ID register
+
+**Смещение адреса**
+
+0x0040
+
+**Значение при сбросе**
+
+0xcafe0666
+
+image::adoc_img/id.svg[]
+
+[#table-ID,cols="1,1,1,1,1", options="header"]
+|==========================
+| Поле | Биты | Тип | Значение | Описание
+| UID              | 31:0   | ro              | 0xcafe0666 | Unique ID
+|==========================
+
+: *Таблица 6* - Описание полей регистра ID
+
