@@ -2,7 +2,7 @@
 
 ![regmapGen_logo](docs/img/logo.png)
 
-[![Статус документации](https://readthedocs.org/projects/regmapGen/badge/?version=latest)](https://regmapGen.readthedocs.io/ru/latest/?badge=latest)
+[![Статус документации](https://readthedocs.org/projects/regmapgen/badge/?version=latest)](https://regmapgen.readthedocs.io/ru/latest/?badge=latest)
 [![PyPI версия](https://badge.fury.io/py/regmapGen.svg)](https://badge.fury.io/py/regmapGen)
 
 
@@ -12,7 +12,7 @@
 
 ## Особенности
 
-- Человеко-читаемые форматы ввода: JSON, YAML, EXCEL или простая текстовая таблица
+- Человеко-читаемые форматы ввода: JSON, YAML, EXCEL таблица или простая текстовая таблица
 - Генерация HDL кода: SystemVerilog модуль с картой регистров, SV-Header или SV-package с define-макросами или параметрами, соответственно
 - Генерация UVM регистровой модели и окружения для верификации
 - Генерация документации: Markdown, AsciiDoc, Docx, HTML
@@ -37,7 +37,7 @@ python3 -m pip install -U regmapGen
 
 ## Быстрый старт
 
-Лучший способ быстро начать — создать шаблоны. Вы можете создать карту регистров в удобном для вас формате (выберите один из `json`, `yaml`, `txt`) :
+Лучший способ быстро начать — создать шаблоны. Вы можете создать карту регистров в удобном для вас формате (выберите один из `json`, `yaml`, `txt`, `xls`) :
 
 ```sh
 regmapGen -t yaml
@@ -72,7 +72,7 @@ regmap:
             value: 2
 ```
 
-YAML файл также может быть сгенерирован из Excel таблица. Детали доступны в [примере](https://github.com/PaulMSV/regmapGen/example/excel).
+YAML файл также может быть сгенерирован из Excel таблицы. Детали доступны в [примере](https://github.com/PaulMSV/regmapGen/example/regmap_xls).
 
 Чтобы узнать больше о регистрах, битовых полях и их атрибутах, пожалуйста, ознакомьтесь с документацией на странице [Регистровая карта](https://regmapGen.readthedocs.io/en/latest/regmap.html).
 
