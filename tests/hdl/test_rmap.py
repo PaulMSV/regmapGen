@@ -102,6 +102,7 @@ def tb(request):
     return request.param
 
 
+@pytest.mark.hdl
 def test(tmpdir, tb, interface, reset, hdl, simtool, defines=[], gui=False, pytest_run=True):
     # create sim
     tb_dir = path_join(TEST_DIR, 'test_rmap')

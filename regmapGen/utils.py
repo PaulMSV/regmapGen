@@ -4,7 +4,6 @@
 """Utility functions and classes
 """
 
-from . import generators
 import os
 from . import config
 from .reg import Register
@@ -27,7 +26,7 @@ def str2int(val, base=None):
             return int(val, 2)
         else:
             return int(val)
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError):
         raise ValueError("Can't convert '%s' to int!" % val)
 
 
@@ -44,7 +43,7 @@ def str2bool(val):
             return False
         else:
             raise ValueError
-    except (ValueError, AttributeError, TypeError) as e:
+    except (ValueError, AttributeError, TypeError):
         raise ValueError("Can't convert '%s' to bool!" % val)
 
 
