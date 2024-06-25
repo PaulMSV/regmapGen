@@ -1,3 +1,15 @@
+{% set access_map = {
+    'ro': 'RO',
+    'rw': 'RW',
+    'rw1c': 'W1C',
+    'rw1s': 'W1S',
+    'roc': 'RC',
+    'roll': 'RC',
+    'rolh': 'RS',
+    'wo': 'WO',
+    'wosc': 'WOC'
+} %}
+
 // Created with regmapGen v{{ regmapGen_ver }}
 
 `ifndef {{ module.upper() }}_REGMODEL_SV

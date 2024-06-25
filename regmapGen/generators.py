@@ -21,9 +21,6 @@ from . import config
 from .regmap import RegisterMap
 from .xls_parser import XLSParser, get_bit_reset, format_hex
 
-import openpyxl
-from openpyxl.styles import Alignment, Font
-
 
 class Generator():
     """Base generator class.
@@ -246,6 +243,28 @@ class Txt(Generator):
         utils.create_dirs(self.path)
         with open(self.path, 'w', encoding="utf-8") as f:
             f.writelines(out_lines)
+
+
+class Xls(Generator):
+    """Copy register map to a Excel file from template.
+
+    :param rmap: Register map object
+    :type rmap: :class:`regmapGen.RegisterMap`
+    :param path: Path to the output file
+    :type path: str
+    """
+
+    def __init__(self, rmap=None, path='regs.xlsx', **args):
+        super().__init__(rmap, **args)
+        self.path = path
+
+    def generate(self):
+        # validate parameters
+        self.validate()
+        # copy excel data
+        template_path = Path(__file__).parent / 'templates' / 'xls_example.xlsx'
+        utils.create_dirs(self.path)
+        shutil.copy(template_path, self.path)
 
 
 class SystemVerilog(Generator, Jinja2):
@@ -877,11 +896,11 @@ class Xls2Yaml(Generator):
     :type path: str
     """
 
-    def __init__(self, rmap=None, path='regs.yaml', input_xls="regs.xls", **args):
+    def __init__(self, rmap=None, path='regs.yaml', input_xls="regs.xlsx", **args):
         super().__init__(rmap, **args)
         self.path = path
         self.input_xls = input_xls
-        self.regmap = []
+        #self.regmap = []
 
     def replace_nan_to_empty(self, value):
         """Replace .NaN to empty field rows recursively."""
@@ -926,19 +945,6 @@ class Xls2Yaml(Generator):
         """Process the loaded Excel data and convert it to YAML format."""
         self.regmap = []
 
-        access_mode_map = {
-            'RO': 'ro',
-            'RW': 'rw',
-            'RW1C': 'rw1c',
-            'RW1S': 'rw1s',
-            'RW1T': 'rw1t',
-            'ROC': 'roc',
-            'ROLL': 'roll',
-            'ROLH': 'rolh',
-            'WO': 'wo',
-            'WOSC': 'wosc'
-        }
-
         for block_name, block in self.root:
             for reg_name, reg in block:
                 if any(keyword in reg_name.lower() for keyword in ["-", "reserved", "unused", "not_used"]):
@@ -955,16 +961,13 @@ class Xls2Yaml(Generator):
                     if any(keyword in field_name.lower() for keyword in ["-", "reserved", "unused", "not_used"]):
                         continue
 
-                    access_mode = field.attrs.get('access', '').upper()
-                    access_mode = access_mode_map.get(access_mode, access_mode)
-
                     current_bitfield = {
                         "name": field.name,
                         "description": field.attrs.get('description', ''),
                         "reset": int(field.attrs.get('reset', '0'), 16),
                         "width": int(field.attrs.get('size', 1)),
                         "lsb": field.attrs.get('lsb_pos', 0),
-                        "access": access_mode,
+                        "access": field.attrs.get('access', '').lower(),
                         "hardware": field.attrs.get('hardware', None),
                         "enums": []
                     }
@@ -1008,8 +1011,8 @@ class Xls2Uvm(Generator, Jinja2):
     :type use_coverage: bool
     """
 
-    def __init__(self, rmap=None, path='regmodel.sv', input_xls='regs.xls', template_path='',
-                 module_name='uvm', use_factory=False, use_coverage=False, **args):
+    def __init__(self, rmap=None, path='uvm_regmodel.sv', input_xls='regs.xlsx', template_path='',
+                 module_name='uvm', use_factory='', use_coverage='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.input_xls = input_xls
@@ -1061,7 +1064,7 @@ class Xls2Html(Generator, Jinja2):
     """
 
     def __init__(self, rmap=None, path='regs.html', title='Register map',
-                 input_xls='regs.xls', template_path='', **args):
+                 input_xls='regs.xlsx', template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.title = title

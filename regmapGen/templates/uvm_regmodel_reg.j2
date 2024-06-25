@@ -32,7 +32,7 @@ class {{ module }}_reg_{{ reg.name }} extends uvm_reg;
         {% endfor %}
         // REG.configure(parent, size, lsb_pos, access, volatile, reset, has_reset, is_rand, individually_accessible);
         {% for fkey, field in reg %}
-        {{ field.name }}.configure(this, {{ field.size }}, {{ field.lsb_pos }}, "{{ field.access.upper() }}", {{ field.is_volatile }}, 'h{{ field.reset }}, {{ field.has_reset }}, {{ field.is_rand }}, 0);
+        {{ field.name }}.configure(this, {{ field.size }}, {{ field.lsb_pos }}, "{{ access_map[field.access] }}", {{ field.is_volatile }}, 'h{{ field.reset }}, {{ field.has_reset }}, {{ field.is_rand }}, 0);
         {% endfor %}
     endfunction
 

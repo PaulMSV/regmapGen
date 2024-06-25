@@ -52,7 +52,7 @@ class {{ module }}_blk_{{ block.name }} extends uvm_reg_block;
         // Create map
         default_map = create_map("default_map", {{ block.width }}'h{{ block.offset }}, {{ (block.width/8)|int }}, UVM_LITTLE_ENDIAN);
         {% for key, reg in block %}
-        default_map.add_reg({{ reg.name }}, {{ block.width }}'h{{ reg.offset }}, "{{ reg.access.upper() }}");
+        default_map.add_reg({{ reg.name }}, {{ block.width }}'h{{ reg.offset }},  "{{ access_map[reg.access] }}");
         {% endfor %}
     endfunction
 

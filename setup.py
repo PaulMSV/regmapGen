@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 # Install package
 setuptools.setup(
     name="regmapGen",
-    version='1.0.4',
+    version='1.0.5',
     author="paulmsv",
     author_email="bobkovpg@gmail.com",
     description="Генератор Регистровой Карты",
@@ -19,6 +19,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude='tests'),
     package_data={
         'regmapGen': ['templates/*.j2'],
+        'regmapGen': ['templates/*.xlsx'],
         'regmapGen': ['html/*'],
     },
     entry_points={

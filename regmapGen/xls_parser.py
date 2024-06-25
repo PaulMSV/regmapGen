@@ -24,7 +24,7 @@ prefix '0x' supported" %(data))
 
 
     def get_sheet(self, name):
-        self.sheet = load_workbook(name, data_only=True)['Info']
+        self.sheet = load_workbook(name, data_only=True)['RegMap']
 
 
     def in_range(self, column, start, end):
@@ -128,11 +128,11 @@ prefix '0x' supported" %(data))
             self.header['block_offset']: lambda cell: self.set_attr(block, 'offset', self.get_hex(cell.value)),
             self.header['block_repeat']: lambda cell: self.set_attr(block, 'repeat', cell.value),
             self.header['reg_offset']: lambda cell: self.set_attr(reg, 'offset', self.get_hex(cell.value)),
-            self.header['reg_access']: lambda cell: self.set_attr(reg, 'access', cell.value.upper()),
+            self.header['reg_access']: lambda cell: self.set_attr(reg, 'access', cell.value),
             self.header['reg_repeat']: lambda cell: self.set_attr(reg, 'repeat', cell.value),
             self.header['reg_description']: lambda cell: self.set_attr(reg, 'description', cell.value),
             self.header['bits']: lambda cell: self.parse_bits(field, cell.value),
-            self.header['field_access']: lambda cell: self.set_attr(field, 'access', cell.value.upper()),
+            self.header['field_access']: lambda cell: self.set_attr(field, 'access', cell.value),
             self.header['reset']: lambda cell: self.set_attr(field, 'reset', self.get_hex(cell.value)),
             self.header['has_reset']: lambda cell: self.set_attr(field, 'has_reset', cell.value),
             self.header['rand']: lambda cell: self.set_attr(field, 'is_rand', cell.value),

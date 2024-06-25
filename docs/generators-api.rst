@@ -52,6 +52,14 @@ Txt
    :inherited-members:
    :show-inheritance:
 
+Xls
+===
+.. autoclass:: regmapGen.generators.Xls
+   :members:
+   :undoc-members:
+   :inherited-members:
+   :show-inheritance:
+
 SystemVerilog
 =============
 .. autoclass:: regmapGen.generators.SystemVerilog

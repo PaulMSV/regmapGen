@@ -54,7 +54,7 @@ def parse_arguments():
                         metavar='CONFIG',
                         dest='config_path',
                         help='read configuration from file')
-    template_choices = ['json', 'yaml', 'txt']
+    template_choices = ['json', 'yaml', 'txt', 'xls']
     parser.add_argument('-t',
                         metavar='FORMAT',
                         choices=template_choices,
@@ -102,7 +102,16 @@ def generate_templates(format):
     elif format == 'txt':
         gen = regmapGen.generators.Txt(rmap)
         regmap_path = 'regs.txt'
-    print("... generate register map file '%s'" % regmap_path)
+    elif format == 'xls':
+        gen = regmapGen.generators.Xls(rmap)
+        regmap_path = 'regs.yaml'
+        targets.update(regmapGen.generators.Xls2Yaml(path=regmap_path).make_target('xls_yaml'))
+        targets.update(regmapGen.generators.Xls2Uvm(path="uvm/regs_uvm_regmodel.sv").make_target('xls_uvm'))
+        targets.update(regmapGen.generators.Xls2Html(path="doc/regs.html").make_target('xls_html'))
+    if format == 'xls':
+        print("... generate register map file 'regs.xlsx'")
+    else:
+        print("... generate register map file '%s'" % regmap_path)
     gen.generate()
     # configuration file template
     config_path = 'config'
