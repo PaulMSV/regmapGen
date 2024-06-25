@@ -285,3 +285,41 @@ class TestPython:
         with open(py_path, 'r') as f:
             raw_str = ''.join(f.readlines())
         assert 'class RegMap:' in raw_str
+
+
+class TestXls2Uvm:
+    """Class 'generators.Xls2Uvm' testing."""
+
+    def test_xls2uvm(self, tmpdir):
+        """Test of creating python regmap file."""
+        xls_path = str(tmpdir.join('regs.xlsx'))
+        uvm_path = str(tmpdir.join('uvm_regmodel.sv'))
+        print('uvm_path:', uvm_path)
+        # create regmap
+        rmap = utils.create_template()
+        generators.Xls(rmap, xls_path).generate()
+        # write output file
+        generators.Xls2Uvm(rmap, uvm_path, xls_path).generate()
+        # read file and verify
+        with open(uvm_path, 'r') as f:
+            raw_str = ''.join(f.readlines())
+        assert 'class uvm_regmodel extends uvm_reg_block;' in raw_str
+
+
+class TestXls2Html:
+    """Class 'generators.Xls2Html' testing."""
+
+    def test_xls2html(self, tmpdir):
+        """Test of creating python regmap file."""
+        xls_path = str(tmpdir.join('regs.xlsx'))
+        html_path = str(tmpdir.join('regs.html'))
+        print('html_path:', html_path)
+        # create regmap
+        rmap = utils.create_template()
+        generators.Xls(rmap, xls_path).generate()
+        # write output file
+        generators.Xls2Html(rmap, html_path, 'Register map', xls_path).generate()
+        # read file and verify
+        with open(html_path, 'r') as f:
+            raw_str = ''.join(f.readlines())
+        assert '<div id="regmapGen-header-text">Register map</div>' in raw_str
