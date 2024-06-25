@@ -900,7 +900,6 @@ class Xls2Yaml(Generator):
         super().__init__(rmap, **args)
         self.path = path
         self.input_xls = input_xls
-        #self.regmap = []
 
     def replace_nan_to_empty(self, value):
         """Replace .NaN to empty field rows recursively."""
