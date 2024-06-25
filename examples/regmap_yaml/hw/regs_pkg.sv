@@ -61,11 +61,6 @@ parameter CTRL_BAUD_WIDTH = 2;
 parameter CTRL_BAUD_LSB = 0;
 parameter CTRL_BAUD_MASK = 32'h3;
 parameter CTRL_BAUD_RESET = 2'h0;
-typedef enum {
-    CTRL_BAUD_B9600 = 2'h0, //9600 baud
-    CTRL_BAUD_B38400 = 2'h1, //38400 baud
-    CTRL_BAUD_B115200 = 2'h2 //115200 baud
-} ctrl_baud_t;
 
 // CTRL.TXEN
 parameter CTRL_TXEN_WIDTH = 1;

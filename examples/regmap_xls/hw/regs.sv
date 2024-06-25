@@ -47,10 +47,10 @@ module regs #(
     // LPMODE.EN
     output  lpmode_en_out,
 
-    // INSTAT.TX
-    input instat_tx_set,
-    // INSTAT.RX
-    input instat_rx_set,
+    // INTSTAT.TX
+    input intstat_tx_set,
+    // INTSTAT.RX
+    input intstat_rx_set,
 
     // ID.UID
 
@@ -562,46 +562,46 @@ end
 
 //------------------------------------------------------------------------------
 // Register implementation:
-// [0x20] - INSTAT - Interrupt status register
+// [0x20] - INTSTAT - Interrupt status register
 //------------------------------------------------------------------------------
-wire [31:0] instat_rdata;
-assign instat_rdata[31:2] = 30'h0;
+wire [31:0] intstat_rdata;
+assign intstat_rdata[31:2] = 30'h0;
 
-wire instat_wen;
-assign instat_wen = wen && (waddr == 16'h20);
+wire intstat_wen;
+assign intstat_wen = wen && (waddr == 16'h20);
 
-wire instat_ren;
-assign instat_ren = ren && (raddr == 16'h20);
-reg instat_ren_ff;
+wire intstat_ren;
+assign intstat_ren = ren && (raddr == 16'h20);
+reg intstat_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
-        instat_ren_ff <= 1'b0;
+        intstat_ren_ff <= 1'b0;
     end else begin
-        instat_ren_ff <= instat_ren;
+        intstat_ren_ff <= intstat_ren;
     end
 end
 //---------------------
 // Bit field:
-// INSTAT[0] - TX - Transmitter interrupt flag. Write 1 to clear.
+// INTSTAT[0] - TX - Transmitter interrupt flag. Write 1 to clear.
 // access: rw1c, hardware: s
 //---------------------
-reg  instat_tx_ff;
+reg  intstat_tx_ff;
 
-assign instat_rdata[0] = instat_tx_ff;
+assign intstat_rdata[0] = intstat_tx_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        instat_tx_ff <= 1'b0;
+        intstat_tx_ff <= 1'b0;
     end else  begin
-        if (instat_tx_set) begin
-            instat_tx_ff <= 1'b1;
-        end else     if (instat_wen) begin
+        if (intstat_tx_set) begin
+            intstat_tx_ff <= 1'b1;
+        end else     if (intstat_wen) begin
             if (wstrb[0] && wdata[0]) begin
-                instat_tx_ff <= 1'b0;
+                intstat_tx_ff <= 1'b0;
             end
         end else begin
-            instat_tx_ff <= instat_tx_ff;
+            intstat_tx_ff <= intstat_tx_ff;
         end
     end
 end
@@ -609,26 +609,26 @@ end
 
 //---------------------
 // Bit field:
-// INSTAT[1] - RX - Receiver interrupt. Write 1 to clear.
+// INTSTAT[1] - RX - Receiver interrupt. Write 1 to clear.
 // access: rw1c, hardware: s
 //---------------------
-reg  instat_rx_ff;
+reg  intstat_rx_ff;
 
-assign instat_rdata[1] = instat_rx_ff;
+assign intstat_rdata[1] = intstat_rx_ff;
 
 
 always @(posedge clk) begin
     if (rst) begin
-        instat_rx_ff <= 1'b0;
+        intstat_rx_ff <= 1'b0;
     end else  begin
-        if (instat_rx_set) begin
-            instat_rx_ff <= 1'b1;
-        end else     if (instat_wen) begin
+        if (intstat_rx_set) begin
+            intstat_rx_ff <= 1'b1;
+        end else     if (intstat_wen) begin
             if (wstrb[0] && wdata[1]) begin
-                instat_rx_ff <= 1'b0;
+                intstat_rx_ff <= 1'b0;
             end
         end else begin
-            instat_rx_ff <= instat_rx_ff;
+            intstat_rx_ff <= intstat_rx_ff;
         end
     end
 end
@@ -699,7 +699,7 @@ always @(posedge clk) begin
             16'hc: rdata_ff <= stat_rdata;
             16'h10: rdata_ff <= ctrl_rdata;
             16'h14: rdata_ff <= lpmode_rdata;
-            16'h20: rdata_ff <= instat_rdata;
+            16'h20: rdata_ff <= intstat_rdata;
             16'h40: rdata_ff <= id_rdata;
             default: rdata_ff <= 32'h0;
         endcase

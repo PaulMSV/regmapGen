@@ -156,9 +156,9 @@
             </field>
           </fields>
         </register>
-        <!-- INSTAT -->
+        <!-- INTSTAT -->
         <register>
-          <name>INSTAT</name>
+          <name>INTSTAT</name>
           <description>Interrupt status register</description>
           <addressOffset>0x0020</addressOffset>
           <resetValue>0x00000000</resetValue>

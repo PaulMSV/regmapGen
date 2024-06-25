@@ -147,35 +147,35 @@ class _RegLpmode:
         self._rmap._if.write(self._rmap.LPMODE_ADDR, rdata)
 
 
-class _RegInstat:
+class _RegIntstat:
     def __init__(self, rmap):
         self._rmap = rmap
 
     @property
     def tx(self):
         """Transmitter interrupt flag. Write 1 to clear."""
-        rdata = self._rmap._if.read(self._rmap.INSTAT_ADDR)
-        return (rdata >> self._rmap.INSTAT_TX_POS) & self._rmap.INSTAT_TX_MSK
+        rdata = self._rmap._if.read(self._rmap.INTSTAT_ADDR)
+        return (rdata >> self._rmap.INTSTAT_TX_POS) & self._rmap.INTSTAT_TX_MSK
 
     @tx.setter
     def tx(self, val):
-        rdata = self._rmap._if.read(self._rmap.INSTAT_ADDR)
-        rdata = rdata & (~(self._rmap.INSTAT_TX_MSK << self._rmap.INSTAT_TX_POS))
-        rdata = rdata | (val << self._rmap.INSTAT_TX_POS)
-        self._rmap._if.write(self._rmap.INSTAT_ADDR, rdata)
+        rdata = self._rmap._if.read(self._rmap.INTSTAT_ADDR)
+        rdata = rdata & (~(self._rmap.INTSTAT_TX_MSK << self._rmap.INTSTAT_TX_POS))
+        rdata = rdata | (val << self._rmap.INTSTAT_TX_POS)
+        self._rmap._if.write(self._rmap.INTSTAT_ADDR, rdata)
 
     @property
     def rx(self):
         """Receiver interrupt. Write 1 to clear."""
-        rdata = self._rmap._if.read(self._rmap.INSTAT_ADDR)
-        return (rdata >> self._rmap.INSTAT_RX_POS) & self._rmap.INSTAT_RX_MSK
+        rdata = self._rmap._if.read(self._rmap.INTSTAT_ADDR)
+        return (rdata >> self._rmap.INTSTAT_RX_POS) & self._rmap.INTSTAT_RX_MSK
 
     @rx.setter
     def rx(self, val):
-        rdata = self._rmap._if.read(self._rmap.INSTAT_ADDR)
-        rdata = rdata & (~(self._rmap.INSTAT_RX_MSK << self._rmap.INSTAT_RX_POS))
-        rdata = rdata | (val << self._rmap.INSTAT_RX_POS)
-        self._rmap._if.write(self._rmap.INSTAT_ADDR, rdata)
+        rdata = self._rmap._if.read(self._rmap.INTSTAT_ADDR)
+        rdata = rdata & (~(self._rmap.INTSTAT_RX_MSK << self._rmap.INTSTAT_RX_POS))
+        rdata = rdata | (val << self._rmap.INTSTAT_RX_POS)
+        self._rmap._if.write(self._rmap.INTSTAT_ADDR, rdata)
 
 
 class _RegId:
@@ -228,12 +228,12 @@ class RegMap:
     LPMODE_EN_POS = 31
     LPMODE_EN_MSK = 0x1
 
-    # INSTAT - Interrupt status register
-    INSTAT_ADDR = 0x0020
-    INSTAT_TX_POS = 0
-    INSTAT_TX_MSK = 0x1
-    INSTAT_RX_POS = 1
-    INSTAT_RX_MSK = 0x1
+    # INTSTAT - Interrupt status register
+    INTSTAT_ADDR = 0x0020
+    INTSTAT_TX_POS = 0
+    INTSTAT_TX_MSK = 0x1
+    INTSTAT_RX_POS = 1
+    INTSTAT_RX_MSK = 0x1
 
     # ID - IP-core ID register
     ID_ADDR = 0x0040
@@ -292,17 +292,17 @@ class RegMap:
         return _RegLpmode(self)
 
     @property
-    def instat(self):
+    def intstat(self):
         """Interrupt status register"""
-        return self._if.read(self.INSTAT_ADDR)
+        return self._if.read(self.INTSTAT_ADDR)
 
-    @instat.setter
-    def instat(self, val):
-        self._if.write(self.INSTAT_ADDR, val)
+    @intstat.setter
+    def intstat(self, val):
+        self._if.write(self.INTSTAT_ADDR, val)
 
     @property
-    def instat_bf(self):
-        return _RegInstat(self)
+    def intstat_bf(self):
+        return _RegIntstat(self)
 
     @property
     def id(self):

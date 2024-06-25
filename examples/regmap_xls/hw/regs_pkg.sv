@@ -98,21 +98,21 @@ parameter LPMODE_EN_MASK = 32'h80000000;
 parameter LPMODE_EN_RESET = 1'h0;
 
 
-// INSTAT
-parameter INSTAT_ADDR = 16'h20;
-parameter INSTAT_RESET = 32'h0;
+// INTSTAT
+parameter INTSTAT_ADDR = 16'h20;
+parameter INTSTAT_RESET = 32'h0;
 
-// INSTAT.TX
-parameter INSTAT_TX_WIDTH = 1;
-parameter INSTAT_TX_LSB = 0;
-parameter INSTAT_TX_MASK = 32'h1;
-parameter INSTAT_TX_RESET = 1'h0;
+// INTSTAT.TX
+parameter INTSTAT_TX_WIDTH = 1;
+parameter INTSTAT_TX_LSB = 0;
+parameter INTSTAT_TX_MASK = 32'h1;
+parameter INTSTAT_TX_RESET = 1'h0;
 
-// INSTAT.RX
-parameter INSTAT_RX_WIDTH = 1;
-parameter INSTAT_RX_LSB = 1;
-parameter INSTAT_RX_MASK = 32'h2;
-parameter INSTAT_RX_RESET = 1'h0;
+// INTSTAT.RX
+parameter INTSTAT_RX_WIDTH = 1;
+parameter INTSTAT_RX_LSB = 1;
+parameter INTSTAT_RX_MASK = 32'h2;
+parameter INTSTAT_RX_RESET = 1'h0;
 
 
 // ID

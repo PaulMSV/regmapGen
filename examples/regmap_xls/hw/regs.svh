@@ -99,21 +99,21 @@
 `define LPMODE_EN_RESET 1'h0
 
 
-// INSTAT - Interrupt status register
-`define INSTAT_ADDR 16'h20
-`define INSTAT_RESET 32'h0
+// INTSTAT - Interrupt status register
+`define INTSTAT_ADDR 16'h20
+`define INTSTAT_RESET 32'h0
 
-// INSTAT.TX - Transmitter interrupt flag. Write 1 to clear.
-`define INSTAT_TX_WIDTH 1
-`define INSTAT_TX_LSB 0
-`define INSTAT_TX_MASK 32'h20
-`define INSTAT_TX_RESET 1'h0
+// INTSTAT.TX - Transmitter interrupt flag. Write 1 to clear.
+`define INTSTAT_TX_WIDTH 1
+`define INTSTAT_TX_LSB 0
+`define INTSTAT_TX_MASK 32'h20
+`define INTSTAT_TX_RESET 1'h0
 
-// INSTAT.RX - Receiver interrupt. Write 1 to clear.
-`define INSTAT_RX_WIDTH 1
-`define INSTAT_RX_LSB 1
-`define INSTAT_RX_MASK 32'h20
-`define INSTAT_RX_RESET 1'h0
+// INTSTAT.RX - Receiver interrupt. Write 1 to clear.
+`define INTSTAT_RX_WIDTH 1
+`define INTSTAT_RX_LSB 1
+`define INTSTAT_RX_MASK 32'h20
+`define INTSTAT_RX_RESET 1'h0
 
 
 // ID - IP-core ID register

@@ -103,23 +103,6 @@
               <bitRange>[1:0]</bitRange>
               <access>read-write</access>
 
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>B9600</name>
-                  <description>9600 baud</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>B38400</name>
-                  <description>38400 baud</description>
-                  <value>1</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>B115200</name>
-                  <description>115200 baud</description>
-                  <value>2</value>
-                </enumeratedValue>
-              </enumeratedValues>
             </field>
             <!-- TXEN -->
             <field>

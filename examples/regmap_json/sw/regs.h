@@ -95,11 +95,6 @@ typedef struct {
 #define CTRL_BAUD_LSB 0
 #define CTRL_BAUD_MASK 0x3
 #define CTRL_BAUD_RESET 0x0
-typedef enum {
-    CTRL_BAUD_B9600 = 0x0, //9600 baud
-    CTRL_BAUD_B38400 = 0x1, //38400 baud
-    CTRL_BAUD_B115200 = 0x2, //115200 baud
-} ctrl_baud_t;
 
 // CTRL.TXEN - Transmitter enable. Can be disabled by hardware on error.
 #define CTRL_TXEN_WIDTH 1

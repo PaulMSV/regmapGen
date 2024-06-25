@@ -89,23 +89,6 @@
             <spirit:bitOffset>0</spirit:bitOffset>
             <spirit:bitWidth>2</spirit:bitWidth>
             <spirit:access>read-write</spirit:access>
-            <spirit:enumeratedValues>
-              <spirit:enumeratedValue>
-                <spirit:name>B9600</spirit:name>
-                <spirit:description>9600 baud</spirit:description>
-                <spirit:value>0</spirit:value>
-              </spirit:enumeratedValue>
-              <spirit:enumeratedValue>
-                <spirit:name>B38400</spirit:name>
-                <spirit:description>38400 baud</spirit:description>
-                <spirit:value>1</spirit:value>
-              </spirit:enumeratedValue>
-              <spirit:enumeratedValue>
-                <spirit:name>B115200</spirit:name>
-                <spirit:description>115200 baud</spirit:description>
-                <spirit:value>2</spirit:value>
-              </spirit:enumeratedValue>
-            </spirit:enumeratedValues>
           </spirit:field>
           <spirit:field>
             <spirit:name>TXEN</spirit:name>

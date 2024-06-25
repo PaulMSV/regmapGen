@@ -26,7 +26,7 @@
 | [STAT](#stat)            | 0x000c     | Status register |
 | [CTRL](#ctrl)            | 0x0010     | Control register |
 | [LPMODE](#lpmode)        | 0x0014     | Low power mode control |
-| [INSTAT](#instat)        | 0x0020     | Interrupt status register |
+| [INTSTAT](#intstat)      | 0x0020     | Interrupt status register |
 | [ID](#id)                | 0x0040     | IP-core ID register |
 
 
@@ -144,7 +144,7 @@ Low power mode control
 
 \newpage
 
-### **INSTAT**
+### **INTSTAT**
 
 **Описание**
 
@@ -158,14 +158,14 @@ Interrupt status register
 
 0x00000000
 
-![](md_img/instat.svg)
+![](md_img/intstat.svg)
 
 | Поле             | Биты   | Тип             | Значение   | Описание    |
 | :---             | :---   | :---            | :---       | :---        |
 | -                | 31:2   | -               | 0x0000000  | Reserved |
 | RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear. |
 | TX               | 0      | rw1c            | 0x0        | Transmitter interrupt flag. Write 1 to clear. |
-: *Таблица 5* - Описание полей регистра INSTAT
+: *Таблица 5* - Описание полей регистра INTSTAT
 
 
 \newpage

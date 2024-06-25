@@ -9,9 +9,9 @@
 // -------------------------------------------------------------------------------------------------
 class uvm_reg_DATA extends uvm_reg;
 
-    rand uvm_reg_field PERR;
-    rand uvm_reg_field FERR;
     rand uvm_reg_field FIFO;
+    rand uvm_reg_field FERR;
+    rand uvm_reg_field PERR;
 
 
     function new(string name="uvm_reg_DATA");
@@ -19,13 +19,13 @@ class uvm_reg_DATA extends uvm_reg;
     endfunction
 
     virtual function void build();
-        PERR = new("PERR");
-        FERR = new("FERR");
         FIFO = new("FIFO");
+        FERR = new("FERR");
+        PERR = new("PERR");
         // REG.configure(parent, size, lsb_pos, access, volatile, reset, has_reset, is_rand, individually_accessible);
-        PERR.configure(this, 1, 17, "RS", 0, 'h0, 1, 0, 0);
-        FERR.configure(this, 1, 16, "RS", 0, 'h0, 1, 0, 0);
         FIFO.configure(this, 8, 0, "RW", 0, 'h00, 1, 0, 0);
+        FERR.configure(this, 1, 16, "RS", 0, 'h0, 1, 0, 0);
+        PERR.configure(this, 1, 17, "RS", 0, 'h0, 1, 0, 0);
     endfunction
 
 endclass : uvm_reg_DATA
@@ -35,9 +35,9 @@ endclass : uvm_reg_DATA
 // -------------------------------------------------------------------------------------------------
 class uvm_reg_STAT extends uvm_reg;
 
-    rand uvm_reg_field TXF;
-    rand uvm_reg_field RXE;
     rand uvm_reg_field BUSY;
+    rand uvm_reg_field RXE;
+    rand uvm_reg_field TXF;
 
 
     function new(string name="uvm_reg_STAT");
@@ -45,13 +45,13 @@ class uvm_reg_STAT extends uvm_reg;
     endfunction
 
     virtual function void build();
-        TXF = new("TXF");
-        RXE = new("RXE");
         BUSY = new("BUSY");
+        RXE = new("RXE");
+        TXF = new("TXF");
         // REG.configure(parent, size, lsb_pos, access, volatile, reset, has_reset, is_rand, individually_accessible);
-        TXF.configure(this, 1, 8, "RO", 0, 'h0, 1, 0, 0);
-        RXE.configure(this, 1, 4, "RO", 0, 'h0, 1, 0, 0);
         BUSY.configure(this, 1, 2, "RO", 0, 'h0, 1, 0, 0);
+        RXE.configure(this, 1, 4, "RO", 0, 'h0, 1, 0, 0);
+        TXF.configure(this, 1, 8, "RO", 0, 'h0, 1, 0, 0);
     endfunction
 
 endclass : uvm_reg_STAT
@@ -61,10 +61,10 @@ endclass : uvm_reg_STAT
 // -------------------------------------------------------------------------------------------------
 class uvm_reg_CTRL extends uvm_reg;
 
-    rand uvm_reg_field TXST;
-    rand uvm_reg_field RXEN;
-    rand uvm_reg_field TXEN;
     rand uvm_reg_field BAUD;
+    rand uvm_reg_field TXEN;
+    rand uvm_reg_field RXEN;
+    rand uvm_reg_field TXST;
 
 
     function new(string name="uvm_reg_CTRL");
@@ -72,15 +72,15 @@ class uvm_reg_CTRL extends uvm_reg;
     endfunction
 
     virtual function void build();
-        TXST = new("TXST");
-        RXEN = new("RXEN");
-        TXEN = new("TXEN");
         BAUD = new("BAUD");
+        TXEN = new("TXEN");
+        RXEN = new("RXEN");
+        TXST = new("TXST");
         // REG.configure(parent, size, lsb_pos, access, volatile, reset, has_reset, is_rand, individually_accessible);
-        TXST.configure(this, 1, 6, "WOC", 0, 'h0, 1, 0, 0);
-        RXEN.configure(this, 1, 5, "RW", 0, 'h0, 1, 0, 0);
-        TXEN.configure(this, 1, 4, "RW", 0, 'h0, 1, 0, 0);
         BAUD.configure(this, 2, 0, "RW", 0, 'h0, 1, 0, 0);
+        TXEN.configure(this, 1, 4, "RW", 0, 'h0, 1, 0, 0);
+        RXEN.configure(this, 1, 5, "RW", 0, 'h0, 1, 0, 0);
+        TXST.configure(this, 1, 6, "WOC", 0, 'h0, 1, 0, 0);
     endfunction
 
 endclass : uvm_reg_CTRL
@@ -90,8 +90,8 @@ endclass : uvm_reg_CTRL
 // -------------------------------------------------------------------------------------------------
 class uvm_reg_LPMODE extends uvm_reg;
 
-    rand uvm_reg_field EN;
     rand uvm_reg_field DIV;
+    rand uvm_reg_field EN;
 
 
     function new(string name="uvm_reg_LPMODE");
@@ -99,37 +99,37 @@ class uvm_reg_LPMODE extends uvm_reg;
     endfunction
 
     virtual function void build();
-        EN = new("EN");
         DIV = new("DIV");
+        EN = new("EN");
         // REG.configure(parent, size, lsb_pos, access, volatile, reset, has_reset, is_rand, individually_accessible);
-        EN.configure(this, 1, 31, "RW", 0, 'h0, 1, 0, 0);
         DIV.configure(this, 8, 0, "RW", 0, 'h0, 1, 0, 0);
+        EN.configure(this, 1, 31, "RW", 0, 'h0, 1, 0, 0);
     endfunction
 
 endclass : uvm_reg_LPMODE
 
 // -------------------------------------------------------------------------------------------------
-// Register INSTAT
+// Register INTSTAT
 // -------------------------------------------------------------------------------------------------
-class uvm_reg_INSTAT extends uvm_reg;
+class uvm_reg_INTSTAT extends uvm_reg;
 
-    rand uvm_reg_field RX;
     rand uvm_reg_field TX;
+    rand uvm_reg_field RX;
 
 
-    function new(string name="uvm_reg_INSTAT");
+    function new(string name="uvm_reg_INTSTAT");
         super.new(name, 32, UVM_NO_COVERAGE);
     endfunction
 
     virtual function void build();
-        RX = new("RX");
         TX = new("TX");
+        RX = new("RX");
         // REG.configure(parent, size, lsb_pos, access, volatile, reset, has_reset, is_rand, individually_accessible);
-        RX.configure(this, 1, 1, "W1C", 0, 'h0, 1, 0, 0);
         TX.configure(this, 1, 0, "W1C", 0, 'h0, 1, 0, 0);
+        RX.configure(this, 1, 1, "W1C", 0, 'h0, 1, 0, 0);
     endfunction
 
-endclass : uvm_reg_INSTAT
+endclass : uvm_reg_INTSTAT
 
 // -------------------------------------------------------------------------------------------------
 // Register ID
@@ -160,7 +160,7 @@ class uvm_blk_csr extends uvm_reg_block;
     rand uvm_reg_STAT STAT;
     rand uvm_reg_CTRL CTRL;
     rand uvm_reg_LPMODE LPMODE;
-    rand uvm_reg_INSTAT INSTAT;
+    rand uvm_reg_INTSTAT INTSTAT;
 
 
     function new(string name="uvm_blk_csr");
@@ -174,44 +174,44 @@ class uvm_blk_csr extends uvm_reg_block;
         DATA.configure(this, null, "");
         DATA.build();
         DATA.add_hdl_path('{
-        '{"tb_dut.logic.rmap.perr", 17, 1},
+        '{"tb_dut.logic.rmap.fifo", 0, 8},
         '{"tb_dut.logic.rmap.ferr", 16, 1},
-        '{"tb_dut.logic.rmap.fifo", 0, 8}
+        '{"tb_dut.logic.rmap.perr", 17, 1}
         });
     
         STAT = new("STAT");
         STAT.configure(this, null, "");
         STAT.build();
         STAT.add_hdl_path('{
-        '{"tb_dut.logic.rmap.txf", 8, 1},
+        '{"tb_dut.logic.rmap.busy", 2, 1},
         '{"tb_dut.logic.rmap.rxe", 4, 1},
-        '{"tb_dut.logic.rmap.busy", 2, 1}
+        '{"tb_dut.logic.rmap.txf", 8, 1}
         });
     
         CTRL = new("CTRL");
         CTRL.configure(this, null, "");
         CTRL.build();
         CTRL.add_hdl_path('{
-        '{"tb_dut.logic.rmap.txst", 6, 1},
-        '{"tb_dut.logic.rmap.rxen", 5, 1},
+        '{"tb_dut.logic.rmap.baud", 0, 2},
         '{"tb_dut.logic.rmap.txen", 4, 1},
-        '{"tb_dut.logic.rmap.baud", 0, 2}
+        '{"tb_dut.logic.rmap.rxen", 5, 1},
+        '{"tb_dut.logic.rmap.txst", 6, 1}
         });
     
         LPMODE = new("LPMODE");
         LPMODE.configure(this, null, "");
         LPMODE.build();
         LPMODE.add_hdl_path('{
-        '{"tb_dut.logic.rmap.en", 31, 1},
-        '{"tb_dut.logic.rmap.div", 0, 8}
+        '{"tb_dut.logic.rmap.div", 0, 8},
+        '{"tb_dut.logic.rmap.en", 31, 1}
         });
     
-        INSTAT = new("INSTAT");
-        INSTAT.configure(this, null, "");
-        INSTAT.build();
-        INSTAT.add_hdl_path('{
-        '{"tb_dut.logic.rmap.rx", 1, 1},
-        '{"tb_dut.logic.rmap.tx", 0, 1}
+        INTSTAT = new("INTSTAT");
+        INTSTAT.configure(this, null, "");
+        INTSTAT.build();
+        INTSTAT.add_hdl_path('{
+        '{"tb_dut.logic.rmap.tx", 0, 1},
+        '{"tb_dut.logic.rmap.rx", 1, 1}
         });
 
         // Create map
@@ -220,7 +220,7 @@ class uvm_blk_csr extends uvm_reg_block;
         default_map.add_reg(STAT, 32'h000C,  "RW");
         default_map.add_reg(CTRL, 32'h0010,  "RW");
         default_map.add_reg(LPMODE, 32'h0014,  "RW");
-        default_map.add_reg(INSTAT, 32'h0020,  "RW");
+        default_map.add_reg(INTSTAT, 32'h0020,  "RW");
     endfunction
 
 endclass : uvm_blk_csr

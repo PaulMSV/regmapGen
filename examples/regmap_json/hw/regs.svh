@@ -62,9 +62,6 @@
 `define CTRL_BAUD_LSB 0
 `define CTRL_BAUD_MASK 32'h10
 `define CTRL_BAUD_RESET 2'h0
-`define CTRL_BAUD_B9600 2'h0 //9600 baud
-`define CTRL_BAUD_B38400 2'h1 //38400 baud
-`define CTRL_BAUD_B115200 2'h2 //115200 baud
 
 // CTRL.TXEN - Transmitter enable. Can be disabled by hardware on error.
 `define CTRL_TXEN_WIDTH 1

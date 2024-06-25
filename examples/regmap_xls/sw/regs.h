@@ -135,26 +135,26 @@ typedef struct {
 #define LPMODE_EN_MASK 0x80000000
 #define LPMODE_EN_RESET 0x0
 
-// INSTAT - Interrupt status register
-#define INSTAT_ADDR 0x20
-#define INSTAT_RESET 0x0
+// INTSTAT - Interrupt status register
+#define INTSTAT_ADDR 0x20
+#define INTSTAT_RESET 0x0
 typedef struct {
     uint32_t TX : 1; // Transmitter interrupt flag. Write 1 to clear.
     uint32_t RX : 1; // Receiver interrupt. Write 1 to clear.
     uint32_t : 30; // reserved
-} instat_t;
+} intstat_t;
 
-// INSTAT.TX - Transmitter interrupt flag. Write 1 to clear.
-#define INSTAT_TX_WIDTH 1
-#define INSTAT_TX_LSB 0
-#define INSTAT_TX_MASK 0x1
-#define INSTAT_TX_RESET 0x0
+// INTSTAT.TX - Transmitter interrupt flag. Write 1 to clear.
+#define INTSTAT_TX_WIDTH 1
+#define INTSTAT_TX_LSB 0
+#define INTSTAT_TX_MASK 0x1
+#define INTSTAT_TX_RESET 0x0
 
-// INSTAT.RX - Receiver interrupt. Write 1 to clear.
-#define INSTAT_RX_WIDTH 1
-#define INSTAT_RX_LSB 1
-#define INSTAT_RX_MASK 0x2
-#define INSTAT_RX_RESET 0x0
+// INTSTAT.RX - Receiver interrupt. Write 1 to clear.
+#define INTSTAT_RX_WIDTH 1
+#define INTSTAT_RX_LSB 1
+#define INTSTAT_RX_MASK 0x2
+#define INTSTAT_RX_RESET 0x0
 
 // ID - IP-core ID register
 #define ID_ADDR 0x40
@@ -192,8 +192,8 @@ typedef struct {
     };
     __IO uint32_t RESERVED2[2];
     union {
-        __IO uint32_t INSTAT; // Interrupt status register
-        __IO instat_t INSTAT_bf; // Bit access for INSTAT register
+        __IO uint32_t INTSTAT; // Interrupt status register
+        __IO intstat_t INTSTAT_bf; // Bit access for INTSTAT register
     };
     __IO uint32_t RESERVED3[7];
     union {

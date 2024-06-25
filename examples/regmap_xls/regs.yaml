@@ -3,13 +3,13 @@ regmap:
   description: Data register
   address: 4
   bitfields:
-  - name: PERR
-    description: Parity error flag. Read to clear.
+  - name: FIFO
+    description: Write to push value to TX FIFO, read to get data from RX FIFO
     reset: 0
-    width: 1
-    lsb: 17
-    access: rolh
-    hardware: i
+    width: 8
+    lsb: 0
+    access: rw
+    hardware: q
     enums: []
   - name: FERR
     description: Frame error flag. Read to clear.
@@ -19,25 +19,25 @@ regmap:
     access: rolh
     hardware: i
     enums: []
-  - name: FIFO
-    description: Write to push value to TX FIFO, read to get data from RX FIFO
+  - name: PERR
+    description: Parity error flag. Read to clear.
     reset: 0
-    width: 8
-    lsb: 0
-    access: rw
-    hardware: q
+    width: 1
+    lsb: 17
+    access: rolh
+    hardware: i
     enums: []
 - name: STAT
   description: Status register
   address: 12
   bitfields:
-  - name: TXF
-    description: TX FIFO is full
+  - name: BUSY
+    description: Transciever is busy
     reset: 0
     width: 1
-    lsb: 8
+    lsb: 2
     access: ro
-    hardware: i
+    hardware: ie
     enums: []
   - name: RXE
     description: RX FIFO is empty
@@ -47,33 +47,25 @@ regmap:
     access: ro
     hardware: i
     enums: []
-  - name: BUSY
-    description: Transciever is busy
+  - name: TXF
+    description: TX FIFO is full
     reset: 0
     width: 1
-    lsb: 2
+    lsb: 8
     access: ro
-    hardware: ie
+    hardware: i
     enums: []
 - name: CTRL
   description: Control register
   address: 16
   bitfields:
-  - name: TXST
-    description: Force transmission start
+  - name: BAUD
+    description: Baudrate value
     reset: 0
-    width: 1
-    lsb: 6
-    access: wosc
-    hardware: o
-    enums: []
-  - name: RXEN
-    description: Receiver enable. Can be disabled by hardware on error.
-    reset: 0
-    width: 1
-    lsb: 5
+    width: 2
+    lsb: 0
     access: rw
-    hardware: oie
+    hardware: o
     enums: []
   - name: TXEN
     description: Transmitter enable. Can be disabled by hardware on error.
@@ -83,26 +75,26 @@ regmap:
     access: rw
     hardware: oie
     enums: []
-  - name: BAUD
-    description: Baudrate value
+  - name: RXEN
+    description: Receiver enable. Can be disabled by hardware on error.
     reset: 0
-    width: 2
-    lsb: 0
+    width: 1
+    lsb: 5
     access: rw
+    hardware: oie
+    enums: []
+  - name: TXST
+    description: Force transmission start
+    reset: 0
+    width: 1
+    lsb: 6
+    access: wosc
     hardware: o
     enums: []
 - name: LPMODE
   description: Low power mode control
   address: 20
   bitfields:
-  - name: EN
-    description: Low power mode enable
-    reset: 0
-    width: 1
-    lsb: 31
-    access: rw
-    hardware: o
-    enums: []
   - name: DIV
     description: Clock divider in low power mode
     reset: 0
@@ -111,23 +103,31 @@ regmap:
     access: rw
     hardware: o
     enums: []
-- name: INSTAT
+  - name: EN
+    description: Low power mode enable
+    reset: 0
+    width: 1
+    lsb: 31
+    access: rw
+    hardware: o
+    enums: []
+- name: INTSTAT
   description: Interrupt status register
   address: 32
   bitfields:
-  - name: RX
-    description: Receiver interrupt. Write 1 to clear.
-    reset: 0
-    width: 1
-    lsb: 1
-    access: rw1c
-    hardware: s
-    enums: []
   - name: TX
     description: Transmitter interrupt flag. Write 1 to clear.
     reset: 0
     width: 1
     lsb: 0
+    access: rw1c
+    hardware: s
+    enums: []
+  - name: RX
+    description: Receiver interrupt. Write 1 to clear.
+    reset: 0
+    width: 1
+    lsb: 1
     access: rw1c
     hardware: s
     enums: []

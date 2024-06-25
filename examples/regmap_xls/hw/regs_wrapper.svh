@@ -43,10 +43,10 @@ regs regs_wrapper(
     // LPMODE.EN
     .lpmode_en_out(lpmode_en_out),
 
-    // INSTAT.TX
-    .instat_tx_set(instat_tx_set),
-    // INSTAT.RX
-    .instat_rx_set(instat_rx_set),
+    // INTSTAT.TX
+    .intstat_tx_set(intstat_tx_set),
+    // INTSTAT.RX
+    .intstat_rx_set(intstat_rx_set),
 
     // ID.UID
 

@@ -113,14 +113,6 @@ Control register
 | TXEN             | 4      | rw              | 0x0        | Transmitter enable. Can be disabled by hardware on error. |
 | -                | 3:2    | -               | 0x0        | Reserved |
 | BAUD             | 1:0    | rw              | 0x0        | Baudrate value |
-
-Enumerated значения для CTRL.BAUD.
-
-| Enum             | Значение | Описание    |
-| :---             | :---     | :---        |
-| B9600            | 0x0    | 9600 baud |
-| B38400           | 0x1    | 38400 baud |
-| B115200          | 0x2    | 115200 baud |
 : *Таблица 3* - Описание полей регистра CTRL
 
 

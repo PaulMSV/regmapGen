@@ -58,7 +58,7 @@ Base address: 0x00000000
    * - `LPMODE <#lpmode>`__
      - 0x0014
      - Low power mode control
-   * - `INSTAT <#instat>`__
+   * - `INTSTAT <#intstat>`__
      - 0x0020
      - Interrupt status register
    * - `ID <#id>`__
@@ -290,8 +290,8 @@ Low power mode control
 Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 
-INSTAT
-------
+INTSTAT
+-------
 
 Описание
 
@@ -305,8 +305,8 @@ Interrupt status register
 
 0x00000000
 
-.. image:: rst_img/instat.svg
-   :alt: instat
+.. image:: rst_img/intstat.svg
+   :alt: intstat
 
 .. list-table::
    :header-rows: 1

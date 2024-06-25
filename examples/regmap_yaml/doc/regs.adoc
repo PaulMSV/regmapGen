@@ -123,16 +123,6 @@ image::adoc_img/ctrl.svg[]
 | BAUD             | 1:0    | rw              | 0x0        | Baudrate value
 |==========================
 
-
-Enumerated значения для CTRL.BAUD.
-
-[#table-CTRL_BAUD_enums,cols="1,1,1", options="header"]
-|==========================
-| Enum | Биты | Описание
-| B9600            | 0x0    | 9600 baud
-| B38400           | 0x1    | 38400 baud
-| B115200          | 0x2    | 115200 baud
-|==========================
 : *Таблица 3* - Описание полей регистра CTRL
 
 

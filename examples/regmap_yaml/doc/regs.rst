@@ -241,26 +241,6 @@ Control register
      - 0x0
      - Baudrate value
 
-Enumerated значения для CTRL.BAUD
-.................................
-
-.. list-table::
-   :header-rows: 1
-   :widths: auto
-
-   * - Enum
-     - Значение
-     - Описание
-   * - B9600
-     - 0x0
-     - 9600 baud
-   * - B38400
-     - 0x1
-     - 38400 baud
-   * - B115200
-     - 0x2
-     - 115200 baud
-
 Назад к `Регистры и команды <#Регистры-и-команды>`__.
 
 

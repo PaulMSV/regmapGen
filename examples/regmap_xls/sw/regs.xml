@@ -136,7 +136,7 @@
           </spirit:field>
         </spirit:register>
         <spirit:register>
-          <spirit:name>INSTAT</spirit:name>
+          <spirit:name>INTSTAT</spirit:name>
           <spirit:description>Interrupt status register</spirit:description>
           <spirit:addressOffset>0x0020</spirit:addressOffset>
           <spirit:size>32</spirit:size>

@@ -30,7 +30,7 @@
 | <<STAT>>                 | 0x000c     | Status register
 | <<CTRL>>                 | 0x0010     | Control register
 | <<LPMODE>>               | 0x0014     | Low power mode control
-| <<INSTAT>>               | 0x0020     | Interrupt status register
+| <<INTSTAT>>              | 0x0020     | Interrupt status register
 | <<ID>>                   | 0x0040     | IP-core ID register
 |==========================
 
@@ -157,8 +157,8 @@ image::adoc_img/lpmode.svg[]
 
 \newpage
 
-[[INSTAT]]
-=== INSTAT
+[[INTSTAT]]
+=== INTSTAT
 
 **Описание**
 
@@ -172,16 +172,16 @@ Interrupt status register
 
 0x00000000
 
-image::adoc_img/instat.svg[]
+image::adoc_img/intstat.svg[]
 
-[#table-INSTAT,cols="1,1,1,1,1", options="header"]
+[#table-INTSTAT,cols="1,1,1,1,1", options="header"]
 |==========================
 | Поле | Биты | Тип | Значение | Описание
 | RX               | 1      | rw1c            | 0x0        | Receiver interrupt. Write 1 to clear.
 | TX               | 0      | rw1c            | 0x0        | Transmitter interrupt flag. Write 1 to clear.
 |==========================
 
-: *Таблица 5* - Описание полей регистра INSTAT
+: *Таблица 5* - Описание полей регистра INTSTAT
 
 
 \newpage
