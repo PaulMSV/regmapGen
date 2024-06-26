@@ -885,112 +885,6 @@ class Python(Generator, Jinja2):
         self.render_to_file(j2_template, j2_vars, self.path, Path(template_path).parent)
 
 
-class Xls2Yaml(Generator):
-    """Convert Excel table to YAML format.
-
-    :param rmap: Register map object
-    :type rmap: :class:regmapGen.RegisterMap
-    :param input_xls: Path to the input Excel file
-    :type input_xls: str
-    :param path: Path to the output YAML file
-    :type path: str
-    """
-
-    def __init__(self, rmap=None, path='regs.yaml', input_xls="regs.xlsx", **args):
-        super().__init__(rmap, **args)
-        self.path = path
-        self.input_xls = input_xls
-
-    def replace_nan_to_empty(self, value):
-        """Replace .NaN to empty field rows recursively."""
-        if isinstance(value, dict):
-            return {k: self.replace_nan_to_empty(v) for k, v in value.items()}
-        elif isinstance(value, list):
-            return [self.replace_nan_to_empty(v) for v in value]
-        elif isinstance(value, float) and np.isnan(value):
-            return ''
-        else:
-            return value
-
-    def preserve_multiline_strings(self, data):
-        """Turn multiline strings into PreservedScalarString objects recursively."""
-        if isinstance(data, dict):
-            return {k: self.preserve_multiline_strings(v) for k, v in data.items()}
-        elif isinstance(data, list):
-            return [self.preserve_multiline_strings(v) for v in data]
-        elif isinstance(data, str) and '\n' in data:
-            return pss(data)
-        else:
-            return data
-
-    def flatten_multiline_strings(self, data):
-        """Convert multiline strings into single line strings recursively."""
-        if isinstance(data, dict):
-            return {k: self.flatten_multiline_strings(v) for k, v in data.items()}
-        elif isinstance(data, list):
-            return [self.flatten_multiline_strings(v) for v in data]
-        elif isinstance(data, str) and '\n' in data:
-            return data.replace('\n', ' ')
-        else:
-            return data
-
-    def load_excel_data(self):
-        """Load data from the input Excel file using XLSParser."""
-        self.parser = XLSParser()
-        self.parser.get_sheet(self.input_xls)
-        self.root = self.parser.parse_data()
-
-    def process_excel_data(self):
-        """Process the loaded Excel data and convert it to YAML format."""
-        self.regmap = []
-
-        for block_name, block in self.root:
-            for reg_name, reg in block:
-                if any(keyword in reg_name.lower() for keyword in ["-", "reserved", "unused", "not_used"]):
-                    continue
-
-                current_register = {
-                    "name": reg.name,
-                    "description": reg.attrs.get('description', ''),
-                    "address": int(reg.attrs.get('offset', '0'), 16),
-                    "bitfields": []
-                }
-
-                for field_name, field in reg:
-                    if any(keyword in field_name.lower() for keyword in ["-", "reserved", "unused", "not_used"]):
-                        continue
-
-                    current_bitfield = {
-                        "name": field.name,
-                        "description": field.attrs.get('description', ''),
-                        "reset": int(field.attrs.get('reset', '0'), 16),
-                        "width": int(field.attrs.get('size', 1)),
-                        "lsb": field.attrs.get('lsb_pos', 0),
-                        "access": field.attrs.get('access', '').lower(),
-                        "hardware": field.attrs.get('hardware', None),
-                        "enums": []
-                    }
-
-                    current_register["bitfields"].append(current_bitfield)
-
-                self.regmap.append(current_register)
-
-    def write_to_yaml(self):
-        """Write the processed data to the output YAML file."""
-        yaml = YAML()
-        yaml.explicit_start = False
-        regmap_cleaned = self.flatten_multiline_strings(self.replace_nan_to_empty(self.regmap))
-        with open(self.path, "w", encoding="utf-8") as f:
-            yaml.dump({"regmap": regmap_cleaned}, f)
-        print("... yaml file from Excel table generated successfully!")
-
-    def generate(self):
-        """Generate YAML file from the Excel input."""
-        self.load_excel_data()
-        self.process_excel_data()
-        self.write_to_yaml()
-
-
 class Xls2Uvm(Generator, Jinja2):
     """Create UVM register model from Excel file with register map.
 
@@ -1022,7 +916,7 @@ class Xls2Uvm(Generator, Jinja2):
 
     def get_jinja_env(self, templates_path):
         j2_env = super().get_jinja_env(templates_path)
-        j2_env.filters['get_bit_reset'] = get_bit_reset
+        #j2_env.filters['get_bit_reset'] = get_bit_reset
         j2_env.filters['format_hex'] = format_hex
         return j2_env
 

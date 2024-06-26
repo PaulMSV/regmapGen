@@ -165,14 +165,6 @@ LbBridgeSystemVerilog
    :inherited-members:
    :show-inheritance:
 
-Xls2Yaml
-========
-.. autoclass:: regmapGen.generators.Xls2Yaml
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :show-inheritance:
-
 Xls2Uvm
 =======
 .. autoclass:: regmapGen.generators.Xls2Uvm
