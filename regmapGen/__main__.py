@@ -86,6 +86,9 @@ def generate_templates(format):
     targets.update(regmapGen.generators.Asciidoc(path="doc/regs.adoc", image_dir="adoc_img").make_target('asciidoc_doc'))
     targets.update(regmapGen.generators.Rst(path="doc/regs.rst", image_dir="rst_img").make_target('rst_doc'))
     targets.update(regmapGen.generators.Docx(path="doc/regs.docx").make_target('docx_doc'))
+    if format == 'xls':
+        targets.update(regmapGen.generators.Xls2Uvm(path="uvm/uvm_regmodel.sv").make_target('xls_uvm'))
+        targets.update(regmapGen.generators.Xls2Html(path="doc/regs.html").make_target('xls_html'))
 
     # create templates
     if format == 'txt':
@@ -104,14 +107,8 @@ def generate_templates(format):
         regmap_path = 'regs.txt'
     elif format == 'xls':
         gen = regmapGen.generators.Xls(rmap)
-        regmap_path = 'regs.yaml'
-        targets.update(regmapGen.generators.Xls2Yaml(path=regmap_path).make_target('xls_yaml'))
-        targets.update(regmapGen.generators.Xls2Uvm(path="uvm/uvm_regmodel.sv").make_target('xls_uvm'))
-        targets.update(regmapGen.generators.Xls2Html(path="doc/regs.html").make_target('xls_html'))
-    if format == 'xls':
-        print("... generate register map file 'regs.xlsx'")
-    else:
-        print("... generate register map file '%s'" % regmap_path)
+        regmap_path = 'regs.xlsx'
+    print("... generate register map file '%s'" % regmap_path)
     gen.generate()
     # configuration file template
     config_path = 'config'

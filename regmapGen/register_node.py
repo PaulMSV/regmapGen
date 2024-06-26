@@ -7,9 +7,9 @@
 
 class RegisterNode(object):
     def __init__(self, name='root'):
-        object.__setattr__(self, 'name', name)
-        object.__setattr__(self, 'items', {})
-        object.__setattr__(self, 'attrs', {})
+        self.name = name
+        self.items = {}
+        self.attrs = {}
         
     def __iter__(self):
         return iter(self.items.items())
@@ -18,23 +18,31 @@ class RegisterNode(object):
         self.items[key] = value
         
     def __getitem__(self, key):
-        return self.item[key]
+        return self.items[key]
     
     def __setattr__(self, key, value):
-        self.attrs[key] = value
+        if key in ['name', 'items', 'attrs']:
+            super().__setattr__(key, value)
+        else:
+            self.attrs[key] = value
     
     def __getattr__(self, key):
-        return self.attrs[key]
+        if key in self.attrs:
+            return self.attrs[key]
+        else:
+            raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{key}'")
        
     def __delattr__(self, key):
-        del self.attrs[key]
+        if key in self.attrs:
+            del self.attrs[key]
+        else:
+            super().__delattr__(key)
 
     def __delitem__(self, key):
         del self.items[key]
 
-def walk(node, depth=0):
-    for key, value in node:
-        walk(value, depth+2)
-        print('  '*depth+key)
-        for k in value.attrs.keys():
-            print("%s%s: %s" %('  '*depth, k, value.attrs[k]))
+    def keys(self):
+        return self.items.keys()
+
+    def iter_items(self):
+        return self.items.items()

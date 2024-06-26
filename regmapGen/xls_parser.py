@@ -6,7 +6,7 @@
 
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
-from .register_node import RegisterNode, walk
+from .register_node import RegisterNode
 
 
 class XLSParser(object):
@@ -120,7 +120,6 @@ prefix '0x' supported" %(data))
         
 
     def parse_data(self):
-        root = RegisterNode()
         self.get_header()
         
         switch = {
@@ -142,20 +141,22 @@ prefix '0x' supported" %(data))
             self.header['hardware']: lambda cell: self.set_attr(field, 'hardware', cell.value),
         }
 
+        rmap = {}
+
         for row in self.sheet[self.start_row+1:self.sheet.max_row]:
             for cell in row:
                 if isinstance(cell.column, int):
                     column = get_column_letter(cell.column)
                 else:
                     column = cell.column
-                if cell.value == None:
+                if cell.value is None:
                     continue
                 try:
                     switch[column](cell)
-                except:
+                except KeyError:
                     if column == self.header['block']:
                         block = RegisterNode(cell.value)
-                        root[cell.value] = block
+                        rmap[cell.value] = block
                         continue
                     if column == self.header['register']:
                         reg = RegisterNode(cell.value)
@@ -169,7 +170,8 @@ prefix '0x' supported" %(data))
                         field.index = reg.field_num - 1
                         reg[cell.value] = field
                         continue
-        return root
+
+        return rmap
 
 
     def build_res_field(self, name, lsb_pos, size):
@@ -186,23 +188,24 @@ prefix '0x' supported" %(data))
         return field
 
 
-    def fill_reserved(self, root):
-        for key, block in root:
-            for key, reg in block:
+    def fill_reserved(self, data):
+        """Fill the reserved fields in the register."""
+        for block_name, block in data.items():
+            for reg_name, reg in block.iter_items():
                 bits = {}
                 exclusive_field = False
-                for key, field in reg:
+                for field_name, field in reg.iter_items():
                     # exclusive fields, no more process
-                    if field.size == block.width:
-                        field.reserved = False
+                    if field.size == block.attrs['width']:
+                        field.attrs['reserved'] = False
                         exclusive_field = True
                         break
                     bits[field.lsb_pos] = field.size
-                    field.reserved = False
+                    field.attrs['reserved'] = False
 
                 if not exclusive_field:
                     # ordered by field lsb position
-                    bits_tup = sorted(bits.items(), key=lambda x:x[0])
+                    bits_tup = sorted(bits.items(), key=lambda x: x[0])
                     res_num = 0
                     # if the position of field is not 0, add a reserved field
                     if bits_tup[0][0] != 0:
@@ -212,29 +215,34 @@ prefix '0x' supported" %(data))
                         reg[res_name] = res_field
                     for idx in range(len(bits_tup)):
                         # if it's the last field, the upper limit of field is set to register width
-                        if idx+1 == len(bits_tup):
-                            upper = block.width
+                        if idx + 1 == len(bits_tup):
+                            upper = block.attrs['width']
                         # normal field, the upper limit set to position of the adjacent higher field
                         else:
-                            upper = bits_tup[idx+1][0]
+                            upper = bits_tup[idx + 1][0]
                         # if the bit occupy of lower field overlaps the adjacent higher field, report error
                         if bits_tup[idx][0] + bits_tup[idx][1] > upper:
-                            print("Error: Field address conflict in register %s" %(reg.name))
+                            print("Error: Field address conflict in register %s" % reg_name)
                         # if there is a gap between lower field and the adjacent higher field, add a reserved field
                         elif bits_tup[idx][0] + bits_tup[idx][1] < upper:
-                            res_name = "res_%0d" %(res_num)
+                            res_name = "res_%0d" % res_num
                             res_num += 1
-                            res_field = self.build_res_field(res_name, bits_tup[idx][0] + bits_tup[idx][1], upper - (bits_tup[idx][0] + bits_tup[idx][1]))
+                            res_field = self.build_res_field(
+                                res_name,
+                                bits_tup[idx][0] + bits_tup[idx][1],
+                                upper - (bits_tup[idx][0] + bits_tup[idx][1])
+                            )
                             reg[res_name] = res_field
-        return root
+        return data
 
-
-    def reorder_by_lsb(self, root):
-        for key, block in root:
-            for key, reg in block:
-                order_fields = [RegisterNode("placeholder")]*block.width
+    
+    def reorder_by_lsb(self, data):
+        """Reorders the fields by LSB."""
+        for block_name, block in data.items():
+            for reg_name, reg in block.iter_items():
+                order_fields = [RegisterNode("placeholder")] * block.attrs['width']
                 name_fields = []
-                for key, field in reg:
+                for field_name, field in reg.iter_items():
                     order_fields[field.lsb_pos] = field
                     name_fields.append(field.name)
                 for name in name_fields:
@@ -244,13 +252,12 @@ prefix '0x' supported" %(data))
                 for field in order_fields:
                     if field.name != "placeholder":
                         reg[field.name] = field
-                        if isinstance(field.reset, str):
-                            reg_reset += int(field.reset, 16)<<field.lsb_pos
+                        if isinstance(field.attrs['reset'], str):
+                            reg_reset += int(field.attrs['reset'], 16) << field.lsb_pos
                         else:
-                            reg_reset += field.reset<<field.lsb_pos
-                reg.reset = reg_reset
-        return root
-
+                            reg_reset += field.attrs['reset'] << field.lsb_pos
+                reg.attrs['reset'] = reg_reset
+        return data
 
 def is_node(item):
     return isinstance(item, RegisterNode)

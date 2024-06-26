@@ -221,8 +221,8 @@ class RegisterMap():
         """Read register map from Excel file."""
         parser = XLSParser()
         parser.get_sheet(path)
-        root = parser.parse_data()
-        self._fill_from_table_data(root)
+        data = parser.parse_data()
+        self._fill_from_table_data(data)
 
     def _fill_from_file_data(self, data):
         """Fill register map with data from file."""
@@ -239,27 +239,28 @@ class RegisterMap():
                 reg.add_bitfields(bf)
             self.add_registers(reg)
 
-    def _fill_from_table_data(self, root):
-        """Fill register map with data parsed from Excel."""
+    def _fill_from_table_data(self, data):
+        """Fill register map with data from Excel file."""
         self._regs = []
-        for block_name, block in root:
-            for reg_name, reg in block:
-                reg_data = {
-                    "name": reg_name,
-                    "description": reg.attrs.get("description"),
-                    "address": int(reg.attrs.get('offset', '0'), 16),
-                    "bitfields": []
-                }
-                for field_name, field in reg:
-                    field_data = {
-                        "name": field_name,
-                        "description": field.attrs.get("description"),
-                        "reset": int(field.attrs.get("reset"), 16),
-                        "width": field.size,
-                        "lsb": field.lsb_pos,
-                        "access": field.attrs.get("access"),
-                        "hardware": field.attrs.get("hardware"),
-                        "enums": []
-                    }
-                    reg_data["bitfields"].append(field_data)
-                self._regs.append(Register(**reg_data))
+        for block_name, block in data.items():
+            for reg_name, reg in block.iter_items():
+                data_reg = {k: v for k, v in reg.attrs.items() if k not in ['bitfields', 'has_hdl_path', 'field_num', 'offset', 'access']}
+                data_reg['name'] = reg_name
+                data_reg['description'] = reg.attrs.get('description', '')
+                data_reg['address'] = int(reg.attrs.get('offset', '0'), 16)
+                reg_instance = Register(**data_reg)
+                for field_name, field in reg.iter_items():
+                    data_bf = {k: v for k, v in field.attrs.items() if k not in ['enums', 'index', 'lsb_pos', 'size', 'has_reset', 'is_rand', 'is_volatile', 'hdl_path']}
+                    data_bf['name'] = field_name
+                    data_bf['description'] = field.attrs.get('description', '')
+                    data_bf['reset'] = int(field.attrs.get("reset"), 16)
+                    data_bf['width'] = field.size
+                    data_bf['lsb'] = field.lsb_pos
+                    data_bf['access'] = field.attrs.get("access")
+                    data_bf['hardware'] = field.attrs.get("hardware")
+                    bf = BitField(**data_bf)
+                    if 'enums' in field.attrs:
+                        for enum_name, enum in field.attrs['enums'].items():
+                            bf.add_enums(EnumValue(**enum))
+                    reg_instance.add_bitfields(bf)
+                self.add_registers(reg_instance)

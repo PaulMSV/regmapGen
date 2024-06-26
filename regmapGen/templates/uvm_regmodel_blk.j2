@@ -1,17 +1,17 @@
-{% for key, block in root %}
+{% for key, block in rmap.items() %}
 
 // -------------------------------------------------------------------------------------------------
 // Block {{ block.name }}
 // -------------------------------------------------------------------------------------------------
 class {{ module }}_blk_{{ block.name }} extends uvm_reg_block;
 
-    {% for key, reg in block %}
+    {% for key, reg in block.iter_items() %}
     rand {{ module }}_reg_{{ reg.name }} {{ reg.name }};
     {% endfor %}
 
     {% if factory %}
     `uvm_object_utils_begin({{ module }}_blk_{{ block.name }})
-        {% for key, reg in block %}
+        {% for key, reg in block.iter_items() %}
         `uvm_field_object({{ reg.name }}, UVM_ALL_ON)
         {% endfor %}
     `uvm_object_utils_end
@@ -23,7 +23,7 @@ class {{ module }}_blk_{{ block.name }} extends uvm_reg_block;
 
     function void build();
         // Create, configure and build the registers
-        {% for key, reg in block %}
+        {% for key, reg in block.iter_items() %}
     
         {% if factory %}
         {{ reg.name }} = {{ module }}_reg_{{ reg.name }}::type_id::create("{{ reg.name }}");
@@ -34,7 +34,7 @@ class {{ module }}_blk_{{ block.name }} extends uvm_reg_block;
         {{ reg.name }}.build();
         {% if reg.has_hdl_path %}
         {{ reg.name }}.add_hdl_path('{
-        {% for key, field in reg %}
+        {% for key, field in reg.iter_items() %}
             {% if field.size == width %}
         '{"{{ field.hdl_path }}", -1, -1}
             {% else %}
@@ -51,7 +51,7 @@ class {{ module }}_blk_{{ block.name }} extends uvm_reg_block;
 
         // Create map
         default_map = create_map("default_map", {{ block.width }}'h{{ block.offset }}, {{ (block.width/8)|int }}, UVM_LITTLE_ENDIAN);
-        {% for key, reg in block %}
+        {% for key, reg in block.iter_items() %}
         default_map.add_reg({{ reg.name }}, {{ block.width }}'h{{ reg.offset }},  "{{ access_map[reg.access] }}");
         {% endfor %}
     endfunction

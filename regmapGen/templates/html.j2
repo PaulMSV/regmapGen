@@ -13,11 +13,11 @@
   <nav id="regmapGen-address-map">
     <a id="regmapGen-map-text" href="#top">Address Map</a>
     <ul>
-      {% for key, block in root %}
+      {% for key, block in rmap.items() %}
       <li class="regmapGen-reg-block">
         <a href="#0">{{block.name}} (0x{{block.offset}})&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <ul>
-          {% for key, reg in block %}
+          {% for key, reg in block.iter_items() %}
           <li class="regmapGen-reg"><a href="#{{reg.name}}">{{reg.name}}</a></li>
           {% endfor %}
         </ul>
@@ -29,8 +29,8 @@
     <div id="regmapGen-header-text">{{title}}</div>
   </header>
   <main id="regmapGen-main-content">
-    {% for key, block in root %}
-      {% for key, reg in block %}
+    {% for key, block in rmap.items() %}
+      {% for key, reg in block.iter_items() %}
     <div>&nbsp;</div>
     <hr class="divider" color=#ede8d6>
     <div>&nbsp;</div>
@@ -50,7 +50,7 @@
       <tbody>
         <tr>
           <th>name</th>
-          {% for key, field in reg %}
+          {% for key, field in reg.iter_items() %}
           {% if field.reserved %}
           <td colspan="{{field.size}}" class="reserved-field">{{field.name}}</td>
           {% else %}
@@ -60,7 +60,7 @@
         </tr>
         <tr>
           <th>access</th>
-          {% for key, field in reg %}
+          {% for key, field in reg.iter_items() %}
           {% if field.reserved %}
           <td colspan="{{field.size}}" class="reserved-field">{{field.access}}</td>
           {% else %}
@@ -76,7 +76,7 @@
         </tr>
       </tbody>
     </table>
-    {% for key, field in reg %}
+    {% for key, field in reg.iter_items() %}
     {% if loop.index % 2 == 1 %}
       {% set field_class="field_even" %}
     {% else %}

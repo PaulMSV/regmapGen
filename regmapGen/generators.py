@@ -1036,10 +1036,10 @@ class Xls2Uvm(Generator, Jinja2):
         template_path = self.template_path if self.template_path != '' else default_template
         template_name = Path(template_path).name
         j2_vars = {}
+        j2_vars['rmap'] = parser.parse_data()
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['path'] = Path(self.path).name
         j2_vars['module'] = self.module_name
-        j2_vars['root'] = parser.parse_data()
         j2_vars['width'] = config.globcfg['data_width']
         j2_vars['factory'] = self.use_factory
         j2_vars['coverage'] = "UVM_CVR_ALL" if self.use_coverage else "UVM_NO_COVERAGE"
@@ -1079,7 +1079,7 @@ class Xls2Html(Generator, Jinja2):
     def generate(self):
         parser = XLSParser()
         parser.get_sheet(self.input_xls)
-        root = parser.parse_data()
+        rmap = parser.parse_data()
         # prepare jinja2
         default_template = os.path.join(
             Path(__file__).parent, 'templates', 'html.j2'
@@ -1087,8 +1087,9 @@ class Xls2Html(Generator, Jinja2):
         template_path = self.template_path if self.template_path != '' else default_template
         template_name = Path(template_path).name
         j2_vars = {}
-        j2_vars['root'] = parser.fill_reserved(root)
-        j2_vars['root'] = parser.reorder_by_lsb(j2_vars['root'])
+        j2_vars['rmap'] = rmap
+        j2_vars['rmap'] = parser.fill_reserved(rmap)
+        j2_vars['rmap'] = parser.reorder_by_lsb(j2_vars['rmap'])
         j2_vars['title'] = self.title
         # prepare html source
         output_dir = os.path.dirname(self.path)
