@@ -94,7 +94,7 @@ class TestSystemVerilog:
         # write output file
         generators.SystemVerilog(rmap, output_file).generate()
         # read file and verify
-        with open(output_file, 'r') as f:
+        with open(output_file, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert 'module regs' in raw_str
         assert 'endmodule' in raw_str
@@ -112,7 +112,7 @@ class TestSystemVerilogWrapper:
         # write output file
         generators.SystemVerilogWrapper(rmap, output_file).generate()
         # read file and verify
-        with open(output_file, 'r') as f:
+        with open(output_file, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert 'regs regs_wrapper(' in raw_str
         assert ');' in raw_str
@@ -130,7 +130,7 @@ class TestSystemVerilogHeader:
         # write output file
         generators.SystemVerilogHeader(rmap, output_file).generate()
         # read file and verify
-        with open(output_file, 'r') as f:
+        with open(output_file, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert '`define ' in raw_str
 
@@ -144,7 +144,7 @@ class TestLbBridgeSystemVerilog:
         # write output file
         generators.LbBridgeSystemVerilog(path=output_file, bridge_type=bridge_type).generate()
         # read file and verify
-        with open(output_file, 'r') as f:
+        with open(output_file, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert assert_str in raw_str
 
@@ -177,7 +177,7 @@ class TestMarkdown:
         # write output file
         generators.Markdown(rmap, md_path).generate()
         # read file and verify
-        with open(md_path, 'r') as f:
+        with open(md_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert '## **Регистры и команды**' in raw_str
 
@@ -194,7 +194,7 @@ class TestAsciidoc:
         # write output file
         generators.Asciidoc(rmap, adoc_path).generate()
         # read file and verify
-        with open(adoc_path, 'r') as f:
+        with open(adoc_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert '== Регистры и команды' in raw_str
 
@@ -211,7 +211,7 @@ class TestRst:
         # write output file
         generators.Rst(rmap, rst_path).generate()
         # read file and verify
-        with open(rst_path, 'r') as f:
+        with open(rst_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert 'Регистры и команды' in raw_str
 
@@ -248,7 +248,7 @@ class TestCmsisSvd:
         # write output file
         generators.CmsisSvd(rmap, cmsissvd_path).generate()
         # read file and verify
-        with open(cmsissvd_path, 'r') as f:
+        with open(cmsissvd_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert '<name>regs</name>' in raw_str
 
@@ -265,7 +265,7 @@ class TestIpxactXml:
         # write output file
         generators.IpxactXml(rmap, ipxactxml_path).generate()
         # read file and verify
-        with open(ipxactxml_path, 'r') as f:
+        with open(ipxactxml_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert '<spirit:vendor>NM-Tech</spirit:vendor>' in raw_str
 
@@ -282,7 +282,7 @@ class TestPython:
         # write output file
         generators.Python(rmap, py_path).generate()
         # read file and verify
-        with open(py_path, 'r') as f:
+        with open(py_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert 'class RegMap:' in raw_str
 
@@ -301,7 +301,7 @@ class TestXls2Uvm:
         # write output file
         generators.Xls2Uvm(rmap, uvm_path, xls_path).generate()
         # read file and verify
-        with open(uvm_path, 'r') as f:
+        with open(uvm_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert 'class uvm_regmodel extends uvm_reg_block;' in raw_str
 
@@ -320,6 +320,6 @@ class TestXls2Html:
         # write output file
         generators.Xls2Html(rmap, html_path, 'Register map', xls_path).generate()
         # read file and verify
-        with open(html_path, 'r') as f:
+        with open(html_path, 'r', encoding="utf-8") as f:
             raw_str = ''.join(f.readlines())
         assert '<div id="regmapGen-header-text">Register map</div>' in raw_str
