@@ -243,11 +243,13 @@ class RegisterMap():
         """Fill register map with data from Excel file."""
         self._regs = []
         for block_name, block in data.items():
+            block_offset = int(block.attrs.get('offset', '0'), 16)
             for reg_name, reg in block.iter_items():
                 data_reg = {k: v for k, v in reg.attrs.items() if k not in ['bitfields', 'has_hdl_path', 'field_num', 'offset', 'access']}
                 data_reg['name'] = reg_name
                 data_reg['description'] = reg.attrs.get('description', '')
-                data_reg['address'] = int(reg.attrs.get('offset', '0'), 16)
+                reg_offset = int(reg.attrs.get('offset', '0'), 16)
+                data_reg['address'] = block_offset + reg_offset
                 reg_instance = Register(**data_reg)
                 for field_name, field in reg.iter_items():
                     data_bf = {k: v for k, v in field.attrs.items() if k not in ['enums', 'index', 'lsb_pos', 'size', 'has_reset', 'is_rand', 'is_volatile', 'hdl_path']}
