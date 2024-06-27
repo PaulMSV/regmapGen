@@ -5,7 +5,6 @@ sphinxcontrib-wavedrom
 pyyaml>=5.1
 jinja2
 python-docx
-pandas
 pandoc
 openpyxl
 wavedrom

@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 # Install package
 setuptools.setup(
     name="regmapGen",
-    version='1.0.5',
+    version='1.0.6',
     author="paulmsv",
     author_email="bobkovpg@gmail.com",
     description="Генератор Регистровой Карты",
@@ -37,7 +37,6 @@ setuptools.setup(
         'sphinx',
         'sphinxcontrib-wavedrom',
         'sphinx_rtd_theme',
-        'pandas',
         'python-docx',
         'openpyxl',
         'm2r2',
@@ -49,4 +48,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    license='MIT',
 )
