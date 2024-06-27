@@ -1,5 +1,5 @@
 
-// Created with regmapGen v1.0.3
+// Created with regmapGen v1.0.6
 
 #ifndef __REGS_H
 #define __REGS_H

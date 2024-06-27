@@ -1,4 +1,4 @@
-// Created with regmapGen v1.0.3
+// Created with regmapGen v1.0.6
 
 `ifndef __REGS_SVH
 `define __REGS_SVH

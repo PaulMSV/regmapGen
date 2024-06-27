@@ -7,7 +7,7 @@ address_increment = none
 address_alignment = data_width
 address_duplicate = none
 force_name_case = none
-regmap_path = regs.yaml
+regmap_path = regs.xlsx
 
 [sv_module]
 path = hw/regs.sv
@@ -98,11 +98,6 @@ path = doc/regs.docx
 input_md = regs.md
 pandoc_args = 
 generator = Docx
-
-[xls_yaml]
-path = regs.yaml
-input_xls = regs.xlsx
-generator = Xls2Yaml
 
 [xls_uvm]
 path = uvm/uvm_regmodel.sv

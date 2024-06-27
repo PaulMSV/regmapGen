@@ -1,5 +1,5 @@
 
-// Created with regmapGen v1.0.3
+// Created with regmapGen v1.0.6
 
 `ifndef UVM_REGMODEL_SV
 `define UVM_REGMODEL_SV
