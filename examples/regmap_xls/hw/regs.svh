@@ -117,13 +117,13 @@
 
 
 // ID - IP-core ID register
-`define ID_ADDR 16'h40
+`define ID_ADDR 16'h140
 `define ID_RESET 32'hcafe0666
 
 // ID.UID - Unique ID
 `define ID_UID_WIDTH 32
 `define ID_UID_LSB 0
-`define ID_UID_MASK 32'h40
+`define ID_UID_MASK 32'h140
 `define ID_UID_RESET 32'hcafe0666
 
 

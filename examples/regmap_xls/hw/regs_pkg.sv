@@ -116,7 +116,7 @@ parameter INTSTAT_RX_RESET = 1'h0;
 
 
 // ID
-parameter ID_ADDR = 16'h40;
+parameter ID_ADDR = 16'h140;
 parameter ID_RESET = 32'hcafe0666;
 
 // ID.UID

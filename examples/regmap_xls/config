@@ -75,7 +75,7 @@ print_conventions = True
 template_path = 
 generator = Markdown
 
-[asciidoc_doc]
+[ascii_doc]
 path = doc/regs.adoc
 title = Register map
 print_images = True

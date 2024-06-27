@@ -636,13 +636,13 @@ end
 
 //------------------------------------------------------------------------------
 // Register implementation:
-// [0x40] - ID - IP-core ID register
+// [0x140] - ID - IP-core ID register
 //------------------------------------------------------------------------------
 wire [31:0] id_rdata;
 
 
 wire id_ren;
-assign id_ren = ren && (raddr == 16'h40);
+assign id_ren = ren && (raddr == 16'h140);
 reg id_ren_ff;
 always @(posedge clk) begin
     if (rst) begin
@@ -700,7 +700,7 @@ always @(posedge clk) begin
             16'h10: rdata_ff <= ctrl_rdata;
             16'h14: rdata_ff <= lpmode_rdata;
             16'h20: rdata_ff <= intstat_rdata;
-            16'h40: rdata_ff <= id_rdata;
+            16'h140: rdata_ff <= id_rdata;
             default: rdata_ff <= 32'h0;
         endcase
     end else begin

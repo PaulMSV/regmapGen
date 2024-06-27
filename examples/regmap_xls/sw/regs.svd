@@ -14,7 +14,7 @@
       <baseAddress>0x0000</baseAddress>
       <addressBlock>
         <offset>0x0004</offset>
-        <size>0x3e</size>
+        <size>0x13e</size>
         <usage>registers</usage>
       </addressBlock>
       <registers>
@@ -188,7 +188,7 @@
         <register>
           <name>ID</name>
           <description>IP-core ID register</description>
-          <addressOffset>0x0040</addressOffset>
+          <addressOffset>0x0140</addressOffset>
           <resetValue>0xcafe0666</resetValue>
 
           <fields>
