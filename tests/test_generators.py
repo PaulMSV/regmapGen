@@ -5,8 +5,11 @@
 """
 
 import pytest
+import subprocess
+from unittest import mock
 from regmapGen import RegisterMap, generators, config, utils
 from docx import Document
+
 
 class TestJson:
     """Class 'generators.Json' testing."""
@@ -234,6 +237,35 @@ class TestDocx:
         doc = Document(docx_path)
         text = '\n'.join([paragraph.text for paragraph in doc.paragraphs])
         assert 'Регистры и команды' in text
+
+    @mock.patch('subprocess.run', side_effect=subprocess.CalledProcessError(1, 'pandoc'))
+    def test_docx_fail(self, mock_subprocess_run, tmpdir):
+        """Test Docx generation failure handling."""
+        md_path = str(tmpdir.join('regs.md'))
+        docx_path = str(tmpdir.join('regs.docx'))
+        # create regmap
+        rmap = utils.create_template()
+        generators.Markdown(rmap, md_path).generate()
+        with mock.patch('builtins.print') as mock_print:
+            generators.Docx(rmap, docx_path, md_path).generate()
+            mock_print.assert_any_call('... docx document error generating: Command \'pandoc\' returned non-zero exit status 1.')
+
+    @mock.patch('subprocess.run')
+    @pytest.mark.parametrize("pandoc_args, expected_command_extension", [
+        ("--arg1 value1 --arg2 value2", ['--arg1', 'value1', '--arg2', 'value2']),
+        (["--arg1", "value1", "--arg2", "value2"], ['--arg1', 'value1', '--arg2', 'value2'])
+    ])
+    def test_pandoc_args(self, mock_subprocess_run, tmpdir, pandoc_args, expected_command_extension):
+        """Test Docx generation with pandoc_args as string and list."""
+        md_path = str(tmpdir.join('regs.md'))
+        docx_path = str(tmpdir.join('regs.docx'))
+        # create regmap
+        rmap = utils.create_template()
+        # write output file
+        generators.Markdown(rmap, md_path).generate()
+        generators.Docx(rmap, docx_path, md_path, pandoc_args).generate()
+        expected_command = ['pandoc', '-s', '-o', 'regs.docx', md_path] + expected_command_extension
+        mock_subprocess_run.assert_called_once_with(expected_command, check=True)
 
 
 class TestCmsisSvd:
