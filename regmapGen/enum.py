@@ -5,7 +5,6 @@
 """
 
 from . import utils
-from . import config
 
 
 class EnumValue():

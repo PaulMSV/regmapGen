@@ -9,10 +9,10 @@ __title__ = "regmapGen"
 __description__ = "Генератор Регистровой Карты."
 __version__ = '1.0.6'
 
-from . import config
-from . import generators
-from .enum import EnumValue
-from .bitfield import BitField
-from .reg import Register
-from .regmap import RegisterMap
-from .register_node import RegisterNode
+from . import config                        # noqa: F401
+from . import generators                    # noqa: F401
+from .enum import EnumValue                 # noqa: F401
+from .bitfield import BitField              # noqa: F401
+from .reg import Register                   # noqa: F401
+from .regmap import RegisterMap             # noqa: F401
+from .register_node import RegisterNode     # noqa: F401

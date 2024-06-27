@@ -11,11 +11,8 @@ import jinja2
 import wavedrom
 import subprocess
 import shutil
-import numpy as np
 from pathlib import Path
 from regmapGen import __version__
-from ruamel.yaml.scalarstring import PreservedScalarString as pss
-from ruamel.yaml import YAML
 from . import utils
 from . import config
 from .regmap import RegisterMap
@@ -127,8 +124,8 @@ class Wavedrom():
                 elif bf.lsb - bit_pos > 1:
                     reg_wd["reg"].append({"bits": bf.lsb - bit_pos - 1})
                 name = bf.name
-                #name_max_len = 5 * bf.width
-                #if len(bf.name) > name_max_len:  # to prevent labels overlapping
+                # name_max_len = 5 * bf.width
+                # if len(bf.name) > name_max_len:  # to prevent labels overlapping
                 #    name = bf.name[:name_max_len - 1] + '..'
                 reg_wd["reg"].append({"name": name, "attr": bf.access, "bits": bf.width})
                 bit_pos = bf.msb
@@ -329,7 +326,8 @@ class SystemVerilogWrapper(Generator, Jinja2):
     :type template_path: str
     """
 
-    def __init__(self, rmap=None, path='regs_wrapper.svh', module_name='regs', interface='axil', template_path='', **args):
+    def __init__(self, rmap=None, path='regs_wrapper.svh', module_name='regs', interface='axil',
+                 template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.module_name = module_name
@@ -509,10 +507,10 @@ class LbBridgeSystemVerilog(Generator, Jinja2):
         self.validate()
         # prepare jinja2
         default_templates = {
-            'axil' : 'axil2lb_sv.j2',
-            'apb' : 'apb2lb_sv.j2',
-            'amm' : 'amm2lb_sv.j2',
-            'spi' : 'spi2lb_sv.j2'
+            'axil': 'axil2lb_sv.j2',
+            'apb': 'apb2lb_sv.j2',
+            'amm': 'amm2lb_sv.j2',
+            'spi': 'spi2lb_sv.j2'
         }
         default_template = os.path.join(
             Path(__file__).parent, 'templates', default_templates[self.bridge_type]
@@ -716,11 +714,11 @@ class Docx(Generator):
 
         # Save current directory
         current_dir = os.getcwd()
-        
+
         try:
             # Change directory to the specified path
             os.chdir(os.path.dirname(self.path))
-            
+
             # Convert Markdown to Docx using Pandoc
             command = ['pandoc', '-s', '-o', os.path.basename(self.path), self.input_md]
             if self.pandoc_args:
@@ -811,9 +809,9 @@ class IpxactXml(Generator, Jinja2):
     """
 
     def __init__(self, rmap=None, path='regs.xml', vendor='NM-Tech',
-                 library='No library', component_name='No component_name', version='No version', 
-                 memorymap_name='No memorymap_name', addressblock_name='No addressblock_name', description='No description', 
-                 template_path='',  **args):
+                 library='No library', component_name='No component_name', version='No version',
+                 memorymap_name='No memorymap_name', addressblock_name='No addressblock_name',
+                 description='No description', template_path='', **args):
         super().__init__(rmap, **args)
         self.path = path
         self.vendor = vendor
@@ -839,12 +837,12 @@ class IpxactXml(Generator, Jinja2):
         j2_vars['regmapGen_ver'] = __version__
         j2_vars['rmap'] = self.rmap
         j2_vars['vendor'] = self.vendor
-        j2_vars['library'] =self.library
-        j2_vars['component_name'] =self.component_name
-        j2_vars['version'] =self.version
-        j2_vars['memorymap_name'] =self.memorymap_name
-        j2_vars['addressblock_name'] =self.addressblock_name
-        j2_vars['description'] =self.description
+        j2_vars['library'] = self.library
+        j2_vars['component_name'] = self.component_name
+        j2_vars['version'] = self.version
+        j2_vars['memorymap_name'] = self.memorymap_name
+        j2_vars['addressblock_name'] = self.addressblock_name
+        j2_vars['description'] = self.description
         j2_vars['config'] = config.globcfg
         j2_vars['part_name'] = utils.get_file_name(self.path)
 
@@ -916,7 +914,7 @@ class Xls2Uvm(Generator, Jinja2):
 
     def get_jinja_env(self, templates_path):
         j2_env = super().get_jinja_env(templates_path)
-        #j2_env.filters['get_bit_reset'] = get_bit_reset
+        # j2_env.filters['get_bit_reset'] = get_bit_reset
         j2_env.filters['format_hex'] = format_hex
         return j2_env
 
@@ -988,7 +986,7 @@ class Xls2Html(Generator, Jinja2):
         # prepare html source
         output_dir = os.path.dirname(self.path)
         src = os.path.join(Path(__file__).parent, 'html')
-        des = os.path.join(output_dir, f'html_src')
+        des = os.path.join(output_dir, 'html_src')
         if os.path.isdir(des):
             shutil.rmtree(des)
         shutil.copytree(src, des)

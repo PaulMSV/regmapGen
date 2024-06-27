@@ -16,11 +16,14 @@ setuptools.setup(
     project_urls={
         'Documentation': 'https://regmapGen.readthedocs.io'
     },
+    include_package_data=True,
     packages=setuptools.find_packages(exclude='tests'),
     package_data={
-        'regmapGen': ['templates/*.j2'],
-        'regmapGen': ['templates/*.xlsx'],
-        'regmapGen': ['html/*'],
+        'regmapGen': [
+            'templates/*.j2',
+            'templates/*.xlsx',
+            'html/**/*'
+        ],
     },
     entry_points={
         'console_scripts': [
@@ -36,10 +39,8 @@ setuptools.setup(
         'sphinx_rtd_theme',
         'pandas',
         'python-docx',
-        'ruamel.yaml',
         'openpyxl',
         'm2r2',
-        'numpy',
         'pandoc',
     ],
     classifiers=[

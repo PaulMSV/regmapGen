@@ -12,42 +12,35 @@ from .register_node import RegisterNode
 class XLSParser(object):
     def get_hex(self, data):
         if isinstance(data, int):
-            return "%X" %data
+            return "%X" % data
         try:
             int(data, 16)
             data = data.upper()
             return data[2:]
-        except:
-            print("Fatal: Invalid data format(%s), only decimal or hexadecimal with \
-prefix '0x' supported" %(data))
+        except ValueError:
+            print("Fatal: Invalid data format(%s), only decimal or hexadecimal with prefix '0x' supported" % (data))
         return None
-
 
     def get_sheet(self, name):
         self.sheet = load_workbook(name, data_only=True)['RegMap']
 
-
     def in_range(self, column, start, end):
         return ord(column) in range(ord(start), ord(end))
-
 
     def locate(self, start_column):
         s_row = [cell for cell in self.sheet[start_column] if cell.value == 'Block'][0].row
         s_reg = [cell for cell in self.sheet[s_row] if cell.value == 'Register'][0].column
         s_field = [cell for cell in self.sheet[s_row] if cell.value == 'Field'][0].column
-        
         if isinstance(s_reg, int):
             s_reg = get_column_letter(s_reg)
         if isinstance(s_field, int):
             s_field = get_column_letter(s_field)
         return (s_row, s_reg, s_field)
 
-
     def get_header(self):
         self.header = {}
         self.header['block'] = 'A'
         self.start_row, self.header['register'], self.header['field'] = self.locate(self.header['block'])
-        
         for cell in self.sheet[self.start_row]:
             if isinstance(cell.column, int):
                 column = get_column_letter(cell.column)
@@ -97,31 +90,29 @@ prefix '0x' supported" %(data))
                 self.header['volatile'] = column
             if cell.value == 'Hardware':
                 self.header['hardware'] = column
-                    
 
     def parse_bits(self, field, bits):
         try:
             start = int(bits)
             field.lsb_pos = start
             field.size = 1
-        except:
-            bit_n =[int(x) for x in bits.split(':')]
+        except ValueError:
+            bit_n = [int(x) for x in bits.split(':')]
             start = min(bit_n)
             end = max(bit_n)
             field.lsb_pos = start
-            field.size = end-start+1
+            field.size = end - start + 1
 
     def set_hdl(self, reg, field, value):
         field.hdl_path = value
-        reg.has_hdl_path = True       
+        reg.has_hdl_path = True
 
     def set_attr(self, node, key, value):
         node.attrs[key] = value
-        
 
     def parse_data(self):
         self.get_header()
-        
+
         switch = {
             self.header['width']: lambda cell: self.set_attr(block, 'width', cell.value),
             self.header['block_offset']: lambda cell: self.set_attr(block, 'offset', self.get_hex(cell.value)),
@@ -143,7 +134,7 @@ prefix '0x' supported" %(data))
 
         rmap = {}
 
-        for row in self.sheet[self.start_row+1:self.sheet.max_row]:
+        for row in self.sheet[self.start_row + 1:self.sheet.max_row]:
             for cell in row:
                 if isinstance(cell.column, int):
                     column = get_column_letter(cell.column)
@@ -173,7 +164,6 @@ prefix '0x' supported" %(data))
 
         return rmap
 
-
     def build_res_field(self, name, lsb_pos, size):
         field = RegisterNode(name)
         field.lsb_pos = lsb_pos
@@ -181,12 +171,11 @@ prefix '0x' supported" %(data))
         field.access = 'RO'
         field.reset = 0
         field.has_reset = 1
-        field.is_rand  = 0
+        field.is_rand = 0
         field.is_volatile = 0
         field.reserved = True
         field.description = "Reserved bit(s)"
         return field
-
 
     def fill_reserved(self, data):
         """Fill the reserved fields in the register."""
@@ -235,7 +224,6 @@ prefix '0x' supported" %(data))
                             reg[res_name] = res_field
         return data
 
-    
     def reorder_by_lsb(self, data):
         """Reorders the fields by LSB."""
         for block_name, block in data.items():
@@ -259,12 +247,13 @@ prefix '0x' supported" %(data))
                 reg.attrs['reset'] = reg_reset
         return data
 
+
 def is_node(item):
     return isinstance(item, RegisterNode)
 
 
 def get_bit_reset(reset, pos):
-    return (reset & (1<<pos)) >> pos
+    return (reset & (1 << pos)) >> pos
 
 
 def format_hex(block_offset, reg_offset):
@@ -276,4 +265,4 @@ def format_hex(block_offset, reg_offset):
         reg_offset_hex = int(reg_offset, 16)
     else:
         reg_offset_hex = reg_offset
-    return "0x%08X" %(block_offset_hex+reg_offset_hex)
+    return "0x%08X" % (block_offset_hex + reg_offset_hex)
