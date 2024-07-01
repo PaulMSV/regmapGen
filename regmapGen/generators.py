@@ -914,7 +914,7 @@ class Xls2Uvm(Generator, Jinja2):
 
     def get_jinja_env(self, templates_path):
         j2_env = super().get_jinja_env(templates_path)
-        # j2_env.filters['get_bit_reset'] = get_bit_reset
+        j2_env.filters['get_bit_reset'] = get_bit_reset
         j2_env.filters['format_hex'] = format_hex
         return j2_env
 

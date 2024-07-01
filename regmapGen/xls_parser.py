@@ -110,6 +110,17 @@ class XLSParser(object):
     def set_attr(self, node, key, value):
         node.attrs[key] = value
 
+    def flat_str(self, data):
+        """Convert multiline strings into single line strings recursively."""
+        if isinstance(data, dict):
+            return {k: self.flat_str(v) for k, v in data.items()}
+        elif isinstance(data, list):
+            return [self.flat_str(v) for v in data]
+        elif isinstance(data, str) and '\n' in data:
+            return data.replace('\n', ' ')
+        else:
+            return data
+
     def parse_data(self):
         self.get_header()
 
@@ -120,7 +131,7 @@ class XLSParser(object):
             self.header['reg_offset']: lambda cell: self.set_attr(reg, 'offset', self.get_hex(cell.value)),
             self.header['reg_access']: lambda cell: self.set_attr(reg, 'access', cell.value),
             self.header['reg_repeat']: lambda cell: self.set_attr(reg, 'repeat', cell.value),
-            self.header['reg_description']: lambda cell: self.set_attr(reg, 'description', cell.value),
+            self.header['reg_description']: lambda cell: self.set_attr(reg, 'description', self.flat_str(cell.value)),
             self.header['bits']: lambda cell: self.parse_bits(field, cell.value),
             self.header['field_access']: lambda cell: self.set_attr(field, 'access', cell.value),
             self.header['reset']: lambda cell: self.set_attr(field, 'reset', self.get_hex(cell.value)),
@@ -128,7 +139,7 @@ class XLSParser(object):
             self.header['rand']: lambda cell: self.set_attr(field, 'is_rand', cell.value),
             self.header['volatile']: lambda cell: self.set_attr(field, 'is_volatile', cell.value),
             self.header['hdl_path']: lambda cell: self.set_hdl(reg, field, cell.value),
-            self.header['field_description']: lambda cell: self.set_attr(field, 'description', cell.value),
+            self.header['field_description']: lambda cell: self.set_attr(field, 'description', self.flat_str(cell.value)),
             self.header['hardware']: lambda cell: self.set_attr(field, 'hardware', cell.value),
         }
 

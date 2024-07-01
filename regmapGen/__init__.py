@@ -7,7 +7,7 @@
 
 __title__ = "regmapGen"
 __description__ = "Генератор Регистровой Карты."
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 
 from . import config                        # noqa: F401
 from . import generators                    # noqa: F401
