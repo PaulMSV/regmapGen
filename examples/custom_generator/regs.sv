@@ -1,4 +1,4 @@
-// Created with regmapGen v1.0.6
+// Created with regmapGen v1.1.0
 
 module regs #(
     parameter ADDR_W = 16,
@@ -249,7 +249,7 @@ always @(posedge clk) begin
     if (rst) begin
         data_ferr_ff <= 1'b0;
     end else  begin
-           if (data_ren && !data_ren_ff && (data_ferr_ff != 1'b0)) begin
+           if (data_ren && !data_ren_ff && (data_ferr_in == 1'b0)) begin
             data_ferr_ff <= 1'b0;
         end else   if (data_ferr_in == 1'b1) begin
             data_ferr_ff <= data_ferr_in;
@@ -272,7 +272,7 @@ always @(posedge clk) begin
     if (rst) begin
         data_perr_ff <= 1'b0;
     end else  begin
-           if (data_ren && !data_ren_ff && (data_perr_ff != 1'b0)) begin
+           if (data_ren && !data_ren_ff && (data_perr_in == 1'b0)) begin
             data_perr_ff <= 1'b0;
         end else   if (data_perr_in == 1'b1) begin
             data_perr_ff <= data_perr_in;

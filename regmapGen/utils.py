@@ -172,7 +172,7 @@ def create_template():
         BitField("RX", "Receiver interrupt. Write 1 to clear.", width=1, lsb=1, access='rw1c', hardware='s'),
     ]))
 
-    rmap.add_registers(Register('ID', 'IP-core ID register', 0x40).add_bitfields([
+    rmap.add_registers(Register('ID', 'IP-core ID register', 0x140).add_bitfields([
         BitField("UID", "Unique ID", width=32, lsb=0, access='ro', hardware='f', reset=0xcafe0666),
     ]))
 

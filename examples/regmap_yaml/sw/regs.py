@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""" Created with regmapGen v1.0.6
+""" Created with regmapGen v1.1.0
 
 Control/status register map.
 """
@@ -236,7 +236,7 @@ class RegMap:
     INTSTAT_RX_MSK = 0x1
 
     # ID - IP-core ID register
-    ID_ADDR = 0x0040
+    ID_ADDR = 0x0140
     ID_UID_POS = 0
     ID_UID_MSK = 0xffffffff
 

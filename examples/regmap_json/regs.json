@@ -178,7 +178,7 @@
         {
             "name": "ID",
             "description": "IP-core ID register",
-            "address": 64,
+            "address": 320,
             "bitfields": [
                 {
                     "name": "UID",

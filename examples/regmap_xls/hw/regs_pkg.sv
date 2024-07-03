@@ -1,4 +1,4 @@
-// Created with regmapGen v1.0.6
+// Created with regmapGen v1.1.0
 
 package regs_pkg;
 

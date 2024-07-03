@@ -139,7 +139,7 @@ class XLSParser(object):
             self.header['rand']: lambda cell: self.set_attr(field, 'is_rand', cell.value),
             self.header['volatile']: lambda cell: self.set_attr(field, 'is_volatile', cell.value),
             self.header['hdl_path']: lambda cell: self.set_hdl(reg, field, cell.value),
-            self.header['field_description']: lambda cell: self.set_attr(field, 'description', self.flat_str(cell.value)),
+            self.header['field_description']: lambda cell: self.set_attr(field, 'description', self.flat_str(cell.value)), # noqa E501
             self.header['hardware']: lambda cell: self.set_attr(field, 'hardware', cell.value),
         }
 

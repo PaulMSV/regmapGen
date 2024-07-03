@@ -62,7 +62,7 @@ Base address: 0x00000000
      - 0x0020
      - Interrupt status register
    * - `ID <#id>`__
-     - 0x0040
+     - 0x0140
      - IP-core ID register
 
 
@@ -345,7 +345,7 @@ IP-core ID register
 
 Смещение адреса
 
-0x0040
+0x0140
 
 Значение при сбросе
 

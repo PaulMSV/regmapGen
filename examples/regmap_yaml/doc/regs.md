@@ -27,7 +27,7 @@
 | [CTRL](#ctrl)            | 0x0010     | Control register |
 | [LPMODE](#lpmode)        | 0x0014     | Low power mode control |
 | [INTSTAT](#intstat)      | 0x0020     | Interrupt status register |
-| [ID](#id)                | 0x0040     | IP-core ID register |
+| [ID](#id)                | 0x0140     | IP-core ID register |
 
 
 \newpage
@@ -178,7 +178,7 @@ IP-core ID register
 
 **Смещение адреса**
 
-0x0040
+0x0140
 
 **Значение при сбросе**
 

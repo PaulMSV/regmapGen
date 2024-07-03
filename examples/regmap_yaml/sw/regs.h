@@ -1,5 +1,5 @@
 
-// Created with regmapGen v1.0.6
+// Created with regmapGen v1.1.0
 
 #ifndef __REGS_H
 #define __REGS_H
@@ -157,7 +157,7 @@ typedef struct {
 #define INTSTAT_RX_RESET 0x0
 
 // ID - IP-core ID register
-#define ID_ADDR 0x40
+#define ID_ADDR 0x140
 #define ID_RESET 0xcafe0666
 typedef struct {
     uint32_t UID : 32; // Unique ID
@@ -195,7 +195,7 @@ typedef struct {
         __IO uint32_t INTSTAT; // Interrupt status register
         __IO intstat_t INTSTAT_bf; // Bit access for INTSTAT register
     };
-    __IO uint32_t RESERVED3[7];
+    __IO uint32_t RESERVED3[71];
     union {
         __I uint32_t ID; // IP-core ID register
         __I id_t ID_bf; // Bit access for ID register

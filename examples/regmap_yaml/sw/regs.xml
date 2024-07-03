@@ -11,7 +11,7 @@
         <spirit:name>No addressblock_name</spirit:name>
         <spirit:description>No description</spirit:description>
         <spirit:baseAddress>0x0000</spirit:baseAddress>
-        <spirit:range>0x3e</spirit:range>
+        <spirit:range>0x13e</spirit:range>
         <spirit:width>32</spirit:width>
         <spirit:register>
           <spirit:name>DATA</spirit:name>
@@ -163,7 +163,7 @@
         <spirit:register>
           <spirit:name>ID</spirit:name>
           <spirit:description>IP-core ID register</spirit:description>
-          <spirit:addressOffset>0x0040</spirit:addressOffset>
+          <spirit:addressOffset>0x0140</spirit:addressOffset>
           <spirit:size>32</spirit:size>
           <spirit:reset>
             <spirit:value>0xcafe0666</spirit:value>
