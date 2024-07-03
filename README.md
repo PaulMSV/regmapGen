@@ -72,9 +72,8 @@ regmap:
             value: 2
 ```
 
-YAML файл также может быть сгенерирован из Excel таблицы. Детали доступны в [примере](https://github.com/PaulMSV/regmapGen/example/regmap_xls).
 
-Чтобы узнать больше о регистрах, битовых полях и их атрибутах, пожалуйста, ознакомьтесь с документацией на странице [Регистровая карта](https://regmapGen.readthedocs.io/en/latest/regmap.html).
+Чтобы узнать больше о регистрах, битовых полях и их атрибутах, пожалуйста, ознакомьтесь с документацией на странице [Регистровая карта](https://regmapGen.readthedocs.io/ru/latest/regmap.html).
 
 
 regmapGen - это инструмент, ориентированный на файлы конфигурации. По умолчанию он использует ini-файл конфигурации под названием config. В этом файле указываются все необходимые параметры для генерации: входной файл карты регистров, глобальные параметры и выходной файл (таргет). Вот пример:
@@ -95,7 +94,7 @@ path = regs.h
 generator = CHeader
 ```
 
-Для получения более подробной информации о файле `config`, посмотрите страницу [Конфигурационный файл](https://regmapGen.readthedocs.io/en/latest/config.html), а для более общей информации о процессе ознакомтесь с разделом [Введение](https://regmapGen.readthedocs.io/en/latest/introduction.html).
+Для получения более подробной информации о файле `config`, посмотрите страницу [Конфигурационный файл](https://regmapGen.readthedocs.io/ru/latest/config.html), а для более общей информации о процессе ознакомтесь с разделом [Введение](https://regmapGen.readthedocs.io/en/latest/introduction.html).
 
 `config` также действует как сценарий сборки для regmapGen, поэтому просто запустите его в директории с файлом `config`:
 
@@ -115,7 +114,7 @@ regmapGen -h
 
 ## Разработка
 
-Пожалуйста, ознакомьтесь с [Руководством разработчика](https://regmapGen.readthedocs.io/en/latest/contributing.html).
+Пожалуйста, ознакомьтесь с [Руководством разработчика](https://regmapGen.readthedocs.io/ru/latest/contributing.html).
 
 Для PyPi:
 
