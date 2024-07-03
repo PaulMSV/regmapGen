@@ -184,10 +184,10 @@ module {{ module_name }} #(
     {% for bf in reg %}
     // {{ reg.name }}.{{ bf.name }}
         {% if 'a' in bf.hardware %}
-            {% if 'r' in bf.access %}
+            {% if 'i' in bf.hardware %}
     output {{ port_bf_raccess(reg, bf) }},
             {% endif %}
-            {% if 'w' in bf.access %}
+            {% if 'o' in bf.hardware %}
     output {{ port_bf_waccess(reg, bf) }},
             {% endif %}
         {% endif %}
@@ -283,10 +283,10 @@ end
 // access: {{ bf.access }}, hardware: {{ bf.hardware }}
 //---------------------
         {% if 'a' in bf.hardware %}
-            {% if 'w' in bf.access %}
+            {% if 'o' in bf.hardware %}
 assign {{ port_bf_waccess(reg, bf) }} = wready && {{ sig_wen(reg) }};
             {% endif %}
-            {% if 'r' in bf.access %}
+            {% if 'i' in bf.hardware %}
 assign {{ port_bf_raccess(reg, bf) }} = rvalid && {{ sig_ren(reg) }};
             {% endif %}
         {% endif %}
@@ -327,11 +327,11 @@ assign {{ port_bf_wen(reg, bf) }} = {{ sig_wen(reg) }};
             {{ sig_bf_ff(reg, bf) }} <= {{ zeros(bf.width) }};
         end else
         {%- endif %} {% if bf.access == 'rolh' %}
-        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }} && ({{ port_bf_in(reg, bf) }} == {{ zeros(bf.width) }})) begin
+        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }} && ({{ sig_bf_ff(reg, bf) }} != {{ zeros(bf.width) }})) begin
             {{ sig_bf_ff(reg, bf) }} <= {{ zeros(bf.width) }};
         end else
         {%- endif %} {% if bf.access == 'roll' -%}
-        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }} && ({{ port_bf_in(reg, bf) }} == {{ ones(bf.width) }})) begin
+        if ({{ sig_ren(reg) }} && !{{ sig_ren_ff(reg) }} && ({{ sig_bf_ff(reg, bf) }} != {{ ones(bf.width) }})) begin
             {{ sig_bf_ff(reg, bf) }} <= {{ ones(bf.width) }};
         end else
         {%- endif %} {% if 'w' in bf.access -%}
