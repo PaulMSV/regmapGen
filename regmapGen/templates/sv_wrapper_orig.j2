@@ -109,10 +109,10 @@
     {% for bf in reg %}
     // {{ reg.name }}.{{ bf.name }}
         {% if 'a' in bf.hardware %}
-            {% if 'r' in bf.access %}
+            {% if 'i' in bf.hardware %}
     .{{ port_bf_raccess(reg, bf) }}({{ port_bf_raccess(reg, bf) }}),
             {% endif %}
-            {% if 'w' in bf.access %}
+            {% if 'o' in bf.hardware %}
     .{{ port_bf_waccess(reg, bf) }}({{ port_bf_waccess(reg, bf) }}),
             {% endif %}
         {% endif %}
